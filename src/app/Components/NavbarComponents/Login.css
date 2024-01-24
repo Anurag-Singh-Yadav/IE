@@ -30,3 +30,9 @@
     padding-inline: 0.3rem;
     color: var(--primary);
 }
+
+.pop-up{
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: all;
+    transition-duration: 0.5s;
+}

@@ -20,8 +20,8 @@ function Dropdown({ label, options }) {
   }
 
   return (
-    <div onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} className="relative flex justify-center z-50">
-      <p className='hover:cursor-pointer hover:text-green-bg transition duration-200'>{label}<RiArrowDropDownLine size={30} className="inline-block"/></p>
+    <div onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} className="relative flex justify-center z-20">
+      <p className='hover:cursor-pointer hover:text-green-bg transition duration-400'>{label}<RiArrowDropDownLine size={30} className="inline-block"/></p>
 
       <div id={label} className="dropdown-content top-[0vh] pt-[10vh] w-[100%] flex justify-center">
         <div className='flex flex-col bg-white rounded-lg shadow-md shadow-gray-500 p-2 border-t-[3px] border-green-bg w-fit'>

@@ -29,14 +29,14 @@
 }
 
 .start {
-  transition: all .7s;
+  transition: all 0.7s;
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
 
 .start:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -48,14 +48,14 @@
   z-index: -2;
 }
 .start:before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 0%;
   height: 100%;
-  background-color: #2eca7f; 
-  transition: all .3s;
+  background-color: #2eca7f;
+  transition: all 0.3s;
   border-radius: 10rem;
   z-index: -1;
 }
@@ -67,6 +67,29 @@
   width: 100%;
 }
 
+.btn-gradient {
+  background: hsla(151, 100%, 49%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(151, 100%, 49%, 1) 0%,
+    hsla(151, 63%, 49%, 1) 50%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(151, 100%, 49%, 1) 0%,
+    hsla(151, 63%, 49%, 1) 50%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(151, 100%, 49%, 1) 0%,
+    hsla(151, 63%, 49%, 1) 50%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00FC82", endColorstr="#2ECA7F", GradientType=1 );
+}
 
 .left-gradient {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
