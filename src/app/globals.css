@@ -66,3 +66,17 @@
 .start:hover:before {
   width: 100%;
 }
+
+
+.left-gradient {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+}
+
+.right-gradient {
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+}
+
+.down-gradient
+{
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+}

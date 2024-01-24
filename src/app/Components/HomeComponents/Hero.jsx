@@ -4,8 +4,12 @@ import { FaArrowRight } from "react-icons/fa6";
 function Hero() {
   return (
     <div className="relative pt-4 sm:pt-0 min-h-[70vh] flex justify-center items-center border-[2px] border-black sm:min-h-[90vh] background-grid z-10">
+
+      <div className="absolute w-[50%] right-0 h-full right-gradient down-gradient"></div>
+      <div className="absolute w-[50%] left-0 h-full left-gradient down-gradient"></div>
+
       <Image
-        className="absolute left-4 -z-20 bottom-0"
+        className="absolute left-4 z-[12] bottom-0"
         src="./Ellipse4.svg"
         width={180}
         height={180}
@@ -13,7 +17,7 @@ function Hero() {
       ></Image>
 
       <Image
-        className="absolute left-3 -z-20 bottom-0"
+        className="absolute left-3 z-[12] bottom-0"
         src="./Ellipse4.svg"
         width={200}
         height={200}
@@ -21,14 +25,14 @@ function Hero() {
       ></Image>
 
       <Image
-        className="hidden sm:flex sm:absolute right-0 -z-20 top-0"
+        className="hidden sm:flex sm:absolute right-0 z-[12] top-0"
         src="./Ellipse5.svg"
         width={200}
         height={200}
         alt="svg"
       ></Image>
 
-      <div className="h-full flex flex-col gap-6 justify-center items-center circular-gradient-div z-10">
+      <div className="h-full flex flex-col gap-6 justify-center items-center z-20">
         <div className="flex px-3 mx-3 text-xl flex-col gap-4 sm:text-3xl md:text-5xl font-bold text-center">
           <div className="flex">
             <div>Learn to </div>
