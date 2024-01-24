@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from "./Components/NavbarComponents/Dropdown";
-
+import Login from "./Components/NavbarComponents/Login";
+import './globals.css'
 function Navbar() {
   const dropdownData = [
     {
@@ -92,15 +93,14 @@ function Navbar() {
         },
       ],
     },
-   
   ];
-
-
-  let a = '</IE>';
+  const [isSignup, setSignInBtn] = useState(true);
+  const [flag, setFlag] = useState(false);
+  let a = "</IE>";
 
   return (
     <div className="flex justify-between h-[10vh] items-center">
-      <p className='px-4 py-2 text-yellow-400   font-bold text-3xl'>{a}</p>
+      <p className="px-4 py-2 text-yellow-400   font-bold text-3xl">{a}</p>
 
       {/* Dropdowns */}
       <div className="flex gap-7 font-semibold">
@@ -111,10 +111,31 @@ function Navbar() {
         })}
       </div>
 
-      <div>
-        <button>Sign In</button>
-        <button>Sign Up</button>
+      <div className="flex justify-center items-center gap-6">
+        <button className="py-1 px-4 rounded-md  font-semibold border-2 border-black"
+          onClick={() => {
+            setSignInBtn(false);
+            setFlag(true);
+          }}
+        >
+          Sign In
+        </button>
+        <button className="py-2 px-4 text-white font-semibold rounded-lg btn-gradient"
+          onClick={() => {
+            setSignInBtn(true);
+            setFlag(true);
+          }}
+        >
+          Sign Up
+        </button>
       </div>
+      {flag && (
+        <Login
+          isSignup={isSignup}
+          setSignInBtn={setSignInBtn}
+          setFlag={setFlag}
+        ></Login>
+      )}
     </div>
   );
 }
