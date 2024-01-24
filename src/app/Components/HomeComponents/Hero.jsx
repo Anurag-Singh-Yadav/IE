@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa6";
 function Hero() {
   return (
-    <div className="relative pt-4 sm:pt-0 min-h-[70vh] flex justify-center items-center border-[2px] border-black sm:min-h-[90vh] background-grid -z-10">
+    <div className="relative pt-4 sm:pt-0 min-h-[70vh] flex justify-center items-center border-[2px] border-black sm:min-h-[90vh] background-grid z-10">
       <Image
         className="absolute left-4 -z-20 bottom-0"
         src="./Ellipse4.svg"
@@ -58,10 +58,11 @@ function Hero() {
           to bring your visions to life.
         </p>
 
+
         <div className="flex sm:flex-row flex-col justify-evenly text-xl  gap-4 sm:gap-8 md:gap-36 items-center font-semibold">
-          <button className="px-4 py-2 bg-light-green rounded-md hover:bg-green-bg hover:text-white hover:rounded-lg transition-all duration-500">
+          <div className="px-4 py-2 bg-light-green rounded-md hover:bg-green-bg hover:text-white hover:rounded-lg transition-all duration-500">
             Explore Course
-          </button>
+          </div>
 
           <button className="flex start justify-center items-center gap-2 px-4 py-2 text-black">
             <a href="#" className="flex justify-center items-center gap-2">
