@@ -17,6 +17,7 @@ function Company() {
           imgData.map((src,i)=>{
             return(
               <Image
+              key={i}
                 src={src}
                 width={144}
                 alt="microsoft"
