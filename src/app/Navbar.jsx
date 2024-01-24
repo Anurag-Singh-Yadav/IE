@@ -112,7 +112,8 @@ function Navbar() {
       </div>
 
       <div className="flex justify-center items-center gap-6">
-        <button className="py-1 px-4 rounded-md  font-semibold border-2 border-black"
+        <div>
+        <button className="btn-4 py-1 px-4 rounded-md  font-semibold border-2 border-black transition duration-300"
           onClick={() => {
             setSignInBtn(false);
             setFlag(true);
@@ -120,6 +121,7 @@ function Navbar() {
         >
           Sign In
         </button>
+        </div>
         <button className="py-2 px-4 text-white font-semibold rounded-lg btn-gradient"
           onClick={() => {
             setSignInBtn(true);

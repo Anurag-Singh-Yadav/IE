@@ -5,11 +5,13 @@ function Hero() {
   return (
     <div className="relative pt-4 sm:pt-0 min-h-[70vh] flex justify-center items-center border-[2px] border-black sm:min-h-[90vh] background-grid z-10">
 
-      <div className="absolute w-[50%] right-0 h-full right-gradient down-gradient"></div>
-      <div className="absolute w-[50%] left-0 h-full left-gradient down-gradient"></div>
+      <div className="absolute w-[50%] right-0 h-full right-gradient "></div>
+      <div className="absolute w-[50%] left-0 h-full left-gradient"></div>
+
+      <div className="absolute w-full left-0 h-full down-gradient z-[12]"/>
 
       <Image
-        className="absolute left-4 z-[12] bottom-0"
+        className="absolute left-4 z-[13] bottom-0"
         src="./Ellipse4.svg"
         width={180}
         height={180}
@@ -17,7 +19,7 @@ function Hero() {
       ></Image>
 
       <Image
-        className="absolute left-3 z-[12] bottom-0"
+        className="absolute left-3 z-[13] bottom-0"
         src="./Ellipse4.svg"
         width={200}
         height={200}
@@ -25,7 +27,7 @@ function Hero() {
       ></Image>
 
       <Image
-        className="hidden sm:flex sm:absolute right-0 z-[12] top-0"
+        className="hidden sm:flex sm:absolute right-0 z-[13] top-0"
         src="./Ellipse5.svg"
         width={200}
         height={200}
@@ -64,7 +66,7 @@ function Hero() {
 
 
         <div className="flex sm:flex-row flex-col justify-evenly text-xl  gap-4 sm:gap-8 md:gap-36 items-center font-semibold">
-          <div className="px-4 py-2 bg-light-green rounded-md hover:bg-green-bg hover:text-white hover:rounded-lg transition-all duration-500">
+          <div className="px-4 py-2 btn-gradient rounded-md hover:bg-green-bg cursor-pointer text-white hover:rounded-lg transition-all duration-500">
             Explore Course
           </div>
 
