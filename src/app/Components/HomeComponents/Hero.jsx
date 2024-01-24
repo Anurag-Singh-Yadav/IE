@@ -2,7 +2,7 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa6";
 function Hero() {
   return (
-    <div className=" h-[90vh] background-grid -z-10">
+    <div className="h-[55vh] sm:h-[90vh] background-grid -z-10">
       <div className="h-full flex flex-col gap-6 justify-center items-center circular-gradient-div z-10">
 
         <div className="flex px-3 mx-3 text-xl flex-col gap-4 sm:text-3xl md:text-5xl font-bold text-center">
