@@ -1,0 +1,60 @@
+import assets from "@/assets/allImages"
+
+const courses = [
+    {
+        title: "Full Stack Web Development",
+        description: "In-depth guide to full stack development with real-world projects",
+        lessons: 50,
+        level: "Intermediate",
+        rating: "4.7",
+        img: assets.testing7,
+        duration: "25 hours",
+      },
+      {
+        title: "Machine Learning with Python",
+        description: "Master machine learning algorithms using Python libraries",
+        lessons: 40,
+        level: "Advanced",
+        rating: "4.6",
+        img: assets.testing2,
+        duration: "30 hours",
+      },
+      {
+        title: "Introduction to Cloud Computing",
+        description: "Fundamentals of cloud services and deployment models",
+        lessons: 20,
+        level: "Beginner",
+        rating: "4.5",
+        img: assets.testing3,
+        duration: "12 hours",
+      },
+      {
+        title: "Cybersecurity Essentials",
+        description: "Learn the basics of cybersecurity and protect against threats",
+        lessons: 25,
+        level: "Intermediate",
+        rating: "4.8",
+        img: assets.testing4,
+        duration: "15 hours",
+      },
+      {
+        title: "DevOps Fundamentals",
+        description: "Practical approach to software development and IT operations",
+        lessons: 30,
+        level: "Intermediate",
+        rating: "4.65",
+        img: assets.testing5,
+        duration: "20 hours",
+      },
+      {
+        title: "UI/UX Design Principles",
+        description: "Design engaging user interfaces and experiences",
+        lessons: 28,
+        level: "Beginner",
+        rating: "4.5",
+        img: assets.testing6,
+        duration: "17 hours",
+      },
+]
+
+export default courses
