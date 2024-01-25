@@ -59,7 +59,6 @@ function Company() {
         {imgData.map((src, i) => (
           <div key={i} className="flex justify-center items-center gap-2">
             <Image
-        
             src={src}
             width={144}
             alt={`image-${i}`}
