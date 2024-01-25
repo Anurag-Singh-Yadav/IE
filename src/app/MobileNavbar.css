@@ -1,0 +1,34 @@
+.mobile-navbar{
+    transform: translateX(100%);
+}
+
+.slide-in-mobile{
+    animation: appear .5s ease-in forwards;
+}
+
+@keyframes appear {
+    from{
+    transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+
+.slide-out-mobile{
+    animation: disappear .5s ease-out forwards;
+}
+
+
+@keyframes disappear {
+    from{
+    transform: translateX(0%);
+    }
+    to{
+        transform: translateX(100%);
+    }
+}
+
+.darker{
+    background: rgba(0,0,0,0.5);
+}

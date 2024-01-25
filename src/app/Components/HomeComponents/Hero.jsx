@@ -3,15 +3,15 @@ import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa6";
 function Hero() {
   return (
-    <div className="relative pt-4 sm:pt-0 min-h-[70vh] flex justify-center items-center border-[2px] border-black sm:min-h-[90vh] background-grid z-10">
+    <div className="relative pt-4 sm:pt-0 min-h-[70vh] flex justify-center items-center sm:min-h-[90vh] background-grid z-10">
 
-      <div className="absolute w-[50%] right-0 h-full right-gradient "></div>
+      <div id='hero' className="absolute w-[50%] right-0 h-full right-gradient "></div>
       <div className="absolute w-[50%] left-0 h-full left-gradient"></div>
 
       <div className="absolute w-full left-0 h-full down-gradient z-[12]"/>
 
       <Image
-        className="absolute left-4 z-[13] bottom-0"
+        className="absolute left-0 z-[13] bottom-0"
         src="./Ellipse4.svg"
         width={180}
         height={180}
@@ -19,7 +19,7 @@ function Hero() {
       ></Image>
 
       <Image
-        className="absolute left-3 z-[13] bottom-0"
+        className="absolute left-0 z-[13] bottom-0"
         src="./Ellipse4.svg"
         width={200}
         height={200}

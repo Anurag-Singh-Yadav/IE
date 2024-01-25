@@ -1,11 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dropdown from "./Components/NavbarComponents/Dropdown";
 import Login from "./Components/NavbarComponents/Login";
 import "./globals.css";
-import { FaBars } from "react-icons/fa";
+import './Navbar.css';
+import MobileNavbar from "./MobileNavbar";
 
 function Navbar() {
+  
+
+
   const dropdownData = [
     {
       label: "Roadmaps",
@@ -103,6 +107,9 @@ function Navbar() {
 
   return (
     <div className="flex justify-between h-[10vh] items-center">
+
+      <MobileNavbar />
+
       <p className="px-4 py-2 text-yellow-400   font-bold text-3xl">{a}</p>
 
       {/* Dropdowns */}
@@ -135,7 +142,6 @@ function Navbar() {
         >
           Sign Up
         </button>
-        <FaBars className="flex nmd:hidden mx-1"/>
       </div>
       {flag && (
         <Login
