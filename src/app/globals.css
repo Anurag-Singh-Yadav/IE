@@ -129,14 +129,10 @@
    outline-offset: .1em;
    transition: background-size .4s, background-position 0s .4s;
    background-color: #2eca7f;
-  
- }
-
- .hover-gradient{
-  box-shadow: 0 0 0 .1em inset var(--c); 
+   box-shadow: 0 0 0 .1em inset var(--c); 
   --_g: linear-gradient(var(--c) 0 0) no-repeat;
  }
- 
+
  .btn-gradient-2:hover {
    --_p: 100%;
    color: white;
