@@ -7,8 +7,6 @@ import './Navbar.css';
 import MobileNavbar from "./MobileNavbar";
 
 function Navbar() {
-  
-
 
   const dropdownData = [
     {
@@ -106,10 +104,8 @@ function Navbar() {
   let a = "</IE>";
 
   return (
-    <div className="flex justify-between h-[10vh] items-center">
-
-      <MobileNavbar />
-
+    <div>
+      <div className="flex justify-between h-[10vh] items-center">
       <p className="px-4 py-2 text-yellow-400   font-bold text-3xl">{a}</p>
 
       {/* Dropdowns */}
@@ -152,6 +148,9 @@ function Navbar() {
       )}
 
     </div>
+    <MobileNavbar />
+    </div>
+  
   );
 }
 

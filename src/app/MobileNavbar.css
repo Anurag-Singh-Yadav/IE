@@ -32,3 +32,7 @@
 .darker{
     background: rgba(0,0,0,0.5);
 }
+
+.no-scroll{
+    overflow-y: auto;
+}
