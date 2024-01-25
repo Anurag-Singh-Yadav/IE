@@ -57,7 +57,7 @@ function Company() {
         autoPlaySpeed={3500}
       >
         {imgData.map((src, i) => (
-          <div     key={i} className="flex justify-center items-center gap-2">
+          <div key={i} className="flex justify-center items-center gap-2">
             <Image
         
             src={src}
