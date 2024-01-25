@@ -1,0 +1,38 @@
+.pop-in{
+    animation: slide-in 0.5s ease-in forwards;
+    display: flex;
+}
+
+@keyframes slide-in{
+    from {
+        /* transform: translateX(-40px); */
+        scale: 0;
+    }
+    to{
+        /* transform: translateX(40px) */
+        scale:1;
+    }
+}
+
+.pop-out{
+    animation: slide-out 0.05s ease-out forwards;
+    display: hidden;
+}
+
+@keyframes slide-out{
+    from{
+        /* transform: translateX(40px) */
+        scale:1;
+    }
+    to{
+        /* transform: translateX(-40px); */
+        scale: 0;
+    }
+}
+
+.hamburger{
+    position: fixed; 
+    display: hidden;
+    top: 2vh;
+    right: 2vw;
+}
