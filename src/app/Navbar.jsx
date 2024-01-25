@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 import Dropdown from "./Components/NavbarComponents/Dropdown";
 import Login from "./Components/NavbarComponents/Login";
-import './globals.css'
+import "./globals.css";
+import { FaBars } from "react-icons/fa";
+
 function Navbar() {
   const dropdownData = [
     {
@@ -94,6 +96,7 @@ function Navbar() {
       ],
     },
   ];
+
   const [isSignup, setSignInBtn] = useState(true);
   const [flag, setFlag] = useState(false);
   let a = "</IE>";
@@ -103,7 +106,7 @@ function Navbar() {
       <p className="px-4 py-2 text-yellow-400   font-bold text-3xl">{a}</p>
 
       {/* Dropdowns */}
-      <div className="flex gap-7 font-semibold">
+      <div className="gap-7 font-semibold hidden nmd:flex">
         {dropdownData.map((obj, index) => {
           return (
             <Dropdown label={obj.label} options={obj.options} key={index} />
@@ -111,18 +114,20 @@ function Navbar() {
         })}
       </div>
 
-      <div className="flex justify-center items-center gap-6">
+      <div className="flex items-center gap-6">
         <div>
-        <button className="btn-4 py-1 px-4 rounded-md  font-semibold border-2 border-black transition duration-300"
-          onClick={() => {
-            setSignInBtn(false);
-            setFlag(true);
-          }}
-        >
-          Sign In
-        </button>
+          <button
+            className="btn-4 py-1 px-4 rounded-md  font-semibold border-2 border-black transition duration-300"
+            onClick={() => {
+              setSignInBtn(false);
+              setFlag(true);
+            }}
+          >
+            Sign In
+          </button>
         </div>
-        <button className="py-2 px-4 text-white font-semibold rounded-lg btn-gradient"
+        <button
+          className="py-2 px-4 text-white font-semibold rounded-lg btn-gradient hidden sm:flex"
           onClick={() => {
             setSignInBtn(true);
             setFlag(true);
@@ -130,6 +135,7 @@ function Navbar() {
         >
           Sign Up
         </button>
+        <FaBars className="flex nmd:hidden mx-1"/>
       </div>
       {flag && (
         <Login
@@ -138,6 +144,7 @@ function Navbar() {
           setFlag={setFlag}
         ></Login>
       )}
+
     </div>
   );
 }

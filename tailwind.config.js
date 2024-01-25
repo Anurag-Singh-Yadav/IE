@@ -22,6 +22,7 @@ module.exports = {
       },
       screens: {
         sm: '430px',
+        nmd: '1000px',
       },
       colors: {
         "white-bg": "#efeefe",
