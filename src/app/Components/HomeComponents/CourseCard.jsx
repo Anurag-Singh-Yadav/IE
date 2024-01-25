@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import React from "react";
 import { FaBookOpen } from "react-icons/fa";
@@ -8,17 +9,18 @@ import "./CourseCard.css";
 
 function CourseCard({course}) {
   return (
-    <div className="shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] flex flex-col gap-3 rounded-lg overflow-hidden rounded-b-sm">
+    <div className="shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] flex flex-col gap-3 rounded-lg overflow-hidden rounded-b-sm cursor-pointer">
       <Image
         src={course.img}
         alt={course.title}
         className="w-[100%] max-h-[220px]"
       />
       <div className="flex flex-col gap-2 justify-center px-6 pb-6 pt-4">
-        <p className="bg-green-bg px-2 py-2 rounded-lg inline w-fit mb-2 text-white font-semibold ">
+        <p
+         className="btn-gradient-2  px-2 py-2 rounded-lg inline w-fit mb-2 text-white font-medium ">
           {course.title}
         </p>
-        <p className="font-semibold text-lg">{course.description}</p>
+        <p className="font-semibold text-sm hover:text-green-bg transition-all duration-300">{course.description}</p>
         <p>
           <FaBookOpen size={20} className="text-green-bg inline mr-3" />
           <span>{course.lessons} Lessons</span>
