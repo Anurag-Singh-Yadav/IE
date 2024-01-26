@@ -26,11 +26,11 @@ const CustomButtonGroup = ({ next, previous }) => (
 function makeStar({number}){
   let stars = [];
   for(let i=0;i<number;i++){
-    stars.push(<IoIosStar size={20} className=" text-[#ffbd35]" />)
+    stars.push(<IoIosStar key={i} size={20} className=" text-[#ffbd35]" />)
   }
   let empty = [];
   for(let i=0;i<5-number;i++){
-    empty.push(<IoIosStarOutline size={20} className="text-black" />)
+    empty.push(<IoIosStarOutline key={i+5} size={20} className="text-black" />)
   }
   return [...stars,...empty];
 }

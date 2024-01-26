@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { FaChevronUp } from "react-icons/fa";
 import './MobileDropDown.css';
@@ -25,7 +26,7 @@ function MobileDropDown2({ open , setOpen , label , options , index}) {
 
   return (
     <div className="w-full z-[1]">
-      <div onClick = {handleClick} className="mx-auto w-full max-w-md rounded-2xl p-2">
+      <div onClick = {handleClick} className="mx-auto w-full max-w-md rounded-2xl">
         <div
           className={`flex w-full justify-between rounded-lg hover:bg-green-bg ${
             open == index ? "bg-green-bg text-white" : "bg-light-green"
