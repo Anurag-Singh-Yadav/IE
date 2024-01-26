@@ -4,102 +4,11 @@ import Dropdown from "./Components/NavbarComponents/Dropdown";
 import Login from "./Components/NavbarComponents/Login";
 import "./globals.css";
 import './Navbar.css';
-import MobileNavbar from "./MobileNavbar";
+import MobileNavbar from "./Components/NavbarComponents/MobileNavbar";
 import { FaBars } from "react-icons/fa";
-
+import { dropdownData } from "./Components/NavbarComponents/NavbarData";
 
 function Navbar() {
-
-  const dropdownData = [
-    {
-      label: "Roadmaps",
-      options: [
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        {
-          label: "Computer Fundamentals",
-          value: "computerFundamentals",
-        },
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        ,
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-      ],
-    },
-    {
-      label: "Practice",
-      options: [
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        {
-          label: "Computer Fundamentals",
-          value: "computerFundamentals",
-        },
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        ,
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-      ],
-    },
-    {
-      label: "Tutorials",
-      options: [
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        {
-          label: "Computer Fundamentals",
-          value: "computerFundamentals",
-        },
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        ,
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-      ],
-    },
-    {
-      label: "Challenges",
-      options: [
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        {
-          label: "Computer Fundamentals",
-          value: "computerFundamentals",
-        },
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        ,
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-      ],
-    },
-  ];
 
   const [isSignup, setSignInBtn] = useState(true);
   const [flag, setFlag] = useState(false);
@@ -128,7 +37,7 @@ function Navbar() {
       <div className="hidden nmd:flex items-center gap-6">
         <div>
           <button
-            className="btn-4 py-1 px-4 rounded-md  font-semibold border-2 border-black transition duration-300"
+            className="py-2 px-4 start-2  font-semibold rounded-md transition duration-300"
             onClick={() => {
               setSignInBtn(false);
               setFlag(true);
@@ -138,7 +47,7 @@ function Navbar() {
           </button>
         </div>
         <button
-          className="py-2 px-4 text-white font-semibold rounded-lg btn-gradient hidden sm:flex"
+          className="py-2 px-4 text-white font-semibold rounded-lg btn-gradient-2 hidden sm:flex"
           onClick={() => {
             setSignInBtn(true);
             setFlag(true);

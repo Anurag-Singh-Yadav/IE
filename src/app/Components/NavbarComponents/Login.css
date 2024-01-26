@@ -31,6 +31,21 @@
     color: var(--primary);
 }
 
+.enlarge-in{
+    animation: enlarge .5s ease-in-out forwards;
+}
+
+@keyframes enlarge{
+    from{
+        scale:0;
+        opacity: 0;
+    }
+    to{
+        scale:1;
+        opacity: 1;
+    }
+}
+
 .pop-up{
     background-color: rgba(0, 0, 0, 0.4);
     transition: all;
