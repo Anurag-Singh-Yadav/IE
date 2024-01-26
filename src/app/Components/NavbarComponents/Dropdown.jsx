@@ -25,7 +25,7 @@ function Dropdown({ label, options }) {
         <div className='flex flex-col bg-white rounded-lg shadow-md shadow-gray-500 p-2 border-t-[3px] border-green-bg w-fit'>
         {options.map((obj, index) => {
           return (
-            <p name={obj.value} key={index} className=" whitespace-nowrap hover:bg-green-bg px-4 py-2 transition duration-200 hover:text-white font-semibold">
+            <p name={obj.value} key={index} className="whitespace-nowrap cursor-pointer hover:bg-green-bg px-4 py-2 transition duration-200 hover:text-white font-semibold">
               {obj.label}
             </p>
           );
