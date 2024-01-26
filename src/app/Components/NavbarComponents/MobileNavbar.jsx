@@ -63,7 +63,7 @@ function MobileNavbar({ navBurger }) {
             setDelay(true);
           }, 500);
         }}
-        className={`hidden hamburger font-semibold z-[99] hover:bg-dark-blue bg-green-bg cursor-pointer transition duration-300  rounded-md p-2 text-white`}
+        className={`hidden hamburger font-semibold z-[45] hover:bg-dark-blue bg-green-bg cursor-pointer transition duration-300  rounded-md p-2 text-white`}
       >
         <FaBars size={15} />
       </div>
