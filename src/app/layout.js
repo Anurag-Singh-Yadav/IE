@@ -22,11 +22,11 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </Head>
-      <body className={inter.className}>
-          <Providers>
-            <Navbar />
-            {children}
-          </Providers>
+      <body className={inter.className} suppressHydrationWarning={true}>
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );

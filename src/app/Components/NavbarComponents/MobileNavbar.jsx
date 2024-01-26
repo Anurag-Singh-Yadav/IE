@@ -6,8 +6,8 @@ import { ImCross } from "react-icons/im";
 import MobileNavbarContent from "./MobileNavbarContent";
 
 function MobileNavbar({ navBurger }) {
-  const [flag, setFlag] = useState(null);
 
+  const [flag, setFlag] = useState(null);
   function handleScroll() {
     let p = document.getElementById("hero");
     let h = document.getElementById("popup");
@@ -80,7 +80,7 @@ function MobileNavbar({ navBurger }) {
         >
           <ImCross size={15} />
         </div>
-        <MobileNavbarContent />
+        <MobileNavbarContent handleClick= {handleClick} />
       </div>
       {flag && (
         <div className="w-[100vw] h-[100vh] fixed top-0 left-0 darker z-[50]"></div>
