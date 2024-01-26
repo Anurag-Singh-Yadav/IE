@@ -28,7 +28,7 @@ function Login({ setSignInBtn, isSignup, setFlag }) {
 
   return (
     <div className="fixed w-[100vw] left-0 top-0 z-50 h-[100vh] pop-up">
-      <div className="fixed overflow-y-auto max-h-[100vh] rounded-lg top-3 border-t-green-bg border-t-[3px] left-0 right-0 sm:w-[70%] lg:w-[55%] w-full bg-white  sm:mx-auto py-2 z-30 border px-4">
+      <div className="fixed overflow-y-auto max-h-[100vh] rounded-lg top-3 border-t-green-bg border-t-[3px] left-0 right-0 sm:w-[70%] lg:w-[55%] w-full bg-white  sm:mx-auto py-2 z-30 border px-4 enlarge-in">
         <div className="py-3 flex justify-center font-sans font-medium">
           <span className="text-center">Please Sign-In To Continue</span>{" "}
           <AiOutlineCloseCircle

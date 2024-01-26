@@ -1,0 +1,38 @@
+.rotate-half{
+    transform: rotate(180deg);
+    transition: transform 500ms ease-in-out;
+}
+
+.slide-right{
+    animation: drag-right 300ms ease-in-out;
+    display: flex;
+}
+
+.slide-left{
+    animation: drag-left 300ms ease-in-out;
+    display: flex;
+}
+
+@keyframes drag-right {
+    from{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+
+@keyframes drag-left {
+  
+    from{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    to{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}

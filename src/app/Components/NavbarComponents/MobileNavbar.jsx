@@ -2,9 +2,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./MobileNavbar.css";
 import { FaBars } from "react-icons/fa";
-import { RxCross1 } from "react-icons/rx";
+import { ImCross } from "react-icons/im";
+import MobileNavbarContent from "./MobileNavbarContent";
 
-function MobileNavbar({ navBurger, setNavBurger }) {
+function MobileNavbar({ navBurger }) {
   const [flag, setFlag] = useState(null);
 
   function handleScroll() {
@@ -62,27 +63,30 @@ function MobileNavbar({ navBurger, setNavBurger }) {
             setDelay(true);
           }, 500);
         }}
-        className={`hidden hamburger z-[99] bg-dark-blue hover:bg-green-bg cursor-pointer rounded-md p-2 text-white`}
+        className={`hidden hamburger font-semibold z-[99] hover:bg-dark-blue bg-green-bg cursor-pointer transition duration-300  rounded-md p-2 text-white`}
       >
         <FaBars size={15} />
       </div>
       <div
         id="mobile-navbar"
-        className={`mobile-navbar ${flag === true ? 'slide-in-mobile' : ''} ${flag === false ? 'slide-out-mobile' : ''} fixed right-0 top-0 w-[50vw] bg-white z-[100] h-[100vh]`}
+        className={`mobile-navbar ${flag === true ? 'slide-in-mobile' : ''} ${flag === false ? 'slide-out-mobile' : ''} fixed  items-center right-0 top-0 bg-white z-[100] h-[100vh]`}
       >
         <div
           onClick={() => {
             handleClick();
             setDelay(false);
           }}
-          className={`${delay ? 'pop-in' : 'hidden'} fixed top-[2vh] right-[2vw] z-[100] bg-dark-blue hover:bg-green-bg cursor-pointer rounded-md p-2 text-white`}
+          className={`${delay ? 'pop-in' : 'hidden'} fixed top-[2vh] right-[2vw] z-[100] hover:bg-dark-blue transition duration-300 bg-green-bg cursor-pointer rounded-md p-2 text-white`}
         >
-          <RxCross1 size={15} />
+          <ImCross size={15} />
         </div>
+        <MobileNavbarContent />
       </div>
       {flag && (
         <div className="w-[100vw] h-[100vh] fixed top-0 left-0 darker z-[50]"></div>
       )}
+
+
     </div>
   );
 }

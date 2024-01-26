@@ -1,0 +1,61 @@
+import React from "react";
+import { FaChevronUp } from "react-icons/fa";
+import './MobileDropDown.css';
+
+
+function MobileDropDown2({ open , setOpen , label , options , index}) {
+
+    const handleClick = () => {
+        if(index == open){
+
+            let b = document.getElementById(`dropdown-${index}`)
+
+            b.classList.add('slide-left');
+
+            setTimeout(() => {
+                setOpen(null);
+                b.classList.remove('slide-left');
+            } , 300)
+
+        }
+        else{
+            setOpen(index);
+        }
+    }
+
+  return (
+    <div className="w-full z-[1]">
+      <div onClick = {handleClick} className="mx-auto w-full max-w-md rounded-2xl p-2">
+        <div
+          className={`flex w-full justify-between rounded-lg hover:bg-green-bg ${
+            open == index ? "bg-green-bg text-white" : "bg-light-green"
+          } hover:text-white transition duration-300  px-4 py-2 text-left text-sm font-medium`}
+        >
+          <span>{label}</span>
+          <FaChevronUp
+            className={`${open == index && "rotate-half"} h-5 w-5 font-bold`}
+          />
+        </div>
+
+        <div id={`dropdown-${index}`} className={`hidden ${open == index && 'slide-right'} flex-col w-fit px-4 text-sm`}>
+          {options.map((obj, index) => {
+            return (
+              <div
+                name={obj.value}
+                key={index}
+                className=" border-l-2 border-green-bg whitespace-nowrap py-2 transition duration-200 font-semibold flex items-center"
+              >
+                <div className=" h-[2px] w-4 bg-green-bg mr-2" />
+                <p className=" cursor-pointer hover:text-green-bg rounded-lg transition duration-300 w-full px-2 py-1">
+                  {obj.label}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default MobileDropDown2;
