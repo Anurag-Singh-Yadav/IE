@@ -1,10 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Dropdown from "./Components/NavbarComponents/Dropdown";
 import Login from "./Components/NavbarComponents/Login";
 import "./globals.css";
 import './Navbar.css';
 import MobileNavbar from "./MobileNavbar";
+import { FaBars } from "react-icons/fa";
+
 
 function Navbar() {
 
@@ -103,6 +105,8 @@ function Navbar() {
   const [flag, setFlag] = useState(false);
   let a = "</IE>";
 
+  const [navBurger , setNavBurger] = useState(false);
+
   return (
     <div>
       <div className="flex justify-between h-[10vh] items-center">
@@ -117,7 +121,11 @@ function Navbar() {
         })}
       </div>
 
-      <div className="flex items-center gap-6">
+      <div onClick={()=>setNavBurger(!navBurger)} className="nmd:hidden">
+        <FaBars size={25}/>
+      </div>
+
+      <div className="hidden nmd:flex items-center gap-6">
         <div>
           <button
             className="btn-4 py-1 px-4 rounded-md  font-semibold border-2 border-black transition duration-300"
@@ -148,7 +156,7 @@ function Navbar() {
       )}
 
     </div>
-    <MobileNavbar />
+      <MobileNavbar navBurger={navBurger} setNavBurger={setNavBurger}/>
     </div>
   
   );
