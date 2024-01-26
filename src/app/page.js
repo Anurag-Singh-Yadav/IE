@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <div className="background-gradient px-4 sm:px-6">
+      <div className="background-gradient px-4 sm:px-28">
         <Company />
         <Courses />
       </div>
