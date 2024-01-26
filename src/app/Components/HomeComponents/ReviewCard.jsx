@@ -6,6 +6,8 @@ import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import { IoIosStarOutline } from "react-icons/io";
+import { IoIosStar } from "react-icons/io";
 const CustomButtonGroup = ({ next, previous }) => (
   <div className="absolute top-0 right-2 flex justify-between gap-4 items-center z-40">
     <button className="" onClick={previous}>
@@ -20,6 +22,18 @@ const CustomButtonGroup = ({ next, previous }) => (
     </button>
   </div>
 );
+
+function makeStar({number}){
+  let stars = [];
+  for(let i=0;i<number;i++){
+    stars.push(<IoIosStar size={20} className=" text-[#ffbd35]" />)
+  }
+  let empty = [];
+  for(let i=0;i<5-number;i++){
+    empty.push(<IoIosStarOutline size={20} className="text-black" />)
+  }
+  return [...stars,...empty];
+}
 
 const ReviewCard = () => {
   const responsive = {
@@ -66,20 +80,26 @@ const ReviewCard = () => {
           {indianCricketers.map((review, index) => (
             <div
               key={index}
-              className="transition-transform duration-2000 px-2"
+              className="transition-transform duration-2000 px-2 h-[300px]"
             >
-              <div className="mx-4 text-dimWhite bg-white rounded-md min-h-[300px] cursor-pointer shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
-                <div className="flex bg-light-green text-black px-4 py-4 justify-start gap-2 items-center mb-3">
+              <div className="mx-4 h-full text-dimWhite bg-white flex flex-col rounded-md cursor-pointer shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
+                <div className="flex bg-light-green text-black px-4 py-2 justify-start gap-2 items-center mb-3">
                   <Image
                     src={review.imageUrl}
-                    className="h-[70px] rounded-full border aspect-square"
+                    className="h-[50px] rounded-full border aspect-auto"
                     alt={review.name}
-                    width={70}
-                    height={200}
+                    width={50}
+                    height={120}
                   />
                   <div className="font-semibold">{review.name}</div>
                 </div>
-                <div className="px-4 text-sm">{review.description}</div>
+
+                <div className="flex px-4 flex-col justify-between items-start h-[190px]">
+                  <div className="text-sm">{review.description}</div>
+                  <div className="flex w-full justify-evenly">
+                    {makeStar({number:review.rating})}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
