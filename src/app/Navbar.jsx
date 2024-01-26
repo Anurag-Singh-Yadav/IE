@@ -48,15 +48,6 @@ function Navbar() {
 
   return (
     <div>
-      {/* {showBackToTop && (
-        <div
-          className={`fixed bottom-4 bg-white rounded-full w-fit z-10 right-2 cursor-pointer text-dark-blue hover:text-green-bg transition-all duration-300 back-to-top ${showBackToTop ? 'rotate-in' : 'rotate-out'}`}
-          title="Back to top"
-          onClick={scrollToTop}
-        >
-          <FaCircleArrowUp size={40} />
-        </div>
-      )} */}
       <div
           className={`fixed bottom-4 bg-white rounded-full w-fit z-10 right-2 cursor-pointer text-dark-blue hover:text-green-bg transition-all duration-300 back-to-top ${showBackToTop ? 'rotate-in' : 'rotate-out'}`}
           title="Back to top"

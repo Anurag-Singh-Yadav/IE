@@ -8,7 +8,7 @@ function MobileNavbarContent({handleClick}) {
   const [open, setOpen] = useState(null);
   const dispatch = useDispatch();
   return (
-    <div className="relative background-grid px-4 h-[100vh] min-w-[100vw] sm:min-w-[70vw] md:min-w-[50vw] lg:min-w-[40vw] overflow-scroll">
+    <div className="relative background-grid px-4 h-[100vh] min-w-[100vw] sm:min-w-[70vw] md:min-w-[50vw] lg:min-w-[40vw] overflow-scroll-auto">
 
       <div className="flex mt-[2vh] items-center gap-6">
           <button
@@ -38,6 +38,8 @@ function MobileNavbarContent({handleClick}) {
       <div className="absolute w-[50%] right-0 h-full right-gradient " />
       <div className="absolute w-[50%] left-0 h-full left-gradient" />
       <div className="absolute w-full left-0 h-full down-gradient" />
+
+
       <div className="flex flex-col pt-16 gap-2 w-full z-[150]">
         {dropdownData.map((obj, index) => {
           return (
