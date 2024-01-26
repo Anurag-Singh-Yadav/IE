@@ -48,6 +48,7 @@ function Company() {
     <div className="w-[80vw] pt-2 mx-auto">
       <div className="w-fit mx-auto rounded-2xl text-sm sm:text-base sm:font-bold  text-green-bg text-center bg-light-green2 py-2 mb-3 sm:px-4 px-2">Trusted Company Arround The World!</div>
       <Carousel
+       className="bg-white shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]"
         responsive={responsive}
         showDots={false}
         infinite={true}  
@@ -57,12 +58,12 @@ function Company() {
         autoPlaySpeed={3500}
       >
         {imgData.map((src, i) => (
-          <div key={i} className="flex justify-center items-center gap-2">
+          <div key={i} className="flex h-full  justify-center items-center gap-2">
             <Image
             src={src}
             width={144}
             alt={`image-${i}`}
-            className="aspect-w-4 aspect-h-1"
+            className=""
           />
           </div>
         ))}

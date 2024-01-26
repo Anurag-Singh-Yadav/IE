@@ -92,56 +92,76 @@
 }
 
 .left-gradient {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0)
+  );
 }
 
 .right-gradient {
-  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+  background-image: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0)
+  );
 }
 
-.down-gradient
-{
-  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+.down-gradient {
+  background-image: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0)
+  );
 }
 
-.btn-4:hover{
-  border-color:   #2eca7f !important;
+.btn-4:hover {
+  border-color: #2eca7f !important;
   background-color: #d3f2e4;
   color: #23a868 !important;
 }
 
-
 :root {
   --c: #23a868;
   --a: #1a2d62;
- }
- 
- .btn-gradient-2 {
-   color: white;
-   
-   background: 
-     var(--_g) calc(var(--_p, 0%) - 100%) 0%,
-     var(--_g) calc(200% - var(--_p, 0%)) 0%,
-     var(--_g) calc(var(--_p, 0%) - 100%) 100%,
-     var(--_g) calc(200% - var(--_p, 0%)) 100%;
+}
 
-   background-size: 50.5% calc(var(--_p, 0%) / 2 + .5%);
-   outline-offset: .1em;
-   transition: background-size .4s, background-position 0s .4s;
-   background-color: #2eca7f;
-   box-shadow: 0 0 0 .1em inset var(--c); 
+.btn-gradient-2 {
+  color: white;
+
+  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p, 0%)) 0%,
+    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p, 0%)) 100%;
+
+  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+  outline-offset: 0.1em;
+  transition: background-size 0.4s, background-position 0s 0.4s;
+  background-color: #2eca7f;
+  box-shadow: 0 0 0 0.1em inset var(--c);
   --_g: linear-gradient(var(--c) 0 0) no-repeat;
- }
+}
 
- .btn-gradient-2:hover {
-   --_p: 100%;
-   color: white;
-   transition: background-position .4s, background-size 0s;
- }
- 
- /* .btn-gradient-2:active {
-   box-shadow: 0 0 9e9q inset #0009; 
-   background-color: var(--c);
-   color: #fff;
- } */
- 
+.btn-gradient-2:hover {
+  --_p: 100%;
+  color: white;
+  transition: background-position 0.4s, background-size 0s;
+}
+
+.background-gradient {
+  background-image: linear-gradient(
+    310deg,
+    hsl(356deg 56% 89%) 0%,
+    hsl(357deg 45% 89%) 29%,
+    hsl(358deg 34% 89%) 40%,
+    hsl(360deg 23% 89%) 46%,
+    hsl(4deg 14% 89%) 52%,
+    hsl(24deg 4% 88%) 56%,
+    hsl(158deg 7% 88%) 60%,
+    hsl(168deg 17% 88%) 65%,
+    hsl(170deg 26% 88%) 70%,
+    hsl(172deg 34% 87%) 77%,
+    hsl(173deg 43% 87%) 86%,
+    hsl(173deg 51% 86%) 100%
+  );
+}

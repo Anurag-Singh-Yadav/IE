@@ -8,7 +8,7 @@ import { GiNetworkBars } from "react-icons/gi";
 import "./CourseCard.css";
 function CourseCard({course}) {
   return (
-    <div className="shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] flex flex-col gap-3 rounded-lg overflow-hidden rounded-b-sm cursor-pointer">
+    <div className="shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] bg-white flex flex-col gap-3 rounded-lg overflow-hidden rounded-b-sm cursor-pointer">
       <Image
         src={course.img}
         alt={course.title}
