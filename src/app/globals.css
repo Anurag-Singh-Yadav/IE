@@ -88,7 +88,7 @@
     hsla(151, 63%, 49%, 1) 50%
   );
 
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00FC82", endColorstr="#2ECA7F", GradientType=1 );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00FC82", endColorstr="#2ECA7F", GradientType=1 );
 }
 
 .left-gradient {
