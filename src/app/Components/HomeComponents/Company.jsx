@@ -45,8 +45,9 @@ function Company() {
   };
 
   return (
-    <div className="w-[80vw] pt-7 mx-auto">
-      <div className="w-fit mx-auto rounded-2xl text-sm sm:text-base sm:font-bold  text-green-bg text-center bg-white py-2 mb-3 sm:px-4 px-2">Trusted Company Arround The World!</div>
+    <div className="w-[80vw] pt-16 pb-4 mx-auto">
+      <div className="w-fit mx-auto rounded-2xl text-sm sm:text-base sm:font-bold  text-green-bg text-center bg-light-green2 py-2 mb-3 sm:px-4 px-2">Trusted Company Arround The World!</div>
+
       <Carousel
        className="bg-white shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]"
         responsive={responsive}
