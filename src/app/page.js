@@ -1,3 +1,4 @@
+import About from "./Components/HomeComponents/About";
 import Company from "./Components/HomeComponents/Company";
 import Courses from "./Components/HomeComponents/Courses";
 import Hero from "./Components/HomeComponents/Hero";
@@ -13,7 +14,7 @@ export default function Home() {
         <Company />
         <Courses />
       </div>
-
+      <About></About>
       <InterviewExperiance></InterviewExperiance>
       <ReviewCard></ReviewCard>
     </div>
