@@ -112,3 +112,12 @@
     height: 30vh;
     top: -15vh;
   }
+
+  .footer-top-sm{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin-inline: auto;
+    height: 20vh;
+    top: -10vh;
+  }

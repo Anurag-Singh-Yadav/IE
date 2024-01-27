@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
@@ -9,6 +9,27 @@ import "./Footer.css";
 
 function Footer() {
   const logo = "<IE/>";
+
+  const updateFooterClass = () => {
+    const footerElement = document.querySelector("#f-top");
+    const isSmallScreen = window.innerWidth <= 640; // You can adjust the breakpoint as needed
+
+    if (isSmallScreen) {
+      footerElement.classList.remove("footer-top");
+      footerElement.classList.add("footer-top-sm");
+    } else {
+      footerElement.classList.remove("footer-top-sm");
+      footerElement.classList.add("footer-top");
+    }
+  };
+
+  useEffect(() => {
+    updateFooterClass();
+    window.addEventListener("resize", updateFooterClass);
+    return () => {
+      window.removeEventListener("resize", updateFooterClass);
+    };
+  } , [])
 
   const [userEmail, setUserEmail] = useState("");
 
@@ -22,9 +43,11 @@ function Footer() {
 
   return (
     <div className="relative footer-container ">
-      <div className="grid grid-cols-1 gap-x-3 gap-y-7 sm:grid-cols-6 items-start text-sm py-2 sm:py-3 md:py-6 text-center">
 
-        <div className="background-grid flex justify-around flex-wrap items-center footer-top  bg-white text-black overflow-hidden w-[94vw] sm:w-[88vw] md:w-[87vw] lg:w-[80vw] rounded-lg sm:rounded-full shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+
+      <div className={`grid grid-cols-1 gap-x-3 gap-y-7 md:grid-cols-6 items-start text-sm py-2 sm:py-3 md:py-6 text-center`}>
+
+        <div id="f-top" className={`footer-top background-grid flex justify-around flex-wrap items-center bg-white text-black overflow-hidden w-[94vw] sm:w-[88vw] md:w-[87vw] lg:w-[80vw] rounded-3xl px-7 sm:rounded-full shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]`}>
           <div className="absolute w-[50%] right-0 h-full right-gradient " />
 
           <div className="absolute w-[50%] left-0 h-full left-gradient" />
@@ -44,8 +67,8 @@ function Footer() {
           {logo}
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 col-span-5 gap-x-4 gap-y-7">
-          <div className="flex flex-col gap-4 justify-start items-center mx-auto">
+        <div className="flex flex-wrap-reverse gap-x-14 gap-y-4 col-span-5">
+          <div className="flex flex-col gap-4 justify-start items-center mx-auto p-3">
             <p className="text-gray-300">Interview Express</p>
             <div className="flex flex-col gap-2">
               <p>Home</p>
@@ -54,7 +77,7 @@ function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 justify-start items-center mx-auto">
+          <div className="flex flex-col gap-4 justify-start items-center mx-auto p-3">
             <p className="text-gray-300">Features</p>
             <div className="flex flex-col gap-2">
               <div>Courses</div>
@@ -62,7 +85,7 @@ function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row md:flex-col gap-4 justify-start items-center mx-auto">
+          <div className="flex flex-col gap-4 justify-start items-center mx-auto p-3">
             <p className="text-gray-300">
               Want to stay up-to-date with latest features?
             </p>
@@ -87,6 +110,8 @@ function Footer() {
         </div>
         
       </div>
+
+
       <div className="flex flex-col items-center gap-4 py-3">
           <ul className="wrapper text-black grid sm:grid-cols-3 md:grid-cols-5 grid-cols-2"> 
             <li className="icon facebook">
