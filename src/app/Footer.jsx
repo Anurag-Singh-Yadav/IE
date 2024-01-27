@@ -36,7 +36,7 @@ function Footer() {
           </div>
 
           <button className="font-bold text-base  md:text-lg z-[1] start px-6 py-3">
-            Get Started
+            Get Started {'-->'}
           </button>
         </div>
 

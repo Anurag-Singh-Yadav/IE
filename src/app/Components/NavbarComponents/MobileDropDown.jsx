@@ -13,10 +13,15 @@ function MobileDropDown2({ open , setOpen , label , options , index}) {
 
             b.classList.add('slide-left');
 
+            let icon = document.getElementById(`icon-${index}`);
+
+            icon.classList.add(`rotate-back`);
+
             setTimeout(() => {
                 setOpen(null);
                 b.classList.remove('slide-left');
-            } , 300)
+                icon.classList.remove('rotate-back');
+            } , 300);
 
         }
         else{
@@ -34,7 +39,8 @@ function MobileDropDown2({ open , setOpen , label , options , index}) {
         >
           <span>{label}</span>
           <FaChevronUp
-            className={`${open == index && "rotate-half"} h-5 w-5 font-bold`}
+            id={`icon-${index}`}
+            className={`${open == index && "rotate-half"} rotate-180 h-5 w-5 font-bold`}
           />
         </div>
 

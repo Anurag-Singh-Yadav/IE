@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dropdownData } from "./NavbarData";
-import MobileDropDown2 from "./MobileDropDown2";
+import MobileDropDown from "./MobileDropDown";
 import {toggleSignPagePopup,setSignInBtn} from '../../GlobalRedux/Features/GlobalStateSlice';
 function MobileNavbarContent({handleClick}) {
   const [open, setOpen] = useState(null);
