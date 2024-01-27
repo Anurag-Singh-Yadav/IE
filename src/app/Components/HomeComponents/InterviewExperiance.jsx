@@ -1,14 +1,17 @@
-'use client';
+"use client";
 import React from "react";
 import interviewData from "../../../../public/interviewData";
 import InterviewCard from "./InterviewCard";
+import Image from "next/image";
 function InterviewExperiance() {
   return (
-    <div className="py-8">
+    <div className="py-8 bg-[url('/dotted.svg')]">
+      
       <div className="grid grid-cols-1 md:grid-cols-4 md:gap-0 gap-4 justify-between items-center py-2">
         <div className="col-span-3">
           <div className="font-semibold md:font-bold text-normal sm:text-xl md:text-3xl">
-            Most Recent Interview <span className="text-green-bg underline">Experience ...</span>
+            Most Recent Interview{" "}
+            <span className="text-green-bg underline">Experience ...</span>
             🚀
           </div>
           <div className="col-span-1 font-normal sm:font-medium md:text-xl sm:text-base text-xs">
