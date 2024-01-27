@@ -17,6 +17,10 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        'square': "url('/square.svg')",
+        'dotted': "url('/dotted.svg')",
+      },
       fontFamily: {
         custom: ["Poppins", "sans-serif"],
       },
