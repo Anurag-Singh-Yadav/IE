@@ -3,7 +3,9 @@ import "./globals.css";
 import Head from "next/head";
 import Navbar from "./Navbar";
 import { Providers } from "./GlobalRedux/Providers";
+
 import Footer from "./Footer";
+import MyApp from "../../pages/_app";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +26,14 @@ export default function RootLayout({ children }) {
         />
       </Head>
 
-      <body className={inter.className}  suppressHydrationWarning={true}>
+      <body className={inter.className} suppressHydrationWarning={true}>
+        <MyApp>
           <Providers>
             <Navbar />
             {children}
             <Footer />
           </Providers>
+        </MyApp>
       </body>
     </html>
   );

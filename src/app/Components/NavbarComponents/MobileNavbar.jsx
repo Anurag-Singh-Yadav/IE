@@ -9,9 +9,10 @@ function MobileNavbar({ navBurger }) {
 
   const [flag, setFlag] = useState(null);
   function handleScroll() {
+
     let p = document.getElementById("hero");
     let h = document.getElementById("popup");
-    if (!h) return;
+    if (!h || !p) return;
     let rect = p.getBoundingClientRect();
     let distanceFromTop = rect.top;
     if (distanceFromTop <= 0) {
