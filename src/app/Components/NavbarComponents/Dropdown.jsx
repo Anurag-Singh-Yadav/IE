@@ -14,7 +14,11 @@ function Dropdown({ label, options }) {
 
   const mouseLeave = () => {
     let b = document.getElementById(`dd-${label}`);
-    if(b.classList.contains('animate-in'))b.classList.remove('animate-in');
+    b.classList.remove('animate-in');
+    b.classList.add('animate-out');
+    setTimeout(() => {
+      b.classList.remove('animate-out');
+    } , 300);
   }
 
   return (

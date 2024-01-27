@@ -10,7 +10,7 @@
   display: flex;
 }
 
-.animation-out {
+.animate-out {
   animation: slide-out-down 400ms ease-in-out;
   display: flex;
 }
