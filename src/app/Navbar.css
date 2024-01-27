@@ -43,11 +43,11 @@
 }
 
 .rotate-in{
-    animation: rotate-in-animation 600ms ease-in-out forwards;
+    animation: rotate-in-animation 1s ease-in-out forwards;
 }
 
 .rotate-out{
-    animation: rotate-out-animation 600ms ease-in-out forwards;
+    animation: rotate-out-animation 1s ease-in-out forwards;
 }
 
 @keyframes rotate-in-animation{

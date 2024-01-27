@@ -1,6 +1,11 @@
 .rotate-half{
-    transform: rotate(180deg);
+    transform: rotate(0deg);
     transition: transform 500ms ease-in-out;
+}
+
+.rotate-back{
+    transform: rotate(180deg);
+    transition: transform 300ms ease-in-out;
 }
 
 .slide-right{

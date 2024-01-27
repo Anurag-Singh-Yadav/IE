@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dropdownData } from "./NavbarData";
-import MobileDropDown2 from "./MobileDropDown2";
+import MobileDropDown from "./MobileDropDown";
 import {toggleSignPagePopup,setSignInBtn} from '../../GlobalRedux/Features/GlobalStateSlice';
 function MobileNavbarContent({handleClick}) {
   const [open, setOpen] = useState(null);
@@ -43,7 +43,7 @@ function MobileNavbarContent({handleClick}) {
       <div className="flex flex-col pt-16 gap-2 w-full z-[150]">
         {dropdownData.map((obj, index) => {
           return (
-            <MobileDropDown2
+            <MobileDropDown
               key={index}
               label={obj.label}
               options={obj.options}
