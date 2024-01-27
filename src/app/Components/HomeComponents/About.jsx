@@ -46,7 +46,7 @@ function About() {
   }, []);
 
   return (
-    <div className="my-4 py-6">
+    <div className="my-4 py-6 bg-[url('/square.svg')]">
       <div className="font-semibold md:font-bold text-normal sm:text-xl md:text-3xl">
         Our Great <span className="text-green-bg underline">Achievement</span>
       </div>
