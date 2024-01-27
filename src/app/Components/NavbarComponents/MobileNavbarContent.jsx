@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { dropdownData } from "./NavbarData";
-import MobileDropDown2 from "./MobileDropDown2";
+import MobileDropDown2 from "./MobileDropDown";
 
 function MobileNavbarContent() {
 
