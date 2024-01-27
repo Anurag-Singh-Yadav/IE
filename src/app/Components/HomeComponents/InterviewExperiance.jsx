@@ -2,7 +2,6 @@
 import React from "react";
 import interviewData from "../../../../public/interviewData";
 import InterviewCard from "./InterviewCard";
-import Image from "next/image";
 function InterviewExperiance() {
   return (
     <div className="py-8 bg-[url('/dotted.svg')]">

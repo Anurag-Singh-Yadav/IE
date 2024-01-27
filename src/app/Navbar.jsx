@@ -1,6 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
+
+
 import Dropdown from "./Components/NavbarComponents/Dropdown";
 import Login from "./Components/NavbarComponents/Login";
 import "./globals.css";
@@ -12,9 +15,11 @@ import {toggleSignPagePopup,setSignInBtn} from './GlobalRedux/Features/GlobalSta
 import { FaCircleArrowUp } from "react-icons/fa6";
 function Navbar() {
 
-  // const [isSignup, setSignInBtn] = useState(true);
+  const { data: sessionData } = useSession();
+  console.log('session ',sessionData);
+
   const isSignup = useSelector((state)=>{return state.GlobalState.isSignup});
-  // const [flag, setFlag] = useState(false);
+
   const dispatch = useDispatch();
   const flag = useSelector((state)=>{
     return state.GlobalState.isSignPagePopup;
