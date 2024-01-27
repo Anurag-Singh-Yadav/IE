@@ -1,18 +1,20 @@
 "use client";
+import { useDispatch, useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import TextField from "@mui/material/TextField";
 import "./Login.css";
-
-function Login({ setSignInBtn, isSignup, setFlag }) {
+import {toggleSignPagePopup,setSignInBtn} from '../../GlobalRedux/Features/GlobalStateSlice';
+function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
-
+  const isSignup = useSelector((state)=>{return state.GlobalState.isSignup});
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -25,7 +27,6 @@ function Login({ setSignInBtn, isSignup, setFlag }) {
     e.preventDefault();
     console.log("Form submitted:", formData);
   };
-
   return (
     <div className="fixed w-[100vw] left-0 top-0 z-50 h-[100vh] pop-up">
       <div className="fixed overflow-y-auto max-h-[100vh] rounded-lg top-3 border-t-green-bg border-t-[3px] left-0 right-0 sm:w-[70%] lg:w-[55%] w-full bg-white  sm:mx-auto py-2 z-30 border px-4 enlarge-in">
@@ -34,7 +35,7 @@ function Login({ setSignInBtn, isSignup, setFlag }) {
           <AiOutlineCloseCircle
             className="cursor-pointer scale-150 absolute right-4 "
             onClick={() => {
-              setFlag(false);
+              dispatch(toggleSignPagePopup());
             }}
           />
         </div>
@@ -47,7 +48,7 @@ function Login({ setSignInBtn, isSignup, setFlag }) {
                   : "border-green-bg"
               }`}
               onClick={() => {
-                setSignInBtn(true);
+                dispatch(setSignInBtn(true));
               }}
             >
               Sign up
@@ -59,7 +60,7 @@ function Login({ setSignInBtn, isSignup, setFlag }) {
                   : "border-2 border-green-bg"
               }`}
               onClick={() => {
-                setSignInBtn(false);
+                dispatch(setSignInBtn(false));
               }}
             >
               Sign In
@@ -75,7 +76,7 @@ function Login({ setSignInBtn, isSignup, setFlag }) {
               <button
                 className="text-primarybtn italic font-bold hover:text-green-bg hover:underline font-serif"
                 onClick={() => {
-                  setSignInBtn(false);
+                  dispatch(setSignInBtn(false));
                 }}
               >
                 Sign in
