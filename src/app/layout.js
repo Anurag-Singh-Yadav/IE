@@ -4,6 +4,9 @@ import Head from "next/head";
 import Navbar from "./Navbar";
 import { Providers } from "./GlobalRedux/Providers";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Footer from "./Footer";
 import MyApp from "../../pages/_app";
 
@@ -32,6 +35,7 @@ export default function RootLayout({ children }) {
             <Navbar />
             {children}
             <Footer />
+            <ToastContainer />
           </Providers>
         </MyApp>
       </body>
