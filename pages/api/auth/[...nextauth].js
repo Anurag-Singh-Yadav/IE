@@ -26,8 +26,8 @@ export const authOptions = {
           const res = await axios.post("http://localhost:4000/ie/auto-login", {
             user,
           });
-          Cookies.set("token", res.token, { expires: 7 });
-          console.log("Response", res.data);
+          Cookies.set("token", res.data.token, { expires: 7 });
+          console.log("Response", res.data.token);
           return true;
         } catch (error) {
           console.error("Error occurred:", error);
@@ -40,8 +40,8 @@ export const authOptions = {
           const res = await axios.post("http://localhost:4000/ie/auto-login", {
             user,
           });
-          console.log("Response", res.data);
-          Cookies.set("token", res.token, { expires: 7 });
+          Cookies.set("token", res.data.token, { expires: 7 });
+          console.log("Response", res.data.token);
           return true;
         } catch (error) {
           console.error("Error occurred:", error);

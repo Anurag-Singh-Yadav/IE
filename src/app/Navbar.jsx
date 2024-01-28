@@ -11,20 +11,27 @@ import MobileNavbar from "./Components/NavbarComponents/MobileNavbar";
 import { FaBars } from "react-icons/fa";
 import { dropdownData } from "./Components/NavbarComponents/NavbarData";
 import {
+  toggleLogin,
   toggleSignPagePopup,
   setSignInBtn,
 } from "./GlobalRedux/Features/GlobalStateSlice";
 import { FaCircleArrowUp } from "react-icons/fa6";
 import Avatar from "react-avatar";
+import Cookies from "js-cookie";
 function Navbar() {
-
+  const dispatch = useDispatch();
   const isLogin = useSelector((state) => {return state.GlobalState.isLogin});
+  const token = Cookies.get("token");
+  useEffect(()=>{
+    if(token){
+      dispatch(toggleLogin);
+    }
+  },[]);
 
   const isSignup = useSelector((state) => {
     return state.GlobalState.isSignup;
   });
 
-  const dispatch = useDispatch();
   const flag = useSelector((state) => {
     return state.GlobalState.isSignPagePopup;
   });
