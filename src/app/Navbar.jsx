@@ -36,8 +36,7 @@ function Navbar() {
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
-    const showThreshold = 300; // Adjust this threshold as needed
-
+    const showThreshold = 300; 
     setShowBackToTop(scrollY > showThreshold);
   };
 
