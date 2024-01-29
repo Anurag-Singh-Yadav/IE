@@ -55,12 +55,13 @@ function Navbar() {
       if (res?.data?.success == true) {
         const { userHandle, avatar, email, name } = res.data;
 
-        setDetails({
+        setDetails((prevDetails) => ({
+          ...prevDetails,
           userHandle,
           avatar,
           email,
           name,
-        });
+        }));
 
         return true;
       }
@@ -75,7 +76,10 @@ function Navbar() {
 
     if (storedCookie && getResponse(storedCookie)) {
       dispatch(setLogin(true));
-    } else if (session?.user?.interviewToken && getResponse(session.user.interviewToken)) {
+    } else if (
+      session?.user?.interviewToken &&
+      getResponse(session.user.interviewToken)
+    ) {
       Cookies.set("token", session.user.interviewToken, { expires: 7 });
       dispatch(setLogin(true));
     }
@@ -165,7 +169,7 @@ function Navbar() {
             </button>
           </div>
         ) : (
-          <div className="relative">
+          <div className="relative hidden nmd:flex items-center">
             <Avatar
               name={details.name}
               src={details.avatar}
@@ -181,7 +185,7 @@ function Navbar() {
 
         {flag && <Login></Login>}
       </div>
-      <MobileNavbar navBurger={navBurger} setNavBurger={setNavBurger} />
+      <MobileNavbar navBurger={navBurger} details={details} setNavBurger={setNavBurger} />
     </div>
   );
 }
