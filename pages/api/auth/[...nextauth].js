@@ -20,7 +20,7 @@ const authOptions = {
       
       if (account?.provider === "github" || account?.provider === "google") {
         try {
-          const res = await axios.post(`${process.env.BASE_URL}/${process.env.AUTO_LOGIN}`, {
+          const res = await axios.post('https://interveiw-express.onrender.com/ie/auto-login', {
             user,
           });
           interviewToken = res.data.token;
