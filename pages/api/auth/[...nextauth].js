@@ -17,7 +17,7 @@ const authOptions = {
 
   callbacks: {
     async signIn({ user, account }) {
-      
+      return true;
       if (account?.provider === "github" || account?.provider === "google") {
         try {
           const res = await axios.post('https://interveiw-express.onrender.com/ie/auto-login', {
