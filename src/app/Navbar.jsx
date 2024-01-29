@@ -15,9 +15,10 @@ import {
   toggleSignPagePopup,
   setSignInBtn,
 } from "./GlobalRedux/Features/GlobalStateSlice";
+
 import { FaCircleArrowUp } from "react-icons/fa6";
 import Avatar from "react-avatar";
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 function Navbar() {
   const dispatch = useDispatch();
   const { data: session, status } = useSession();
