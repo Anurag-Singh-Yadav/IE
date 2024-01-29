@@ -18,31 +18,68 @@ import {
 
 import { FaCircleArrowUp } from "react-icons/fa6";
 import Avatar from "react-avatar";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
+import Loader from "./Components/Loader";
+import NavbarPopup from "./Components/NavbarComponents/NavbarPopup";
+import axios from "axios";
 function Navbar() {
+  const [showLoader, setShowLoader] = useState(false);
+
   const dispatch = useDispatch();
   const { data: session, status } = useSession();
+
   const isLogin = useSelector((state) => {
     return state.GlobalState.isLogin;
   });
-  const [token, setToken] = useState(null);
+  const [details, setDetails] = useState({});
 
-  useEffect(() => {
-    
-    const temp = session?.user?.interviewToken;
-    if(temp){
-      setToken(temp);
-      Cookies.set("token", session?.user?.interviewToken,{expires:7});
+  const [showNavPopup, setShowNavPopup] = useState(false);
+
+  const getResponse = async (token) => {
+    console.log(token);
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_FETCH_USER_DETAILS}`,
+        {
+          token: token,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(res);
+
+      if (res?.data?.success == true) {
+        const { userHandle, avatar, email, name } = res.data;
+
+        setDetails({
+          userHandle,
+          avatar,
+          email,
+          name,
+        });
+
+        return true;
+      }
+    } catch (err) {
+      console.log("Following error occured while fetching user details: ", err);
+      return false;
     }
-    
-    console.log("token", session);
-  }, [session]);
+  };
 
   useEffect(() => {
-    if (token) {
+    const storedCookie = Cookies.get("token");
+
+    if (storedCookie && getResponse(storedCookie)) {
+      dispatch(setLogin(true));
+    } else if (session?.user?.interviewToken && getResponse(session.user.interviewToken)) {
+      Cookies.set("token", session.user.interviewToken, { expires: 7 });
       dispatch(setLogin(true));
     }
-  }, [token]);
+  }, [session]);
 
   const isSignup = useSelector((state) => {
     return state.GlobalState.isSignup;
@@ -79,6 +116,7 @@ function Navbar() {
 
   return (
     <div>
+      {showLoader && <Loader />}
       <div
         className={`fixed bottom-4 bg-white rounded-full w-fit z-10 right-2 cursor-pointer text-dark-blue hover:text-green-bg transition-all duration-300 back-to-top ${
           showBackToTop ? "rotate-in" : "rotate-out"
@@ -127,20 +165,17 @@ function Navbar() {
             </button>
           </div>
         ) : (
-          <div
-            className="hidden nmd:flex"
-            onClick={() => {
-              signOut();
-              dispatch(setLogin(false));
-              Cookies.remove("token");
-            }}
-          >
+          <div className="relative">
             <Avatar
-              name="Wim Mostmans"
-              src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+              name={details.name}
+              src={details.avatar}
               size="50"
               round={true}
+              onClick={() => {
+                setShowNavPopup(!showNavPopup);
+              }}
             ></Avatar>
+            {showNavPopup && <NavbarPopup details={details} />}
           </div>
         )}
 
