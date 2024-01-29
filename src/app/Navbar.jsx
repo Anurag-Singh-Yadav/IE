@@ -18,7 +18,6 @@ import {
 import { FaCircleArrowUp } from "react-icons/fa6";
 import Avatar from "react-avatar";
 import Cookies from "js-cookie";
-import { Cookie } from "next/font/google";
 function Navbar() {
   const dispatch = useDispatch();
   const { data: session, status } = useSession();
