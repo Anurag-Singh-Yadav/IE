@@ -55,12 +55,13 @@ function Navbar() {
       if (res?.data?.success == true) {
         const { userHandle, avatar, email, name } = res.data;
 
-        setDetails({
+        setDetails(prevDetails => ({
+          ...prevDetails,
           userHandle,
           avatar,
           email,
           name,
-        });
+        }));
 
         return true;
       }
@@ -165,7 +166,7 @@ function Navbar() {
             </button>
           </div>
         ) : (
-          <div className="relative">
+          <div className="relative w-fit rounded-full">
             <Avatar
               name={details.name}
               src={details.avatar}
@@ -175,7 +176,7 @@ function Navbar() {
                 setShowNavPopup(!showNavPopup);
               }}
             ></Avatar>
-            {showNavPopup && <NavbarPopup details={details} />}
+            {showNavPopup && <NavbarPopup details={details} setShowNavPopup={setShowNavPopup}/>}
           </div>
         )}
 
