@@ -11,22 +11,35 @@ import MobileNavbar from "./Components/NavbarComponents/MobileNavbar";
 import { FaBars } from "react-icons/fa";
 import { dropdownData } from "./Components/NavbarComponents/NavbarData";
 import {
-  toggleLogin,
+  setLogin,
   toggleSignPagePopup,
   setSignInBtn,
 } from "./GlobalRedux/Features/GlobalStateSlice";
 import { FaCircleArrowUp } from "react-icons/fa6";
 import Avatar from "react-avatar";
 import Cookies from "js-cookie";
+import { Cookie } from "next/font/google";
 function Navbar() {
   const dispatch = useDispatch();
-  const isLogin = useSelector((state) => {return state.GlobalState.isLogin});
-  const token = Cookies.get("token");
-  useEffect(()=>{
-    if(token){
-      dispatch(toggleLogin);
+  const { data: session, status } = useSession();
+  const isLogin = useSelector((state) => {
+    return state.GlobalState.isLogin;
+  });
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    Cookies.set("token", session?.user?.interviewToken);
+    const temp = session?.user?.interviewToken;
+    if(temp)
+    setToken(temp);
+    console.log("token", session);
+  }, [session]);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(setLogin(true));
     }
-  },[]);
+  }, [token]);
 
   const isSignup = useSelector((state) => {
     return state.GlobalState.isSignup;
@@ -43,7 +56,7 @@ function Navbar() {
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
-    const showThreshold = 300; 
+    const showThreshold = 300;
     setShowBackToTop(scrollY > showThreshold);
   };
 
@@ -109,15 +122,24 @@ function Navbar() {
             >
               Sign Up
             </button>
-          </div>) : (<div className="hidden nmd:flex" onClick={signOut}>
+          </div>
+        ) : (
+          <div
+            className="hidden nmd:flex"
+            onClick={() => {
+              signOut();
+              dispatch(setLogin(false));
+              Cookies.remove("token");
+            }}
+          >
             <Avatar
               name="Wim Mostmans"
               src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
               size="50"
               round={true}
             ></Avatar>
-          </div>)
-        }
+          </div>
+        )}
 
         {flag && <Login></Login>}
       </div>

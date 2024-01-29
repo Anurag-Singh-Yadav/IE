@@ -1,10 +1,8 @@
-// 'use client'
 import axios from "axios";
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import Cookies from "js-cookie";
-
+var interviewToken ;
 export const authOptions = {
   providers: [
     GitHubProvider({
@@ -19,29 +17,12 @@ export const authOptions = {
 
   callbacks: {
     async signIn({ user, account }) {
-      console.log("user", user);
-      console.log("provider", account);
-      if (account?.provider === "github") {
+      if (account?.provider === "github" || account?.provider === "google") {
         try {
           const res = await axios.post("http://localhost:4000/ie/auto-login", {
             user,
           });
-          Cookies.set("token", res.data.token, { expires: 7 });
-          console.log("Response", res.data.token);
-          return true;
-        } catch (error) {
-          console.error("Error occurred:", error);
-          return false;
-        }
-      }
-
-      if (account?.provider == "google") {
-        try {
-          const res = await axios.post("http://localhost:4000/ie/auto-login", {
-            user,
-          });
-          Cookies.set("token", res.data.token, { expires: 7 });
-          console.log("Response", res.data.token);
+          interviewToken = res.data.token;
           return true;
         } catch (error) {
           console.error("Error occurred:", error);
@@ -50,6 +31,10 @@ export const authOptions = {
       }
       return false;
     },
+    session({ session }) {
+      session.user.interviewToken = interviewToken;
+      return session;
+    }
   },
 };
 

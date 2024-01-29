@@ -14,9 +14,8 @@
         initialState,
 
         reducers: {
-            toggleLogin: (state) => {
-                state.isLogin = !state.isLogin;
-
+            setLogin: (state, value) => {
+                state.isLogin = value.payload;
                 return state;
             },
             toggleLight: (state) => {
@@ -34,5 +33,5 @@
         }
     })
 
-    export const {toggleLogin , toggleLight,toggleSignPagePopup,setSignInBtn} = GlobalStateSlice.actions;
+    export const {setLogin , toggleLight,toggleSignPagePopup,setSignInBtn} = GlobalStateSlice.actions;
     export default GlobalStateSlice.reducer;
