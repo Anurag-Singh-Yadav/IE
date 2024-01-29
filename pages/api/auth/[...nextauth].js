@@ -2,8 +2,8 @@ import axios from "axios";
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-var interviewToken ;
-export const authOptions = {
+var interviewToken;
+const authOptions = {
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
@@ -17,9 +17,10 @@ export const authOptions = {
 
   callbacks: {
     async signIn({ user, account }) {
+      
       if (account?.provider === "github" || account?.provider === "google") {
         try {
-          const res = await axios.post("http://localhost:4000/ie/auto-login", {
+          const res = await axios.post(`${process.env.BASE_URL}/${process.env.AUTO_LOGIN}`, {
             user,
           });
           interviewToken = res.data.token;
@@ -32,9 +33,11 @@ export const authOptions = {
       return false;
     },
     session({ session }) {
-      session.user.interviewToken = interviewToken;
+      if (session) {
+        session.user.interviewToken = interviewToken;
+      }
       return session;
-    }
+    },
   },
 };
 

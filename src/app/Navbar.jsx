@@ -28,10 +28,13 @@ function Navbar() {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    Cookies.set("token", session?.user?.interviewToken);
+    
     const temp = session?.user?.interviewToken;
-    if(temp)
-    setToken(temp);
+    if(temp){
+      setToken(temp);
+      Cookies.set("token", session?.user?.interviewToken,{expires:7});
+    }
+    
     console.log("token", session);
   }, [session]);
 
