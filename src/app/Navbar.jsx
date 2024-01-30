@@ -55,7 +55,7 @@ function Navbar() {
       if (res?.data?.success == true) {
         const { userHandle, avatar, email, name } = res.data;
 
-        setDetails((prevDetails) => ({
+        setDetails(prevDetails => ({
           ...prevDetails,
           userHandle,
           avatar,
@@ -168,7 +168,7 @@ function Navbar() {
             </button>
           </div>
         ) : (
-          <div className="relative hidden nmd:flex items-center">
+          <div className="relative hidden nmd:flex items-center w-fit rounded-full">
             <Avatar
               name={details.name}
               src={details.avatar}
@@ -178,7 +178,7 @@ function Navbar() {
                 setShowNavPopup(!showNavPopup);
               }}
             ></Avatar>
-            {showNavPopup && <NavbarPopup details={details} />}
+            {showNavPopup && <NavbarPopup details={details} setShowNavPopup={setShowNavPopup}/>}
           </div>
         )}
 
