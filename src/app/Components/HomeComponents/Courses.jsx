@@ -7,7 +7,7 @@ function Courses() {
   return (
     <div className='my-16'>
       <div className="font-semibold md:font-bold text-normal sm:text-xl md:text-3xl">
-        Our Great <span className="text-green-bg underline">Achievement</span>
+        Our Great <span className="text-green-bg underline">Achievement </span> 
       </div>
       <div className='flex flex-col py-5 justify-center gap-6 items-center'>
       
