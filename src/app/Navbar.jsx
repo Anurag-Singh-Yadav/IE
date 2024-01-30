@@ -141,7 +141,6 @@ function Navbar() {
             );
           })}
         </div>
-
         <div onClick={() => setNavBurger(!navBurger)} className="nmd:hidden">
           <FaBars size={25} />
         </div>
@@ -170,7 +169,7 @@ function Navbar() {
             </button>
           </div>
         ) : (
-          <div className="relative w-fit rounded-full">
+          <div className="relative hidden nmd:flex items-center w-fit rounded-full">
             <Avatar
               name={details.name}
               src={details.avatar}
@@ -186,7 +185,7 @@ function Navbar() {
 
         {flag && <Login></Login>}
       </div>
-      <MobileNavbar navBurger={navBurger} setNavBurger={setNavBurger} />
+      <MobileNavbar navBurger={navBurger} details={details} setNavBurger={setNavBurger} />
     </div>
   );
 }
