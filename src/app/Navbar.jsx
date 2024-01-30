@@ -36,7 +36,7 @@ function Navbar() {
   const [showNavPopup, setShowNavPopup] = useState(false);
 
   const getResponse = async (token) => {
-    console.log(token);
+    setShowLoader(true);
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_FETCH_USER_DETAILS}`,
@@ -50,7 +50,7 @@ function Navbar() {
         }
       );
 
-      console.log(res);
+      console.log(res?.data);
 
       if (res?.data?.success == true) {
         const { userHandle, avatar, email, name } = res.data;
@@ -62,11 +62,14 @@ function Navbar() {
           email,
           name,
         }));
-
+        setShowLoader(false);
         return true;
       }
+      setShowLoader(false);
+      return false;
     } catch (err) {
       console.log("Following error occured while fetching user details: ", err);
+      setShowLoader(false);
       return false;
     }
   };
@@ -74,12 +77,9 @@ function Navbar() {
   useEffect(() => {
     const storedCookie = Cookies.get("token");
 
-    if (storedCookie && getResponse(storedCookie)) {
+    if (!details.avatar && storedCookie && getResponse(storedCookie)) {
       dispatch(setLogin(true));
-    } else if (
-      session?.user?.interviewToken &&
-      getResponse(session.user.interviewToken)
-    ) {
+    } else if (!details.avatar && session?.user?.interviewToken && getResponse(session.user.interviewToken)) {
       Cookies.set("token", session.user.interviewToken, { expires: 7 });
       dispatch(setLogin(true));
     }
