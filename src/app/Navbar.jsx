@@ -140,7 +140,6 @@ function Navbar() {
             );
           })}
         </div>
-
         <div onClick={() => setNavBurger(!navBurger)} className="nmd:hidden">
           <FaBars size={25} />
         </div>
