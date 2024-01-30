@@ -83,7 +83,6 @@ function Navbar() {
       Cookies.set("token", session.user.interviewToken, { expires: 7 });
       dispatch(setLogin(true));
     }
-    else Cookies.remove('token');
   }, [session]);
 
   const isSignup = useSelector((state) => {

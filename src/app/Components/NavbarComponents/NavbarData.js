@@ -3,7 +3,11 @@ export const dropdownData = [
       label: "Roadmaps",
       options: [
         {
-          label: "DSA",
+          label: "Languages",
+          value: "languages", 
+        },
+        {
+          label: "Data Structures & Algorithms",
           value: "dsa",
         },
         {
@@ -11,13 +15,13 @@ export const dropdownData = [
           value: "computerFundamentals",
         },
         {
-          label: "DSA",
-          value: "dsa",
+          label: "Aptitude",
+          value: "aptitude",
         },
         ,
         {
-          label: "DSA",
-          value: "dsa",
+          label: "Development",
+          value: "development",
         },
       ],
     },
@@ -25,46 +29,24 @@ export const dropdownData = [
       label: "Practice",
       options: [
         {
-          label: "DSA",
+          label: "Language Basics",
+          value: "basics", 
+        },
+        {
+          label: "Data Structures & Algorithms",
           value: "dsa",
         },
         {
-          label: "Computer Fundamentals",
-          value: "computerFundamentals",
+          label: "Aptitude",
+          value: "aptitude",
         },
         {
-          label: "DSA",
-          value: "dsa",
-        },
-        ,
-        {
-          label: "DSA",
-          value: "dsa",
+          label: "CS fundamentals",
+          value: "csFundamentals",
         },
       ],
     },
-    {
-      label: "Tutorials",
-      options: [
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        {
-          label: "Computer Fundamentals",
-          value: "computerFundamentals",
-        },
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        ,
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-      ],
-    },
+   
     {
       label: "Challenges",
       options: [
@@ -85,6 +67,11 @@ export const dropdownData = [
           label: "DSA",
           value: "dsa",
         },
+      ],
+    },
+    {
+      label: "Learn",
+      options: [
       ],
     },
   ];
