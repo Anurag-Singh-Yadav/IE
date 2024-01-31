@@ -69,9 +69,11 @@ export const dropdownData = [
         },
       ],
     },
-    {
-      label: "Learn",
-      options: [
-      ],
-    },
   ];
+
+  export const links = [
+    {
+        label: 'Learn',
+        value: 'learn',
+    },
+  ]

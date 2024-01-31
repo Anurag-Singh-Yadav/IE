@@ -1,13 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { dropdownData } from "./NavbarData";
+import { dropdownData, links } from "./NavbarData";
 import MobileDropDown from "./MobileDropDown";
 import {
   toggleSignPagePopup,
   setSignInBtn,
 } from "../../GlobalRedux/Features/GlobalStateSlice";
 import Avatar from "react-avatar";
+import Link from "next/link";
 function MobileNavbarContent({ handleClick, details }) {
   const isLogin = useSelector((state) => {
     return state.GlobalState.isLogin;
@@ -71,6 +72,13 @@ function MobileNavbarContent({ handleClick, details }) {
             />
           );
         })}
+        <ul className="z-[150] my-6 list-disc px-6 max-w-md mx-auto w-full">
+        {
+          links.map((link , index) => {
+            return <li key={index} className=""><Link href={link.value}><span className="border-b-2  border-black hover:border-green-bg hover:text-green-bg transition duration-300">{link.label}</span></Link></li>
+          })
+        }
+        </ul>
       </div>
     </div>
   );
