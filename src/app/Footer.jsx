@@ -132,12 +132,7 @@ function Footer() {
                 <FaSquareInstagram className="fab fa-instagram"></FaSquareInstagram>
               </span>
             </li>
-            <li className="icon github">
-              <span className="tooltip">Github</span>
-              <span>
-                <FaGithub className="fab fa-github"></FaGithub>
-              </span>
-            </li>
+            
             <li className="icon youtube">
               <span className="tooltip">Youtube</span>
               <span>
