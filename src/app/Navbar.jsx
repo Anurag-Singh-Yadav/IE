@@ -9,7 +9,7 @@ import "./globals.css";
 import "./Navbar.css";
 import MobileNavbar from "./Components/NavbarComponents/MobileNavbar";
 import { FaBars } from "react-icons/fa";
-import { dropdownData } from "./Components/NavbarComponents/NavbarData";
+import { dropdownData, links } from "./Components/NavbarComponents/NavbarData";
 import {
   setLogin,
   toggleSignPagePopup,
@@ -22,6 +22,7 @@ import Cookies from "js-cookie";
 import Loader from "./Components/Loader";
 import NavbarPopup from "./Components/NavbarComponents/NavbarPopup";
 import axios from "axios";
+import Link from "next/link";
 function Navbar() {
   const [showLoader, setShowLoader] = useState(false);
 
@@ -133,12 +134,17 @@ function Navbar() {
       <div className="flex justify-between h-[10vh] items-center">
         <p className="px-4 py-2 text-yellow-400   font-bold text-3xl">{a}</p>
         {/* Dropdowns */}
-        <div className="gap-7 font-semibold hidden nmd:flex">
+        <div className="gap-7 font-semibold hidden nmd:flex items-center ">
           {dropdownData.map((obj, index) => {
             return (
               <Dropdown label={obj.label} options={obj.options} key={index} />
             );
           })}
+          {
+            links.map((link , index) => {
+              return <Link key={index} href={`/${link.value}`} className="border-b-2 border-white hover:border-green-bg hover:text-green-bg transition duration-300">{link.label}</Link>
+            })
+          }
         </div>
         <div onClick={() => setNavBurger(!navBurger)} className="nmd:hidden">
           <FaBars size={25} />
