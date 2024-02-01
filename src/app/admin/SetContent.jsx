@@ -25,7 +25,7 @@ function SetContent({ setFormData, formData, index }) {
 
       {
         <div className="px-7 flex flex-col gap-7 w-[full] font-semibold text-lg">
-          <div>
+          <div className="flex gap-2 items-center justify-between">
             <label htmlFor="title">Title: </label>
             <input
               type="text"
@@ -37,7 +37,7 @@ function SetContent({ setFormData, formData, index }) {
             />
           </div>
 
-          <div>
+          <div className="flex gap-2 items-center justify-between">
             <label htmlFor="value">Value: </label>
             <input
               type="text"
@@ -49,7 +49,7 @@ function SetContent({ setFormData, formData, index }) {
             />
           </div>
 
-          <div>
+          <div className="flex gap-2 items-center justify-between">
             <label htmlFor="correct">Correct: </label>
             <input
               type="text"
@@ -64,7 +64,7 @@ function SetContent({ setFormData, formData, index }) {
           {
             formData.article[index].options.map((_, i) => {
               return (
-                <div key={i} className="flex gap-3 items-center">
+                <div key={i} className="flex gap-3 items-center justify-between">
                   <div>
                     <label htmlFor={`option-${i}`}>Option{` ${i}`}:</label>
                     <input
