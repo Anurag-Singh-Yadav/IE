@@ -1,6 +1,7 @@
 import React from 'react'
 import AddContent from './AddContent'
 
+
 function Admin() {
   return (
     <div>
