@@ -102,7 +102,7 @@ function AddContent() {
               <input
                 type="text"
                 id="title"
-                value={formData.title}
+                value={formData?.title}
                 name="title"
                 onChange={changeHandler}
                 className="border-2 border-gray-400 m-3"
@@ -113,7 +113,7 @@ function AddContent() {
         {formData.mainTopic.length > 0 &&
           formData.mainHeading.length > 0 &&
           formData.subHeading.length > 0 &&
-          formData.title.length > 0 && (
+          formData?.title.length > 0 && (
             <div
               className="flex flex-col gap-7 w-[full] border-red-500 border-b-2 border-t-2 pt-16 pb-16 rounded-xl p-5 my-8"
               unused={formData.article}

@@ -60,7 +60,7 @@ function SetContent({ setFormData, formData, index }) {
             id="title"
             name="title"
             onChange={changeHandler}
-            value={content.title}
+            value={content?.title}
             className="p-2 border-2 border-gray-400"
           />
         </div>
