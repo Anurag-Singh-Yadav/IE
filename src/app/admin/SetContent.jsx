@@ -3,46 +3,18 @@ import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 
 function SetContent({ setFormData, formData, index }) {
-  const [content, setContent] = useState({
-    title: "",
-    value: "",
-    options: [],
-    correct: "",
-  });
-
-  //   console.log("Index = ", index, " -> ", content);
-
-  const [first, setFirst] = useState(true);
-
-  useEffect(() => {
-    const data = window.localStorage.getItem("formData");
-
-    if (data) {
-      setContent(JSON.parse(data).article[index]);
-      console.log(content);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (first == false) {
-      const updatedArray = formData.article;
-      updatedArray[index] = content;
-
-      setFormData((prev) => {
-        return {
-          ...prev,
-          article: updatedArray,
-        };
-      });
-    }
-    setFirst(false);
-  }, [content]);
-
   const changeHandler = (event) => {
-    setContent((prev) => {
+    const updated = formData.article;
+
+    const keyy = event.target.name,
+      value = event.target.value;
+
+    updated[index][keyy] = value;
+
+    setFormData((prev) => {
       return {
         ...prev,
-        [event.target.name]: event.target.value,
+        article: updated,
       };
     });
   };
@@ -51,7 +23,7 @@ function SetContent({ setFormData, formData, index }) {
     <div className=" border-4 border-black min-h-[30vh] flex flex-col gap-7 w-[full]">
       <p className="font-semibold text-md text-center">Section: {index + 1}</p>
 
-      {content && (
+      {
         <div className="px-7 flex flex-col gap-7 w-[full] font-semibold text-lg">
           <div>
             <label htmlFor="title">Title: </label>
@@ -60,7 +32,7 @@ function SetContent({ setFormData, formData, index }) {
               id="title"
               name="title"
               onChange={changeHandler}
-              value={content.title}
+              value={formData.article[index].title}
               className="p-2 border-2 border-gray-400"
             />
           </div>
@@ -72,7 +44,7 @@ function SetContent({ setFormData, formData, index }) {
               id="value"
               name="value"
               onChange={changeHandler}
-              value={content.value}
+              value={formData.article[index].value}
               className="p-2 border-2 border-gray-400"
             />
           </div>
@@ -84,13 +56,13 @@ function SetContent({ setFormData, formData, index }) {
               id="correct"
               name="correct"
               onChange={changeHandler}
-              value={content.correct}
+              value={formData.article[index].correct}
               className="p-2 border-2 border-gray-400"
             />
           </div>
 
-          {content.options &&
-            content.options.map((_, i) => {
+          {
+            formData.article[index].options.map((_, i) => {
               return (
                 <div key={i} className="flex gap-3 items-center">
                   <div>
@@ -99,17 +71,21 @@ function SetContent({ setFormData, formData, index }) {
                       type="text"
                       id={`option-${i}`}
                       name={`option-${i}`}
-                      value={content.options[i]}
+                      value={formData.article[index].options[i]}
                       onChange={(e) => {
-                        const updated = [...content.options];
+                        const updated = [...formData.article[index].options];
                         updated[i] = e.target.value;
 
-                        setContent((prev) => {
+                        const upd = formData.article;
+
+                        upd[index].options = updated;
+
+                        setFormData((prev) => {
                           return {
                             ...prev,
-                            options: updated,
-                          };
-                        });
+                            article: upd,
+                          }
+                        })
                       }}
                       className="p-2 border-2 border-gray-400"
                     />
@@ -118,17 +94,22 @@ function SetContent({ setFormData, formData, index }) {
                     onClick={(e) => {
                       e.preventDefault();
                       const updated = [];
-                      for (let j = 0; j < content.options.length; j++) {
+                      for (let j = 0; j < formData.article[index].options.length; j++) {
                         if (j !== i) {
-                          updated.push(content.options[j]);
+                          updated.push(formData.article[index].options[j]);
                         }
                       }
-                      setContent((prev) => {
+
+                      const upd = formData.article;
+
+                      upd[index].options = updated;
+
+                      setFormData((prev) => {
                         return {
                           ...prev,
-                          options: updated,
-                        };
-                      });
+                          article: upd,
+                        }
+                      })
                     }}
                   >
                     <MdDelete />
@@ -140,12 +121,12 @@ function SetContent({ setFormData, formData, index }) {
           <button
             onClick={(e) => {
               e.preventDefault();
-              const updated = content.options;
-              updated.push("");
-              setContent((prev) => {
+              const updated = formData.article;
+              updated[index].options.push('');
+              setFormData((prev) => {
                 return {
                   ...prev,
-                  options: updated,
+                  article: updated,
                 };
               });
             }}
@@ -153,7 +134,7 @@ function SetContent({ setFormData, formData, index }) {
             Add Option
           </button>
         </div>
-      )}
+      }
     </div>
   );
 }
