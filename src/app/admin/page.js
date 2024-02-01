@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from "react";
 import InputTextContent from "./InputTextContent";
+import axios from "axios";
 
 function Page() {
   const [cnt, setCnt] = useState(1);
@@ -24,13 +25,22 @@ function Page() {
     });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setFormData({
-      ...formData,
-      content: Object.entries(content).map(([key, value]) => ({ key, value })),
-    });
-    console.log(formData);
+    try {
+      // Assuming formData is a state variable managed by useState
+      const updatedFormData = {
+        ...formData,
+        content: Object.entries(formData.content).map(([key, value]) => ({ key, value })),
+      };
+  
+      console.log(updatedFormData);
+  
+      const res = await axios.post('/api/s3-upload', updatedFormData);
+      console.log(res.data); // Assuming you want to log the response data
+    } catch (error) {
+      console.error('Error occurred:', error);
+    }
   };
 
   const renderInputFields = () => {
