@@ -190,30 +190,29 @@ function AddContent() {
               >
                 Add more content to article
               </button>
-
-              {formData.article.length > 0 && (
-                <button
-                  className="bg-black text-white px-4 py-2 rounded-full font-semibold text-xl my-3"
-                  onClick={() => {
-                    setFormData((prev) => {
-                      return {
-                        ...prev,
-                        article: [],
-                      };
-                    });
-                  }}
-                >
-                  Clear all Articles
-                </button>
-              )}
+              <input
+                type="submit"
+                value="Check form on console"
+                className=" bg-green-bg px-12 py-2 text-white rounded-full font-semibold hover:bg-green-700"
+              />
             </div>
           )}
 
-        <input
-          type="submit"
-          value="Check form on console"
-          className=" bg-green-bg px-12 py-2 text-white rounded-full font-semibold hover:bg-green-700"
-        />
+        {formData.article.length > 0 && (
+          <button
+            className="bg-black text-white px-4 py-2 rounded-full font-semibold text-xl my-3"
+            onClick={() => {
+              setFormData((prev) => {
+                return {
+                  ...prev,
+                  article: [],
+                };
+              });
+            }}
+          >
+            Clear all Articles
+          </button>
+        )}
       </form>
 
       <div className=" bg-yellow-500 text-white p-8 rounded-full flex justify-center w-fit mx-auto font-bold text-2xl hover:bg-yellow-600 transition duration-300">
