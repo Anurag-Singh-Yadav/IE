@@ -20,7 +20,7 @@ export default renderMethods = {
     );
   },
 
-  mcq: ({ article }) => {
+  mcq: ({ article}) => {
 
     const [selected , setSelected] = useState(-1);
 
@@ -40,7 +40,7 @@ export default renderMethods = {
         <form onSubmit={(e) => e.preventDefault()}>
           {article.options.map((opt, index) => {
             return (
-                <div>
+                <div key={index}>
                     <label htmlFor={`option${index+1}`}>index+1 {') '}{opt}</label>
                     <input id={`option${index+1}`} type="radio" value={index + 1} onClick={() => { if(flag)clickHandler() } } checked={selected == index + 1} />
                 </div>
