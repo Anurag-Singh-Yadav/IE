@@ -20,6 +20,9 @@ module.exports = {
       backgroundImage: {
         'square': "url('/square.svg')",
         'dotted': "url('/dotted.svg')",
+        'cutCircle': "url('/cutCircle.svg')",
+        'circle': "url('/circle.svg')",
+        'star': "url('/star.svg')",
       },
       fontFamily: {
         custom: ["Poppins", "sans-serif"],
@@ -27,6 +30,9 @@ module.exports = {
       screens: {
         sm: '430px',
         nmd: '1000px',
+        s1:"432px",
+        s2:"550px",
+        s3:"927px",
       },
       colors: {
         "white-bg": "#efeefe",

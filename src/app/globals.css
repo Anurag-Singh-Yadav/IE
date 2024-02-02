@@ -172,3 +172,59 @@
 .start-2:hover:before {
   width: 100%;
 }
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 230px){
+  .main-container{
+    padding-inline: 1rem;
+  }
+}
+@media screen and (min-width: 330px){
+  .main-container{
+    padding-inline: 3rem;
+  }
+}
+
+
+@media screen and (min-width: 430px){
+  .main-container{
+    padding-inline: 5rem;
+  }
+}
+
+
+@media screen and (min-width: 550px){
+  .main-container{
+    padding-inline: 2rem;
+  }
+}
+@media screen and (min-width: 690px){
+  .main-container{
+    padding-inline: 4rem;
+  }
+}
+
+@media screen and (min-width: 800px){
+  .main-container{
+    padding-inline: 7rem;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  .main-container{
+    padding-inline: 10rem;
+  }
+}
+
+
+
+
+
+

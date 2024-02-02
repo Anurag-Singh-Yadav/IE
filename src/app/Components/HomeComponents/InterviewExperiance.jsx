@@ -4,7 +4,7 @@ import interviewData from "../../../../public/interviewData";
 import InterviewCard from "./InterviewCard";
 function InterviewExperiance() {
   return (
-    <div className="py-8 bg-[url('/dotted.svg')]">
+    <div className="py-8 my-16 bg-[url('/dotted.svg')] ">
       
       <div className="grid grid-cols-1 md:grid-cols-4 md:gap-0 gap-4 justify-between items-center py-2">
         <div className="col-span-3">
