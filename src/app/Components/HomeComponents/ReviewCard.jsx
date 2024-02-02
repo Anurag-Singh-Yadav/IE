@@ -57,7 +57,7 @@ const ReviewCard = () => {
 
   return (
     <div className="w-full mt-16 relative">
-      <div className="relative font-normal sm:font-medium md:font-lg lg:font-bold text-xl sm:text-2xl md:text-3xl pt-6 pb-8">
+      <div className="relative font-normal sm:font-medium md:font-lg lg:font-bold text-xl sm:text-2xl md:text-3xl pt-6 pb-8 main-container">
           What Says{" "}
           <span className="text-green-bg underline">Our Students</span>
         </div>
@@ -65,7 +65,7 @@ const ReviewCard = () => {
 
       <div className=" bg-[#f4f5ff] top-28 sm:top-8 right-2 aspect-square -z-10  w-auto rounded-full absolute h-[40%] sm:h-[70%]"></div>
 
-      <div className="relative overflow-x-hidden mx-auto w-[100vw] sm:w-[80vw] overflow-y-clip mb-5 h-fit">
+      <div className="relative  overflow-x-clip mx-auto w-[100vw] sm:w-[80vw] overflow-y-clip mb-5 h-fit">
         
         <Carousel
           className="pt-10"
@@ -83,7 +83,7 @@ const ReviewCard = () => {
               key={index}
               className="transition-transform duration-2000 px-2 h-[300px]"
             >
-              <div className="mx-4 h-full text-dimWhite bg-white flex flex-col rounded-md cursor-pointer shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
+              <div className="sm:mx-4 h-full text-dimWhite bg-white flex flex-col rounded-md cursor-pointer shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
                 <div className="flex bg-light-green text-black px-4 py-2 justify-start gap-2 items-center mb-3">
                   <Image
                     src={review.imageUrl}

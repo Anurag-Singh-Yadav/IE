@@ -35,17 +35,17 @@ function Company() {
       items: 3,
     },
     tablet: {
-      breakpoint: { max: 700, min: 401 },
+      breakpoint: { max: 700, min: 550 },
       items: 2,
     },
     mobile: {
-      breakpoint: { max: 400, min: 0 },
+      breakpoint: { max: 490, min: 0 },
       items: 1,
     },
   };
 
   return (
-    <div className="w-[80vw] pt-16 pb-4 mx-auto">
+    <div className="w-[80vw] bg-[url('/star.svg')] py-16 mx-auto">
       <div className="w-fit mx-auto rounded-2xl text-sm sm:text-base sm:font-bold  text-green-bg text-center bg-light-green2 py-2 mb-3 sm:px-4 px-2">Trusted Company Arround The World!</div>
 
       <Carousel
