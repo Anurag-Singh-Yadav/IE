@@ -51,8 +51,6 @@ function Navbar() {
         }
       );
 
-      console.log(res?.data);
-
       if (res?.data?.success == true) {
         const { userHandle, avatar, email, name } = res.data;
 

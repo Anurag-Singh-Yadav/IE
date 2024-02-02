@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import SetContent from "./SetContent";
 import { MdDelete } from "react-icons/md";
 import { FaArrowRotateLeft } from "react-icons/fa6";
+import axios from "axios";
 
 function AddContent() {
+
   const [formData, setFormData] = useState({
     article: [],
     mainTopic: "",
@@ -44,6 +46,17 @@ function AddContent() {
       };
     });
   };
+
+  const pushToDatabase = async () => {
+    try{
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_ADMIN_URL}${process.env.NEXT_PUBLIC_ADD_ARTICLE_URL}` , {
+          data: formData,
+      })
+      console.log(res.data);
+    } catch(err){
+      console.log(err);
+    }
+  }
 
   return (
     <div>
@@ -215,7 +228,7 @@ function AddContent() {
         )}
       </form>
 
-      <div className=" bg-yellow-500 text-white p-8 rounded-full flex justify-center w-fit mx-auto font-bold text-2xl hover:bg-yellow-600 transition duration-300">
+      <div className=" bg-yellow-500 text-white p-8 rounded-full flex justify-center w-fit mx-auto font-bold text-2xl hover:bg-yellow-600 transition duration-300" onClick={pushToDatabase}>
         <button>Push to Databse</button>
       </div>
     </div>
