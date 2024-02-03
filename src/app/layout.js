@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
           <Providers>
             <Navbar />
             {children}
-            <Footer />
+           <div className="bg-white pt-[1px]"> <Footer /></div>
             <ToastContainer />
           </Providers>
         </MyApp>

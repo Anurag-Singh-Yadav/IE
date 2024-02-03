@@ -13,6 +13,7 @@ export default function Home() {
     <div>
       <Hero />
 
+      <div className="bg-white">
       <div className="main-container gradiant-container">
         <Company />
       </div>
@@ -25,8 +26,8 @@ export default function Home() {
       <div className="main-container bg-[url('/dotted.svg')]">
         <InterviewExperiance />
       </div>
-
       <ReviewCard />
+      </div>
     </div>
   );
 }
