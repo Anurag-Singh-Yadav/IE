@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
-import { FaGithub } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import "./Footer.css";
 

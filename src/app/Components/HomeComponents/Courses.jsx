@@ -5,7 +5,7 @@ import CourseCard from './CourseCard'
 
 function Courses() {
   return (
-    <div className="my-16 bg-[url('/circle.svg')] ">
+    <div className="py-16">
       <div className="font-semibold md:font-bold text-normal sm:text-xl md:text-3xl">
         Our Great <span className="text-green-bg underline">Achievement </span> 
       </div>

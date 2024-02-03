@@ -45,7 +45,7 @@ function Company() {
   };
 
   return (
-    <div className="w-[80vw] bg-[url('/star.svg')] py-16 mx-auto">
+    <div className="w-[80vw] py-16 mx-auto">
       <div className="w-fit mx-auto rounded-2xl text-sm sm:text-base sm:font-bold  text-green-bg text-center bg-light-green2 py-2 mb-3 sm:px-4 px-2">Trusted Company Arround The World!</div>
 
       <Carousel

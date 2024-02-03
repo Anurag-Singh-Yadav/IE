@@ -12,14 +12,22 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <div className="main-container">
+
+      <div className="bg-white">
+      <div className="main-container gradiant-container">
         <Company />
+      </div>
+      <div className="main-container bg-[url('/circle.svg')]">
         <Courses />
+      </div>
+      <div className="main-container gradiant-container">
         <About />
+      </div>
+      <div className="main-container bg-[url('/dotted.svg')]">
         <InterviewExperiance />
       </div>
-      
       <ReviewCard />
+      </div>
     </div>
   );
 }
