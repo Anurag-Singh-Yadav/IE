@@ -15,8 +15,8 @@ function Hero() {
         <div className="absolute w-full left-0 h-full down-gradient z-[12]" />
       </div>
 
-      <div className="pt-4 pb-3 relative sm:pt-0 min-h-[70vh] w-[100vw] flex justify-center items-center sm:min-h-[90vh] ">
-        <div className="h-full flex flex-col gap-6 justify-center items-center z-20">
+      <div className="pt-4 pb-3 relative sm:pt-0 min-h-[70vh] w-[100vw] flex justify-center items-center sm:min-h-[90vh]">
+        <div className="h-full flex flex-col gap-6 justify-center items-center">
           <div className="flex px-3 mx-3 text-xl flex-col gap-4 sm:text-3xl md:text-5xl font-bold text-center">
             <Image
               className="absolute left-0 z-[13] bottom-0"
