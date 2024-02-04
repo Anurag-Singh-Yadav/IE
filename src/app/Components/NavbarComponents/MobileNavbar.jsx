@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MobileNavbar.css";
 import { FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
@@ -8,14 +8,13 @@ import MobileNavbarContent from "./MobileNavbarContent";
 function MobileNavbar({ navBurger,details }) {
 
   const [flag, setFlag] = useState(null);
-  function handleScroll() {
 
-    let p = document.getElementById("hero");
+  function handleScroll() {
+    const scrollY = window.scrollY;
+    const threshold = window.innerHeight * 0.1;
     let h = document.getElementById("popup");
-    if (!h || !p) return;
-    let rect = p.getBoundingClientRect();
-    let distanceFromTop = rect.top;
-    if (distanceFromTop <= 0) {
+    if (!h) return;
+    if (scrollY > threshold) {
       h.classList.add("pop-in");
     } else {
       h.classList.remove("pop-in");
