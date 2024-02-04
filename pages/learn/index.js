@@ -1,11 +1,12 @@
 'use client'
 import React from 'react'
+import { useRouter } from 'next/router'
 
 function Admin() {
-
+  const router = useRouter();
   return (
-    <div className='h-[100vh] check'>
-
+    <div>
+      
     </div>
   )
 }
