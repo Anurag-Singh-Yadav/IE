@@ -33,6 +33,7 @@
     "next": "14.1.0",
     "next-auth": "^4.24.5",
     "next-connect": "^1.0.0",
+    "next-navigation": "^1.0.6",
     "prime-react": "^1.0.0",
     "primeicons": "^6.0.1",
     "primereact": "^10.3.3",
