@@ -7,7 +7,7 @@ function Hero() {
     <div className="overflow-hidden">
       <div className="fixed top-0 right-0 pt-4 h-[100vh] w-[100vw] flex justify-center items-center  background-grid -z-10">
         <div
-          id="hero"
+          
           className="absolute w-[50%] right-0 h-full right-gradient "
         ></div>
         <div className="absolute w-[50%] left-0 h-full left-gradient"></div>
@@ -15,7 +15,7 @@ function Hero() {
         <div className="absolute w-full left-0 h-full down-gradient z-[12]" />
       </div>
 
-      <div className="pt-4 pb-3 relative sm:pt-0 min-h-[70vh] w-[100vw] flex justify-center items-center sm:min-h-[90vh]">
+      <div id="hero" className="pt-4 pb-3 relative sm:pt-0 min-h-[70vh] w-[100vw] flex justify-center items-center sm:min-h-[90vh]">
         <div className="h-full flex flex-col gap-6 justify-center items-center">
           <div className="flex px-3 mx-3 text-xl flex-col gap-4 sm:text-3xl md:text-5xl font-bold text-center">
             <Image
