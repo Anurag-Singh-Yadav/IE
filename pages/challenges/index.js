@@ -1,5 +1,5 @@
+import Allchallenges from '@/app/Components/OnGoingChallenges/Allchallenges'
 import React from 'react'
-import Allchallenges from '../Components/OnGoingChallenges/Allchallenges'
 
 function page() {
   return (
