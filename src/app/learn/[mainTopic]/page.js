@@ -6,37 +6,36 @@ import Navigator from "@/app/Components/Navigator";
 import RenderArticle from "../RenderArticle";
 
 function Page({ params }) {
-  const [navigator,setNavigator] = useState(null);
+  const [navigator, setNavigator] = useState(null);
 
-  const [title , setTitle] = useState(null);
+  const [title, setTitle] = useState(null);
 
-  const [contentFlow , setContentFlow] = useState(null);
+  const [contentFlow, setContentFlow] = useState(null);
 
   const clickHandler = async () => {
     try {
       const mainTopic = params.mainTopic;
 
       const paramsto = {
-        mainTopic
+        mainTopic,
       };
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_ARTICLE}`,
-        { params:paramsto }
+        { params: paramsto }
       );
-      console.log("navigator",response.data);
+      console.log("navigator", response.data);
       setNavigator(response.data.navigator);
       setContentFlow(response.data.article.contentFlow);
       setTitle(response.data.article.title);
     } catch (error) {
-
       console.error("There was an error!", error);
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("useEffect");
     clickHandler();
-  },[]);
+  }, []);
 
   return (
     <div onClick={clickHandler} className="flex">
@@ -45,10 +44,7 @@ function Page({ params }) {
         as={`/learn/${params.mainTopic}/`}
         passHref
       >
-        hi...{params.mainTopic}
-        {
-          navigator && <Navigator navigator={navigator} ></Navigator>
-        }
+        {navigator && <Navigator navigator={navigator}></Navigator>}
       </Link>
       <RenderArticle contentFlow={contentFlow} />
     </div>

@@ -5,7 +5,7 @@ import { renderMethods } from './RenderMethods'
 
 function RenderArticle({contentFlow}) {
   return (
-    <div className='flex flex-col p-4 sm:p-7 md:p-10 lg:p-16'>
+    <div className='flex flex-col px-6 py-4 sm:py-7 md:py-10 lg:py-16'>
         {
             contentFlow && contentFlow.map((content , index) => {
 

@@ -8,12 +8,12 @@ function Navigator({ navigator }) {
   const { menu } = navigator;
 
   return (
-    <div className="max-w-[35vw] min-h-[90vh] overflow-y-auto border px-10 py-2">
-      <div className="px-auto text-xl font-bold py-8">{navigator.mainTopic}</div>
+    <div className="min-w-[25vw] min-h-[90vh] overflow-y-auto border sticky top-0 left-0 px-10 py-4">
+      <div className="px-auto text-xl whitespace-nowrap font-bold">{navigator.mainTopic}</div>
       <div>
         {menu.map((item, index) => {
           return (
-            <div key={index}>
+            <div key={index} className="sm:py-7 md:py-10">
               <div
                 className={`flex items-center justify-between text-sm hover:bg-green-bg py-2 rounded-sm transition-all duration-300 hover:text-white font-semibold px-4 ${activeBar === index ? "bg-green-bg text-white" : "bg-light-green"}`}
                 onClick={() => {
