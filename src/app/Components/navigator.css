@@ -1,0 +1,15 @@
+.drop-downanimation-add{
+    display: flex;
+    direction: column;
+    overflow: hidden;
+    animation: height-motion 1s ease-in-out forwards;
+}
+@keyframes height-motion {
+    from {
+        height: 0;
+    }
+    to {
+        height: fit-content;
+    }
+}
+
