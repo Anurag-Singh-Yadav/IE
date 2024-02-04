@@ -1,10 +1,11 @@
+'use client'
 import React from 'react'
 
 import { renderMethods } from './RenderMethods'
 
 function RenderArticle({contentFlow}) {
   return (
-    <div>
+    <div className='flex flex-col p-4 sm:p-7 md:p-10 lg:p-16'>
         {
             contentFlow && contentFlow.map((content , index) => {
 
