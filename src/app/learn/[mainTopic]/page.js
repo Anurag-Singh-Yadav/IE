@@ -4,11 +4,14 @@ import Link from "next/link";
 import axios from "axios"; // Don't forget to import axios
 import Navigator from "@/app/Components/Navigator";
 import RenderArticle from "../RenderArticle";
+import ArticleProgress from "@/app/Components/ArticleProgress";
 
 function Page({ params }) {
   const [navigator, setNavigator] = useState(null);
 
   const [title, setTitle] = useState(null);
+
+  const [contentTable , setContentTable] = useState(null);
 
   const [contentFlow, setContentFlow] = useState(null);
 
@@ -27,6 +30,18 @@ function Page({ params }) {
       setNavigator(response.data.navigator);
       setContentFlow(response.data.article.contentFlow);
       setTitle(response.data.article.title);
+      let arr = []
+      for(let i = 0 ; i < response.data.article.contentFlow.length ; i++)
+      {
+        if(response.data.article.contentFlow[i].title == 'H2'){
+          arr.push({
+            label: response.data.article.contentFlow[i].value,
+            index: i,
+          })
+        }
+      }
+      setContentTable(arr);
+
     } catch (error) {
       console.error("There was an error!", error);
     }
@@ -47,6 +62,11 @@ function Page({ params }) {
         {navigator && <Navigator navigator={navigator}></Navigator>}
       </Link>
       <RenderArticle contentFlow={contentFlow} />
+
+    {
+      contentTable && <ArticleProgress data={contentTable} />
+    }
+      
     </div>
   );
 }

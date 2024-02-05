@@ -54,6 +54,8 @@ function Navbar() {
       if (res?.data?.success == true) {
         const { userHandle, avatar, email, name } = res.data;
 
+        console.log('User info = ' , res.data);
+
         setDetails(prevDetails => ({
           ...prevDetails,
           userHandle,
@@ -62,25 +64,23 @@ function Navbar() {
           name,
         }));
         setShowLoader(false);
-        return true;
+        dispatch(setLogin(true));
       }
       setShowLoader(false);
-      return false;
     } catch (err) {
       console.log("Following error occured while fetching user details: ", err);
       setShowLoader(false);
-      return false;
     }
   };
 
   useEffect(() => {
     const storedCookie = Cookies.get("token");
 
-    if (!details.avatar && storedCookie && getResponse(storedCookie)) {
-      dispatch(setLogin(true));
-    } else if (!details.avatar && session?.user?.interviewToken && getResponse(session.user.interviewToken)) {
+    if (!details.avatar && storedCookie) {
+      getResponse(storedCookie);
+    } else if (!details.avatar && session?.user?.interviewToken) {
       Cookies.set("token", session.user.interviewToken, { expires: 7 });
-      dispatch(setLogin(true));
+      getResponse(session.user.interviewToken);
     }
   }, [session]);
 

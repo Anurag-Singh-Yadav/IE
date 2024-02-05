@@ -12,7 +12,7 @@ function Loader() {
     } , [])
 
   return (
-    <div className='fixed screen-dark h-[100vh] w-[100vw] z-[300] overflow-hidden flex justify-center items-center'>
+    <div className='fixed screen-dark h-[100vh] w-[100vw] z-[300] left-0 right-0 top-0 flex justify-center items-center'>
         
     </div>
   )
