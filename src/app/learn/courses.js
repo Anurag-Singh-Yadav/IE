@@ -1,6 +1,6 @@
 export const courses = [
     {
-        name:"Data Structures & Algorithms",
+        name:"Data Structures and Algorithms",
         url:"./dsa.webp",
         link:'data-structures-algorithms'
     },

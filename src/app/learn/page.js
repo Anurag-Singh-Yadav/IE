@@ -1,20 +1,10 @@
 "use client";
-import Image from "next/image";
 import { courses } from "./courses.js";
 import React from "react";
 import Link from "next/link";
 function Page() {
-  console.log(courses);
-
   return (
     <div className="min-h-[100vh]">
-      {/* <Link href="/learn/[mainTopic]" as="/learn/object-oriented-programming">
-        OOPs
-      </Link>
-      <Link href="/learn/[mainTopic]" as="/learn/DSA">
-        DSA
-      </Link> */}
-
       <div className="main-container gradiant-container grid grid-cols-1 md:grid-cols-2 items-center justify-center py-4 min-h-[85vh]">
         <div className="">
           <img src="./learn.gif" alt="gif" className="aspect-auto"></img>
@@ -47,12 +37,15 @@ function Page() {
         <div className="grid pb-8 grid-col-1 md:grid-cols-2 gap-4">
           {courses &&
             courses.map((course, index) => (
-              <Link href={{
-                pathname: `/learn/${course.link}`,
-                query: { mainTopic: course.name },
-              }}>
+              <Link
+              key={index}
+                href={{
+                  pathname: `/learn/${course.link}`,
+                  query: { mainTopic: course.name },
+                }}
+              >
                 <div
-                  key={index}
+                  
                   className="flex text-xs sm:text-sm md:text-normal  items-center border-2 border-white hover:border-l-green-bg hover:cursor-pointer p-4 transition-all duration-300 shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]"
                 >
                   <img
