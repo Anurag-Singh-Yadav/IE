@@ -6,6 +6,7 @@ import Navigator from "@/app/Components/Navigator";
 import RenderArticle from "../RenderArticle";
 
 function Page({ params }) {
+  console.log('asdfgfdsdf',params);
   const [navigator, setNavigator] = useState(null);
 
   const [title, setTitle] = useState(null);

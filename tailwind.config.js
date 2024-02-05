@@ -23,6 +23,7 @@ module.exports = {
         'cutCircle': "url('/cutCircle.svg')",
         'circle': "url('/circle.svg')",
         'star': "url('/star.svg')",
+        'star2': "url('/star2.svg')",
       },
       fontFamily: {
         custom: ["Poppins", "sans-serif"],
