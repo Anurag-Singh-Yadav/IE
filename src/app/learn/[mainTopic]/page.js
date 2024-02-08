@@ -6,6 +6,7 @@ import Navigator from "@/app/Components/Navigator";
 import RenderArticle from "../RenderArticle";
 import ArticleProgress from "@/app/Components/ArticleProgress";
 
+
 function Page({ params }) {
   console.log('asdfgfdsdf',params);
   const [navigator, setNavigator] = useState(null);
@@ -55,6 +56,7 @@ function Page({ params }) {
 
   return (
     <div onClick={clickHandler} className="flex">
+      
       <Link
         href="/learn/[mainTopic]/[mainHeading]"
         as={`/learn/${params.mainTopic}/`}
