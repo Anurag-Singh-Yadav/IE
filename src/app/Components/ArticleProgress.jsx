@@ -25,7 +25,7 @@ function ArticleProgress({ data }) {
       <div className="flex flex-col gap-2 items-start">
         {data.map((obj, i) => {
           return (
-            <div className="hover:text-green-bg hover:underline transition duration-300 flex justify-between items-center gap-4 cursor-pointer">
+            <div key={i} className="hover:text-green-bg hover:underline transition duration-300 flex justify-between items-center gap-4 cursor-pointer">
               <div className="h-[5px] w-[5px] rounded-full bg-black" />
               <p
                 key={i}
