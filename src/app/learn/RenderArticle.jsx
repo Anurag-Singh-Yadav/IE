@@ -12,7 +12,7 @@ function RenderArticle({contentFlow}) {
                 const Component = renderMethods[content.title];
 
                 return (
-                    <Component key={index} value={content.value} correct={content.correct} options={content.options}/>
+                    <Component id={`content-${index}`} key={index} value={content.value} correct={content.correct} options={content.options}/>
                 )
             })
         }

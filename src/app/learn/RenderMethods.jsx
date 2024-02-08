@@ -2,35 +2,35 @@
 import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
-const H1 = ({ value }) => {
-  return <div className=" text-lg font-semibold">{value}</div>;
+const H1 = ({ id, value }) => {
+  return <div id={id} className=" text-lg font-semibold">{value}</div>;
 };
 
-const H2 = ({ value }) => {
-  return <div className=" text-md font-semibold">{value}</div>;
+const H2 = ({ id, value }) => {
+  return <div id={id} className=" text-md font-semibold">{value}</div>;
 };
 
-const Paragraph = ({ value }) => {
-  return <div className=" text-gray-800">{value}</div>;
+const Paragraph = ({ id, value }) => {
+  return <div id={id} className=" text-gray-800">{value}</div>;
 };
 
-const Code = ({ value }) => {
-  return <div className="bg-black text-white">{value}</div>;
+const Code = ({ id, value }) => {
+  return <div id={id} className="bg-black text-white">{value}</div>;
 };
 
-const Photo = ({ value, correct }) => {
+const Photo = ({ id, value, correct }) => {
   console.log(correct);
   return (
-    <div>
+    <div id={id}>
       <img src={value} className={`${correct == 0 && 'w-[10]'} ${correct == 1 && 'w-[25]'} ${correct == 2 && 'w-[45]'} aspect-auto`} /> 
     </div>
   );
 };
 
-const Output = ({ value }) => {
+const Output = ({ id, value }) => {
     const [flag , setFlag] = useState(false);
   return (
-    <div>
+    <div id={id}>
       <div onClick={() => {
         setFlag(!flag);
       }}>Guess the output {' '}<FaChevronDown className={`${flag && 'rotate-180'} transition duration-300`} /></div> 
