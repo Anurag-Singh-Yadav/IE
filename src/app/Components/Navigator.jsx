@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import "./navigator.css";
 import { FaCircle } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 function Navigator({
   navigator,
@@ -10,14 +11,18 @@ function Navigator({
   navBarClick,
   activeBar,
   activeSubTopics,
+  clickHandle,
+  showBurger,
 }) {
-  // const [activeBar, setActiveBar] = useState(-1);
-  // const [activeSubTopics, setActiveSubTopics] = useState(0);
+  const [clickedTab, setClickedTab] = useState(-1);
   const { menu } = navigator;
 
   return (
-    <div className="">
-      <div className="text-xl whitespace-nowrap font-bold">
+    <div className="relative px-1 sm:px-2  md:px-4 lg:px-7 h-full">
+      {showBurger && <div className="flex justify-end mb-3" onClick={clickHandle}>
+        <RxCross2 size={30}/>
+      </div>}
+      <div className={`text-xl font-bold text-center mb-2`}>
         {navigator.mainTopic}
       </div>
       <div>
@@ -30,13 +35,17 @@ function Navigator({
                     ? "bg-green-bg text-white"
                     : "bg-light-green"
                 }`}
+                onClick={() => {
+                  if (clickedTab == -1) setClickedTab(index);
+                  else setClickedTab(-1);
+                }}
               >
                 <span>{item.mainHeading}</span>
                 <FaChevronDown />
               </div>
               <div
                 className={`${
-                    "drop-downanimation-add"
+                  clickedTab == index ? "drop-downanimation-add" : "hidden"
                 } px-8`}
               >
                 <div className="flex flex-col">
@@ -61,8 +70,8 @@ function Navigator({
                           className="py-3 text-sm px-2 font-medium hover:cursor-pointer"
                           href={"/learn/[mainTopic]"}
                           as={`/learn/${navigator.mainTopic}?mainTopic=${navigator.mainTopic}&mainHeading=${item.mainHeading}&title=${subItem}`}
-                          onClick={()=>{
-                            setNavBarClick(!navBarClick)
+                          onClick={() => {
+                            setNavBarClick(!navBarClick);
                           }}
                         >
                           {subItem}
