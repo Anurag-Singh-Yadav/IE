@@ -8,6 +8,7 @@ function RenderArticle({ contentFlow }) {
   return (
     <div>
       <div className="flex flex-col px-6 py-4 sm:py-7 md:py-10 lg:py-16">
+        <p></p>
         {contentFlow &&
           contentFlow.map((content, index) => {
             const Component = renderMethods[content.title];

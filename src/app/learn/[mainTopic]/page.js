@@ -64,7 +64,7 @@ function Page() {
       data={contentTable}
     >
       {/* <Link href={'/learn/[mainTopic]'} as={'/learn/object-oriented-programming?value=3'}>hllo</Link> */}
-      <RenderArticle contentFlow={contentFlow} />
+      <RenderArticle contentFlow={contentFlow} title={title} />
     </AppLayout>
   );
 }
