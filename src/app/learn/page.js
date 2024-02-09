@@ -1,10 +1,24 @@
 "use client";
 import { courses } from "./courses.js";
-import React from "react";
+import React, { useState,useEffect } from "react";
 import Link from "next/link";
-import {useRouter } from 'next/navigation'
+import axios from "axios";
 function Page() {
-  const router = useRouter();
+  const [queryPara,setQueryPara] = useState(null);
+  const findMyFirstTopic = async () => {
+    try{
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_MY_TOPICS}`);
+        setQueryPara(response.data.data);
+    }catch(e){
+      console.error("There was an error!", e);
+    }
+  }
+
+  useEffect(()=>{
+    findMyFirstTopic();
+  },[])
+
   return (
     <div className="min-h-[100vh]">
       <div className="main-container gradiant-container grid grid-cols-1 md:grid-cols-2 items-center justify-center py-4 min-h-[85vh]">
@@ -31,7 +45,8 @@ function Page() {
         </div>
       </div>
 
-      <div className="main-container bg-[url('/star2.svg')]">
+      {
+        queryPara && <div className="main-container bg-[url('/star2.svg')]">
         <div className="font-semibold sm:py-4 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl">
           Explore Top <span className="text-green-bg underline">Course</span>
         </div>
@@ -42,8 +57,12 @@ function Page() {
               <Link
               key={index}
                 href={{
-                  pathname: `/learn/${course.link}`,
-                  query: { mainTopic: course.name},
+                  pathname: `/learn/${course.name}`,
+                  query:{
+                    mainTopic: course.name,
+                    mainHeading: queryPara[course.name]?.mainHeading,
+                    title: queryPara[course.name]?.title,
+                  }
                 }}
               >
                 <div
@@ -63,6 +82,7 @@ function Page() {
             ))}
         </div>
       </div>
+      }
     </div>
   );
 }

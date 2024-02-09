@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
-
 import { renderMethods } from "./RenderMethods";
-
 function RenderArticle({ contentFlow , title}) {
   console.log("content flow ->", contentFlow);
   return (
