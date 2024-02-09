@@ -38,15 +38,19 @@ function Navigator({ navigator,setNavBarClick,navBarClick }) {
                   activeBar === index ? "drop-downanimation-add" : "hidden"
                 } px-8`}
               >
+                <div className="flex flex-col">
                 {item.articles.map((subItem, i) => {
                   return (
                     <div
                       key={i}
-                      className="flex justify-between items-center border-l-2 border-green-bg"
+                      className="flex items-center border-l-2 border-green-bg"
                     >
                       <div className="h-[2px] w-[18px] bg-green-bg flex "></div>
                       {activeBar == index && activeSubTopics === i && (
                         <FaCircle className="text-green-bg" />
+                      )}
+                      {activeBar == index && activeSubTopics !== i && (
+                        <FaCircle className="text-white" />
                       )}
                       <Link
                         className="py-3 text-sm px-2 font-medium hover:cursor-pointer"
@@ -61,6 +65,7 @@ function Navigator({ navigator,setNavBarClick,navBarClick }) {
                     </div>
                   );
                 })}
+                </div>
               </div>
             </div>
           );

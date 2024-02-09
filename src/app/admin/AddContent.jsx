@@ -112,7 +112,7 @@ function AddContent() {
         onSubmit={submitHandler}
         className="flex flex-col items-center border-2 border-black p-8 m-4"
       >
-        <div>
+        <div className="flex justify-between items-center">
           <div className="font-semibold text-lg p-2">
             <label htmlFor="mainTopic">Main-Topic:</label>
             <input
