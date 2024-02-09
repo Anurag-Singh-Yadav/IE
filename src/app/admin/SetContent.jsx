@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
+import { contentType } from "../Components/AdminUtilityData";
+import { InputLabel, MenuItem, Select } from "@mui/material";
 
 function SetContent({ setFormData, formData, index }) {
   const changeHandler = (event) => {
@@ -26,26 +28,40 @@ function SetContent({ setFormData, formData, index }) {
       {
         <div className="px-7 flex flex-col gap-7 w-[full] font-semibold text-lg">
           <div className="flex gap-2 items-center justify-between">
-            <label htmlFor="title">Title: </label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              onChange={changeHandler}
+            <InputLabel id="demo-simple-select-label" className="text-lg font-semibold">Content-Type</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
               value={formData.article[index].title}
-              className="p-2 border-2 border-gray-400"
-            />
+              label="Content-Type"
+              onChange={(e) => {
+                const updated = formData.article;
+                updated[index].title = e.target.value;
+                setFormData((prev) => {
+                  return {
+                    ...prev,
+                    article:  updated,
+                  }
+                })
+              }}
+            >
+              {contentType.map((t, i) => {
+                return <MenuItem key={i} value={t}>
+                  {t}
+                </MenuItem>
+              })}
+            </Select>
           </div>
 
           <div className="flex gap-2 items-center justify-between">
             <label htmlFor="value">Value: </label>
-            <input
+            <textarea
               type="text"
               id="value"
               name="value"
               onChange={changeHandler}
               value={formData.article[index].value}
-              className="p-2 border-2 border-gray-400"
+              className="p-2 border-2 border-gray-400 min-h-[40vh]"
             />
           </div>
 
@@ -61,44 +77,19 @@ function SetContent({ setFormData, formData, index }) {
             />
           </div>
 
-          {
-            formData.article[index].options.map((_, i) => {
-              return (
-                <div key={i} className="flex gap-3 items-center justify-between">
-                  <div>
-                    <label htmlFor={`option-${i}`}>Option{` ${i}`}:</label>
-                    <input
-                      type="text"
-                      id={`option-${i}`}
-                      name={`option-${i}`}
-                      value={formData.article[index].options[i]}
-                      onChange={(e) => {
-                        const updated = [...formData.article[index].options];
-                        updated[i] = e.target.value;
-
-                        const upd = formData.article;
-
-                        upd[index].options = updated;
-
-                        setFormData((prev) => {
-                          return {
-                            ...prev,
-                            article: upd,
-                          }
-                        })
-                      }}
-                      className="p-2 border-2 border-gray-400"
-                    />
-                  </div>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const updated = [];
-                      for (let j = 0; j < formData.article[index].options.length; j++) {
-                        if (j !== i) {
-                          updated.push(formData.article[index].options[j]);
-                        }
-                      }
+          {formData.article[index].options.map((_, i) => {
+            return (
+              <div key={i} className="flex gap-3 items-center justify-between">
+                <div>
+                  <label htmlFor={`option-${i}`}>Option{` ${i}`}:</label>
+                  <input
+                    type="text"
+                    id={`option-${i}`}
+                    name={`option-${i}`}
+                    value={formData.article[index].options[i]}
+                    onChange={(e) => {
+                      const updated = [...formData.article[index].options];
+                      updated[i] = e.target.value;
 
                       const upd = formData.article;
 
@@ -108,21 +99,49 @@ function SetContent({ setFormData, formData, index }) {
                         return {
                           ...prev,
                           article: upd,
-                        }
-                      })
+                        };
+                      });
                     }}
-                  >
-                    <MdDelete />
-                  </button>
+                    className="p-2 border-2 border-gray-400"
+                  />
                 </div>
-              );
-            })}
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const updated = [];
+                    for (
+                      let j = 0;
+                      j < formData.article[index].options.length;
+                      j++
+                    ) {
+                      if (j !== i) {
+                        updated.push(formData.article[index].options[j]);
+                      }
+                    }
+
+                    const upd = formData.article;
+
+                    upd[index].options = updated;
+
+                    setFormData((prev) => {
+                      return {
+                        ...prev,
+                        article: upd,
+                      };
+                    });
+                  }}
+                >
+                  <MdDelete />
+                </button>
+              </div>
+            );
+          })}
 
           <button
             onClick={(e) => {
               e.preventDefault();
               const updated = formData.article;
-              updated[index].options.push('');
+              updated[index].options.push("");
               setFormData((prev) => {
                 return {
                   ...prev,

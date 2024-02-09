@@ -4,14 +4,16 @@ import SetContent from "./SetContent";
 import { MdDelete } from "react-icons/md";
 import { FaArrowRotateLeft } from "react-icons/fa6";
 import axios from "axios";
+import { MenuItem, Select } from "@mui/material";
 
 function AddContent() {
+  const [mainHeadingData, setMainHeadingData] = useState([]);
+  const [mainTopicData, setMainTopicData] = useState([]);
 
   const [formData, setFormData] = useState({
     article: [],
     mainTopic: "",
     mainHeading: "",
-    subHeading: "",
     title: "",
   });
 
@@ -26,16 +28,56 @@ function AddContent() {
 
   useEffect(() => {
     const data = window.localStorage.getItem("formData");
-
     if (data) {
       setFormData(JSON.parse(data));
+      getRequestHeading(JSON.parse(data).mainTopic);
     }
+    getRequestMainTopic();
   }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(formData);
     // setShowInspect(true);
+  };
+
+  const getRequestMainTopic = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_ADMIN_URL}${process.env.NEXT_PUBLIC_GET_MAIN_TOPICS}`,
+      );
+
+      if (res?.data?.success === true) {
+        setMainTopicData(res.data.mainTopics);
+      }
+    } catch (err) {}
+  };
+
+  const getRequestHeading = async (mainTopic) => {
+    const obj = {
+      mainTopic,
+    };
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_ADMIN_URL}${process.env.NEXT_PUBLIC_GET_MAIN_HEADINGS}`,
+        {
+          params: obj,
+        }
+      );
+
+      if (res?.data?.success === true) {
+        setMainHeadingData(res.data.mainHeadings);
+      }
+    } catch (err) {}
+  };
+
+  const getMainHeadings = async (e) => {
+    const mainTopic = e.target.value;
+    setTimeout(async () => {
+      if (mainTopic === e.target.value) {
+        getRequestHeading(e.target.value);
+      }
+    }, 1000);
   };
 
   const changeHandler = (event) => {
@@ -48,15 +90,18 @@ function AddContent() {
   };
 
   const pushToDatabase = async () => {
-    try{
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_ADMIN_URL}${process.env.NEXT_PUBLIC_ADD_ARTICLE_URL}` , {
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_ADMIN_URL}${process.env.NEXT_PUBLIC_ADD_ARTICLE_URL}`,
+        {
           data: formData,
-      })
+        }
+      );
       console.log(res.data);
-    } catch(err){
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
     <div>
@@ -67,65 +112,95 @@ function AddContent() {
         onSubmit={submitHandler}
         className="flex flex-col items-center border-2 border-black p-8 m-4"
       >
-        <div className="font-semibold text-lg p-2">
-          <label htmlFor="mainTopic">Main-Topic:</label>
-          <input
-            type="text"
-            id="mainTopic"
-            value={formData.mainTopic}
-            name="mainTopic"
-            onChange={changeHandler}
-            className="border-2 border-gray-400 m-3"
-          />
+        <div>
+          <div className="font-semibold text-lg p-2">
+            <label htmlFor="mainTopic">Main-Topic:</label>
+            <input
+              type="text"
+              id="mainTopic"
+              value={formData.mainTopic}
+              name="mainTopic"
+              onChange={(e) => {
+                changeHandler(e);
+                getMainHeadings(e);
+              }}
+              className="border-2 border-gray-400 m-3 px-2 py-1"
+            />
+          </div>
+          <Select
+              label="Main-Topic"
+              value={formData.mainTopic}
+              onChange={(e) => {
+                setFormData((prev) => {
+                  return {
+                    ...prev,
+                    mainTopic: e.target.value,
+                  };
+                });
+              }}
+            >
+              {mainTopicData.map((t, i) => {
+                return (
+                  <MenuItem key={i} value={t}>
+                    {t}
+                  </MenuItem>
+                );
+              })}
+            </Select>
         </div>
 
         {formData.mainTopic.length > 0 && (
-          <div className="font-semibold text-lg p-2">
-            <label htmlFor="mainHeading">Main-Heading:</label>
-            <input
-              type="text"
-              id="mainHeading"
+          <div className="font-semibold text-lg p-2 flex justify-between items-center">
+            <div>
+              <label htmlFor="main-heading">Main-Heading: </label>
+              <input
+                type="text"
+                id="main-heading"
+                value={formData.mainHeading}
+                name="mainHeading"
+                onChange={changeHandler}
+                className="border-2 border-gray-400 m-3 px-2 py-1"
+              />
+            </div>
+            <Select
+              label="Main-Topic"
               value={formData.mainHeading}
-              name="mainHeading"
-              onChange={changeHandler}
-              className="border-2 border-gray-400 m-3"
-            />
+              onChange={(e) => {
+                setFormData((prev) => {
+                  return {
+                    ...prev,
+                    mainHeading: e.target.value,
+                  };
+                });
+              }}
+            >
+              {mainHeadingData.map((t, i) => {
+                return (
+                  <MenuItem key={i} value={t}>
+                    {t}
+                  </MenuItem>
+                );
+              })}
+            </Select>
           </div>
         )}
 
         {formData.mainTopic.length > 0 && formData.mainHeading.length > 0 && (
           <div className="font-semibold text-lg p-2">
-            <label htmlFor="subHeading">Sub-Heading:</label>
+            <label htmlFor="title"> Title :</label>
             <input
               type="text"
-              id="subHeading"
-              value={formData.subHeading}
-              name="subHeading"
+              id="title"
+              value={formData?.title}
+              name="title"
               onChange={changeHandler}
-              className="border-2 border-gray-400 m-3"
+              className="border-2 border-gray-400 m-3 px-2 py-1"
             />
           </div>
         )}
 
         {formData.mainTopic.length > 0 &&
           formData.mainHeading.length > 0 &&
-          formData.subHeading.length > 0 && (
-            <div className="font-semibold text-lg p-2">
-              <label htmlFor="title"> Title :</label>
-              <input
-                type="text"
-                id="title"
-                value={formData?.title}
-                name="title"
-                onChange={changeHandler}
-                className="border-2 border-gray-400 m-3"
-              />
-            </div>
-          )}
-
-        {formData.mainTopic.length > 0 &&
-          formData.mainHeading.length > 0 &&
-          formData.subHeading.length > 0 &&
           formData?.title.length > 0 && (
             <div
               className="flex flex-col gap-7 w-[full] border-red-500 border-b-2 border-t-2 pt-16 pb-16 rounded-xl p-5 my-8"
@@ -228,7 +303,10 @@ function AddContent() {
         )}
       </form>
 
-      <div className=" bg-yellow-500 text-white p-8 rounded-full flex justify-center w-fit mx-auto font-bold text-2xl hover:bg-yellow-600 transition duration-300" onClick={pushToDatabase}>
+      <div
+        className=" bg-yellow-500 text-white p-8 rounded-full flex justify-center w-fit mx-auto font-bold text-2xl hover:bg-yellow-600 transition duration-300"
+        onClick={pushToDatabase}
+      >
         <button>Push to Databse</button>
       </div>
     </div>
