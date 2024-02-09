@@ -1,88 +1,69 @@
 "use client";
 import { courses } from "./courses.js";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
+import WebsiteBanner from "../Components/templets/WebsiteBanner.jsx";
 function Page() {
-  const [queryPara,setQueryPara] = useState(null);
+  const [queryPara, setQueryPara] = useState(null);
   const findMyFirstTopic = async () => {
-    try{
+    try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_MY_TOPICS}`);
-        setQueryPara(response.data.data);
-    }catch(e){
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_MY_TOPICS}`
+      );
+      setQueryPara(response.data.data);
+    } catch (e) {
       console.error("There was an error!", e);
     }
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     findMyFirstTopic();
-  },[])
+  }, []);
 
   return (
     <div className="min-h-[100vh]">
-      <div className="main-container gradiant-container grid grid-cols-1 md:grid-cols-2 items-center justify-center py-4 min-h-[85vh]">
-        <div className="">
-          <img src="./learn.gif" alt="gif" className="aspect-auto"></img>
-        </div>
-        <div className="">
-          <div className="font-bold sm:text-xl md:text-2xl lg:text-4xl">
-            The world’s largest selection of online courses
-          </div>
-          <div className="py-2 text-xs sm:text-sm md:text-normal">
-            Millions of people have used{" "}
-            <span className="font-bold text-green-bg text-xl">
-              Interview Express
-            </span>{" "}
-            to decide which online course to take. We aggregate courses from
-            many universities to help you find the best courses on almost any
-            subject, wherever they exist. Our goal is to make online education
-            work for everyone.
-          </div>
-          <button className="px-4 py-2 mt-3 btn-gradient rounded-md btn-gradient-2 cursor-pointer text-white hover:rounded-lg transition-all duration-500 font-medium">
-            Browse course
-          </button>
-        </div>
+      <div>
+        <WebsiteBanner
+          imgSrc={"learn.gif"}
+          BtnName={"Explore Courses"}
+        ></WebsiteBanner>
       </div>
+      {queryPara && (
+        <div className="main-container bg-[url('/star2.svg')]">
+          <div className="font-semibold sm:py-4 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+            Explore Top <span className="text-green-bg underline">Course</span>
+          </div>
 
-      {
-        queryPara && <div className="main-container bg-[url('/star2.svg')]">
-        <div className="font-semibold sm:py-4 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl">
-          Explore Top <span className="text-green-bg underline">Course</span>
-        </div>
-
-        <div className="grid pb-8 grid-col-1 md:grid-cols-2 gap-4">
-          {courses &&
-            courses.map((course, index) => (
-              <Link
-              key={index}
-                href={{
-                  pathname: `/learn/${course.name}`,
-                  query:{
-                    mainTopic: course.name,
-                    mainHeading: queryPara[course.name]?.mainHeading,
-                    title: queryPara[course.name]?.title,
-                  }
-                }}
-              >
-                <div
-                  
-                  className="flex text-xs sm:text-sm md:text-normal  items-center border-2 border-white hover:border-l-green-bg hover:cursor-pointer p-4 transition-all duration-300 shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]"
+          <div className="grid pb-8 grid-col-1 md:grid-cols-2 gap-4">
+            {courses &&
+              courses.map((course, index) => (
+                <Link
+                  key={index}
+                  href={{
+                    pathname: `/learn/${course.name}`,
+                    query: {
+                      mainTopic: course.name,
+                      mainHeading: queryPara[course.name]?.mainHeading,
+                      title: queryPara[course.name]?.title,
+                    },
+                  }}
                 >
-                  <img
-                    src={course.url}
-                    alt={course.name}
-                    className="mr-4 w-24 aspect-auto"
-                  />
-                  <div>
-                    <div className="font-bold">{course.name}</div>
+                  <div className="flex text-xs sm:text-sm md:text-normal  items-center border-2 border-white hover:border-l-green-bg hover:cursor-pointer p-4 transition-all duration-300 shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+                    <img
+                      src={course.url}
+                      alt={course.name}
+                      className="mr-4 w-24 aspect-auto"
+                    />
+                    <div>
+                      <div className="font-bold">{course.name}</div>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+          </div>
         </div>
-      </div>
-      }
+      )}
     </div>
   );
 }

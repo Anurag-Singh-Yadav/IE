@@ -5,10 +5,13 @@ import { MdDelete } from "react-icons/md";
 import { FaArrowRotateLeft } from "react-icons/fa6";
 import axios from "axios";
 import { MenuItem, Select } from "@mui/material";
+import Cookies from "js-cookie";
 
 function AddContent() {
   const [mainHeadingData, setMainHeadingData] = useState([]);
   const [mainTopicData, setMainTopicData] = useState([]);
+
+  let token = Cookies.get('token');
 
   const [formData, setFormData] = useState({
     article: [],
@@ -45,6 +48,7 @@ function AddContent() {
     try {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_ADMIN_URL}${process.env.NEXT_PUBLIC_GET_MAIN_TOPICS}`,
+       
       );
 
       if (res?.data?.success === true) {
@@ -95,6 +99,11 @@ function AddContent() {
         `${process.env.NEXT_PUBLIC_ADMIN_URL}${process.env.NEXT_PUBLIC_ADD_ARTICLE_URL}`,
         {
           data: formData,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       console.log(res.data);
