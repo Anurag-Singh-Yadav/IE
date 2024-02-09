@@ -13,7 +13,6 @@ function RenderArticle({ contentFlow }) {
             const Component = renderMethods[content.title];
 
             return (
-              <div>
                 <Component
                   id={`content-${index}`}
                   key={index}
@@ -21,7 +20,6 @@ function RenderArticle({ contentFlow }) {
                   correct={content.correct}
                   options={content.options}
                 />
-              </div>
             );
           })}
       </div>
