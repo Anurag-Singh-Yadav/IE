@@ -56,11 +56,12 @@ const ReviewCard = () => {
   };
 
   return (
-    <div className="w-full border border-white mt-16 relative">
+    <div className="w-full border border-white sm:pt-8 pb-4 relative">
       <div className="relative font-normal sm:font-medium md:font-lg lg:font-bold text-xl sm:text-2xl md:text-3xl pt-6 pb-8 main-container">
           What Says{" "}
           <span className="text-green-bg underline">Our Students</span>
         </div>
+      
       <div className="hidden md:flex bg-[#f4f5ff] top-8 left-0 aspect-square -z-10  w-auto rounded-full absolute h-full"></div>
 
       <div className=" bg-[#f4f5ff] top-28 sm:top-8 right-2 aspect-square -z-10  w-auto rounded-full absolute h-[40%] sm:h-[70%]"></div>

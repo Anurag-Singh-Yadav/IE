@@ -75,7 +75,7 @@ function MobileNavbarContent({ handleClick, details }) {
         <ul className="z-[150] my-6 list-disc px-6 max-w-md mx-auto w-full">
         {
           links.map((link , index) => {
-            return <li key={index} className=""><Link href={link.value}><span className="border-b-2  border-black hover:border-green-bg hover:text-green-bg transition duration-300">{link.label}</span></Link></li>
+            return <li key={index} onClick={handleClick} className=""><Link href={`/${link.value}`}><span className="border-b-2 border-black hover:border-green-bg hover:text-green-bg transition duration-300">{link.label}</span></Link></li>
           })
         }
         </ul>
