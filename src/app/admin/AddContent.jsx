@@ -137,6 +137,7 @@ function AddContent() {
                     mainTopic: e.target.value,
                   };
                 });
+                getMainHeadings(e);
               }}
             >
               {mainTopicData.map((t, i) => {
