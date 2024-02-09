@@ -2,7 +2,9 @@
 import { courses } from "./courses.js";
 import React from "react";
 import Link from "next/link";
+import {useRouter } from 'next/navigation'
 function Page() {
+  const router = useRouter();
   return (
     <div className="min-h-[100vh]">
       <div className="main-container gradiant-container grid grid-cols-1 md:grid-cols-2 items-center justify-center py-4 min-h-[85vh]">
@@ -41,7 +43,7 @@ function Page() {
               key={index}
                 href={{
                   pathname: `/learn/${course.link}`,
-                  query: { mainTopic: course.name },
+                  query: { mainTopic: course.name},
                 }}
               >
                 <div
