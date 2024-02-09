@@ -5,8 +5,8 @@ function RenderArticle({ contentFlow , title}) {
   console.log("content flow ->", contentFlow);
   return (
     <div>
-      <div className="flex flex-col px-6 py-4 sm:py-7 md:py-10 lg:py-16">
-        {title && <p>{title}</p>}
+      <div className="flex flex-col px-6 pb-[50vh] mb-3 py-4">
+        {title && <p className="font-bold text-lg mb-7">{title}</p>}
         {contentFlow &&
           contentFlow.map((content, index) => {
             const Component = renderMethods[content.title];
