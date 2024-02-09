@@ -74,6 +74,6 @@ export const dropdownData = [
   export const links = [
     {
         label: 'Learn',
-        value: 'learn',
+        value: '/learn',
     },
   ]
