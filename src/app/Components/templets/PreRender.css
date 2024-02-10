@@ -1,0 +1,31 @@
+.loading-placeholder {
+    width: 100%; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    background-color: #ccc;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .loading-placeholder::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%; /* Start from the left */
+    height: 100%;
+    width: 50%; /* Width of the flash */
+    background-color: white;
+    animation: flash 2.5s infinite; /* Adjust timing as needed */
+  }
+  
+  @keyframes flash {
+    0% {
+      left: -150%;
+    }
+    50% {
+      left: 100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  

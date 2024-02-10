@@ -4,7 +4,11 @@ import axios from "axios";
 import RenderArticle from "../RenderArticle";
 import { useSearchParams } from "next/navigation";
 import AppLayout from "@/app/Components/appLoayout";
+import { setArticleLoading } from "@/app/GlobalRedux/Features/GlobalStateSlice";
+import { useDispatch } from "react-redux";
+
 function Page() {
+  const dispatch = useDispatch();
   const params = useSearchParams();
   const [navigator, setNavigator] = useState(null);
   const [navBarClick, setNavBarClick] = useState(false);
@@ -27,18 +31,25 @@ function Page() {
       title = params.get("title");
       setActiveBar(mainHeading);
       setActiveSubTopics(title);
+      dispatch(setArticleLoading(true));
+
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_ARTICLE}`,
         { params: paramsto }
       );
+      dispatch(setArticleLoading(false));
       setNavigator(response.data.navigator);
       setContentFlow(response.data.article.contentFlow);
       let arr = [];
       for (let i = 0; i < response.data.article.contentFlow.length; i++) {
-        if (response.data.article.contentFlow[i].title == "H2") {
+        if (
+          response.data.article.contentFlow[i].title == "H2" ||
+          response.data.article.contentFlow[i].title === "H3"
+        ) {
           arr.push({
             label: response.data.article.contentFlow[i].value,
             index: i,
+            title: response.data.article.contentFlow[i].title,
           });
         }
       }
@@ -51,7 +62,7 @@ function Page() {
   useEffect(() => {
     console.log("navBarClick", navBarClick);
     clickHandler();
-  }, [navBarClick,title]);
+  }, [navBarClick, title]);
 
   return (
     <AppLayout

@@ -5,6 +5,7 @@ import "./navigator.css";
 import { FaCircle } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
+import PreRender from "./templets/PreRender";
 function Navigator({
   navigator,
   setNavBarClick,
@@ -18,8 +19,8 @@ function Navigator({
   const { menu } = navigator;
 
   return (
-    <div className="relative px-1 sm:px-2  md:px-4 lg:px-7 h-full">
-      {showBurger && <div className="flex justify-end mb-3" onClick={clickHandle}>
+    <div className="relative px-1 sm:px-2  md:px-4 lg:px-7 h-full ">
+      {showBurger && <div className="flex justify-start mb-3" onClick={clickHandle}>
         <RxCross2 size={30}/>
       </div>}
       <div className={`text-xl font-bold text-center mb-2`}>
@@ -72,6 +73,7 @@ function Navigator({
                           as={`/learn/${navigator.mainTopic}?mainTopic=${navigator.mainTopic}&mainHeading=${item.mainHeading}&title=${subItem}`}
                           onClick={() => {
                             setNavBarClick(!navBarClick);
+                            if(showBurger)clickHandle();
                           }}
                         >
                           {subItem}
@@ -87,6 +89,7 @@ function Navigator({
       </div>
     </div>
   );
+
 }
 
 export default Navigator;

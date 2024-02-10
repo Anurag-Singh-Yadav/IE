@@ -4,7 +4,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 const H1 = ({ id, value }) => {
   return (
-    <div id={id} className=" text-lg font-semibold">
+    <div id={id} className=" text-lg font-semibold mb-7">
       {value}
     </div>
   );
@@ -12,7 +12,7 @@ const H1 = ({ id, value }) => {
 
 const H2 = ({ id, value }) => {
   return (
-    <div id={id} className=" text-md font-semibold">
+    <div id={id} className=" text-md font-semibold mb-6">
       {value}
     </div>
   );
@@ -20,7 +20,7 @@ const H2 = ({ id, value }) => {
 
 const H3 = ({ id, value }) => {
   return (
-    <div id={id} className=" text-md font-semibold">
+    <div id={id} className=" text-md font-semibold mb-3">
       {value}
     </div>
   );
@@ -28,7 +28,7 @@ const H3 = ({ id, value }) => {
 
 const Paragraph = ({ id, value }) => {
   return (
-    <div id={id} className=" text-gray-800">
+    <div id={id} className=" text-gray-800 mb-2">
       {value}
     </div>
   );
@@ -36,7 +36,7 @@ const Paragraph = ({ id, value }) => {
 
 const Code = ({ id, value }) => {
   return (
-    <div id={id} className="bg-black text-white">
+    <div id={id} className="bg-black text-white mb-2">
       {value}
     </div>
   );
@@ -48,7 +48,7 @@ const Photo = ({ id, value, correct }) => {
     <div id={id}>
       <img
         src={value}
-        className={`${correct == 0 && "w-[10]"} ${correct == 1 && "w-[25]"} ${
+        className={`mb-2 ${correct == 0 && "w-[10]"} ${correct == 1 && "w-[25]"} ${
           correct == 2 && "w-[45]"
         } aspect-auto`}
       />
@@ -67,7 +67,7 @@ const Output = ({ id, value }) => {
       >
         Guess the output{" "}
         <FaChevronDown
-          className={`${flag && "rotate-180"} transition duration-300`}
+          className={`${flag && "rotate-180"} transition duration-300 mb-2`}
         />
       </div>
       {flag && <div>{value}</div>}
@@ -76,9 +76,8 @@ const Output = ({ id, value }) => {
 };
 
 const LinePara = ({ id, value, correct }) => {
-  const [flag, setFlag] = useState(false);
   return (
-    <div id={id}>
+    <div id={id} className="mb-2">
       <p>
         <span className="font-semibold">{value}: </span>
         {correct}

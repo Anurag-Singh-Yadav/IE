@@ -3,6 +3,8 @@ import Navigator from "./Navigator";
 import { useEffect, useRef, useState } from "react";
 import "./navigator.css";
 import { MdOutlineDoubleArrow } from "react-icons/md";
+import ArticleProgress from "./ArticleProgress";
+import PreRender from "./templets/PreRender";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "🚂Interview-Express",
@@ -17,6 +19,9 @@ export default function AppLayout({
   activeBar,
   activeSubTopics,
 }) {
+
+
+
   const [showBurger, setShowBurger] = useState(false);
 
   const navigatorRef = useRef(null);
@@ -50,7 +55,7 @@ export default function AppLayout({
       let b = document.getElementById('navigator')
       let a = document.getElementById('article-burger');
       if(!a)return;
-      if(!b.contains(e.target) && !a.contains(e.target)){
+      if(!b.contains(e.target) && !a.contains(e.target) && b.classList.contains('slide-right')){
           b.classList.add('slide-left')
           b.classList.remove('slide-right')
       }
@@ -82,7 +87,7 @@ export default function AppLayout({
       <div className="relative flex min-h-[100vh]">
         <div
           id="navigator"
-          className="min-w-[25vw] fixed nmd:sticky h-[100vh] pl-2 pr-1 py-4 box-shadow overflow-y-auto top-0 left-0 bg-white z-[16]"
+          className="min-w-[25vw] fixed nmd:sticky h-[100vh] pl-2 pr-1 py-4 box-shadow overflow-y-auto top-0 left-0 bg-white z-[16] border-2 ml-1 border-green-bg"
         >
           {navigator && (
             <Navigator
@@ -95,8 +100,12 @@ export default function AppLayout({
               showBurger={showBurger}
             ></Navigator>
           )}
+          {
+              !navigator && <PreRender count={7} />
+          }
         </div>
         {children}
+        {<ArticleProgress data={data} />}
       </div>
     </div>
   );
