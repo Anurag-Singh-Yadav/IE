@@ -73,7 +73,7 @@ function Page() {
       activeBar={activeBar}
       activeSubTopics={activeSubTopics}
     >
-      <RenderArticle contentFlow={contentFlow} title={title} />
+      <RenderArticle contentFlow={contentFlow} title={title} menu={navigator?.menu} mainHeading={activeBar} mainTopic={navigator?.mainTopic} />
     </AppLayout>
   );
 }

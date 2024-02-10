@@ -19,9 +19,6 @@ export default function AppLayout({
   activeBar,
   activeSubTopics,
 }) {
-
-
-
   const [showBurger, setShowBurger] = useState(false);
 
   const navigatorRef = useRef(null);
@@ -29,7 +26,7 @@ export default function AppLayout({
   useEffect(() => {
     function handleResize() {
       const navigatorDiv = document.getElementById("navigator");
-      setShowBurger((window.innerWidth < 1000));
+      setShowBurger(window.innerWidth < 1000);
       if (navigatorDiv) {
         if (window.innerWidth < 1000) {
           navigatorDiv.classList.add("navigator");
@@ -48,46 +45,53 @@ export default function AppLayout({
     };
   }, []);
 
-  
-
   useEffect(() => {
     const handleClick = (e) => {
-      let b = document.getElementById('navigator')
-      let a = document.getElementById('article-burger');
-      if(!a)return;
-      if(!b.contains(e.target) && !a.contains(e.target) && b.classList.contains('slide-right')){
-          b.classList.add('slide-left')
-          b.classList.remove('slide-right')
+      let b = document.getElementById("navigator");
+      let a = document.getElementById("article-burger");
+      if (!a) return;
+      if (
+        !b.contains(e.target) &&
+        !a.contains(e.target) &&
+        b.classList.contains("slide-right")
+      ) {
+        b.classList.add("slide-left");
+        b.classList.remove("slide-right");
       }
-    }
-    document.addEventListener('click' , handleClick)
+    };
+    document.addEventListener("click", handleClick);
     return () => {
-        document.removeEventListener('click' , handleClick);
-    }
-  } , [])
+      document.removeEventListener("click", handleClick);
+    };
+  }, []);
 
   const clickHandle = () => {
-    const a = document.getElementById('navigator');
-    if (a.classList.contains('slide-right')) {
-      a.classList.remove('slide-right');
-      a.classList.add('slide-left');
-    }else{
-      a.classList.remove('slide-left');
-      a.classList.add('slide-right');
+    const a = document.getElementById("navigator");
+    if (a.classList.contains("slide-right")) {
+      a.classList.remove("slide-right");
+      a.classList.add("slide-left");
+    } else {
+      a.classList.remove("slide-left");
+      a.classList.add("slide-right");
     }
-  }
+  };
 
   return (
-    <div>
+    <div className="">
       {showBurger && (
-        <div id="article-burger" className="fixed top-2 left-2 z-[15] p-1 rounded-full overflow-hidden bg-green-bg text-white" onClick={clickHandle} ref={navigatorRef}>
-          <MdOutlineDoubleArrow size={20}/>
+        <div
+          id="article-burger"
+          className="fixed top-2 left-2 z-[15] p-1 rounded-full overflow-hidden bg-green-bg text-white"
+          onClick={clickHandle}
+          ref={navigatorRef}
+        >
+          <MdOutlineDoubleArrow size={20} />
         </div>
       )}
       <div className="relative flex min-h-[100vh]">
         <div
           id="navigator"
-          className="min-w-[25vw] fixed nmd:sticky h-[100vh] pl-2 pr-1 py-4 box-shadow overflow-y-auto top-0 left-0 bg-white z-[16] border-2 ml-1 border-green-bg"
+          className="min-w-[25vw] hidden fixed nmd:sticky nmd:flex h-[100vh] pl-2 pr-1 py-4 box-shadow top-0 left-0 bg-white z-[16] border-2 ml-1 border-green-bg"
         >
           {navigator && (
             <Navigator
@@ -100,9 +104,12 @@ export default function AppLayout({
               showBurger={showBurger}
             ></Navigator>
           )}
-          {
-              !navigator && <PreRender count={7} />
-          }
+          {!navigator && <div className="w-full min-h-[100vh] p-3">
+
+            <PreRender count={7} />
+            
+            </div>}
+          {/* {!navigator && <div className="h-[20vh] w-[20vw] bg-blue-400"></div>} */}
         </div>
         {children}
         {<ArticleProgress data={data} />}

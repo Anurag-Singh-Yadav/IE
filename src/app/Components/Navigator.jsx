@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import "./navigator.css";
 import { FaCircle } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
-import PreRender from "./templets/PreRender";
 function Navigator({
   navigator,
   setNavBarClick,
@@ -17,6 +16,16 @@ function Navigator({
 }) {
   const [clickedTab, setClickedTab] = useState(-1);
   const { menu } = navigator;
+
+  useEffect(() => {
+    const {menu} = navigator;
+    for(let i = 0; i < menu.length; i++){
+      if(menu[i].mainHeading === activeBar){
+        setClickedTab(i);
+        break;
+      }
+    }
+  } , [navigator])
 
   return (
     <div className="relative px-1 sm:px-2  md:px-4 lg:px-7 h-full ">

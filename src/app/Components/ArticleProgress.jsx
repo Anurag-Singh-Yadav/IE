@@ -38,7 +38,7 @@ function ArticleProgress({ data }) {
 
   return (
     <div>
-      {articleLoading && show && <div className="min-w-[15vw] min-h-[50vh] border-2 border-green-bg p-2 rounded-lg">
+      {articleLoading && show && <div className="min-w-[20vw] min-h-[70vh] border-2 border-green-bg p-2 rounded-lg">
         <PreRender count={5} />
       </div>}
       { !articleLoading && data &&
