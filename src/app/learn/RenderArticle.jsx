@@ -1,13 +1,20 @@
 "use client";
 import React from "react";
 import { renderMethods } from "./RenderMethods";
+import PreRender from "../Components/templets/PreRender";
+import { useSelector } from "react-redux";
+
 function RenderArticle({ contentFlow , title}) {
-  console.log("content flow ->", contentFlow);
+
+  const articleLoading = useSelector((state) => {
+    return state.GlobalState.articleLoading;
+  });
+
   return (
-    <div>
-      <div className="flex flex-col px-6 pb-[50vh] mb-3 py-4">
+    <div className=" w-full">
+      <div className="flex flex-col px-6 pb-[50vh] mb-3 py-4" style={{ letterSpacing: "0.8px" }}>
         {title && <p className="font-bold text-lg mb-7">{title}</p>}
-        {contentFlow &&
+        {contentFlow && !articleLoading &&
           contentFlow.map((content, index) => {
             const Component = renderMethods[content.title];
 
@@ -21,6 +28,11 @@ function RenderArticle({ contentFlow , title}) {
               />
             );
           })}
+
+          {
+            articleLoading && 
+            <PreRender count = {10} />
+          }
       </div>
     </div>
   );

@@ -7,6 +7,7 @@
         isLogin: false,
         isLight: true,
         isSignup:true,
+        articleLoading: true,
     }
 
     export const GlobalStateSlice = createSlice({
@@ -29,9 +30,13 @@
             setSignInBtn:(state, value) => {
                 state.isSignup = value.payload;
                 return state;
-            }
+            },
+            setArticleLoading:(state , value) => {
+                state.articleLoading = value.payload;
+                return state;
+            },
         }
     })
 
-    export const {setLogin , toggleLight,toggleSignPagePopup,setSignInBtn} = GlobalStateSlice.actions;
+    export const {setLogin , toggleLight,toggleSignPagePopup,setSignInBtn,setArticleLoading} = GlobalStateSlice.actions;
     export default GlobalStateSlice.reducer;
