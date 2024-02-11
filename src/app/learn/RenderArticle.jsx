@@ -105,45 +105,45 @@ function RenderArticle({ contentFlow, title, menu, mainHeading, mainTopic }) {
         {articleLoading && <PreRender count={10} />}
       </div>
       {!articleLoading && (
-        <div className="grid grid-cols-2 mt-6 px-4">
+        <div className="grid grid-cols-2 gap-6 mt-6 px-4 w-full mx-auto max-w-[70%]">
           {np.previous && np.previous.title && np.previous.mainHeading ? (
             <Link
-              className="py-3 text-sm px-2 font-medium hover:cursor-pointer flex items-center gap-5 justify-center hover:bg-green-bg hover:text-white transition duration-300 rounded-l-full"
+              className="py-3 text-sm px-2 font-medium hover:cursor-pointer flex items-center gap-5 justify-center hover:bg-green-bg hover:text-white transition duration-300 rounded-md"
               href={"/learn/[mainTopic]"}
               as={`/learn/${mainTopic}?mainTopic=${mainTopic}&mainHeading=${np.previous.mainHeading}&title=${np.previous.title}`}
             >
               <GrLinkPrevious size={25} />
               <div className="flex flex-col gap-1 text-center">
-                <p className="mx-2 my-1 text-xs">{np.previous.title}</p>
+                {/* <p className="mx-2 my-1 text-xs">{np.previous.title}</p> */}
                 <p className=" text">Previous</p>
               </div>
             </Link>
           ) : (
-            <div className="py-3 text-sm px-2 font-medium flex items-center  gap-5 justify-center bg-gray-100 cursor-not-allowed rounded-l-full">
+            <div className="py-3 text-sm px-2 font-medium flex items-center  gap-5 justify-center bg-gray-100 cursor-not-allowed rounded-md text-gray-600">
               <GrLinkPrevious size={25} />
               <div className="flex flex-col gap-1 text-center">
-                <p className="mx-2 my-1 text-xs">Begin</p>
-                <p className=" text">Previous</p>
+                {/* <p className="mx-2 my-1 text-xs">Begin</p> */}
+                <p className=" ">Previous</p>
               </div>
             </div>
           )}
 
           {np.next && np.next.title && np.next.mainHeading ? (
             <Link
-              className="py-3 text-sm px-2 font-medium hover:cursor-pointer flex items-center gap-5 justify-center hover:bg-green-bg hover:text-white transition duration-300 rounded-r-full"
+              className="py-3 text-sm px-2 font-medium hover:cursor-pointer flex items-center gap-5 justify-center hover:bg-green-bg hover:text-white transition duration-300 rounded-md"
               href={"/learn/[mainTopic]"}
               as={`/learn/${mainTopic}?mainTopic=${mainTopic}&mainHeading=${np.next.mainHeading}&title=${np.next.title}`}
             >
               <div className="flex flex-col gap-1 text-center">
-                <p className="mx-2 my-1 text-xs">{np.next.title}</p>
+                {/* <p className="mx-2 my-1 text-xs">{np.next.title}</p> */}
                 <div>Next</div>
               </div>
               <GrLinkNext size={25} />
             </Link>
           ) : (
-            <div className="py-3 text-sm px-2 font-medium cursor-not-allowed flex justify-center items-center gap-5 bg-gray-100 rounded-r-full">
+            <div className="py-3 text-sm px-2 font-medium cursor-not-allowed flex justify-center items-center gap-5 bg-gray-100 rounded-md text-gray-600">
               <div className="flex flex-col gap-1 text-center">
-                <p className="mx-2 my-1 text-xs">End</p>
+                {/* <p className="mx-2 my-1 text-xs">End</p> */}
                 <div>Next</div>
               </div>
               <GrLinkNext size={25} />
