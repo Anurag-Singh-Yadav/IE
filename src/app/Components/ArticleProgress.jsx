@@ -37,8 +37,8 @@ function ArticleProgress({ data }) {
   } , [])
 
   return (
-    <div>
-      {articleLoading && show && <div className="min-w-[20vw] min-h-[70vh] border-2 border-green-bg p-2 rounded-lg">
+    <div className="">
+      {articleLoading && show && <div className="min-w-[20vw] min-h-[70vh] bg-gray-100  p-2 rounded-lg">
         <PreRender count={5} />
       </div>}
       { !articleLoading && data &&
@@ -59,7 +59,7 @@ function ArticleProgress({ data }) {
               a.classList.add("content-table");
             }, 300);
           }}
-          className="sticky top-[10vh] h-fit flex flex-col items-end gap-3 bg-white  right-0 transition duration-300"
+          className="sticky top-[10vh] h-fit flex flex-col items-end gap-3   right-0 transition duration-300"
         >
           <div
             id="content-table-icon"
@@ -70,7 +70,7 @@ function ArticleProgress({ data }) {
 
           <div
             id="content-table"
-            className="mr-1 rounded-md ml-10 px-4 py-2 min-w-[20vw] min-h-[70vh] content-table flex flex-col gap-4 bg-white border-2 border-green-bg"
+            className="mr-1 rounded-md ml-10 px-4 min-w-[20vw] min-h-[100vh] content-table flex flex-col gap-4 bg-green-bg/10 py-6"
           >
             <p className=" text-lg font-semibold text-center">
               Table of <span className="text-green-bg underline">Contents</span>

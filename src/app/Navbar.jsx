@@ -116,7 +116,7 @@ function Navbar() {
   }, []);
 
   return (
-    <div className="main-container bg-white">
+    <div className="main-container bg-white border-b">
       {/* {showLoader && <Loader />} */}
       <div
         className={`fixed bottom-4 bg-white rounded-full w-fit z-10 right-2 cursor-pointer text-dark-blue hover:text-green-bg transition-all duration-300 back-to-top ${
