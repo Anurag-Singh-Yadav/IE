@@ -1,8 +1,32 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import WebsiteBanner from "../Components/templets/WebsiteBanner";
 import challengesData from "./challengesData.js";
 import Link from "next/link";
+import axios from "axios";
+import Cookies from "js-cookie";
 function page() {
+  const fetchAllChallenges = async () => {
+    try {
+      const token = Cookies.get("token");
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_ALL_CHALLENGES}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllChallenges();
+  }, []);
+
   return (
     <div className="min-h-[100vh]">
       <div>
