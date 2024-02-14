@@ -51,8 +51,8 @@ export const dropdownData = [
       label: "Challenges",
       options: [
         {
-          label: "DSA",
-          value: "dsa",
+          label: "On Going Challenges",
+          value: "/onGoingChallenges",
         },
         {
           label: "Computer Fundamentals",

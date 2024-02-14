@@ -7,10 +7,11 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function Page({ params, imgSrc }) {
-  console.log("id of the challenges", params.id);
   const query = useSearchParams();
   const [questionsDetail, setQuestionsDetail] = useState(null);
   const [userFilter, setUserFilter] = useState([]);
+
+
   const fetchQuestions = async () => {
     try {
       const token = Cookies.get('token');
@@ -21,17 +22,17 @@ export default function Page({ params, imgSrc }) {
           },
         }
       );
-      console.log("respone of the id challenges",response.data);
-      setQuestionsDetail(response.data.data);
-
+      // console.log("respone of the id challenges",response.data);
+      setQuestionsDetail(response?.data?.data);
     } catch (e) {
+      console.log("hfksdf")
       console.log(e);
     }
   };
 
   useEffect(() => {
     fetchQuestions();
-  }, [params.id]);
+  }, []);
 
   return (
     <div>
@@ -50,10 +51,10 @@ export default function Page({ params, imgSrc }) {
           </div>
 
           <div>
-            <QuestionRender
+            {questionsDetail?.questionsDetails && <QuestionRender
               setUserFilter={setUserFilter}
-              questionsDetail={questionsDetail}
-            ></QuestionRender>
+              questionsDetails={questionsDetail?.questionsDetails}
+            ></QuestionRender>}
           </div>
         </div>
       )}

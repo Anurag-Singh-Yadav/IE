@@ -241,6 +241,21 @@
   animation: move 2s ease-in-out infinite; /* adjust the duration as needed */
 }
 
+.hard{
+  color: rgb(220, 50, 50);
+  /* background-color: rgb(254, 229, 229); */
+}
+
+.medium{
+  color: orange;
+  /* background-color: rgb(254, 243, 222); */
+}
+
+.easy{
+  color: green;
+  /* background-color: rgb(224, 252, 224); */
+}
+
 /* Text-Editor utility CLASSES */
 
 ol {
