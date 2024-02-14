@@ -128,7 +128,7 @@ function Navbar() {
         <FaCircleArrowUp size={40} />
       </div>
       <div className="flex justify-between h-[10vh] items-center">
-        <p className="px-4 py-2 text-yellow-400   font-bold text-3xl">{a}</p>
+        <Link href={'/'} className="px-4 py-2 text-yellow-400   font-bold text-3xl">{a}</Link>
         {/* Dropdowns */}
         <div className="gap-7 font-semibold hidden nmd:flex items-center ">
           {dropdownData.map((obj, index) => {
