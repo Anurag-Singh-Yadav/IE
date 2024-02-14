@@ -3,6 +3,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import './Dropdown.css';
 
 import React from "react";
+import Link from "next/link";
 
 function Dropdown({ label, options }) {
   // options : [ { label : 'abc' , value : 'xyz' , }  , {} ,....]
@@ -31,9 +32,9 @@ function Dropdown({ label, options }) {
         <div className='flex flex-col bg-white rounded-lg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] p-2 border-t-[3px] border-green-bg w-fit'>
         {options.map((obj, index) => {
           return (
-            <p name={obj.value} key={index} className="whitespace-nowrap cursor-pointer hover:bg-green-bg px-4 py-2 transition duration-200 hover:text-white font-semibold">
+            <Link name={obj.value} key={index} className="whitespace-nowrap cursor-pointer hover:bg-green-bg px-4 py-2 transition duration-200 hover:text-white font-semibold" href={obj.value} >
               {obj.label}
-            </p>
+            </Link>
           );
         })}
         </div>
