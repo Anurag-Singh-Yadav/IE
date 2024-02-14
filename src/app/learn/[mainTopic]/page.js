@@ -5,20 +5,24 @@ import RenderArticle from "../RenderArticle";
 import { useSearchParams } from "next/navigation";
 import AppLayout from "@/app/Components/appLoayout";
 import { setArticleLoading } from "@/app/GlobalRedux/Features/GlobalStateSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 function Page() {
   const dispatch = useDispatch();
   const params = useSearchParams();
   const [navigator, setNavigator] = useState(null);
   const [navBarClick, setNavBarClick] = useState(false);
-  const [contentTable, setContentTable] = useState(null);
   const [contentFlow, setContentFlow] = useState(null);
   const [activeBar, setActiveBar] = useState(null);
   const [activeSubTopics, setActiveSubTopics] = useState(null);
   var title = params.get("title");
   var mainTopic = params.get("mainTopic");
   var mainHeading = params.get("mainHeading");
+
+
+  const router = useRouter();
+
   const clickHandler = async () => {
     try {
       const paramsto = {
@@ -40,24 +44,16 @@ function Page() {
       dispatch(setArticleLoading(false));
       setNavigator(response.data.navigator);
       setContentFlow(response.data.article.contentFlow);
-      let arr = [];
-      for (let i = 0; i < response.data.article.contentFlow.length; i++) {
-        if (
-          response.data.article.contentFlow[i].title == "H2" ||
-          response.data.article.contentFlow[i].title === "H3"
-        ) {
-          arr.push({
-            label: response.data.article.contentFlow[i].value,
-            index: i,
-            title: response.data.article.contentFlow[i].title,
-          });
-        }
-      }
-      setContentTable(arr);
     } catch (error) {
-      console.error("There was an error!", error);
+      // router.push('/404');
     }
   };
+
+  const articleLoading = useSelector((state) => state.articleLoading);
+
+  useEffect(() => {
+    dispatch(setArticleLoading(articleLoading));
+  },[contentFlow])
 
   useEffect(() => {
     console.log("navBarClick", navBarClick);
@@ -69,9 +65,9 @@ function Page() {
       navigator={navigator}
       navBarClick={navBarClick}
       setNavBarClick={setNavBarClick}
-      data={contentTable}
       activeBar={activeBar}
       activeSubTopics={activeSubTopics}
+      title={title}
     >
       <RenderArticle contentFlow={contentFlow} title={title} menu={navigator?.menu} mainHeading={activeBar} mainTopic={navigator?.mainTopic} />
     </AppLayout>

@@ -13,11 +13,11 @@ export const metadata = {
 export default function AppLayout({
   children,
   navigator,
-  data,
   setNavBarClick,
   navBarClick,
   activeBar,
   activeSubTopics,
+  title,
 }) {
   const [showBurger, setShowBurger] = useState(false);
 
@@ -112,7 +112,7 @@ export default function AppLayout({
           {/* {!navigator && <div className="h-[20vh] w-[20vw] bg-blue-400"></div>} */}
         </div>
         {children}
-        {<ArticleProgress data={data} />}
+        {<ArticleProgress title={title}/>}
       </div>
     </div>
   );

@@ -226,3 +226,73 @@
     rgba(191, 36, 124, 0.07) 100%
   );
 }
+
+
+
+
+
+
+
+
+
+
+                /* Text-Editor utility CLASSES */
+
+ol {
+  list-style-type: decimal; /* Use default numbering */
+  padding-left: 20px; /* Adjust padding as needed */
+  margin-left: 20px; /* Adjust margin as needed */
+}
+
+li {
+  margin-block: 10px; /* Adjust spacing between list items */
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+}
+
+h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+h4 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+}
+
+h5 {
+  font-size: 0.83em;
+  font-weight: bold;
+  margin-top: 1.67em;
+  margin-bottom: 1.67em;
+}
+
+h6 {
+  font-size: 0.67em;
+  font-weight: bold;
+  margin-top: 2.33em;
+  margin-bottom: 2.33em;
+}
+
+
+p {
+  font-weight: 450; /* Slightly increased font-weight */
+  font-size:14px;
+}
+

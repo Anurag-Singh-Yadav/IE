@@ -5,43 +5,90 @@ import "./ArticleProgress.css";
 import { FaChevronLeft } from "react-icons/fa";
 import PreRender from "./templets/PreRender";
 
-function ArticleProgress({ data }) {
-  // data = [ { index: Number , label: String } ]
-
+function hasChildElements(element) {
+  return Array.from(element.childNodes).some(
+    (node) => node.nodeType === Node.ELEMENT_NODE
+  );
+}
+function ArticleProgress({ title }) {
+  const [data, setData] = useState(null);
   const articleLoading = useSelector((state) => {
     return state.GlobalState.articleLoading;
   });
 
-  const handleClick = (index) => {
-    const element = document.getElementById(`content-${index}`);
+  useEffect(() => {
+    let arr = [];
+
+    let articleContainer = document.getElementById("article-content-container");
+    if (!articleContainer || articleLoading) {
+      return;
+    }
+    let hTags = articleContainer.querySelectorAll("h1, h2, h3, h4, h5, h6, li");
+
+    for (let i = 0; i < hTags.length; i++) {
+      let currentElement = hTags[i];
+      const tagName = currentElement.tagName;
+
+      while (currentElement && hasChildElements(currentElement)) {
+        currentElement = currentElement.firstElementChild;
+      }
+
+      if (currentElement.innerText.length < 30) {
+        hTags[i].id = `content-${i}`;
+        arr.push({
+          label: currentElement.innerText,
+          value: `content-${i}`,
+          tagName,
+        });
+      }
+    }
+
+    if (title) {
+      if (arr[0].label.toLowerCase() != title.toLowerCase()) {
+        arr.unshift({
+          label: title,
+          value: `content-${title}`,
+          tagName: "title",
+        });
+      }
+    }
+
+    setData(arr);
+  }, [articleLoading]);
+
+  const handleClick = (value) => {
+    let articleContainer = document.getElementById("article-content-container");
+    const element = document.getElementById(`${value}`);
+    console.log(element);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const [show , setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
-
     const handleResize = () => {
       setShow(window.innerWidth > 1000);
-    }
+    };
 
     handleResize();
 
-    window.addEventListener("resize",handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-        window.removeEventListener("resize",handleResize);
-    }
-  } , [])
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="">
-      {articleLoading && show && <div className="min-w-[20vw] min-h-[100vh] bg-gray-100  p-2 rounded-lg">
-        <PreRender count={7} />
-      </div>}
-      { !articleLoading && data &&
+      {articleLoading && show && (
+        <div className="min-w-[20vw] min-h-[100vh] bg-gray-100  p-2 rounded-lg">
+          <PreRender count={7} />
+        </div>
+      )}
+      {!articleLoading && data && show && (
         <div
           onMouseEnter={() => {
             if (window.innerWidth >= 1000) return;
@@ -82,25 +129,30 @@ function ArticleProgress({ data }) {
                     key={i}
                     className="hover:text-green-bg hover:underline transition duration-300 flex justify-between items-center gap-4 cursor-pointer"
                   >
-                    {obj.title === "H2" && (
+                    {obj.tagName.toLowerCase() !== "li" && (
                       <div className="h-[5px] w-[5px] rounded-full bg-black" />
                     )}
                     <div
                       className={`${
-                        obj.title === "H3"
+                        obj.tagName.toLowerCase() === "li"
                           ? "ml-12 border-l-2 border-green-bg"
                           : "ml-3"
                       } flex items-center py-2 gap-2`}
                     >
-                      {obj.title === "H3" && (
+                      {obj.tagName.toLowerCase() === "li" && (
                         <p className="w-[14px] h-[2px] bg-green-bg"></p>
                       )}
                       <p
                         key={i}
                         onClick={() => {
-                          handleClick(obj.index);
+                          obj.tagName !== "title"
+                            ? handleClick(obj.value)
+                            : window.scrollTo({
+                                top: 0,
+                                behavior: "smooth",
+                              });
                         }}
-                        className={``}
+                        className={`px-2 py-1`}
                       >
                         {obj.label}
                       </p>
@@ -111,7 +163,7 @@ function ArticleProgress({ data }) {
             </div>
           </div>
         </div>
-      }
+      )}
     </div>
   );
 }
