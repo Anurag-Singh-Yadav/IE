@@ -15,10 +15,6 @@ function RenderArticle({ contentFlow, title, menu, mainHeading, mainTopic }) {
   });
 
   useEffect(() => {
-    setNp({});
-  }, [articleLoading]);
-
-  useEffect(() => {
     if (menu) {
       for (let i = 0; i < menu.length; i++) {
         if (menu[i]?.mainHeading === mainHeading) {
@@ -77,7 +73,10 @@ function RenderArticle({ contentFlow, title, menu, mainHeading, mainTopic }) {
         }
       }
     }
-  }, [menu, mainHeading]);
+    return () => {
+      setNp({});
+    }
+  }, [menu, mainHeading , articleLoading]);
 
   return (
     <div className=" w-full flex flex-col justify-between mb-3 py-4">
