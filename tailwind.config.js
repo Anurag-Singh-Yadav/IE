@@ -24,6 +24,7 @@ module.exports = {
         'circle': "url('/circle.svg')",
         'star': "url('/star.svg')",
         'star2': "url('/star2.svg')",
+        'dsaPrac':"url('/dsaPrac.svg')",
       },
       fontFamily: {
         custom: ["Poppins", "sans-serif"],

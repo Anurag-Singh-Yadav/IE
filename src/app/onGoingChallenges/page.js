@@ -50,7 +50,7 @@ function Page() {
               <Link
                 key={index}
                 href={{
-                  pathname: `/onGoingChallenges/${challenges.challenge._id}`,
+                  pathname: `/onGoingChallenges/${challenges.challenge?._id}`,
                 }}
               >
                 <div className="flex text-xs sm:text-sm md:text-normal  items-center border-2 border-white hover:border-l-green-bg hover:cursor-pointer p-4 transition-all duration-300 shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
