@@ -51,10 +51,10 @@ export default function Page({ params, imgSrc }) {
           </div>
 
           <div>
-            <QuestionRender
+            {questionsDetail?.questionsDetails && <QuestionRender
               setUserFilter={setUserFilter}
-              questionsDetail={questionsDetail}
-            ></QuestionRender>
+              questionsDetails={questionsDetail?.questionsDetails}
+            ></QuestionRender>}
           </div>
         </div>
       )}

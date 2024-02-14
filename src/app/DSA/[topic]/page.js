@@ -1,4 +1,5 @@
 "use client";
+import QuestionRender from "@/app/Components/templets/QuestionRender";
 import WebsiteBanner from "@/app/Components/templets/WebsiteBanner";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -37,6 +38,7 @@ function Page({ }) {
       <div>
         <WebsiteBanner imgSrc={"dsaPractise.png"} BtnName={"Start Solving"} />
       </div>
+      {questions && <QuestionRender questionsDetails={questions} />}
     </div>
   );
 }

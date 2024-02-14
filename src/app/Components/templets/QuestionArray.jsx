@@ -52,7 +52,7 @@ export default function QuestionArray({ showQuestions, search }) {
                       </Table.Cell>
                       <Table.Cell>
                         <div
-                          className={`${question.difficulty?.toLowerCase()} mr-5 py-1 rounded-md`}
+                          className={`${question.difficulty?.toLowerCase()} mr-5 py-1 rounded-md font-semibold`}
                         >
                           {question.difficulty}
                         </div>

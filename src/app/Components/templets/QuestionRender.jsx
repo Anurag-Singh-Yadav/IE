@@ -14,7 +14,7 @@ const MenuProps = {
 };
 const names = ["Easy", "Medium", "Hard"];
 
-function QuestionRender({questionsDetail}) {
+function QuestionRender({questionsDetails}) {
   const [difficulty, setDifficulty] = useState([]);
   const handleChange = (event) => {
     const { value } = event.target;
@@ -24,15 +24,14 @@ function QuestionRender({questionsDetail}) {
   const [showQuestions , setShowQuestions] = useState(null);
 
   useEffect(() => {
-    console.log('** ' , questionsDetail)
-    setShowQuestions(questionsDetail.questionsDetails);
-  },[questionsDetail]);
+    setShowQuestions(questionsDetails);
+  },[questionsDetails]);
 
   const [search , setSearch] = useState('');
   const [filter , setFilter] = useState({});
 
   useEffect(() => {
-    setShowQuestions(questionsDetail.questionsDetails.filter(obj => Object.keys(filter).every(key => obj[key] === filter[key])));
+    setShowQuestions(questionsDetails.filter(obj => Object.keys(filter).every(key => obj[key] === filter[key])));
   } , [filter])
 
   return (
@@ -74,8 +73,8 @@ function QuestionRender({questionsDetail}) {
             })
           }}>Difficulty</div>
 
-          <form>
-            <input className="box-shadow px-4 py-1 rounded-full focus:border-black text-gray-500 font-normal" placeholder="Search..." value={search} onChange={(e)=>setSearch(e.target.value)}/>
+          <form className="focus:border-green-bg">
+            <input className="box-shadow px-4 py-1 rounded-full focus:border-green-bg text-gray-500 font-normal" placeholder="Search..." value={search} onChange={(e)=>setSearch(e.target.value)}/>
           </form>
           
         
