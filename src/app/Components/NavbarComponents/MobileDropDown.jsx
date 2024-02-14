@@ -2,6 +2,7 @@
 import React from "react";
 import { FaChevronUp } from "react-icons/fa";
 import './MobileDropDown.css';
+import Link from "next/link";
 
 
 function MobileDropDown2({ open , setOpen , label , options , index}) {
@@ -53,9 +54,9 @@ function MobileDropDown2({ open , setOpen , label , options , index}) {
                 className=" border-l-2 border-green-bg whitespace-nowrap py-2 transition duration-200 font-semibold flex items-center"
               >
                 <div className=" h-[2px] w-4 bg-green-bg mr-2" />
-                <p className=" cursor-pointer hover:text-green-bg rounded-lg transition duration-300 w-full px-2 py-1">
+                <Link href={obj.value} className=" cursor-pointer hover:text-green-bg rounded-lg transition duration-300 w-full px-2 py-1">
                   {obj.label}
-                </p>
+                </Link>
               </div>
             );
           })}
