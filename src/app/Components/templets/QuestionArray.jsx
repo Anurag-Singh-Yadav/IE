@@ -1,34 +1,71 @@
-'use client'
-import React from 'react'
-import { CiBookmark } from "react-icons/ci";
+"use client";
 
-function QuestionArray({showQuestions}) {
+import { Checkbox, Table } from "flowbite-react";
+import Link from "next/link";
+import { useEffect } from "react";
+
+export default function QuestionArray({ showQuestions, search }) {
   return (
-    <div className='w-[70vw] overflow-x-hidden'>   
-
-        {
-            showQuestions && showQuestions.map((questionObj , index)=>{
-
-                const question = questionObj.question;
-
-                return (
-                    <div key={index} className='grid grid-cols-10'>
-                        <div className='col-span-1 text-blue-500 hover:text-blue-700'><CiBookmark /></div>
-                        <p className=' col-span-3'>{question.title}</p>
-                        <p className='col-span-1'>{question.difficulty === 'Easy' ? 5 : (question.difficulty === 'Hard' ? 20 : 10)}</p>
-                        <p className={`${question.difficulty.toLowerCase()} col-span-1`}>{question.difficulty}</p>
-                        <div>
-                            {/* Add company logo login, all are inside -> question.company ([])  */}
-                        </div>
-                    </div>
+    <div>
+      <div></div>
+      <div className="overflow-x-auto">
+        <Table hoverable>
+          <Table.Head>
+            <Table.HeadCell className="p-4"></Table.HeadCell>
+            <Table.HeadCell>QUESTION</Table.HeadCell>
+            <Table.HeadCell>SCORE</Table.HeadCell>
+            <Table.HeadCell>DIFFICULTY</Table.HeadCell>
+            <Table.HeadCell>COMPANIES</Table.HeadCell>
+            <Table.HeadCell>
+              <span className="sr-only">Edit</span>
+            </Table.HeadCell>
+          </Table.Head>
+          {showQuestions && (
+            <Table.Body className="divide-y">
+              {showQuestions.map((questionData, index) => {
+                const question = questionData.question;
+                if (
+                    search.length === 0 || 
+                  question.title
+                    .toLowerCase()
+                    .includes(search.trim().toLowerCase())
                 )
-
-
-            })
-        }
-      
+                  return (
+                    <Table.Row
+                      key={index}
+                      className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                    >
+                      <Table.Cell className="p-4">
+                        <Checkbox checked={questionData?.solved} />
+                      </Table.Cell>
+                      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                        <Link href={question.questionUrl}>
+                          {question.title}
+                        </Link>
+                      </Table.Cell>
+                      <Table.Cell>
+                        {question.difficulty === "Easy"
+                          ? 10
+                          : question.difficulty === "Hard"
+                          ? 20
+                          : 10}
+                      </Table.Cell>
+                      <Table.Cell>
+                        <div
+                          className={`${question.difficulty?.toLowerCase()} mr-5 py-1 rounded-md`}
+                        >
+                          {question.difficulty}
+                        </div>
+                      </Table.Cell>
+                      <Table.Cell>Companies</Table.Cell>
+                    </Table.Row>
+                  );
+                else return <></>;
+              })}
+            </Table.Body>
+          )}
+        </Table>
+      </div>
     </div>
-  )
+  );
 }
-
-export default QuestionArray

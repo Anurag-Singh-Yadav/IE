@@ -1,12 +1,5 @@
 "use client";
 import React,{useEffect, useState} from "react";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import ListItemText from "@mui/material/ListItemText";
-import Select from "@mui/material/Select";
-import Checkbox from "@mui/material/Checkbox";
 import Image from "next/image";
 import QuestionArray from "./QuestionArray";
 const ITEM_HEIGHT = 48;
@@ -35,45 +28,57 @@ function QuestionRender({questionsDetail}) {
     setShowQuestions(questionsDetail.questionsDetails);
   },[questionsDetail]);
 
+  const [search , setSearch] = useState('');
+  const [filter , setFilter] = useState({});
 
-
+  useEffect(() => {
+    setShowQuestions(questionsDetail.questionsDetails.filter(obj => Object.keys(filter).every(key => obj[key] === filter[key])));
+  } , [filter])
 
   return (
-    <div>
-      <div className="grid grid-cols-4">
-      <div className="col-span-3">
-        <div className="flex flex-wrap justify-between items-center">
-          <div>All</div>
-          <div>Solved</div>
-          <div>Unsolved</div>
-          <div>Revisited</div>
-          <div>
-            <FormControl sx={{ m: 1, width: 140 }}>
-              <InputLabel
-                id="demo-multiple-checkbox-label"
-                sx={{ color: "green" }}
-              >
-                Tag
-              </InputLabel>
-              <Select
-                labelId="demo-multiple-checkbox-label"
-                id="demo-multiple-checkbox"
-                multiple
-                value={difficulty}
-                onChange={handleChange}
-                input={<OutlinedInput label="Tag" />}
-                renderValue={(selected) => selected.join(", ")}
-                MenuProps={MenuProps}
-              >
-                {names.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    <Checkbox checked={difficulty.indexOf(name) > -1} />
-                    <ListItemText primary={name} />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
+    <div className="">
+      <div className="">
+      <div className="">
+        <div className="flex flex-wrap gap-12 px-4 items-center bg-green-bg/10  font-semibold py-2 min-h-[15vh]">
+          <div className="bg-white px-4 py-1 rounded-full box-shadow" onClick={() => {
+            setFilter({});
+          }}>All</div>
+          <div className="bg-white px-4 py-1 rounded-full box-shadow" onClick={() => {
+            setFilter((prev) => {
+              if(prev['solved'] === undefined) {
+                prev['solved'] = true;
+                return prev;
+              }
+              else{
+                delete prev.solved;
+                return prev;
+              }
+            })
+          }}>Solved</div>
+          <div className="bg-white px-4 py-1 rounded-full box-shadow" onClick={() => {
+            setFilter((prev) => {
+              if(prev['solved'] === undefined){
+                prev['solved'] = false;
+                return prev;
+              }
+              else{
+                delete prev.solved;
+                return prev;
+              }
+            })
+          }}>Unsolved</div>
+
+<div className="bg-white px-4 py-1 rounded-full box-shadow" onClick={() => {
+            clickHandler({
+              solved: false,
+            })
+          }}>Difficulty</div>
+
+          <form>
+            <input className="box-shadow px-4 py-1 rounded-full focus:border-black text-gray-500 font-normal" placeholder="Search..." value={search} onChange={(e)=>setSearch(e.target.value)}/>
+          </form>
+          
+        
         </div>
       </div>
       <div className="col-span-1">
@@ -81,21 +86,13 @@ function QuestionRender({questionsDetail}) {
             <div>
                 
             </div>
-            <div>
-                <Image
-                src={`${questionsDetail.imageUrl}`}
-                alt="challenge image"
-                className="mr-4 overflow-hidden"
-                width={120}
-                height={80}
-                ></Image>
-            </div>
+         
         </div>
       </div>
     </div>
 
     <div>
-      <QuestionArray showQuestions={showQuestions} />
+      <QuestionArray search={search} showQuestions={showQuestions} />
     </div>
 
     </div>
