@@ -5,6 +5,7 @@ import PreRender from "../Components/templets/PreRender";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { GrLinkPrevious, GrLinkNext } from "react-icons/gr";
+import HtmlToDom from "../Components/templets/HtmlToDom";
 
 function RenderArticle({ contentFlow, title, menu, mainHeading, mainTopic }) {
   const [np, setNp] = useState({});
@@ -14,12 +15,7 @@ function RenderArticle({ contentFlow, title, menu, mainHeading, mainTopic }) {
   });
 
   useEffect(() => {
-    setNp({});
-  }, [articleLoading]);
-
-  useEffect(() => {
     if (menu) {
-      console.log("menu = ", menu, mainHeading);
       for (let i = 0; i < menu.length; i++) {
         if (menu[i]?.mainHeading === mainHeading) {
           for (let j = 0; j < menu[i]?.articles.length; j++) {
@@ -77,7 +73,10 @@ function RenderArticle({ contentFlow, title, menu, mainHeading, mainTopic }) {
         }
       }
     }
-  }, [menu, mainHeading]);
+    return () => {
+      setNp({});
+    }
+  }, [menu, mainHeading , articleLoading]);
 
   return (
     <div className=" w-full flex flex-col justify-between mb-3 py-4">
@@ -85,22 +84,9 @@ function RenderArticle({ contentFlow, title, menu, mainHeading, mainTopic }) {
         className="flex flex-col justify-between px-6 pb-[30vh] mb-3 py-4"
         style={{ letterSpacing: "0.8px" }}
       >
-        {title && <p className="font-bold text-4xl mb-7">{title}</p>}
-        {contentFlow &&
-          !articleLoading &&
-          contentFlow.map((content, index) => {
-            const Component = renderMethods[content.title];
-
-            return (
-              <Component
-                id={`content-${index}`}
-                key={index}
-                value={content.value}
-                correct={content.correct}
-                options={content.options}
-              />
-            );
-          })}
+        {contentFlow && !articleLoading && (
+          <HtmlToDom htmlContent={contentFlow} />
+        )}
 
         {articleLoading && <PreRender count={10} />}
       </div>

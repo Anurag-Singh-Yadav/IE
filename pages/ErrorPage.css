@@ -1,0 +1,33 @@
+/* pages/ErrorPage.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f4f8;
+}
+
+.title {
+    color: #3a7a40;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.description {
+    color: #345d29;
+    margin-bottom: 2rem;
+}
+
+.homeLink {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.homeLink:hover {
+    background-color: #367b48;
+}
