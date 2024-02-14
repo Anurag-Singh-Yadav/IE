@@ -50,7 +50,7 @@ export default function TextEditor({ htmlContent, setHtmlContent, formName }) {
           content_style:
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
-        apiKey="gagh8gfnr4xbrlstg8z8nhmtfm0p6l1oard8jespd91ijask"
+        apiKey="6ag7jotxmhvti08pmxib24byppmankv6a5tq3xtholje7zgg"
         onEditorChange={changeHandler}
         value={htmlContent}
       />
