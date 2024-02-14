@@ -1,5 +1,5 @@
 "use client";
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,6 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import Image from "next/image";
+import QuestionArray from "./QuestionArray";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -26,8 +27,20 @@ function QuestionRender({questionsDetail}) {
     const { value } = event.target;
     setDifficulty(value);
   };
+
+  const [showQuestions , setShowQuestions] = useState(null);
+
+  useEffect(() => {
+    console.log('** ' , questionsDetail)
+    setShowQuestions(questionsDetail.questionsDetails);
+  },[questionsDetail]);
+
+
+
+
   return (
-    <div className="grid grid-cols-4">
+    <div>
+      <div className="grid grid-cols-4">
       <div className="col-span-3">
         <div className="flex flex-wrap justify-between items-center">
           <div>All</div>
@@ -79,6 +92,12 @@ function QuestionRender({questionsDetail}) {
             </div>
         </div>
       </div>
+    </div>
+
+    <div>
+      <QuestionArray showQuestions={showQuestions} />
+    </div>
+
     </div>
   );
 }

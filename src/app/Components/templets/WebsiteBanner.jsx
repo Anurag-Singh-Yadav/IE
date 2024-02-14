@@ -1,7 +1,6 @@
 import React from "react";
 
 function WebsiteBanner({ imgSrc, BtnName }) {
-  console.log("imgSrc", `./${imgSrc}`);
   return (
     <div className="main-container gradiant-container grid grid-cols-1 md:grid-cols-2 items-center justify-center py-4 min-h-[85vh]">
       <div className="">
