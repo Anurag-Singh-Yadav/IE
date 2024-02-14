@@ -34,7 +34,7 @@ export const dropdownData = [
         },
         {
           label: "Data Structures & Algorithms",
-          value: "dsa",
+          value: "/DSA",
         },
         {
           label: "Aptitude",
