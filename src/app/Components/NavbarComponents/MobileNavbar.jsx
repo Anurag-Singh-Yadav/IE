@@ -51,7 +51,7 @@ function MobileNavbar({ navBurger, details }) {
       const bars = document.getElementById("popup");
       const mContent = document.getElementById("mobile-navbar");
 
-      if(!bars.contains(e.target) && !mContent.contains(e.target)){
+      if(!bars.contains(e.target) && !mContent.contains(e.target) && flag){
         setFlag(false);
       }
     };
