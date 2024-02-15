@@ -3,14 +3,21 @@
     display: flex;
 }
 
+.pop-in-fast{
+    animation: slide-in 0.3s ease-in forwards;
+    border-top: rgb(16, 169, 16) 2px solid;
+}
+
 @keyframes slide-in{
     from {
         /* transform: translateX(-40px); */
         scale: 0;
+        opacity: 0;
     }
     to{
         /* transform: translateX(40px) */
         scale:1;
+        opacity: 1;
     }
 }
 
