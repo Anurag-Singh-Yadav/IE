@@ -5,7 +5,7 @@ import { FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import MobileNavbarContent from "./MobileNavbarContent";
 
-function MobileNavbar({ navBurger, details }) {
+function MobileNavbar({ navBurger, details , challenges }) {
   const [flag, setFlag] = useState(null);
 
   function handleScroll() {
@@ -100,7 +100,7 @@ function MobileNavbar({ navBurger, details }) {
         >
           <ImCross size={15} />
         </div>
-        <MobileNavbarContent handleClick={handleClick} details={details} />
+        <MobileNavbarContent handleClick={handleClick} details={details} challenges={challenges}/>
       </div>
 
       {flag && (

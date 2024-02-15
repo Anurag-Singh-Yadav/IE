@@ -26,6 +26,8 @@ import Link from "next/link";
 function Navbar() {
   const [showLoader, setShowLoader] = useState(false);
 
+  const [challenges, setChallenges] = useState(null);
+
   const dispatch = useDispatch();
   const { data: session, status } = useSession();
 
@@ -54,7 +56,7 @@ function Navbar() {
       if (res?.data?.success == true) {
         const { userHandle, avatar, email, name } = res.data;
 
-        setDetails(prevDetails => ({
+        setDetails((prevDetails) => ({
           ...prevDetails,
           userHandle,
           avatar,
@@ -70,6 +72,20 @@ function Navbar() {
       setShowLoader(false);
     }
   };
+
+  useEffect(() => {
+    const fetchAllChallenges = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_ALL_CHALLENGES}`
+        );
+        setChallenges(res.data?.data);
+        console.log("All challenges -->", res.data?.data);
+      } catch (err) {}
+    };
+
+    if (!challenges) fetchAllChallenges();
+  }, []);
 
   useEffect(() => {
     const storedCookie = Cookies.get("token");
@@ -128,19 +144,37 @@ function Navbar() {
         <FaCircleArrowUp size={40} />
       </div>
       <div className="flex justify-between h-[10vh] items-center">
-        <Link href={'/'} className="px-4 py-2 text-yellow-400   font-bold text-3xl">{a}</Link>
+        <Link
+          href={"/"}
+          className="px-4 py-2 text-yellow-400   font-bold text-3xl"
+        >
+          {a}
+        </Link>
         {/* Dropdowns */}
         <div className="gap-7 font-semibold hidden nmd:flex items-center ">
           {dropdownData.map((obj, index) => {
             return (
-              <Dropdown label={obj.label} options={obj.options} key={index} />
+              <div key={index}>
+                {obj.label !== "Challenges" && (
+                  <Dropdown label={obj.label} options={obj.options} />
+                )}
+                {obj.label === "Challenges" && (
+                  <Dropdown label={obj.label} options={challenges} />
+                )}
+              </div>
             );
           })}
-          {
-            links.map((link , index) => {
-              return <Link key={index} href={`/${link.value}`} className="border-b-2 border-white hover:border-green-bg hover:text-green-bg transition duration-300">{link.label}</Link>
-            })
-          }
+          {links.map((link, index) => {
+            return (
+              <Link
+                key={index}
+                href={`/${link.value}`}
+                className="border-b-2 border-white hover:border-green-bg hover:text-green-bg transition duration-300"
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
         <div onClick={() => setNavBurger(!navBurger)} className="nmd:hidden">
           <FaBars size={25} />
@@ -180,13 +214,23 @@ function Navbar() {
                 setShowNavPopup(!showNavPopup);
               }}
             ></Avatar>
-            {showNavPopup && <NavbarPopup details={details} setShowNavPopup={setShowNavPopup}/>}
+            {showNavPopup && (
+              <NavbarPopup
+                details={details}
+                setShowNavPopup={setShowNavPopup}
+              />
+            )}
           </div>
         )}
 
         {flag && <Login></Login>}
       </div>
-      <MobileNavbar navBurger={navBurger} details={details} setNavBurger={setNavBurger} />
+      <MobileNavbar
+        navBurger={navBurger}
+        details={details}
+        setNavBurger={setNavBurger}
+        challenges={challenges}
+      />
     </div>
   );
 }

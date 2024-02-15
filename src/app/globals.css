@@ -242,17 +242,17 @@
 }
 
 .hard{
-  color: rgb(220, 50, 50);
+  color: #dc3232;
   /* background-color: rgb(254, 229, 229); */
 }
 
 .medium{
-  color: orange;
+  color: #ffa500;
   /* background-color: rgb(254, 243, 222); */
 }
 
 .easy{
-  color: green;
+  color: #008000;
   /* background-color: rgb(224, 252, 224); */
 }
 

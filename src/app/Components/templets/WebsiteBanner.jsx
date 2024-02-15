@@ -21,7 +21,12 @@ function WebsiteBanner({ imgSrc, BtnName }) {
           everyone.
         </div>
         {BtnName && (
-          <button className="px-4 py-2 mt-3 btn-gradient rounded-md btn-gradient-2 cursor-pointer text-white hover:rounded-lg transition-all duration-500 font-medium">
+          <button className="px-4 py-2 mt-3 btn-gradient rounded-md btn-gradient-2 cursor-pointer text-white hover:rounded-lg transition-all duration-500 font-medium" onClick={() => {
+            window.scrollBy({
+              top: window.innerHeight,
+              behavior: 'smooth',
+            });
+          }}>
             {BtnName}
           </button>
         )}

@@ -9,14 +9,14 @@ import {
 } from "../../GlobalRedux/Features/GlobalStateSlice";
 import Avatar from "react-avatar";
 import Link from "next/link";
-function MobileNavbarContent({ handleClick, details }) {
+function MobileNavbarContent({ handleClick, details , challenges }) {
   const isLogin = useSelector((state) => {
     return state.GlobalState.isLogin;
   });
   const [open, setOpen] = useState(null);
   const dispatch = useDispatch();
   return (
-    <div className="relative background-grid px-4 h-[100vh] min-w-[100vw] sm:min-w-[70vw] md:min-w-[50vw] lg:min-w-[40vw] overflow-scroll-auto">
+    <div className="relative background-grid px-4 h-[100vh]  min-w-[100vw] sm:min-w-[70vw] md:min-w-[50vw] lg:min-w-[40vw] overflow-y-auto">
       {isLogin ? (
         <div className="flex flex-col gap-1 mt-[2vh] items-center justify-center">
           <Avatar
@@ -69,6 +69,8 @@ function MobileNavbarContent({ handleClick, details }) {
               index={index}
               open={open}
               setOpen={setOpen}
+              closeNav={handleClick}
+              challenges={challenges}
             />
           );
         })}
