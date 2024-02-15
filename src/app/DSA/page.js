@@ -1,10 +1,33 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import WebsiteBanner from "../Components/templets/WebsiteBanner";
 import { topics } from "./Topics.js";
 import TopicsTemplets from "../Components/templets/TopicsTemplets";
+import ScoreMeter from "../Components/templets/ScoreMeter";
+import axios from "axios";
+import Cookies from "js-cookie";
 function Page() {
-  console.log("topics", topics);
+  const getUserDetails = async () => {
+    try {
+      const token = Cookies.get("token");
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_QUESTIONS_SOLVED_BY_USER}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
   return (
     <div>
       <div>
@@ -20,19 +43,19 @@ function Page() {
           <span className="text-green-bg underline">DSA Questions</span>
         </div>
 
-        <div className="grid grid-col-1 nmd:grid-cols-6">
+        <div className="grid grid-col-1 nmd:grid-cols-7">
           <div className=" col-span-4 ">
             <div className="bg-green-bg py-2 mt-4 mb-6 text-center px-2 rounded-md text-white text-lg font-medium">
-                Data Structures and Algorithms
+              Data Structures and Algorithms
             </div>
 
             <TopicsTemplets topics={topics}></TopicsTemplets>
-
           </div>
 
-          <div className="">
-            {/* score meter */}
-            score Meter
+          <div className="w-full flex justify-center item-center col-span-3">
+            <div className="my-6 bg-red-300 py-4 px-2">
+              <ScoreMeter></ScoreMeter>
+            </div>
           </div>
         </div>
       </div>
