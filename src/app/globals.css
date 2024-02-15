@@ -314,3 +314,9 @@ p {
   font-weight: 450; /* Slightly increased font-weight */
   font-size: 14px;
 }
+
+.search-bar input:focus {
+    outline: none; /* Removes the default focus outline */
+    /* Optionally, add your own focus styles below */
+    box-shadow: 0 0 15px rgb(89, 94, 85 , 0.1); /* Example: Adds a glow effect */
+}
