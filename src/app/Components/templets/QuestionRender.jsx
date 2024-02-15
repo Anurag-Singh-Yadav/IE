@@ -19,11 +19,6 @@ const MenuProps = {
 const names = ["Easy", "Medium", "Hard"];
 
 function QuestionRender({ questionsDetails }) {
-  useEffect(() => {
-    console.log(difficulty);
-  }),
-    [];
-
   const diff = useRef(null);
 
   const [difficulty, setDifficulty] = useState([false, false, false]);
@@ -53,14 +48,12 @@ function QuestionRender({ questionsDetails }) {
 
   useEffect(() => {
     setShowQuestions(questionsDetails);
-    console.log(questionsDetails);
   }, [questionsDetails]);
 
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState({});
 
   useEffect(() => {
-    console.log(filter);
     setShowQuestions(
       questionsDetails.filter((obj) =>
         Object.keys(filter).every((key) => obj[key] === filter[key])
@@ -141,49 +134,25 @@ function QuestionRender({ questionsDetails }) {
               {open === true && (
                 <div className="absolute -top-[15px] bg-white z-[100] pop-in-fast flex flex-col  py-2 rounded-lg box-shadow">
                   <button
-                    onClick={() => {
-                      handleDifficulty(0);
-                    }}
+                    onClick={() => {handleDifficulty(0)}}
                     className="hover:bg-gray-100 px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
                   >
                     <p>Easy</p>
-                    <div
-                      className={`${
-                        difficulty[0] ? "text-green-bg" : "text-white"
-                      }`}
-                    >
-                      <FaCheck size={15} />
-                    </div>
+                    <div className={`${difficulty[0] ? 'text-green-bg' : 'text-white'}`}><FaCheck size={15}/></div>
                   </button>
                   <button
-                    onClick={() => {
-                      handleDifficulty(1);
-                    }}
-                    className="hover:bg-gray-100 px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
-                  >
-                    <p>Medium</p>
-                    <div
-                      className={`${
-                        difficulty[1] ? "text-green-bg" : "text-white"
-                      }`}
-                    >
-                      <FaCheck size={15} />
-                    </div>
-                  </button>
+                  onClick={() => {handleDifficulty(1)}}
+                  className="hover:bg-gray-100 px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
+                >
+                  <p>Medium</p>
+                  <div className={`${difficulty[1] ? 'text-green-bg' : 'text-white'}`}><FaCheck size={15}/></div>
+                </button>
                   <button
-                    onClick={() => {
-                      handleDifficulty(2);
-                    }}
+                    onClick={() => {handleDifficulty(2)}}
                     className="hover:bg-gray-100 px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
                   >
                     <p>Hard</p>
-                    <div
-                      className={`${
-                        difficulty[2] ? "text-green-bg" : "text-white"
-                      }`}
-                    >
-                      <FaCheck size={15} />
-                    </div>
+                    <div className={`${difficulty[2] ? 'text-green-bg' : 'text-white'}`}><FaCheck size={15}/></div>
                   </button>
                 </div>
               )}
@@ -211,13 +180,11 @@ function QuestionRender({ questionsDetails }) {
       </div>
 
       <div>
-        {showQuestions && (
-          <QuestionArray
-            search={search}
-            showQuestions={showQuestions}
-            difficulty={difficulty}
-          />
-        )}
+        {showQuestions && <QuestionArray
+          search={search}
+          showQuestions={showQuestions}
+          difficulty={difficulty}
+        />}
       </div>
     </div>
   );

@@ -1,5 +1,13 @@
 .dropdown-content {
   position: absolute;
+  
+  opacity: 0;
+  display: none;
+  transform: translateY(30px);
+}
+
+.dropdown-content-challenge {
+  position: fixed;
   opacity: 0;
   display: none;
   transform: translateY(30px);
@@ -11,7 +19,7 @@
 }
 
 .animate-out {
-  animation: slide-out-down 400ms ease-in-out;
+  animation: slide-out-down 400ms ease-in-out forwards;
   display: flex;
 }
 

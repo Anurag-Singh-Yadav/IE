@@ -45,7 +45,6 @@ export const dsaTopics = [
     "Heap",
     "Graph",
     "Hash Table",
-    "Hashing",
     "Two-pointer",
     "Priority Queue",
     "Sorting",

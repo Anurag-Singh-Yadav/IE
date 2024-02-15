@@ -31,8 +31,8 @@ export const topics = [
     },
     {
         id: 7,
-        name: "Hashing",
-        link:'hashing'
+        name: "Hash Table",
+        link:'hast-table'
     },
     {
         id: 8,
@@ -41,48 +41,27 @@ export const topics = [
     },
     {
         id: 9,
-        name: "Searching",
-        link:'searching'
-    },
-    {
-        id: 10,
         name: "Dynamic Programming",
         link:'dynamic-programming'
     },
     {
-        id: 11,
-        name: "Bit Manipulation",
-        link:'bit-manipulation'
-    },
-    {
-        id: 12,
+        id: 10,
         name: "Greedy",
         link:'greedy'
     },
     {
-        id: 13,
+        id: 11,
         name: "Backtracking",
         link:'backtracking'
     },
     {
-        id: 14,
-        name: "Mathematical",
-        link:'mathematical'
+        id: 12,
+        name: "Math",
+        link:'math'
     },
     {
-        id: 15,
-        name: "Recursion",
-        link:'recursion'
-    },
-    {
-        id: 17,
-        name: "Pattern Searching",
-        link:'pattern-searching'
-    },
-    {
-        id: 18,
+        id: 13,
         name: "Divide and Conquer",
         link:'divide-and-conquer'
     },
-    
 ];
