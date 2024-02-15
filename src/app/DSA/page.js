@@ -7,6 +7,7 @@ import ScoreMeter from "../Components/templets/ScoreMeter";
 import axios from "axios";
 import Cookies from "js-cookie";
 function Page() {
+  const [userQuestoinsDetails, setUserQuestionsDetails] = useState(null);
   const getUserDetails = async () => {
     try {
       const token = Cookies.get("token");
@@ -19,6 +20,7 @@ function Page() {
         }
       );
       console.log(response.data);
+      setUserQuestionsDetails(response.data.data);
     } catch (e) {
       console.log(e);
     }
@@ -33,7 +35,7 @@ function Page() {
       <div>
         <WebsiteBanner
           imgSrc={"dsaPractise.png"}
-          BtnName={"Practise "}
+          BtnName={"Practice "}
         ></WebsiteBanner>
       </div>
 
@@ -43,20 +45,32 @@ function Page() {
           <span className="text-green-bg underline">DSA Questions</span>
         </div>
 
-        <div className="grid grid-col-1 nmd:grid-cols-7">
-          <div className=" col-span-4 ">
-            <div className="bg-green-bg py-2 mt-4 mb-6 text-center px-2 rounded-md text-white text-lg font-medium">
+        <div className="grid grid-col-1 w-full nmd:grid-cols-7">
+
+          <div className="nmd:col-span-4">
+            <div className="bg-green-bg py-2 mt-4 mb-6 text-center rounded-md text-white text-sm s2:text-base md:text-lg font-medium">
               Data Structures and Algorithms
             </div>
 
-            <TopicsTemplets topics={topics}></TopicsTemplets>
-          </div>
-
-          <div className="w-full flex justify-center item-center col-span-3">
-            <div className="my-6 bg-red-300 py-4 px-2">
-              <ScoreMeter></ScoreMeter>
+            <div>
+              <TopicsTemplets topics={topics}></TopicsTemplets>
             </div>
           </div>
+
+          {userQuestoinsDetails && (
+            <div className="nmd:col-span-3 w-full">
+              <div className="flex justify-center items-center">
+                <ScoreMeter
+                  totalQuestion={userQuestoinsDetails.totalQuestions}
+                  solvedQuestion={userQuestoinsDetails.solvedQuestions}
+                  easy={userQuestoinsDetails.easy}
+                  medium={userQuestoinsDetails.medium}
+                  hard={userQuestoinsDetails.hard}
+                ></ScoreMeter>
+              </div>
+            </div>
+          )}
+
         </div>
       </div>
     </div>
