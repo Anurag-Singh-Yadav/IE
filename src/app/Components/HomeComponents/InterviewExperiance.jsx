@@ -29,7 +29,7 @@ function InterviewExperiance() {
           <InterviewCard
             key={i}
             name={interviewData[i].name}
-            userPhoto={interviewData[i].userPhoto}
+            userPhoto={interviewData[i].avatar}
             company={interviewData[i].company}
             linkedin_id={interviewData[i].linkedin_id}
             created_on={interviewData[i].created_on}
