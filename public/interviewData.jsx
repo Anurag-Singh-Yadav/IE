@@ -44,4 +44,5 @@ const interviewData = [
       company_logo:''
     },
   ];
+  
   export default interviewData;
