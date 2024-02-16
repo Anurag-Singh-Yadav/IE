@@ -85,7 +85,7 @@ function PostBlog() {
             <li className="text-gray-600 py-1 rounded-md border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100">
               <strong className="text-black">Constructive Sharing:</strong>
               While we encourage honesty and transparency in sharing your
-              interview experiences, it's crucial to maintain a constructive
+              interview experiences, it is crucial to maintain a constructive
               tone. Avoid derogatory comments, personal attacks, or any form of
               disrespectful language towards individuals or companies.
             </li>
@@ -211,7 +211,7 @@ function PostBlog() {
             >
               <MenuItem value={"yes"}>Yes</MenuItem>
               <MenuItem value={"no"}>No</MenuItem>
-              <MenuItem value={"pending"}>Didn't recieve reply yet</MenuItem>
+              <MenuItem value={"pending"}>Did not recieve reply yet</MenuItem>
             </Select>
           </div>
         </form>
