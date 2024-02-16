@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-function Page({ }) {
+function Page({}) {
   const query = useSearchParams();
 
   const [questions, setQuestions] = useState();
@@ -37,6 +37,12 @@ function Page({ }) {
     <div>
       <div>
         <WebsiteBanner imgSrc={"dsaPractise.png"} BtnName={"Start Solving"} />
+      </div>
+      <div className="main-container">
+        <div className="font-semibold sm:py-4 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+          Explore all{" "}
+          <span className="text-green-bg underline">Data-Structure Questions</span>
+        </div>
       </div>
       {questions && <QuestionRender questionsDetails={questions} />}
     </div>

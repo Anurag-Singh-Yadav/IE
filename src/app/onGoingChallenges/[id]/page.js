@@ -22,10 +22,9 @@ export default function Page({ params, imgSrc }) {
           },
         }
       );
-      // console.log("respone of the id challenges",response.data);
+      console.log(response?.data?.data);
       setQuestionsDetail(response?.data?.data);
     } catch (e) {
-      console.log("hfksdf")
       console.log(e);
     }
   };
@@ -38,6 +37,8 @@ export default function Page({ params, imgSrc }) {
     <div>
       <div>
         <WebsiteBanner
+          heading="The world’s largest selection of online courses"
+          paragraph={questionsDetail?.description}
           imgSrc={"onGoingChallenges.gif"}
           BtnName={questionsDetail?.challengeType}
         ></WebsiteBanner>
