@@ -57,7 +57,7 @@ function Page() {
                     <img
                       src={course.url}
                       alt={course.name}
-                      className="mr-4 w-24 aspect-auto"
+                      className="mr-4 w-24 aspect-video"
                     />
                     <div>
                       <div className="font-bold">{course.name}</div>

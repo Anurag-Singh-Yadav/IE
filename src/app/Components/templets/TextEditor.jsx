@@ -2,13 +2,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import HtmlToDom from "@/app/Components/templets/HtmlToDom";
-import { Flag } from "lucide-react";
 
 export default function TextEditor({ htmlContent, setHtmlContent, formName }) {
   useEffect(() => {
     const data = formName ? window.localStorage.getItem(`${formName}`) : null;
     if (data) {
       setHtmlContent(JSON.parse(data));
+
     }
   }, []);
 
@@ -48,23 +48,23 @@ export default function TextEditor({ htmlContent, setHtmlContent, formName }) {
             "removeformat | help | image" +
             "blocks fontfamily fontsize",
           content_style:
-            "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+            "body { font-family:Helvetica,Arial,sans-serif; font-size:18.6px }",
         }}
         apiKey="6ag7jotxmhvti08pmxib24byppmankv6a5tq3xtholje7zgg"
         onEditorChange={changeHandler}
         value={htmlContent}
       />
       {/* <p>{htmlContent}</p> */}
-      <div className="flex justify-center">
+      {formName !== 'user-interview-experience-draft' && <div className="flex justify-center">
         <button
           className="btn-gradient-2 px-4 py-2 rounded-md mx-auto my-5 text-lg"
           onClick={() => {
             setFlag(!flag);
           }}
         >
-          Preview
+          {flag ? 'Close Preview' : 'Preview'}
         </button>
-      </div>
+      </div>}
       {flag && (
         <div>
           <HtmlToDom htmlContent={htmlContent} />

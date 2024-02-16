@@ -55,12 +55,10 @@ function Page() {
                 }}
               >
                 <div className="flex text-xs sm:text-sm md:text-normal  items-center border-2 border-white hover:border-l-green-bg hover:cursor-pointer p-4 transition-all duration-300 shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
-                  <Image
+                  <img
                     src={`${challenges.challenge.imageUrl}`}
                     alt="challenge image"
-                    className="mr-4 overflow-hidden"
-                    width={120}
-                    height={80}
+                    className="mr-4 overflow-hidden max-w-[100px] aspect-video"
                   />
                   <div>
                     <div className="font-bold">{challenges.challenge.challengeType}</div>

@@ -18,7 +18,7 @@ function ChallengesPoster({ challenges }) {
             >
               <img
                 src={challenge.imageUrl}
-                className="aspect-auto max-w-[250px]"
+                className="aspect-video max-w-[250px]"
               />
               <div className="flex flex-col justify-center gap-3 py-5 h-full">
                 <div className="font-semibold text-sm">
@@ -38,6 +38,9 @@ function ChallengesPoster({ challenges }) {
             </Link>
           );
         })}
+        {
+          !challenges && <div className=" whitespace-nowrap">Loading Challenges...</div>
+        }
       <Link
         href={"/onGoingChallenges"}
         className="btn-gradient-2 w-fit px-4 py-2 rounded-md mx-auto mt-3"

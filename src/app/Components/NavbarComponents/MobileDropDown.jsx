@@ -3,7 +3,6 @@ import React from "react";
 import { FaChevronUp } from "react-icons/fa";
 import "./MobileDropDown.css";
 import Link from "next/link";
-import ChallengesPoster from "./ChallengesPoster";
 import ChallengePosterMobile from "./ChallengePosterMobile";
 
 function MobileDropDown2({

@@ -1,25 +1,30 @@
 import React from "react";
 
-function WebsiteBanner({ imgSrc, BtnName,paragraph, heading }) {
+function WebsiteBanner({ imgSrc, BtnName, heading, paragraph }) {
+  const tempHeading = "The world’s largest selection of online courses";
+
   return (
     <div className="main-container gradiant-container grid grid-cols-1 md:grid-cols-2 items-center justify-center py-4 min-h-[85vh]">
-      <div className="pr-4 mr-4">
+      <div className="">
         <img src={`../${imgSrc}`} alt="gif" className="aspect-auto"></img>
       </div>
-      <div className="">
+      <div className="ml-5">
         <div className="font-bold sm:text-xl md:text-2xl lg:text-4xl">
-          {heading}
+          {heading ? heading : tempHeading}
         </div>
         <div className="py-2 text-xs sm:text-sm md:text-normal">
-          {paragraph}
+          {paragraph && <div className="py-2 text-xs sm:text-sm md:text-normal">{paragraph}</div>}
         </div>
         {BtnName && (
-          <button className="px-4 py-2 mt-3 btn-gradient rounded-md btn-gradient-2 cursor-pointer text-white hover:rounded-lg transition-all duration-500 font-medium" onClick={() => {
-            window.scrollBy({
-              top: window.innerHeight,
-              behavior: 'smooth',
-            });
-          }}>
+          <button
+            className="px-4 py-2 mt-3 btn-gradient rounded-md btn-gradient-2 cursor-pointer text-white hover:rounded-lg transition-all duration-500 font-medium"
+            onClick={() => {
+              window.scrollBy({
+                top: window.innerHeight,
+                behavior: "smooth",
+              });
+            }}
+          >
             {BtnName}
           </button>
         )}
