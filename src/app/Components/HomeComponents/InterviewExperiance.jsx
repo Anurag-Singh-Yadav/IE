@@ -21,7 +21,7 @@ function InterviewExperiance() {
         </div>
         <div className="flex justify-center md:justify-end items-center">
           <Link className="px-4 py-2 rounded-lg font-bold text-white btn-gradient-2" 
-          href={"/interviewExperience"}
+          href={"/interview-experience"}
           >
             Read more...
           </Link>

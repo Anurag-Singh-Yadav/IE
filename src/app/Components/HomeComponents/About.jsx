@@ -3,47 +3,6 @@ import React, { useState, useEffect } from "react";
 import CountingCard from "./CountingCard";
 
 function About() {
-  const [enrolledStudents, setEnrolledStudents] = useState(0);
-  const [flag, setFlag] = useState(0);
-    const [first ,setFirst] = useState(0);
-  const[reset,setReset] = useState(0);
-
-  useEffect(() => {
-    if(!first){
-        setFirst(1);
-        return;
-    }
-    const targetNumber = 1000;
-    const increment = Math.ceil(targetNumber / 20);
-    const intervalId = setInterval(() => {
-        setEnrolledStudents((prevCount) =>
-          Math.min(prevCount + increment, targetNumber)
-        );
-      }, 50);
-    return () => clearInterval(intervalId);
-  }, [flag]);
-
-  function handleScroll (){
-    let div = document.getElementById('about');
-    let divPosition = div.getBoundingClientRect().top;
-    let screenPosition = window.innerHeight;
-    if(divPosition < screenPosition){
-      setFlag(1);
-    }else{
-        setReset(1);
-        setEnrolledStudents(0);
-        setFlag(0);
-    }
-  }
-
-  useEffect(() => {
-    if (typeof window !== "undefined")
-      window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <div className="py-16">

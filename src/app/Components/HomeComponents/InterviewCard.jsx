@@ -5,6 +5,7 @@ import { TiTick } from "react-icons/ti";
 import { RxCrossCircled } from "react-icons/rx";
 import { GrLinkedin } from "react-icons/gr";
 import Image from "next/image";
+import Link from "next/link";
 function InterviewCard({
   name,
   userPhoto,
@@ -12,11 +13,12 @@ function InterviewCard({
   linkedin_id,
   created_on,
   selected,
-  position,
+  position, 
   round,
+  id
 }) {
   return (
-    <div className="my-3 py-4 text-black px-4 border-l-2 hover:border-green-bg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+    <Link href={`/interview-experience/[id]`} as={`/interview-experience/${id}`} className="my-3 py-4 text-black px-4 border-l-2 hover:border-green-bg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
       <div className="flex flex-wrap justify-between items-center">
         <div className="flex flex-wrap items-center">
           <div>
@@ -73,7 +75,7 @@ function InterviewCard({
 
         <div>Published on : {created_on}</div>
       </div>
-    </div>
+    </Link>
   );
 }
 
