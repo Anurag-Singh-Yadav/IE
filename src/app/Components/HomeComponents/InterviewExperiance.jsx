@@ -2,6 +2,7 @@
 import React from "react";
 import interviewData from "../../../../public/interviewData";
 import InterviewCard from "./InterviewCard";
+import Link from "next/link";
 function InterviewExperiance() {
   return (
     <div className="py-16">
@@ -19,9 +20,11 @@ function InterviewExperiance() {
           </div>
         </div>
         <div className="flex justify-center md:justify-end items-center">
-          <button className="px-4 py-2 rounded-lg font-bold text-white btn-gradient-2">
+          <Link className="px-4 py-2 rounded-lg font-bold text-white btn-gradient-2" 
+          href={"/interviewExperience"}
+          >
             Read more...
-          </button>
+          </Link>
         </div>
       </div>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -29,7 +32,7 @@ function InterviewExperiance() {
           <InterviewCard
             key={i}
             name={interviewData[i].name}
-            userPhoto={interviewData[i].userPhoto}
+            userPhoto={interviewData[i].avatar}
             company={interviewData[i].company}
             linkedin_id={interviewData[i].linkedin_id}
             created_on={interviewData[i].created_on}

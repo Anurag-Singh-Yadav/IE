@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import WebsiteBanner from "../Components/templets/WebsiteBanner";
-// import challengesData from "./challengesData.js";
 import Link from "next/link";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -34,6 +33,8 @@ function Page() {
     <div className="min-h-[100vh]">
       <div>
         <WebsiteBanner
+          heading={"The world’s largest selection of online courses"}
+          paragraph={"Millions of people have used Interview Express to decide which online course to take. We aggregate courses from many universities to help you find the best courses on almost any subject, wherever they exist. Our goal is to make online education work for everyone."}
           imgSrc={"onGoingChallenges.gif"}
           BtnName={"Accepts Challenges"}
         ></WebsiteBanner>
