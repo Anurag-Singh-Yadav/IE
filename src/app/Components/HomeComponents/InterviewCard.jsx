@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import Avatar from "react-avatar";
 import { TiTick } from "react-icons/ti";
@@ -21,27 +21,28 @@ function InterviewCard({
       <div className="flex flex-wrap justify-between items-center">
         <div className="flex flex-wrap items-center">
           <div>
-            {!userPhoto && (
-              <Avatar
-                className="cursor-pointer items-center mr-8 px-2 "
-                name={name}
-                size="50"
-                round="20px"
-              ></Avatar>
-            )}
-            {userPhoto && <Image src={userPhoto} alt="userPhoto" />}
+            <Avatar
+              className="cursor-pointer items-center mr-8 px-2"
+              src={userPhoto}
+              name={name}
+              size="50"
+              round={true}
+            ></Avatar>
           </div>
           <div>
             <div>
-              <span className="text-sm md:text-xl font-semibold md:font-bold text-green-bg">{name}</span> <span>| Round {round}</span>
+              <span className="text-sm md:text-xl font-semibold md:font-bold text-green-bg">
+                {name}
+              </span>{" "}
+              <span>| Round {round}</span>
             </div>
-            <div><span>{position},{" "}</span><span className="font-bold px-[2px] py">{company}</span></div>
+            <div>
+              <span>{position}, </span>
+              <span className="font-bold px-[2px] py">{company}</span>
+            </div>
           </div>
         </div>
-        <div>
-
-
-        </div>
+        <div></div>
       </div>
 
       <div className="h-[2px] my-4 bg-slate-800"></div>
@@ -64,7 +65,10 @@ function InterviewCard({
         </div>
         {linkedin_id && (
           <div className="flex justify-between gap-2 items-center hover:text-blue-700">
-            <span className=" font-medium cursor-pointer hover:font-semibold">Connect me </span> <GrLinkedin className="text-blue-700" />
+            <span className=" font-medium cursor-pointer hover:font-semibold">
+              Connect me{" "}
+            </span>{" "}
+            <GrLinkedin className="text-blue-700" />
           </div>
         )}
 
