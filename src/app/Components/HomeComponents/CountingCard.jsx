@@ -25,16 +25,17 @@ function CountingCard({ mainText, targetNumber, type }) {
     return () => clearInterval(intervalId);
   }, [flag]);
 
-  function handleScroll() {
-    let div = document.getElementById("about");
+  function handleScroll (){
+    let div = document.getElementById('about');
+    if(!div)return;
     let divPosition = div.getBoundingClientRect().top;
     let screenPosition = window.innerHeight;
-    if (divPosition < screenPosition) {
+    if(divPosition < screenPosition){
       setFlag(1);
-    } else {
-      setReset(1);
-      setEnrolledStudents(0);
-      setFlag(0);
+    }else{
+        setReset(1);
+        setEnrolledStudents(0);
+        setFlag(0);
     }
   }
 
@@ -46,6 +47,7 @@ function CountingCard({ mainText, targetNumber, type }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <div className="flex justify-center py-2 bg-white shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] items-center gap-2">
       {type === "happy" && <RiEmotionHappyLine size={30} />}

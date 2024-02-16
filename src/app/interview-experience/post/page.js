@@ -207,7 +207,7 @@ function PostBlog() {
               displayEmpty={false}
               inputProps={{ "aria-label": "Without label" }}
               required={true}
-              className="block my-2"
+              className="block ml-3"
             >
               <MenuItem value={"yes"}>Yes</MenuItem>
               <MenuItem value={"no"}>No</MenuItem>
