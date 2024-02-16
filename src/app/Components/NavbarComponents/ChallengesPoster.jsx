@@ -38,6 +38,9 @@ function ChallengesPoster({ challenges }) {
             </Link>
           );
         })}
+        {
+          !challenges && <div className=" whitespace-nowrap">Loading Challenges...</div>
+        }
       <Link
         href={"/onGoingChallenges"}
         className="btn-gradient-2 w-fit px-4 py-2 rounded-md mx-auto mt-3"

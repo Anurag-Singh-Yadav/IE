@@ -10,13 +10,11 @@ function Dropdown({ label, options }) {
   // options : [ { label : 'abc' , value : 'xyz' , }  , {} ,....]
 
   const mouseEnter = () => {
-    if (options.length == 0) return;
     let b = document.getElementById(`dd-${label}`);
     b.classList.add("animate-in");
   };
 
   const mouseLeave = () => {
-    if (options.length == 0) return;
     let b = document.getElementById(`dd-${label}`);
     b.classList.remove("animate-in");
     b.classList.add("animate-out");
