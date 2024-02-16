@@ -65,7 +65,7 @@ function PostBlog() {
         imgSrc={"interview-experience.svg"}
         BtnName={"Continue"}
         heading={"Share Your Interview Journey"}
-        description={
+        paragraph={
           'Welcome to "Share Your Interview Journey," the ultimate platform where you can share your firsthand interview experiences across various industries and roles. Our mission is to provide a comprehensive repository of interview stories that offers insights, lessons learned, and actionable advice to job seekers aiming to navigate their own interview processes successfully.'
         }
       />
@@ -83,11 +83,11 @@ function PostBlog() {
             </li>
 
             <li className="text-gray-600 py-1 rounded-md border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100">
-              <strong className="text-black">Constructive Sharing:</strong>{" "}
+              <strong className="text-black">Constructive Sharing:</strong>
               While we encourage honesty and transparency in sharing your
               interview experiences, it's crucial to maintain a constructive
               tone. Avoid derogatory comments, personal attacks, or any form of
-              disrespectful language towards individuals or companies.{" "}
+              disrespectful language towards individuals or companies.
             </li>
 
             <li className="text-gray-600 py-1 rounded-md border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100">
@@ -95,7 +95,7 @@ function PostBlog() {
               platform is not a venue for settling scores or targeting specific
               individuals or organizations negatively. Our aim is to share
               experiences that are educational and beneficial for job seekers,
-              not to foster negativity or defamation.{" "}
+              not to foster negativity or defamation.
             </li>
 
             <li className="text-gray-600 py-1 rounded-md border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100">
