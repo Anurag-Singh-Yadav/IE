@@ -14,7 +14,6 @@ function InterviewCard({
   selected,
   position,
   round,
-  company_logo,
 }) {
   return (
     <div className="my-3 py-4 text-black px-4 border-l-2 hover:border-green-bg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
