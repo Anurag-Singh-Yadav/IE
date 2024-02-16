@@ -31,6 +31,7 @@ function Navbar() {
   const dispatch = useDispatch();
   const { data: session, status } = useSession();
 
+
   const isLogin = useSelector((state) => {
     return state.GlobalState.isLogin;
   });
@@ -96,6 +97,10 @@ function Navbar() {
       Cookies.set("token", session.user.interviewToken, { expires: 7 });
       getResponse(session.user.interviewToken);
     }
+    
+    if(!storedCookie)
+    window.localStorage.removeItem("user-interview-experience-draft");
+
   }, [session]);
 
   const isSignup = useSelector((state) => {

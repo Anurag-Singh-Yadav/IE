@@ -18,7 +18,7 @@ function ChallengesPoster({ challenges }) {
             >
               <img
                 src={challenge.imageUrl}
-                className="aspect-auto max-w-[250px]"
+                className="aspect-video max-w-[250px]"
               />
               <div className="flex flex-col justify-center gap-3 py-5 h-full">
                 <div className="font-semibold text-sm">
