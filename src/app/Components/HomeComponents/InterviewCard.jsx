@@ -20,13 +20,13 @@ function InterviewCard({
   return (
     <Link href={`/interview-experience/[id]`} as={`/interview-experience/${id}`} className="my-3 py-4 text-black px-4 border-l-2 hover:border-green-bg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
       <div className="flex flex-wrap justify-between items-center">
-        <div className="flex flex-wrap items-center">
+        <div className="flex gap-3 flex-wrap items-center">
           <div>
             <Avatar
-              className="cursor-pointer items-center mr-8 px-2"
+              className="cursor-pointer"
+              size="50"
               src={userPhoto}
               name={name}
-              size="50"
               round={true}
             ></Avatar>
           </div>
