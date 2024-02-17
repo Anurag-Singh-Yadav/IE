@@ -53,14 +53,14 @@ function InterviewCard({
           {selected && (
             <div className="flex justify-center items-center gap-2 font-semibold text-green-bg">
               <TiTick />
-              <div>Seleted</div>
+              <div>Selected</div>
             </div>
           )}
 
           {!selected && (
             <div className="flex justify-center items-center text-red-800 gap-2 font-semibold">
               <RxCrossCircled />
-              <div>Not Seleted</div>
+              <div>Not Selected</div>
             </div>
           )}
         </div>
