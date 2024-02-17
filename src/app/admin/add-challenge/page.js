@@ -1,7 +1,7 @@
 import React from 'react'
 import AddChallenge from '../AddChallenge'
 
-function Challenge() {
+function Page() {
   return (
     <div>
         <AddChallenge />
@@ -9,4 +9,4 @@ function Challenge() {
   )
 }
 
-export default Challenge
+export default Page
