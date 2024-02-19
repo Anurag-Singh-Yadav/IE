@@ -13,10 +13,6 @@ export default function App() {
 
   const [htmlContent , setHtmlContent] = useState('');
 
-  const changeHandler = (e) => {
-    setHtmlContent(editorRef.current.getContent());
-  }
-
   return (
     <div> 
       <TextEditor htmlContent={htmlContent} setHtmlContent={setHtmlContent} formName={'admin-uploading-form'} />
