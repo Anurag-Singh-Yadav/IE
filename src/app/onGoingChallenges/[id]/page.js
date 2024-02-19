@@ -22,7 +22,6 @@ export default function Page({ params, imgSrc }) {
           },
         }
       );
-      console.log(response?.data?.data);
       setQuestionsDetail(response?.data?.data);
     } catch (e) {
       console.log(e);
