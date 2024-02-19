@@ -4,8 +4,11 @@ import Cookies from "js-cookie";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import WebsiteBanner from "../Components/templets/WebsiteBanner";
+import { useRouter } from 'next/navigation'
+
 function Admin() {
   const [flag, setFlag] = useState(false);
+  const router = useRouter()
   const verifyAdmin = async () => {
     try {
       const token = Cookies.get("token");
@@ -20,7 +23,7 @@ function Admin() {
       setFlag(true);
     } catch (e) {
       alert("You are not authorized to access this page");
-
+      router.push('/');
       console.log(e);
     }
   };
