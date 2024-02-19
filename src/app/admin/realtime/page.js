@@ -1,7 +1,5 @@
 'use client'
 import React, { useRef, useState } from 'react';
-import { Editor } from '@tinymce/tinymce-react';
-import HtmlToDom from '@/app/Components/templets/HtmlToDom';
 import TextEditor from '@/app/Components/templets/TextEditor';
 
 export default function App() {
