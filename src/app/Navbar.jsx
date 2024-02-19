@@ -81,7 +81,6 @@ function Navbar() {
           `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_ALL_CHALLENGES}`
         );
         setChallenges(res.data?.data);
-        console.log("All challenges -->", res.data?.data);
       } catch (err) {}
     };
 

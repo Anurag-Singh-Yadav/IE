@@ -4,7 +4,6 @@ import WebsiteBanner from "../Components/templets/WebsiteBanner";
 import Link from "next/link";
 import axios from "axios";
 import Cookies from "js-cookie";
-import Image from "next/image";
 function Page() {
   const [challengesData,setChallengesData] = useState(null);
 

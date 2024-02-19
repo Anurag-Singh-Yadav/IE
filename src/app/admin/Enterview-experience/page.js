@@ -6,6 +6,7 @@ import InterviewCard from "@/app/Components/HomeComponents/InterviewCard";
 import axios from "axios";
 function Page() {
   const [interviewData, setInterviewData] = useState(null);
+  const [isClick,setIsClicked] = useState(false);
 
   const fetchInterviews = async () => {
     try {
@@ -14,7 +15,6 @@ function Page() {
           process.env.NEXT_PUBLIC_GET_INTERVIEW_EXPERIENCE
         }/${true}`
       );
-      console.log(response);
       setInterviewData(response.data.data);
     } catch (e) {
       console.log(e);
@@ -23,7 +23,7 @@ function Page() {
 
   useEffect(() => {
     fetchInterviews();
-  }, []);
+  }, [isClick]);
   return (
     <div>
       <div>
@@ -53,8 +53,11 @@ function Page() {
                 selected={interview.selected}
                 position={interview.position}
                 round={interview.round}
+                isClick={isClick}
+                setIsClicked={setIsClicked}
                 company_logo={interview.company_logo}
                 id={interview._id}
+                isAdmin={true}
               />
             ))}
         </div>

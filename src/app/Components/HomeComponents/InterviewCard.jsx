@@ -1,11 +1,13 @@
 "use client";
-import React from "react";
+import React,{useState} from "react";
 import Avatar from "react-avatar";
 import { TiTick } from "react-icons/ti";
 import { RxCrossCircled } from "react-icons/rx";
 import { GrLinkedin } from "react-icons/gr";
 import Image from "next/image";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import axios from "axios";
 function InterviewCard({
   name,
   userPhoto,
@@ -13,12 +15,33 @@ function InterviewCard({
   linkedin_id,
   created_on,
   selected,
-  position, 
+  position,
   round,
-  id
+  id,
+  isAdmin,
+  isClick,
+  setIsClicked
 }) {
+
+
+  const adminChoics = async (choics)=>{
+    const token = Cookies.get("token");
+    setIsClicked(true);
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_ADMIN_URL}${process.env.NEXT_PUBLIC_ADMIN_TO_ACCEPTS_INTERVIEW_BLOG}`,{
+        id:id,
+        isAdminAccepted:choics
+      },{
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+    setIsClicked(false);
+  }
+
   return (
-    <Link href={`/interview-experience/[id]`} as={`/interview-experience/${id}`} className="my-3 py-4 text-black px-4 border-l-2 hover:border-green-bg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+    <div className="my-3 py-4 text-black px-4 border-l-2 hover:border-green-bg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
       <div className="flex flex-wrap justify-between items-center">
         <div className="flex gap-3 flex-wrap items-center">
           <div>
@@ -64,6 +87,28 @@ function InterviewCard({
             </div>
           )}
         </div>
+        
+
+        <div>Published on : {created_on}</div>
+      </div>
+      {isAdmin && (
+        <div className="flex justify-evenly py-2">
+          <div className={`transition-all duration-300 hover:bg-green-bg px-4 py-2 bg-light-green2 rounded-md ${isClick == true ? 'cursor-wait' : 'cursor-pointer'}`} onClick={()=>{
+            adminChoics(true)
+          }}>Accept</div>
+          <div className={`transition-all duration-300 hover:bg-green-bg px-4 py-2 bg-light-green2 rounded-md ${isClick == true ? 'cursor-wait' : 'cursor-pointer'}`} onClick={()=>{
+            adminChoics(false)
+          }}>Reject</div>
+        </div>
+      )}
+      <div className="flex justify-between my-2 items-center">
+        <Link
+          href={`/interview-experience/[id]`}
+          as={`/interview-experience/${id}`}
+          className="px-4 py-2 btn-gradient rounded-md btn-gradient-2 cursor-pointer text-white hover:rounded-lg transition-all duration-500"
+        >
+          Read
+        </Link>
         {linkedin_id && (
           <div className="flex justify-between gap-2 items-center hover:text-blue-700">
             <span className=" font-medium cursor-pointer hover:font-semibold">
@@ -72,10 +117,8 @@ function InterviewCard({
             <GrLinkedin className="text-blue-700" />
           </div>
         )}
-
-        <div>Published on : {created_on}</div>
       </div>
-    </Link>
+    </div>
   );
 }
 
