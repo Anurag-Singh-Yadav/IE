@@ -1,20 +1,21 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import WebsiteBanner from "../Components/templets/WebsiteBanner";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import WebsiteBanner from "@/app/Components/templets/WebsiteBanner";
+import InterviewCard from "@/app/Components/HomeComponents/InterviewCard";
 import axios from "axios";
-import InterviewCard from "../Components/HomeComponents/InterviewCard";
-// import interviewData from "../../../public/interviewData";
 function Page() {
-  const [pageIndex, setPageIndex] = useState(0);
   const [interviewData, setInterviewData] = useState(null);
+  const [isClick,setIsClicked] = useState(false);
 
   const fetchInterviews = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_INTERVIEW_EXPERIENCE}/${false}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}${
+          process.env.NEXT_PUBLIC_GET_INTERVIEW_EXPERIENCE
+        }/${true}`
       );
       setInterviewData(response.data.data);
-      // console.log(response);
     } catch (e) {
       console.log(e);
     }
@@ -22,19 +23,17 @@ function Page() {
 
   useEffect(() => {
     fetchInterviews();
-  }, [pageIndex]);
-
+  }, [isClick]);
   return (
     <div>
       <div>
         <WebsiteBanner
-          heading="The world’s largest selection of online courses"
+          heading="This is Admin section to accept the Interview Experience"
           BtnName="Read More"
           imgSrc="interview-Experience.svg"
           paragraph="Interview Experience is a platform where you can find interview experiences of top companies. We have a collection of interview experiences of top companies like Google, Amazon, Microsoft, etc. You can also share your interview experience with us."
         ></WebsiteBanner>
       </div>
-
       <div className="bg-[url('/dsaPrac.svg')] pt-4 pb-8 main-container">
         <div className="font-semibold sm:py-4 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl">
           Explore all{" "}
@@ -54,32 +53,13 @@ function Page() {
                 selected={interview.selected}
                 position={interview.position}
                 round={interview.round}
+                isClick={isClick}
+                setIsClicked={setIsClicked}
                 company_logo={interview.company_logo}
                 id={interview._id}
+                isAdmin={true}
               />
             ))}
-        </div>
-
-        <div className="w-fit mx-auto grid grid-cols-2 items-center justify-center py-4 sm:py-8">
-          <div
-            className={`text-lg font-medium rounded-l-full py-2 px-4 transition-all duration-300  ${
-              pageIndex == 0
-                ? "cursor-not-allowed bg-slate-300 text-black"
-                : "cursor-pointer hover:bg-green-bg hover:text-white"
-            }`}
-            onClick={() => {
-              if (pageIndex == 0) return;
-              setPageIndex(pageIndex - 1);
-            }}
-          >
-            Previous
-          </div>
-          <div
-            className="text-lg font-medium  rounded-r-full py-2 px-4 hover:text-white transition-all duration-300  hover:bg-green-bg cursor-pointer"
-            onClick={() => setPageIndex(pageIndex + 1)}
-          >
-            Next
-          </div>
         </div>
       </div>
     </div>
