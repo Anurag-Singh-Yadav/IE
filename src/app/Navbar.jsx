@@ -14,6 +14,7 @@ import {
   setLogin,
   toggleSignPagePopup,
   setSignInBtn,
+  setUserEmail,
 } from "./GlobalRedux/Features/GlobalStateSlice";
 
 import { FaCircleArrowUp } from "react-icons/fa6";
@@ -66,6 +67,7 @@ function Navbar() {
         }));
         setShowLoader(false);
         dispatch(setLogin(true));
+        dispatch(setUserEmail(email));
       }
       setShowLoader(false);
     } catch (err) {

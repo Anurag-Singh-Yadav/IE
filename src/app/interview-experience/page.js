@@ -14,6 +14,7 @@ function Page() {
         `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_INTERVIEW_EXPERIENCE}/${false}`
       );
       setInterviewData(response.data.data);
+      // console.log(response);
     } catch (e) {
       console.log(e);
     }
