@@ -1,5 +1,4 @@
 "use client";
-import React, { useState, useEffect } from "react";
 import CountingCard from "./CountingCard";
 
 function About() {

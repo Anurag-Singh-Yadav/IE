@@ -14,6 +14,7 @@ import {
   setLogin,
   toggleSignPagePopup,
   setSignInBtn,
+  setUserEmail,
 } from "./GlobalRedux/Features/GlobalStateSlice";
 
 import { FaCircleArrowUp } from "react-icons/fa6";
@@ -66,6 +67,7 @@ function Navbar() {
         }));
         setShowLoader(false);
         dispatch(setLogin(true));
+        dispatch(setUserEmail(email));
       }
       setShowLoader(false);
     } catch (err) {
@@ -81,7 +83,6 @@ function Navbar() {
           `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_ALL_CHALLENGES}`
         );
         setChallenges(res.data?.data);
-        console.log("All challenges -->", res.data?.data);
       } catch (err) {}
     };
 
