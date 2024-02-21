@@ -45,7 +45,8 @@ function Admin() {
           <div className="flex gap-5 flex-wrap justify-evenly py-4">
         <Link href="/admin/add-challenge">Add challenge</Link>
         <Link href="/admin/realtime">Add Articles</Link>
-        <Link href="/admin/Enterview-experience">View Enterview-experience</Link>
+        <Link href="/admin/interview-experience">View Enterview-experience</Link>
+        <Link href="/admin/Website-reviews">View Website Reviews</Link>
       </div>
         </div>
       }
