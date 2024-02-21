@@ -98,10 +98,6 @@ function Navbar() {
       Cookies.set("token", session.user.interviewToken, { expires: 7 });
       getResponse(session.user.interviewToken);
     }
-    
-    if(!storedCookie)
-    window.localStorage.removeItem("user-interview-experience-draft");
-
   }, [session]);
 
   const isSignup = useSelector((state) => {
