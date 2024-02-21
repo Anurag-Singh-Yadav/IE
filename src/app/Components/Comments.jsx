@@ -74,7 +74,7 @@ function Comments({
       if (res.data?.success === true) {
         setUpdatedContent(!updatedContent);
         setCurrState(!currState);
-        if(setParentState) setParentState(!parentState);
+        if (setParentState) setParentState(!parentState);
       }
     } catch (e) {
       console.log(e);
@@ -117,7 +117,7 @@ function Comments({
   };
 
   const getResponse = async () => {
-    const token = Cookies.get('token');
+    const token = Cookies.get("token");
     try {
       setPosting(true);
       const res = await axios.post(
@@ -165,8 +165,7 @@ function Comments({
           console.log(comment?.comment);
         }
       }
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   const postEditComment = async () => {
@@ -192,8 +191,7 @@ function Comments({
         setShowEdit(false);
         if (setParentState) setParentState(!parentState);
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   useEffect(() => {
@@ -202,32 +200,29 @@ function Comments({
 
   return (
     <div className=" bg-white rounded-t-lg px-3 py-2">
-      <div className="flex gap-3 items-center flex-wrap justify-start">
+      <div className="flex gap-3 items-center flex-wrap justify-start border-b pb-1">
         <Avatar src={avatar} round={true} name={email} size="50" />
         <p>{email.split("@")[0]}</p>
-        {comment.email === userEmail && (
-          <MdDelete size={25} onClick={deleteComment} />
-        )}
       </div>
       <p className={`whitespace-pre-wrap mt-4`}>
         {data?.comment.comment.trim()}
       </p>
       <div className=" flex flex-col gap-4 items-center flex-wrap  mt-5">
         <div className={"flex flex-wrap gap-2 items-center w-full"}>
-          <div className="flex gap-3 py-3 items-center">
-            <div className="flex gap-2 items-centersize={22} ">
+          <div className="flex gap-3 py-3 items-center flex-wrap">
+            <div className="flex gap-2 items-center ">
               <div
                 className={`flex gap-1 items-center ${
-                  data.comment?.userVote === 1 && "text-blue-500"
-                } hover:text-blue-600`}
+                  data.comment?.userVote === 1 && "text-green-bg"
+                } hover:text-green-bg cursor-pointer text-sm`}
               >
                 <BiSolidLike size={22} onClick={() => voteComment(true)} />
                 <span>{data.comment?.likedBy.length}</span>
               </div>
               <div
                 className={`flex gap-1 items-center ${
-                  data.comment?.userVote === 2 && "text-blue-500"
-                } hover:text-blue-600`}
+                  data.comment?.userVote === 2 && "text-red-500"
+                } hover:text-red-500 cursor-pointer text-sm`}
               >
                 <BiSolidDislike size={22} onClick={() => voteComment(false)} />
                 <span>{data.comment?.dislikedBy.length}</span>
@@ -238,6 +233,7 @@ function Comments({
                 setShowEdit(false);
                 setReplyCommentEditor(!replyCommentEditor);
               }}
+              className="hover:text-green-bg hover:underline"
             >
               Reply
             </button>
@@ -248,9 +244,16 @@ function Comments({
                   setReplyCommentEditor(false);
                   setShowEdit(!showEdit);
                 }}
+                className="hover:text-green-bg hover:underline"
               >
                 Edit
               </button>
+            )}
+            {comment.email === userEmail && (
+              <div onClick={deleteComment} className=" rounded-full p-1 flex items-center gap-1 cursor-pointer text-red-500 hover:text-red-600">
+                <MdDelete size={20}  />
+                <p>Delete</p>
+              </div>
             )}
           </div>
         </div>
