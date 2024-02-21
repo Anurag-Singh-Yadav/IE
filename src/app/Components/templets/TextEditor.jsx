@@ -33,7 +33,7 @@ export default function TextEditor({ htmlContent, setHtmlContent, formName }) {
       <Editor
         onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
-          images_upload_url: `${process.env.NEXT_PUBLIC_ADMIN_URL}${process.env.NEXT_PUBLIC_GET_IMAGE_URL}`,
+          images_upload_url: `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_IMAGE_URL}`,
           height: 500,
           plugins: [
             "advlist autolink lists link image charmap print preview anchor",
@@ -70,7 +70,7 @@ export default function TextEditor({ htmlContent, setHtmlContent, formName }) {
           <HtmlToDom htmlContent={htmlContent} />
         </div>
       )}
-      <p>{htmlContent}</p>
+      {/* <p>{htmlContent}</p> */}
     </div>
   );
 }

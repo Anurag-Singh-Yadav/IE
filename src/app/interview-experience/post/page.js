@@ -6,10 +6,6 @@ import TextEditor from "@/app/Components/templets/TextEditor";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-function generateRandomString() {
-  return Math.random().toString(36).substring(2, 12);
-}
-
 function PostBlog() {
 
   const [formData, setFormData] = useState({
@@ -54,6 +50,9 @@ function PostBlog() {
         }
       );
       console.log(res);
+      if(res.data?.success === true){
+        
+      }
     } catch (err) {
       alert(err.response?.data?.message || "Unknown error while posting.");
     }
