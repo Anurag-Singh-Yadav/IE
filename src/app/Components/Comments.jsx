@@ -19,8 +19,8 @@ function Comments({
   parentState,
   setParentState,
 }) {
-  const userEmail = useSelector((state) => {
-    return state.GlobalState.userEmail;
+  const userDetails = useSelector((state) => {
+    return state.GlobalState.userDetails;
   });
 
   const [currState, setCurrState] = useState(false);
@@ -237,7 +237,7 @@ function Comments({
             >
               Reply
             </button>
-            {data.comment?.email === userEmail && (
+            {data.comment?.email === userDetails.email && (
               <button
                 onClick={() => {
                   setEditComment(data.comment?.comment.trim());
@@ -249,7 +249,7 @@ function Comments({
                 Edit
               </button>
             )}
-            {comment.email === userEmail && (
+            {comment.email === userDetails.email && (
               <div onClick={deleteComment} className=" rounded-full p-1 flex items-center gap-1 cursor-pointer text-red-500 hover:text-red-600">
                 <MdDelete size={20}  />
                 <p>Delete</p>
