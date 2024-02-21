@@ -11,12 +11,12 @@ const PreRender = ({ count, height , color}) => {
     <div className="flex flex-col w-full">
       {Array.from({ length: count }, (_, index) => {
         return (
-          <div>
+          <div key={index}>
             {!height && (
-              <div key={index} className="loading-placeholder my-3" style={{height:'20px', backgroundColor:`${color}`}}></div>
+              <div  className="loading-placeholder my-3" style={{height:'20px', backgroundColor:`${color}`}}></div>
             )}
             {height && (
-              <div key={index} className="loading-placeholder my-3" style={{height: `${height}px`, backgroundColor:`${color}`}}></div>
+              <div className="loading-placeholder my-3" style={{height: `${height}px`, backgroundColor:`${color}`}}></div>
             )}
           </div>
         );

@@ -69,7 +69,7 @@ function Page() {
             <div className="">
               <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 {arr.map((obj, index) => {
-                  return <PreRender count={1} height={100} color={`#f5f6f7`} />;
+                  return <PreRender key={index} count={1} height={100} color={`#f5f6f7`} />;
                 })}
               </div>
               
