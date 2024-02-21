@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import WebsiteBanner from "@/app/Components/templets/WebsiteBanner";
 import InterviewCard from "@/app/Components/HomeComponents/InterviewCard";
 import axios from "axios";
