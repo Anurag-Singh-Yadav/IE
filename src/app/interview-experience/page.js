@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import WebsiteBanner from "../Components/templets/WebsiteBanner";
 import axios from "axios";
 import InterviewCard from "../Components/HomeComponents/InterviewCard";
+import Link from "next/link";
+import PreRender from "../Components/templets/PreRender";
 // import interviewData from "../../../public/interviewData";
 function Page() {
   const [pageIndex, setPageIndex] = useState(0);
@@ -11,7 +13,9 @@ function Page() {
   const fetchInterviews = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_INTERVIEW_EXPERIENCE}/${false}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}${
+          process.env.NEXT_PUBLIC_GET_INTERVIEW_EXPERIENCE
+        }/${false}`
       );
       setInterviewData(response.data?.data);
     } catch (e) {
@@ -22,6 +26,8 @@ function Page() {
   useEffect(() => {
     fetchInterviews();
   }, [pageIndex]);
+
+  let arr = new Array(6).fill({});
 
   return (
     <div>
@@ -58,6 +64,18 @@ function Page() {
               />
             ))}
         </div>
+        <div>
+          {!interviewData && (
+            <div className="">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                {arr.map((obj, index) => {
+                  return <PreRender count={1} height={100} color={`#f5f6f7`} />;
+                })}
+              </div>
+              
+            </div>
+          )}
+        </div>
 
         <div className="w-fit mx-auto grid grid-cols-2 items-center justify-center py-4 sm:py-8">
           <div
@@ -79,6 +97,14 @@ function Page() {
           >
             Next
           </div>
+        </div>
+        <div className="flex justify-center">
+          <Link
+            href={"/interview-experience/post"}
+            className="btn-gradient-2 px-4 py-2 rounded-md"
+          >
+            Post your own interview-journey
+          </Link>
         </div>
       </div>
     </div>
