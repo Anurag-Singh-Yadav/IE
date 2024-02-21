@@ -1,6 +1,5 @@
 .loading-placeholder {
-    width: 100%; /* Adjust the width as needed */
-    height: 20px; /* Adjust the height as needed */
+    width: 100%; /* Adjust the width as needed */ /* Adjust the height as needed */
     background-color: #f8f5f5;
     position: relative;
     overflow: hidden;

@@ -6,6 +6,7 @@ import Image from "next/image";
 import QuestionArray from "./QuestionArray";
 import { WindowRounded } from "@mui/icons-material";
 import { FaCheck } from "react-icons/fa";
+import PreRender from "./PreRender";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
