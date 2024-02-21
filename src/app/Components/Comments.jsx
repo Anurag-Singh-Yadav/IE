@@ -213,16 +213,16 @@ function Comments({
             <div className="flex gap-2 items-center ">
               <div
                 className={`flex gap-1 items-center ${
-                  data.comment?.userVote === 1 && "text-blue-500"
-                } hover:text-blue-600 cursor-pointer text-sm`}
+                  data.comment?.userVote === 1 && "text-green-bg"
+                } hover:text-green-bg cursor-pointer text-sm`}
               >
                 <BiSolidLike size={22} onClick={() => voteComment(true)} />
                 <span>{data.comment?.likedBy.length}</span>
               </div>
               <div
                 className={`flex gap-1 items-center ${
-                  data.comment?.userVote === 2 && "text-blue-500"
-                } hover:text-blue-600 cursor-pointer text-sm`}
+                  data.comment?.userVote === 2 && "text-red-500"
+                } hover:text-red-500 cursor-pointer text-sm`}
               >
                 <BiSolidDislike size={22} onClick={() => voteComment(false)} />
                 <span>{data.comment?.dislikedBy.length}</span>
