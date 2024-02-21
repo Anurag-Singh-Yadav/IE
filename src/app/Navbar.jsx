@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut, useSession } from "next-auth/react";
-
+import { useSession } from "next-auth/react";
+import {fetchUserDetails} from './fetchDetails/fetchUserDetails';
 import Dropdown from "./Components/NavbarComponents/Dropdown";
 import Login from "./Components/NavbarComponents/Login";
 import "./globals.css";
@@ -14,7 +14,7 @@ import {
   setLogin,
   toggleSignPagePopup,
   setSignInBtn,
-  setUserEmail,
+  setUserDetails,
 } from "./GlobalRedux/Features/GlobalStateSlice";
 
 import { FaCircleArrowUp } from "react-icons/fa6";
@@ -43,18 +43,8 @@ function Navbar() {
   const getResponse = async (token) => {
     setShowLoader(true);
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_FETCH_USER_DETAILS}`,
-        {
-          token: token,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
 
+      const res = await fetchUserDetails(token);
       if (res?.data?.success == true) {
         const { userHandle, avatar, email, name } = res.data;
 
@@ -67,7 +57,7 @@ function Navbar() {
         }));
         setShowLoader(false);
         dispatch(setLogin(true));
-        dispatch(setUserEmail(email));
+        dispatch(setUserDetails(res.data));
       }
       setShowLoader(false);
     } catch (err) {
