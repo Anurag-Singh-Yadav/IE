@@ -69,7 +69,7 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
               index={index}
               open={open}
               setOpen={setOpen}
-              handleClick={handleClick}
+              closeNav={handleClick}
               challenges={challenges}
             />
           );

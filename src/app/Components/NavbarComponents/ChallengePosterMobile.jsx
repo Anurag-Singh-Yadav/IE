@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react'
 
-function ChallengePosterMobile({challenges , handleClick}) {
+function ChallengePosterMobile({challenges , closeNav}) {
   return (
     <div className='flex flex-col gap-1 mt-3'>
         {
@@ -16,7 +16,7 @@ function ChallengePosterMobile({challenges , handleClick}) {
                         href={{
                           pathname: `/onGoingChallenges/${challengeData.challenge?._id}`,
                         }}
-                        onClick={handleClick}
+                        onClick={closeNav}
                         className="flex items-center w-full gap-5 hover:bg-gray-100"
                         key={index}
                       >

@@ -11,7 +11,7 @@ function MobileDropDown2({
   label,
   options,
   index,
-  handleClick,
+  closeNav,
   challenges,
 }) {
   const handleClick = () => {
@@ -69,7 +69,7 @@ function MobileDropDown2({
                 <div className=" h-[2px] w-4 bg-green-bg mr-2" />
                 <Link
                   href={obj.value}
-                  onClick={() => handleClick()}
+                  onClick={() => closeNav()}
                   className=" cursor-pointer hover:text-green-bg rounded-lg transition duration-300 w-full px-2 py-1"
                 >
                   {obj.label}
@@ -79,7 +79,7 @@ function MobileDropDown2({
           })}
 
           {
-            label === 'Challenges' && <ChallengePosterMobile challenges={challenges} handleClick={handleClick} />
+            label === 'Challenges' && <ChallengePosterMobile challenges={challenges} closeNav={closeNav} />
           }
 
         </div>
