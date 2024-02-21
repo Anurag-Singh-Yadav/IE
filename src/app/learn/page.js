@@ -66,6 +66,14 @@ function Page() {
                 </Link>
               ))}
           </div>
+          <Link
+            href={"/post-review"}
+            className="flex justify-center items-center"
+          >
+            <div className="flex justify-center px-5 cursor-pointer py-2 items-center text-lg start">
+              Reviews
+            </div>
+          </Link>
         </div>
       )}
     </div>

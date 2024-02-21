@@ -8,7 +8,12 @@
         isLight: true,
         isSignup:true,
         articleLoading: true,
-        userEmail: '',
+        userDetails: {
+            email: '',
+            userHandle: '',
+            name:'',
+            avatar:'',
+        },
     }
 
     export const GlobalStateSlice = createSlice({
@@ -36,12 +41,15 @@
                 state.articleLoading = value.payload;
                 return state;
             },
-            setUserEmail:(state, value) => {
-                state.userEmail = value.payload;
+            setUserDetails: (state, action) => {
+                state.userDetails = {
+                    ...state.userDetails,
+                    ...action.payload
+                };
                 return state;
             }
         }
     })
 
-    export const {setLogin , toggleLight,toggleSignPagePopup,setSignInBtn,setArticleLoading,setUserEmail} = GlobalStateSlice.actions;
+    export const {setLogin , toggleLight,toggleSignPagePopup,setSignInBtn,setArticleLoading,setUserDetails} = GlobalStateSlice.actions;
     export default GlobalStateSlice.reducer;
