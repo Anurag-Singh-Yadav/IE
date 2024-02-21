@@ -55,7 +55,7 @@ export default function TextEditor({ htmlContent, setHtmlContent, formName }) {
         value={htmlContent}
       />
       {/* <p>{htmlContent}</p> */}
-      {formName !== 'user-interview-experience-draft' && <div className="flex justify-center">
+      {<div className="flex justify-center">
         <button
           className="btn-gradient-2 px-4 py-2 rounded-md mx-auto my-5 text-lg"
           onClick={() => {
@@ -70,6 +70,7 @@ export default function TextEditor({ htmlContent, setHtmlContent, formName }) {
           <HtmlToDom htmlContent={htmlContent} />
         </div>
       )}
+      <p>{htmlContent}</p>
     </div>
   );
 }

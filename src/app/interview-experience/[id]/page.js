@@ -51,7 +51,7 @@ function InterviewBlog({ params }) {
 
   }, [updatedContent]);
 
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState(true);
 
   const [posting, setPosting] = useState(false);
 
@@ -105,14 +105,14 @@ function InterviewBlog({ params }) {
 
   return (
     <div
-      className={`  px-4 md:px-12 lg:px-16  flex justify-center flex-col items-center ${showComments && 'pb-[90vh]'}`}
+      className={` main-container flex justify-center flex-col items-center ${showComments && 'pb-[90vh]'} `}
     >
-      <div className=" relative px-4 pt-10 mt-5 bg-gray-100 rounded-xl min-w-[95%] md:min-w-[94%] lg:min-w-[90%] flex flex-col items-center">
+      <div className=" relative px-4 pt-10 mt-5 rounded-xl min-w-[95%] md:min-w-[94%] lg:min-w-[90%] flex flex-col items-center">
         {!blog && <PreRender count={15} />}
 
         <div className="">
           {blog && (
-            <div className="flex items-start ">
+            <div className="flex items-start">
               <HtmlToDom htmlContent={blog.blog} />
             </div>
           )}
@@ -122,7 +122,7 @@ function InterviewBlog({ params }) {
                 onClick={async () => {
                   setShowComments(!showComments);
                 }}
-                className="flex justify-between gap-4 items-center my-7 bg-yellow-300 px-4 py-1 rounded-full border-2 border-yellow-300 hover:bg-yellow-300/70  transition duration-300"
+                className="flex justify-between gap-4 items-center my-7 btn-gradient-2 px-4 py-1 rounded-md"
               >
                 <div>
                   {!showComments && <p className=" text-base">Show comments</p>}
@@ -140,7 +140,7 @@ function InterviewBlog({ params }) {
 
         {showComments && <div
           id="comment-top-level-div"
-          className={`z-[1] absolute bottom-1 w-[100%] md:w-[90%] translate-y-[99%] bg-gray-100 transition duration-500 py-10 overflow-y-auto  rounded-xl p-4`}
+          className={`z-[1] absolute bottom-1 w-full translate-y-[99%] bg-gray-100 transition duration-500 py-10 overflow-y-auto  rounded-xl p-4 `}
           ref={ref}
         >
           <div className="flex flex-col gap-2 items-center w-full mb-5">
@@ -169,7 +169,7 @@ function InterviewBlog({ params }) {
               Post
             </button>
           </div>
-          <div className="flex flex-col gap-7 h-[80vh]">
+          <div className="flex flex-col gap-7 h-[80vh] py-5">
             {userComments &&
               userComments.map((comment, index) => {
                 return (

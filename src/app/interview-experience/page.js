@@ -13,8 +13,7 @@ function Page() {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_INTERVIEW_EXPERIENCE}/${false}`
       );
-      setInterviewData(response.data.data);
-      // console.log(response);
+      setInterviewData(response.data?.data);
     } catch (e) {
       console.log(e);
     }
