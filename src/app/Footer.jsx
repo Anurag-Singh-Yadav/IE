@@ -32,18 +32,57 @@ function Footer() {
     };
   }, []);
 
+  const getSubscribe1 = async (token) => {
+    try{
+      const res = await getSubscribe(token);
+      return res;
+    }catch(e){
+      return "error";
+    }
+  }
+
   useEffect(()=>{
-    clickHandler();
+    const token = Cookies.get("token");
+    if (!token) {
+      setSubscribed(false);
+      return;
+    }
+    const response = getSubscribe1(token).then((resolve)=>{
+      console.log("response: ", resolve);
+      if(resolve.subscribed === true){
+        setSubscribed(true);
+        return;
+      }else{
+        setSubscribed(false);
+      }
+    })
+
+    if (response === "error") {
+      setSubscribed(false);
+      return;
+    }
+    if (response === "invalid token") {
+      setSubscribed(false);
+      return;
+    }
+    // console.log("response: ", response);
+    if(response.subscribed === true){
+      setSubscribed(true);
+      return;
+    }else{
+      setSubscribed(false);
+    }
   },[])
 
-  const clickHandler = async () => {
+  const clickHandler = async (value) => {
     const token = Cookies.get("token");
     if (!token) {
       alert("Please login to subscribe");
       setSubscribed(false);
       return;
     }
-    const response = await getSubscribe(token);
+    const response = await getSubscription(token, value);
+    console.log(response);
     if (response === "error") {
       alert("Some error occured. Please try again later.");
       setSubscribed(false);
@@ -54,7 +93,6 @@ function Footer() {
       setSubscribed(false);
       return;
     }
-
     if(response.subscribed === true){
       setSubscribed(true);
       return;
@@ -121,7 +159,7 @@ function Footer() {
                 <div
                   className="py-2 px-4 start-2 text-black font-semibold rounded-md transition duration-300 cursor-pointer"
                   onClick={() => {
-                    clickHandler();
+                    clickHandler(true);
                   }}
                 >
                   Subscribe
@@ -129,7 +167,10 @@ function Footer() {
               )}
 
               {subscribed && (
-                <div className="py-2 px-4 bg-red-500 text-black font-semibold rounded-md transition duration-300 cursor-pointer">
+                <div className="py-2 px-4 bg-red-500 text-black font-semibold rounded-md transition duration-300 cursor-pointer"
+                onClick={() => {
+                  clickHandler(false);
+                }}>
                   UnSubscribed
                 </div>
               )}
