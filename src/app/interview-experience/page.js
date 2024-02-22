@@ -1,33 +1,44 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import WebsiteBanner from "../Components/templets/WebsiteBanner";
-import axios from "axios";
 import InterviewCard from "../Components/HomeComponents/InterviewCard";
 import Link from "next/link";
 import PreRender from "../Components/templets/PreRender";
+import { fetchInterviewExperience } from "../fetchDetails/fetchInterviewExperience";
 // import interviewData from "../../../public/interviewData";
+
 function Page() {
   const [pageIndex, setPageIndex] = useState(0);
-  const [interviewData, setInterviewData] = useState(null);
+  const [interviewData, setInterviewData] = useState([]);
 
-  const fetchInterviews = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${
-          process.env.NEXT_PUBLIC_GET_INTERVIEW_EXPERIENCE
-        }/${false}`
-      );
-      setInterviewData(response.data?.data);
-    } catch (e) {
-      console.log(e);
-    }
+  const [loading, setLoading] = useState(false);
+
+  const [totalLength, setTotalLength] = useState(0);
+
+  const firstFetch = async () => {
+    setLoading(true);
+    const { data, len } = await fetchInterviewExperience(false, 0);
+    if (data) setInterviewData(data);
+    if (len) setTotalLength(len);
+    setLoading(false);
   };
 
-  useEffect(() => {
-    fetchInterviews();
-  }, [pageIndex]);
+  const fetchMore = async (startingIndex) => {
+    setLoading(true);
+    const { data, len } = await fetchInterviewExperience(false, startingIndex);
+    if (data)
+      setInterviewData((prev) => {
+        return [...prev, ...data];
+      });
+    if (len) setTotalLength(len);
+    setLoading(false);
+  };
 
   let arr = new Array(6).fill({});
+
+  useEffect(() => {
+    firstFetch();
+  }, []);
 
   return (
     <div>
@@ -48,33 +59,44 @@ function Page() {
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {interviewData &&
-            interviewData.map((interview, index) => (
-              <InterviewCard
-                key={index}
-                name={interview.name}
-                userPhoto={interview.avatar}
-                company={interview.company}
-                linkedin_id={interview.linkedin_id}
-                created_on={interview.created_on}
-                selected={interview.selected}
-                position={interview.position}
-                round={interview.round}
-                company_logo={interview.company_logo}
-                id={interview._id}
-              />
-            ))}
+            interviewData.map((interview, index) => {
+              if (index >= pageIndex * 8 && index < (pageIndex + 1) * 8) {
+                return (
+                  <InterviewCard
+                    key={index}
+                    name={interview.name}
+                    userPhoto={interview.avatar}
+                    company={interview.company}
+                    linkedin_id={interview.linkedin_id}
+                    created_on={interview.created_on}
+                    selected={interview.selected}
+                    position={interview.position}
+                    round={interview.round}
+                    company_logo={interview.company_logo}
+                    id={interview._id}
+                  />
+                );
+              }
+            })}
         </div>
         <div>
-          {!interviewData && (
-            <div className="">
-              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                {arr.map((obj, index) => {
-                  return <PreRender key={index} count={1} height={100} color={`#f5f6f7`} />;
-                })}
+          {!interviewData ||
+            (interviewData.length === 0 && (
+              <div className="">
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                  {arr.map((obj, index) => {
+                    return (
+                      <PreRender
+                        key={index}
+                        count={1}
+                        height={100}
+                        color={`#f5f6f7`}
+                      />
+                    );
+                  })}
+                </div>
               </div>
-              
-            </div>
-          )}
+            ))}
         </div>
 
         <div className="w-fit mx-auto grid grid-cols-2 items-center justify-center py-4 sm:py-8">
@@ -92,8 +114,19 @@ function Page() {
             Previous
           </div>
           <div
-            className="text-lg font-medium  rounded-r-full py-2 px-4 hover:text-white transition-all duration-300  hover:bg-green-bg cursor-pointer"
-            onClick={() => setPageIndex(pageIndex + 1)}
+            className={`text-lg font-medium rounded-r-full py-2 px-4  transition-all duration-300 ${
+              (pageIndex + 1) * 8 < totalLength
+                ? "hover:bg-green-bg cursor-pointer hover:text-white"
+                : "cursor-not-allowed bg-slate-300 text-black"
+            } `}
+            onClick={() => {
+              if (loading) return;
+              if ((pageIndex + 1) * 8 == interviewData.length && pageIndex > 0)
+                fetchMore(interviewData.length);
+              if (interviewData.length === (pageIndex + 1) * 8) {
+                setPageIndex(pageIndex + 1);
+              }
+            }}
           >
             Next
           </div>
