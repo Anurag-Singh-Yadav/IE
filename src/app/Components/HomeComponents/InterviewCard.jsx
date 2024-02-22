@@ -20,25 +20,8 @@ function InterviewCard({
   id,
   isAdmin,
   isClick,
-  setIsClicked,
 }) {
-  const adminChoics = async (choics) => {
-    const token = Cookies.get("token");
-    setIsClicked(true);
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_ADMIN_URL}${process.env.NEXT_PUBLIC_ADMIN_TO_ACCEPTS_INTERVIEW_BLOG}`,
-      {
-        id: id,
-        isAdminAccepted: choics,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    setIsClicked(false);
-  };
+
 
   return (
     <div className="my-3 py-4 text-black px-4 border-l-2 hover:border-green-bg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
@@ -88,7 +71,6 @@ function InterviewCard({
           )}
         </div>
         <div className="">Published on : <strong>{created_on.split(',')[0]}</strong></div>
-        <div className="border rounded-full px-4 py-2 bg-dark-blue text-white">Published on : <strong>{new Date(created_on).toLocaleString().split(',')[0]}</strong></div>
       </div>
 
       <div className="flex justify-between my-2 flex-wrap items-center">
