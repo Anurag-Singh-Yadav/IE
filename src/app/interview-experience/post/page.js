@@ -226,7 +226,7 @@ function PostBlog() {
           formName={`user-interview-experience-draft`}
         />
 
-        <div onClick={submitHandler} className="btn-gradient-2 px-4 py-1 rounded-md mx-auto w-fit mt-5 text-lg font-semibold">Post blog</div>
+        <div onClick={submitHandler} className="btn-gradient-2 px-4 py-1 rounded-md mx-auto w-fit mt-5 text-lg font-semibold cursor-pointer">Post blog</div>
       </div>
 
 

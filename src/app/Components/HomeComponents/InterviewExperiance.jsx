@@ -5,12 +5,12 @@ import InterviewCard from "./InterviewCard";
 import Link from "next/link";
 import { fetchInterviewExperience } from "@/app/fetchDetails/fetchInterviewExperience";
 function InterviewExperiance() {
-  const [interviewData, setInterviewData] = useState([]);
+  const [interviewData, setInterviewData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetchInterviewExperience(false, 0);
-      setInterviewData(res);
+      setInterviewData(res.data);
     };
     fetchData();
   }, []);
@@ -39,9 +39,9 @@ function InterviewExperiance() {
         </div>
       </div>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {interviewData.length > 0 &&
+        {interviewData && interviewData.length > 0 &&
           interviewData.map((obj, i) => {
-            if (i < 4) {
+            // if (i < 4) {
               return (
                 <InterviewCard
                   key={i}
@@ -55,9 +55,10 @@ function InterviewExperiance() {
                   round={obj.round}
                   company_logo={obj.company_logo}
                   id={obj._id}
+                  isAdmin={false}
                 />
               );
-            }
+            // }
           })}
       </div>
     </div>
