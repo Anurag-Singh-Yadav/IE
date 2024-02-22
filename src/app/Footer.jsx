@@ -102,7 +102,7 @@ function Footer() {
   };
 
   return (
-    <div className="relative footer-container ">
+    <div className="relative footer-container">
       <div
         className={`grid grid-cols-1 gap-x-3 gap-y-7 md:grid-cols-6 items-start text-sm py-2 sm:py-3 md:py-6 text-center`}
       >
