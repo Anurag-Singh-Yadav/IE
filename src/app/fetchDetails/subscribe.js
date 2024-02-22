@@ -22,16 +22,18 @@ export const getSubscribe = async (token) =>{
 
 export const getSubscription = async (token,action) =>{
     try{
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_SUBSCRIPTION }`,{
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_SUBSCRIBED_USER }`,{
+            token,
+            action
+        },
+        {
             headers:{
                 Authorization: `Bearer ${token}`
             }
-        },{
-            token,
-            action
         })
         return response.data
     }catch(e){
+        console.log(e);
         if(e.response?.data?.message == 'invalid token'){
             Cookies.remove('token')
         }
