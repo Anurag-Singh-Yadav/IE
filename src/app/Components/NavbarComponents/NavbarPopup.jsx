@@ -1,16 +1,13 @@
 "use client";
-import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { MdLogout } from "react-icons/md";
-import { useDispatch } from "react-redux";
 import Avatar from "react-avatar";
-import { setLogin } from "@/app/GlobalRedux/Features/GlobalStateSlice";
 import "./NavbarPopup.css";
-import Cookies from "js-cookie";
 import "./Dropdown.css";
 import { MdDashboard } from "react-icons/md";
 import { IoIosHome } from "react-icons/io";
+import { userSignout } from "@/app/fetchDetails/userSignout";
 
 function NavbarPopup({ details , setShowNavPopup }) {
   const { name, userHandle, avatar } = details;
@@ -34,7 +31,6 @@ function NavbarPopup({ details , setShowNavPopup }) {
     }
   } , [])
 
-  const dispatch = useDispatch();
 
   return (
     <div id="avatar-dropdown" className="dropdown-content  animate-in px-5 py-2 flex flex-col gap-3 min-w-[20vw] absolute top-16 z-[40] w-fit right-0 overflow-visible bg-white rounded-lg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] p-2 border-t-[3px] border-green-bg">
@@ -64,11 +60,7 @@ function NavbarPopup({ details , setShowNavPopup }) {
           <p>Dashboard</p>
         </Link>
         <div
-          onClick={() => {
-            Cookies.remove("token");
-            dispatch(setLogin(false));
-            signOut();
-          }}
+          onClick={userSignout}
           className="flex gap-2 items-center hover:text-green-bg cursor-pointer transition duration-300"
         >
           <MdLogout />
