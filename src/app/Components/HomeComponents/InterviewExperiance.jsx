@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import InterviewCard from "./InterviewCard";
 import Link from "next/link";
 import { fetchInterviewExperience } from "@/app/fetchDetails/fetchInterviewExperience";
-import PreRender from "../templets/PreRender";
 function InterviewExperiance() {
   const [interviewData, setInterviewData] = useState([]);
 
