@@ -20,7 +20,6 @@ function InterviewCard({
   id,
   isAdmin,
   isClick,
-  setIsClicked,
 }) {
 
 
@@ -72,7 +71,6 @@ function InterviewCard({
           )}
         </div>
         <div className="">Published on : <strong>{created_on.split(',')[0]}</strong></div>
-        <div className="border rounded-full px-4 py-2 bg-dark-blue text-white">Published on : <strong>{new Date(created_on).toLocaleString().split(',')[0]}</strong></div>
       </div>
 
       <div className="flex justify-between my-2 flex-wrap items-center">
