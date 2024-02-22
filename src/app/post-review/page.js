@@ -10,11 +10,15 @@ import { postReview } from "../fetchDetails/postReview";
 import Cookies from "js-cookie";
 
 function Page() {
+
   const userDetails = useSelector((state) => {
     return state.GlobalState.userDetails;
   });
+
   const [isClick, setIsClick] = useState(false);
+
   const [description, setDescription] = useState("");
+
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
@@ -38,13 +42,15 @@ function Page() {
     setIsClick(true);
     const token = Cookies.get("token");
     const res = await postReview({ details: { token, description, rating } });
-    setIsClick(false);
+    
     if (res.data?.success) {
       setDescription("");
       setRating(0);
+      setIsClick(false);
       alert("Review posted successfully");
     }else{
       alert(res.response?.data?.message);
+      setIsClick(false);
     }
   };
 
@@ -95,7 +101,7 @@ function Page() {
                   </div>
                 </div>
 
-                <div className=" min-h-[20vh] box-shadow">
+                <div className="min-h-[20vh] box-shadow">
                   <textarea
                     type="description"
                     placeholder="Write your review here.."
@@ -113,16 +119,18 @@ function Page() {
               </div>
 
               <div className="flex my-4 justify-center items-center">
-                <div
+                <button
                   className={`flex justify-center px-5 cursor-pointer py-2 items-center text-lg start ${
                     isClick === true ? "cursor-wait" : "cursor-pointer"
                   }`}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     clickHandler();
                   }}
+                  disabled={isClick === true ? true : false}
                 >
                   Submit
-                </div>
+                </button>
               </div>
             </div>
           )}
