@@ -43,7 +43,7 @@ function Aptitude() {
             <div className="bg-green-bg py-2 mt-4 mb-6 text-center rounded-md text-white text-sm s2:text-base md:text-lg font-medium">
               Aptitude Based Problems
             </div>
-            <TopicsTemplets topics={allTopics} />
+            <TopicsTemplets topics={allTopics} isAptitude={true}/>
           </div>
         )}
         {!allTopics && (
