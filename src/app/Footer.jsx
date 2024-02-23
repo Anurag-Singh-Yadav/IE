@@ -7,7 +7,7 @@ import { FaYoutube } from "react-icons/fa";
 import "./Footer.css";
 import Cookies from "js-cookie";
 import { getSubscribe, getSubscription } from "./fetchDetails/subscribe";
-
+import Link from 'next/link'
 function Footer() {
   const logo = "<IE/>";
   const [subscribed, setSubscribed] = useState(false);
@@ -48,7 +48,6 @@ function Footer() {
       return;
     }
     const response = getSubscribe1(token).then((resolve)=>{
-      console.log("response: ", resolve);
       if(resolve.subscribed === true){
         setSubscribed(true);
         return;
@@ -65,7 +64,6 @@ function Footer() {
       setSubscribed(false);
       return;
     }
-    // console.log("response: ", response);
     if(response.subscribed === true){
       setSubscribed(true);
       return;
@@ -136,8 +134,8 @@ function Footer() {
             <p className="text-gray-300">Interview Express</p>
             <div className="flex flex-col gap-2">
               <p>Home</p>
-              <div>About Us</div>
-              <div>Contact Us</div>
+              <Link href={'#'}>About Us</Link>
+              <Link href={'/contactus'}>Contact Us</Link>
             </div>
           </div>
 
