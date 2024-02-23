@@ -2,14 +2,14 @@
 import Link from "next/link";
 import React from "react";
 
-function TopicsTemplets({ topics }) {
+function TopicsTemplets({ topics , isAptitude}) {
   return (
     <div>
       {topics && (
         <div>
           <div className="grid grid-cols-2 gap-4">
             {topics.map((topic, index) => {
-              if (topic.link) {
+              if (isAptitude !== true) {
                 return (
                   <Link
                     key={index}
