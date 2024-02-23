@@ -30,9 +30,9 @@ function QuestionCard({ question, index }) {
             setSelected(e.target.value);
           }}
         >
-          {options.map((option, index) => {
+          {options.map((option, i) => {
             return (
-              <div className="flex flex-wrap gap-3 items-center">
+              <div className="flex flex-wrap gap-3 items-center" key={i}>
                 <FormControlLabel
                   key={index}
                   value={option}
