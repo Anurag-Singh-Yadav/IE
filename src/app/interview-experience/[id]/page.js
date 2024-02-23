@@ -5,6 +5,7 @@ import { FaChevronUp } from "react-icons/fa";
 import { setArticleLoading } from "@/app/GlobalRedux/Features/GlobalStateSlice";
 import { useDispatch } from "react-redux";
 import { BiSolidUpvote, BiSolidDownvote } from "react-icons/bi";
+import { RiQuestionAnswerFill } from "react-icons/ri";
 
 import "../interviewBlog.css";
 
@@ -62,7 +63,7 @@ function InterviewBlog({ params }) {
       alert("Please login first");
       return;
     }
-    console.log('fuck');
+    console.log("fuck");
 
     try {
       setPosting(true);
@@ -78,12 +79,12 @@ function InterviewBlog({ params }) {
           },
         }
       );
-      if(res.data?.success === true){
+      if (res.data?.success === true) {
         setPosting(false);
         setUpdatedContent(!updatedContent);
       }
     } catch (err) {
-      console.log('Error while uploading user-vote' , err);
+      console.log("Error while uploading user-vote", err);
     }
   };
 
@@ -186,8 +187,18 @@ function InterviewBlog({ params }) {
                 className="flex justify-between gap-4 items-center my-7 btn-gradient-2 px-4 py-1 rounded-md"
               >
                 <div>
-                  {!showComments && <p className=" text-base">Show comments</p>}
-                  {showComments && <p className=" text-base">Hide comments</p>}
+                  {!showComments && (
+                    <div className="flex gap-2 items-center">
+                      <RiQuestionAnswerFill />
+                      <p className=" text-base">Show comments</p>
+                    </div>
+                  )}
+                  {showComments && (
+                    <div className="flex gap-2 items-center">
+                      <RiQuestionAnswerFill />
+                      <p className=" text-base">Hide comments</p>
+                    </div>
+                  )}
                 </div>
                 <FaChevronUp
                   className={`${

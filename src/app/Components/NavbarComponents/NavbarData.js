@@ -30,7 +30,7 @@ export const dropdownData = [
       options: [
         {
           label: "Language Basics",
-          value: "basics", 
+          value: "/basics", 
         },
         {
           label: "Data Structures & Algorithms",
@@ -38,11 +38,11 @@ export const dropdownData = [
         },
         {
           label: "Aptitude",
-          value: "aptitude",
+          value: "/aptitude",
         },
         {
           label: "CS fundamentals",
-          value: "csFundamentals",
+          value: "/csFundamentals",
         },
       ],
     },
