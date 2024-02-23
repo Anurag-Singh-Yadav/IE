@@ -109,7 +109,6 @@ export default function AppLayout({
             <PreRender count={7} />
             
             </div>}
-          {/* {!navigator && <div className="h-[20vh] w-[20vw] bg-blue-400"></div>} */}
         </div>
         {children}
         {<ArticleProgress title={title}/>}

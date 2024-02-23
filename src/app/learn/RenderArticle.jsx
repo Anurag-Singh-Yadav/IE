@@ -8,6 +8,7 @@ import { GrLinkPrevious, GrLinkNext } from "react-icons/gr";
 import HtmlToDom from "../Components/templets/HtmlToDom";
 
 function RenderArticle({ contentFlow, title, menu, mainHeading, mainTopic }) {
+  
   const [np, setNp] = useState({});
 
   const articleLoading = useSelector((state) => {

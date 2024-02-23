@@ -2,28 +2,96 @@
 import React, { useState } from "react";
 import WebsiteBanner from "../Components/templets/WebsiteBanner";
 import Image from "next/image";
+import { contactUs } from "../fetchDetails/contactUs";
+import Cookies from "js-cookie";
+
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+function AlertDialogSlide({ setOpen, open, mess }) {
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <React.Fragment>
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Interview Express Message"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            {mess}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+  );
+}
 
 function Page() {
+  const [open, setOpen] = useState(false);
+
+  const [isClick, setIsClick] = useState(false);
+  const [mess, setMess] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-
-    }catch(e){
-
+    setIsClick(true);
+    try {
+      const token = Cookies.get("token");
+      const res = await contactUs(formData, token);
+      console.log(res);
+      if (res.success === true) {
+        setMess("Message Sent Successfully");
+        setOpen(true);
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+        setIsClick(false);
+      }
+      setIsClick(false);
+    } catch (e) {
+      if(e.message === 'invalid token'){
+        setMess("Please Login Again");
+        setOpen(true);
+      }
+      else{
+        setMess(e.message);
+        setOpen(true);
+      }
+      (false);setIsClick
     }
   };
 
@@ -53,7 +121,10 @@ function Page() {
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-4">
               <div className="box-shadow py-4 px-2">
-                <label htmlFor="name" className="block text-base mb-2 font-semibold">
+                <label
+                  htmlFor="name"
+                  className="block text-base mb-2 font-semibold"
+                >
                   Name
                 </label>
                 <input
@@ -67,7 +138,10 @@ function Page() {
                 />
               </div>
               <div className="box-shadow py-4 px-2">
-                <label htmlFor="email" className="block text-base mb-2 font-semibold">
+                <label
+                  htmlFor="email"
+                  className="block text-base mb-2 font-semibold"
+                >
                   Email
                 </label>
                 <input
@@ -92,20 +166,31 @@ function Page() {
                   name="message"
                   placeholder="Write your Message here.."
                   value={formData.message}
-                  onChange={(e)=>{
+                  onChange={(e) => {
                     handleChange(e);
                     e.target.style.height = "auto";
-                      const contentHeight = e.target.scrollHeight;
-                      e.target.style.height = `${contentHeight -7}px`;
+                    const contentHeight = e.target.scrollHeight;
+                    e.target.style.height = `${contentHeight - 7}px`;
                   }}
                   className="h-full py-3 outline-white transition-all overflow-hidden ring-white resize-none ring-0 focus:ring-0 duration-300 w-full rounded-md border-2 border-dark-blue focus:border-green-bg"
                 ></textarea>
               </div>
             </div>
             <div className="flex justify-end mt-4">
-              <button type="submit" className="bg-green-bg text-white py-2 px-4 rounded-md">
+              <button
+                type="submit"
+                className={`bg-green-bg text-white py-2 px-4 rounded-md ${isClick == true ? "cursor-not-allowed" : "cursor-pointer"}`}
+                disabled={isClick == true ? true : false}
+              >
                 Submit
               </button>
+              <div>
+                <AlertDialogSlide
+                  open={open}
+                  mess={mess}
+                  setOpen={setOpen}
+                ></AlertDialogSlide>
+              </div>
             </div>
           </form>
         </div>
