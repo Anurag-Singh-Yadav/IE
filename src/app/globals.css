@@ -13,7 +13,6 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #2eca7f;
   outline: 1px solid rgb(157, 169, 181);
-  border-radius: 10px;
   height: 10vh !important;
 }
 
@@ -364,7 +363,14 @@ body::-webkit-scrollbar-thumb {
   font-weight: 450;
   font-size: 14px;
   margin-block: 10px;
+
+
+@media screen and (max-width: 768px) {
+  #article-content-container p span {
+    font-size: 0.8rem !important; /* Adjust the font size as needed */
+  }
 }
+
 
 .search-bar input:focus {
   outline: none; /* Removes the default focus outline */

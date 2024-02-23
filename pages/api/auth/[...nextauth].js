@@ -19,7 +19,6 @@ const authOptions = {
     async signIn({ user, account }) {
       if (account?.provider === "github" || account?.provider === "google") {
         try {
-          console.log(`${process.env.BASE_URL}${process.env.AUTO_LOGIN}`);
           const res = await axios.post(`${process.env.BASE_URL}${process.env.AUTO_LOGIN}`, {
             user,
           });
