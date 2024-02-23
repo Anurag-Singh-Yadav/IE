@@ -9,7 +9,7 @@ function TopicsTemplets({ topics }) {
         <div>
           <div className="grid grid-cols-2 gap-4">
             {topics.map((topic, index) => {
-              if (typeof topic.toLowerCase() !== "string") {
+              if (topics.link) {
                 return (
                   <Link
                     key={index}
