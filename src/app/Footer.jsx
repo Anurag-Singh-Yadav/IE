@@ -134,7 +134,7 @@ function Footer() {
             <p className="text-gray-300">Interview Express</p>
             <div className="flex flex-col gap-2">
               <p>Home</p>
-              <Link href={'#'}>About Us</Link>
+              <Link href={'/about-us'}>About Us</Link>
               <Link href={'/contactus'}>Contact Us</Link>
             </div>
           </div>
