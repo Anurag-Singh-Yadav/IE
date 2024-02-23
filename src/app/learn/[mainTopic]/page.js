@@ -20,9 +20,6 @@ function Page() {
   var mainTopic = params.get("mainTopic");
   var mainHeading = params.get("mainHeading");
 
-
-  const router = useRouter();
-
   const clickHandler = async () => {
     try {
       const paramsto = {

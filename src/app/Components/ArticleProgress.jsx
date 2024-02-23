@@ -122,7 +122,7 @@ function ArticleProgress({ title }) {
             <p className=" text-lg font-semibold text-center">
               Table of <span className="text-green-bg underline">Contents</span>
             </p>
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col text-sm items-start">
               {data.map((obj, i) => {
                 return (
                   <div

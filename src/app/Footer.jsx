@@ -169,7 +169,7 @@ function Footer() {
                 onClick={() => {
                   clickHandler(false);
                 }}>
-                  UnSubscribed
+                  UnSubscribe
                 </div>
               )}
 

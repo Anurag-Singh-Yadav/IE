@@ -198,7 +198,6 @@ body::-webkit-scrollbar-thumb {
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-
 @media screen and (min-width: 230px) {
   .main-container {
     padding-inline: 1rem;
@@ -283,90 +282,103 @@ body::-webkit-scrollbar-thumb {
     list-style-type: decimal !important;
     padding-left: 20px !important;
     margin-left: 20px !important;
-}
+  }
 
-ul {
+  ul {
     list-style-type: none !important;
     padding-left: 0 !important;
     margin-top: 0 !important;
-}
+  }
 
-ul ul {
+  ul ul {
     list-style-type: none !important;
     padding-left: 1em !important;
     margin-top: 0 !important;
-}
+  }
 
-ul ul ul {
+  ul ul ul {
     list-style-type: none !important;
     padding-left: 2em !important;
     margin-top: 0 !important;
-}
+  }
 
-ul li {
+  ul li {
     margin-bottom: 10px !important;
     padding-left: 7px !important;
     position: relative !important;
-}
+  }
 
-ul li:before {
+  ul li:before {
     content: "\2022" !important;
     position: absolute !important;
     left: -10px !important;
-}
+  }
 
-li {
+  li {
     margin-block: 10px !important;
-}
+  }
 
-h1 {
+  h1 {
     font-size: 2em !important;
     font-weight: bold !important;
     margin-top: 0.67em !important;
     margin-bottom: 0.67em !important;
-}
+  }
 
-h2 {
+  h2 {
     font-size: 1.5em !important;
     font-weight: bold !important;
     margin-top: 0.83em !important;
     margin-bottom: 0.83em !important;
-}
+  }
 
-h3 {
+  h3 {
     font-size: 1.17em !important;
     font-weight: bold !important;
     margin-top: 1em !important;
     margin-bottom: 1em !important;
-}
+  }
 
-h4 {
+  h4 {
     font-size: 1em !important;
     font-weight: bold !important;
     margin-top: 1.33em !important;
     margin-bottom: 1.33em !important;
-}
+  }
 
-h5 {
+  h5 {
     font-size: 0.83em !important;
     font-weight: bold !important;
     margin-top: 1.67em !important;
     margin-bottom: 1.67em !important;
-}
+  }
 
-h6 {
+  h6 {
     font-size: 0.67em !important;
     font-weight: bold !important;
     margin-top: 2.33em !important;
     margin-bottom: 2.33em !important;
-}
+  }
 
-p {
+  p {
     font-weight: 450 !important;
     font-size: 14px !important;
     margin-block: 10px !important;
+  }
+  p span{
+    font-weight: 450 !important;
+    font-size: 1rem !important;
+    margin-block: 10px !important;
+  }
+  
 }
+
+@media screen and (max-width: 768px) {
+  #article-content-container p span {
+    font-size: 0.8rem !important; /* Adjust the font size as needed */
+  }
 }
+
 
 .search-bar input:focus {
   outline: none; /* Removes the default focus outline */
