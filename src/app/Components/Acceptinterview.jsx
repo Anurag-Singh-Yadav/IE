@@ -1,15 +1,17 @@
 'use client';
 import React from "react";
-
-function Acceptinterview({ adminChoics ,isClick}) {
+import {adminChoics} from "@/app/fetchDetails/adminChoics";
+function Acceptinterview({ id, setIsClicked ,isClick}) {
   return (
     <div className="flex justify-evenly gap-3 py-2">
       <div
         className={`transition-all duration-300 hover:bg-green-bg px-4 py-2 bg-light-green2 rounded-md ${
           isClick == true ? "cursor-wait" : "cursor-pointer"
         }`}
-        onClick={() => {
-          adminChoics(true);
+        onClick={async() => {
+          setIsClicked(true);
+          await adminChoics(id,true);
+          setIsClicked(false);
         }}
       >
         Accept
@@ -18,8 +20,10 @@ function Acceptinterview({ adminChoics ,isClick}) {
         className={`transition-all duration-300 hover:bg-green-bg px-4 py-2 bg-light-green2 rounded-md ${
           isClick == true ? "cursor-wait" : "cursor-pointer"
         }`}
-        onClick={() => {
-          adminChoics(false);
+        onClick={async() => {
+          setIsClicked(true);
+          await adminChoics(id,false);
+          setIsClicked(false);
         }}
       >
         Reject

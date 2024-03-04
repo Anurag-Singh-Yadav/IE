@@ -1,12 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Avatar from "react-avatar";
 import { TiTick } from "react-icons/ti";
 import { RxCrossCircled } from "react-icons/rx";
 import { GrLinkedin } from "react-icons/gr";
 import Link from "next/link";
-import Cookies from "js-cookie";
-import axios from "axios";
 import Acceptinterview from "../Acceptinterview";
 function InterviewCard({
   name,
@@ -19,6 +17,7 @@ function InterviewCard({
   round,
   id,
   isAdmin,
+  setIsClicked,
   isClick,
 }) {
 
@@ -82,7 +81,7 @@ function InterviewCard({
           Read
         </Link>
         {isAdmin && (
-          <Acceptinterview adminChoics={adminChoics} isClick={isClick} />)}
+          <Acceptinterview id={id} setIsClicked={setIsClicked} isClick={isClick} />)}
         {linkedin_id && (
           <div className="flex justify-between gap-2 items-center hover:text-blue-700">
             <span className=" font-medium cursor-pointer hover:font-semibold">
