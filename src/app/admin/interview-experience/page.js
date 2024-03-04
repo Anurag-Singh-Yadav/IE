@@ -12,7 +12,7 @@ function Page() {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}${
           process.env.NEXT_PUBLIC_GET_INTERVIEW_EXPERIENCE
-        }/${true}`
+        }/${true}/${0}`
       );
       setInterviewData(response.data.data);
     } catch (e) {
