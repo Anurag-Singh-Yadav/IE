@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 
 body::-webkit-scrollbar {
-  width: 14px !important;
+  width: 12px !important;
 }
 
 body::-webkit-scrollbar-track {

@@ -7,11 +7,10 @@ import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-export default function Page({ params, imgSrc }) {
+export default function Page({ params }) {
   const query = useSearchParams();
   const [questionsDetail, setQuestionsDetail] = useState(null);
   const [userFilter, setUserFilter] = useState([]);
-
   const fetchQuestions = async () => {
     try {
       const token = Cookies.get("token");
