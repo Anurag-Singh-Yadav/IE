@@ -1,21 +1,64 @@
 "use client";
 
+import React from "react";
 import { Checkbox, Table } from "flowbite-react";
 import Link from "next/link";
-import { useEffect } from "react";
-
-export default function QuestionArray({ showQuestions, search, difficulty }) {
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { toggleSignPagePopup } from "../../GlobalRedux/Features/GlobalStateSlice";
+export default function QuestionArray({
+  showQuestions,
+  setShowQuestions,
+  search,
+  difficulty,
+}) {
   const mapD = {
     Easy: 0,
     Medium: 1,
     Hard: 2,
   };
 
+  const dispatch = useDispatch();
+
+  const markSolved = async (index, _id) => {
+    const token = Cookies.get("token");
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_UPDATE_QUESTIONS_STATUS}`,
+        {
+          questionId: _id,
+          token,
+          action: !showQuestions[index].isSolved,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
+        }
+      );
+      showQuestions[index].isSolved = !showQuestions[index].isSolved;
+      setShowQuestions([...showQuestions]);
+    } catch (e) {
+      if (e.response.data.message === "Please login first") {
+        alert("Please login first");
+        dispatch(toggleSignPagePopup());
+      }
+
+      if (e.response.data.message === "invalid token") {
+        alert("Please login first");
+        dispatch(toggleSignPagePopup());
+      }
+    }
+  };
+
   return (
     <div>
-      {showQuestions?.length === 0 && <div className="text-center font-bold text-lg py-5">
+      {showQuestions?.length === 0 && (
+        <div className="text-center font-bold text-lg py-5">
           No Questions available yet !!
-        </div>}
+        </div>
+      )}
       {showQuestions?.length > 0 && (
         <div className="overflow-x-auto">
           <Table hoverable>
@@ -47,7 +90,13 @@ export default function QuestionArray({ showQuestions, search, difficulty }) {
                         className="bg-white dark:border-gray-700 dark:bg-gray-800"
                       >
                         <Table.Cell className="p-4">
-                          <Checkbox checked={questionData?.solved} />
+                          <Checkbox
+                            checked={questionData?.isSolved}
+                            onClick={() => {
+                              markSolved(index, question._id);
+                            }}
+                            className="text-dark-blue focus:ring-dark-blue"
+                          />
                         </Table.Cell>
                         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                           <Link href={question.questionUrl}>

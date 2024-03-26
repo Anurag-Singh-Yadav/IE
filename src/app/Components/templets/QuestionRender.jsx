@@ -184,6 +184,7 @@ function QuestionRender({ questionsDetails }) {
         {showQuestions && <QuestionArray
           search={search}
           showQuestions={showQuestions}
+          setShowQuestions={setShowQuestions}
           difficulty={difficulty}
         />}
       </div>

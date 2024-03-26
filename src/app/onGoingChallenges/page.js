@@ -6,7 +6,6 @@ import axios from "axios";
 import Cookies from "js-cookie";
 function Page() {
   const [challengesData,setChallengesData] = useState(null);
-
   const fetchAllChallenges = async () => {
     try {
       const token = Cookies.get("token");
