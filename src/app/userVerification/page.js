@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState, Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -88,7 +88,10 @@ function CircularIndeterminate() {
   );
 }
 
-function PageContent({ id }) {
+function PageContent() {
+  const query = useSearchParams();
+  const id = query.get("id");
+  console.log("id->",id);
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -139,13 +142,11 @@ function PageContent({ id }) {
 }
 
 function Page() {
-  const params = useSearchParams();
-  const id = params.get("id");
 
   return (
-    <div>
-      <PageContent id={id} />
-    </div>
+    <Suspense>
+      <PageContent />
+    </Suspense>
   );
 }
 export default Page;
