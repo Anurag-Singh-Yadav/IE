@@ -19,6 +19,18 @@ function Company() {
     assets.facebook,
     assets.netflix,
     assets.samsung,
+    assets.microsoft,
+    assets.google,
+    assets.amazon,
+    assets.facebook,
+    assets.netflix,
+    assets.samsung,
+    assets.microsoft,
+    assets.google,
+    assets.amazon,
+    assets.facebook,
+    assets.netflix,
+    assets.samsung,
   ];
 
   const responsive = {
@@ -56,6 +68,7 @@ function Company() {
         autoPlay={true}
         arrows={false}
         transitionDuration={5000}
+        customTransition="all 5s linear"
         autoPlaySpeed={3500}
       >
         {imgData.map((src, i) => (
