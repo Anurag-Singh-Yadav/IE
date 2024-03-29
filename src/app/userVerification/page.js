@@ -91,11 +91,9 @@ function CircularIndeterminate() {
 function PageContent() {
   const query = useSearchParams();
   const id = query.get("id");
-  console.log("id->",id);
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = useState(null);
   const [success, setSuccess] = useState(false);
-  const router = useRouter();
 
   const emailVerification = async () => {
     try {
@@ -105,12 +103,10 @@ function PageContent() {
           id: id,
         }
       );
-      console.log(response);
       setMessage(response?.data?.message);
       setSuccess(true);
       setOpen(true);
     } catch (e) {
-      console.log(e);
       setMessage(e?.response?.data?.message);
       setOpen(true);
       setSuccess(false);
@@ -118,7 +114,6 @@ function PageContent() {
   };
 
   useEffect(() => {
-    console.log("verification page is rendering ", id);
     emailVerification();
   }, [id]);
 
