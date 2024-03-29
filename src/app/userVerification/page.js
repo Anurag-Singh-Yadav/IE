@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import React, { useEffect, useState, Suspense } from "react";
 import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
@@ -11,7 +11,10 @@ import { useSearchParams, useRouter } from "next/navigation";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-
+import {
+  toggleSignPagePopup,
+  setSignInBtn,
+} from "../GlobalRedux/Features/GlobalStateSlice";
 function AlertDialog({ open, success, message, setOpen }) {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -31,9 +34,9 @@ function AlertDialog({ open, success, message, setOpen }) {
     dispatch(toggleSignPagePopup());
     dispatch(setSignInBtn(false));
   };
-  const handletryAgain = () =>{
+  const handletryAgain = () => {
     router.push("/");
-  }
+  };
   return (
     <React.Fragment>
       <Dialog
@@ -52,19 +55,21 @@ function AlertDialog({ open, success, message, setOpen }) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {success
-              ? "Congratulations! 🎉 Your email has been successfully verified. 📧 Sign in now to explore Interview Express and accelerate your career journey!"
-              : message === "Your email verification failed, Please try again" ? (
-                "We're sorry, but it seems there was an issue verifying your email. Please ensure you've clicked the correct link or contact support for assistance."
-          ) : (
-            "Verifying link is expired now. Please register again to get a new verification link."
-          )}
+            {success ? (
+              "Congratulations! 🎉 Your email has been successfully verified. 📧 Sign in now to explore Interview Express and accelerate your career journey!"
+            ) : message ===
+              "Your email verification failed, Please try again" ? (
+              "We're sorry, but it seems there was an issue verifying your email. Please ensure you've clicked the correct link or contact support for assistance."
+            ) : (
+              "Verifying link is expired now. Please register again to get a new verification link."
+            )}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           {success ? (
             <Button onClick={handleSuccess}>Start Exploring</Button>
-          ) : message === "Your email verification failed, Please try again" ? (
+          ) : message ===
+            "Your email verification failed, Please try again" ? (
             <Button onClick={handletryAgain}>Try Again</Button>
           ) : (
             <Button onClick={handleFail}>Register Again</Button>
@@ -110,7 +115,7 @@ function PageContent({ id }) {
   };
 
   useEffect(() => {
-    console.log("verifcation page is rendering ", id);
+    console.log("verification page is rendering ", id);
     emailVerification();
   }, [id]);
 
