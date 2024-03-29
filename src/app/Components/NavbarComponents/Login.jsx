@@ -1,20 +1,45 @@
 "use client";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn, signOut } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { useState } from "react";
+import Box from "@mui/material/Box";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import IconButton from "@mui/material/IconButton";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 import "./Login.css";
-import {toggleSignPagePopup,setSignInBtn} from '../../GlobalRedux/Features/GlobalStateSlice';
+import {
+  toggleSignPagePopup,
+  setSignInBtn,
+} from "../../GlobalRedux/Features/GlobalStateSlice";
+import axios from "axios";
+
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
-  const isSignup = useSelector((state)=>{return state.GlobalState.isSignup});
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [linkSend, setLinkSend] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const isSignup = useSelector((state) => {
+    return state.GlobalState.isSignup;
+  });
   const dispatch = useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,9 +49,29 @@ function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const [isClick, setIsClick] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsClick(true);
     console.log("Form submitted:", formData);
+    if (formData.password !== formData.confirmPassword) {
+      setIsClick(false);
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_REGISTER_USER}`,
+        formData
+      );
+      console.log(response);
+      setLinkSend(true);
+    } catch (e) {
+      setIsClick(false);
+      console.log(e);
+    }
   };
   return (
     <div className="fixed w-[100vw] left-0 top-0 z-50 h-[100vh] pop-up">
@@ -43,18 +88,6 @@ function Login() {
         <div className="bg-white px-1 lg:px-6 py-3  rounded-sm">
           <div className="grid grid-cols-2 items-center cursor-pointer text-green-bg md:font-bold my-3">
             <div
-              className={`border-2 text-center border-b-2  border-green-bg px-3 py-2 ${
-                isSignup
-                  ? " bg-green-bg text-white hover:bg-green-bg"
-                  : "border-green-bg"
-              }`}
-              onClick={() => {
-                dispatch(setSignInBtn(true));
-              }}
-            >
-              Sign up
-            </div>
-            <div
               className={`border-2 text-center border-green-bg px-3 py-2 ${
                 !isSignup
                   ? "bg-green-bg text-white hover:bg-green-bg"
@@ -65,6 +98,19 @@ function Login() {
               }}
             >
               Sign In
+            </div>
+
+            <div
+              className={`border-2 text-center border-b-2  border-green-bg px-3 py-2 ${
+                isSignup
+                  ? " bg-green-bg text-white hover:bg-green-bg"
+                  : "border-green-bg"
+              }`}
+              onClick={() => {
+                dispatch(setSignInBtn(true));
+              }}
+            >
+              Sign up
             </div>
           </div>
 
@@ -111,18 +157,18 @@ function Login() {
             <div className="col-span-1 mx-auto">or</div>
             <div className="h-[1px] col-span-3  bg-slate-700"></div>
           </div>
-
-          <form onSubmit={handleSubmit}>
+          <form>
             {isSignup && (
               <TextField
+                id="outlined-basic"
                 fullWidth
                 required
                 label="User Name"
                 variant="outlined"
                 style={{ marginBottom: 10 }}
-                name="userName" // Add the name attribute
+                name="userHandle"
                 onChange={handleChange}
-                autoComplete="username"
+                autoComplete="userHandle"
               />
             )}
 
@@ -137,39 +183,99 @@ function Login() {
               autoComplete="email"
             />
 
-            <TextField
-              fullWidth
-              required
-              label="Password"
-              variant="outlined"
-              style={{ marginBottom: 10 }}
-              type="password" // Set input type to password
-              name="password" // Add the name attribute
-              autoComplete="new-password"
-              onChange={handleChange}
-            />
+            <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+              <FormControl
+                variant="outlined"
+                className="w-full"
+                style={{ marginBottom: 10 }}
+              >
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={showPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                  name="password"
+                  onChange={handleChange}
+                />
+              </FormControl>
+            </Box>
 
             {isSignup && (
-              <TextField
-                fullWidth
-                required
-                label="Confirm Password"
+              <FormControl
                 variant="outlined"
+                className="w-full"
                 style={{ marginBottom: 10 }}
-                type="password"
-                autoComplete="new-password"
-                name="confirmPassword"
-                onChange={handleChange}
-              />
+              >
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Confirm Password
+                </InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={showPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Confirm Password"
+                  name="confirmPassword"
+                  onChange={handleChange}
+                />
+              </FormControl>
             )}
 
-            <div className="flex justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] cursor-pointer transition-all duration-300">
-              {isSignup ? (
-                <button type="submit">Submit</button>
-              ) : (
-                <button type="submit">Sign In</button>
-              )}
-            </div>
+            {!linkSend ? (
+              <>
+                {isSignup && (
+                  <button
+                    className={`flex w-full justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] transition-all duration-300 ${
+                      isClick ? " cursor-wait" : " cursor-pointer"
+                    }`}
+                    disabled={isClick}
+                    onClick={handleSubmit}
+                  >
+                    Submit
+                  </button>
+                )}
+                {!isSignup && (
+                  <button
+                    className={`flex w-full justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] transition-all duration-300 ${
+                      isClick ? " cursor-wait" : " cursor-pointer"
+                    }`}
+                    disabled={isClick}
+                  >
+                    Sign In
+                  </button>
+                )}
+              </>
+            ) : (
+              <div
+                className={`flex justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] transition-all duration-300 `}
+              >
+                Verification link sent to your email
+              </div>
+            )}
           </form>
         </div>
       </div>
