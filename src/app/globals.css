@@ -277,101 +277,94 @@ body::-webkit-scrollbar-thumb {
 
 /* Text-Editor utility CLASSES */
 
-#article-content-container {
-  ol {
-    list-style-type: decimal !important;
-    padding-left: 20px !important;
-    margin-left: 20px !important;
-  }
-
-  ul {
-    list-style-type: none !important;
-    padding-left: 0 !important;
-    margin-top: 0 !important;
-  }
-
-  ul ul {
-    list-style-type: none !important;
-    padding-left: 1em !important;
-    margin-top: 0 !important;
-  }
-
-  ul ul ul {
-    list-style-type: none !important;
-    padding-left: 2em !important;
-    margin-top: 0 !important;
-  }
-
-  ul li {
-    margin-bottom: 10px !important;
-    padding-left: 7px !important;
-    position: relative !important;
-  }
-
-  ul li:before {
-    content: "\2022" !important;
-    position: absolute !important;
-    left: -10px !important;
-  }
-
-  li {
-    margin-block: 10px !important;
-  }
-
-  h1 {
-    font-size: 2em !important;
-    font-weight: bold !important;
-    margin-top: 0.67em !important;
-    margin-bottom: 0.67em !important;
-  }
-
-  h2 {
-    font-size: 1.5em !important;
-    font-weight: bold !important;
-    margin-top: 0.83em !important;
-    margin-bottom: 0.83em !important;
-  }
-
-  h3 {
-    font-size: 1.17em !important;
-    font-weight: bold !important;
-    margin-top: 1em !important;
-    margin-bottom: 1em !important;
-  }
-
-  h4 {
-    font-size: 1em !important;
-    font-weight: bold !important;
-    margin-top: 1.33em !important;
-    margin-bottom: 1.33em !important;
-  }
-
-  h5 {
-    font-size: 0.83em !important;
-    font-weight: bold !important;
-    margin-top: 1.67em !important;
-    margin-bottom: 1.67em !important;
-  }
-
-  h6 {
-    font-size: 0.67em !important;
-    font-weight: bold !important;
-    margin-top: 2.33em !important;
-    margin-bottom: 2.33em !important;
-  }
-
-  p {
-    font-weight: 450 !important;
-    font-size: 14px !important;
-    margin-block: 10px !important;
-  }
-  p span{
-    font-weight: 450 !important;
-    font-size: 1rem !important;
-    margin-block: 10px !important;
-  }
-  
+#article-content-container ol {
+  list-style-type: decimal;
+  padding-left: 20px;
+  margin-left: 20px;
 }
+
+#article-content-container ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0;
+}
+
+#article-content-container ul ul {
+  list-style-type: none;
+  padding-left: 1em;
+  margin-top: 0;
+}
+
+#article-content-container ul ul ul {
+  list-style-type: none;
+  padding-left: 2em;
+  margin-top: 0;
+}
+
+#article-content-container ul li {
+  margin-bottom: 10px;
+  padding-left: 7px;
+  position: relative;
+}
+
+#article-content-container ul li:before {
+  content: "\2022";
+  position: absolute;
+  left: -10px;
+}
+
+#article-content-container li {
+  margin-block: 10px;
+}
+
+#article-content-container h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+}
+
+#article-content-container h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+}
+
+#article-content-container h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#article-content-container h4 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+}
+
+#article-content-container h5 {
+  font-size: 0.83em;
+  font-weight: bold;
+  margin-top: 1.67em;
+  margin-bottom: 1.67em;
+}
+
+#article-content-container h6 {
+  font-size: 0.67em;
+  font-weight: bold;
+  margin-top: 2.33em;
+  margin-bottom: 2.33em;
+}
+
+#article-content-container p {
+  font-weight: 450;
+  font-size: 14px;
+  margin-block: 10px;
+}
+
 
 @media screen and (max-width: 768px) {
   #article-content-container p span {
@@ -381,7 +374,6 @@ body::-webkit-scrollbar-thumb {
 
 
 .search-bar input:focus {
-  outline: none; /* Removes the default focus outline */
-  /* Optionally, add your own focus styles below */
-  box-shadow: 0 0 15px rgb(89, 94, 85, 0.1); /* Example: Adds a glow effect */
+  outline: none; 
+  box-shadow: 0 0 15px rgb(89, 94, 85, 0.1); 
 }
