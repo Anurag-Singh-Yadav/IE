@@ -67,7 +67,7 @@ function Company() {
         infinite = {true}
         autoPlay={true}
         arrows={false}
-        transitionDuration={5000}
+        transitionDuration={1000}
         customTransition="all 5s linear"
         autoPlaySpeed={3500}
       >
