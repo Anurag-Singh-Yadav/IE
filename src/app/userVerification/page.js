@@ -143,9 +143,9 @@ function Page() {
   const id = params.get("id");
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <div>
       <PageContent id={id} />
-    </Suspense>
+    </div>
   );
 }
 export default Page;
