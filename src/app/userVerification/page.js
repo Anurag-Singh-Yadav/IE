@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -11,64 +11,6 @@ import { useSearchParams, useRouter } from "next/navigation";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import {
-  toggleSignPagePopup,
-  setSignInBtn,
-} from "../GlobalRedux/Features/GlobalStateSlice";
-function CircularIndeterminate() {
-  return (
-    <Box sx={{ display: "flex" }}>
-      <CircularProgress size={60} />
-    </Box>
-  );
-}
-function Page() {
-  const params = useSearchParams();
-  const [open, setOpen] = React.useState(false);
-  const [message, setMessage] = useState(null);
-  const [sucess, setSuccess] = useState(false);
-  var id = params.get("id");
-  const emailVerification = async () => {
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_VERIFY_USER}/${id}`,
-        {
-          id: id,
-        }
-      );
-      console.log(response);
-      setMessage(response?.data?.message);
-      setSuccess(true);
-      setOpen(true);
-    } catch (e) {
-      console.log(e);
-      setMessage(e?.response?.data?.message);
-      setOpen(true);
-      setSuccess(false);
-    }
-  };
-  useEffect(() => {
-    console.log("verifcation page is rendering ", id);
-    emailVerification();
-  }, [id]);
-  return (
-    <div>
-      {message ? (
-        <AlertDialog
-          open={open}
-          success={sucess}
-          message={message}
-          setOpen={setOpen}
-        />
-      ) : (
-        <div className="flex justify-center flex-col items-center gap-3 py-4 h-[30vh] w-full">
-          <CircularIndeterminate />
-          <div className="text-xl font-bold">Loading....</div>
-        </div>
-      )}
-    </div>
-  );
-}
 
 function AlertDialog({ open, success, message, setOpen }) {
   const router = useRouter();
@@ -130,6 +72,75 @@ function AlertDialog({ open, success, message, setOpen }) {
         </DialogActions>
       </Dialog>
     </React.Fragment>
+  );
+}
+
+function CircularIndeterminate() {
+  return (
+    <Box sx={{ display: "flex" }}>
+      <CircularProgress size={60} />
+    </Box>
+  );
+}
+
+function PageContent({ id }) {
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const router = useRouter();
+
+  const emailVerification = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_VERIFY_USER}/${id}`,
+        {
+          id: id,
+        }
+      );
+      console.log(response);
+      setMessage(response?.data?.message);
+      setSuccess(true);
+      setOpen(true);
+    } catch (e) {
+      console.log(e);
+      setMessage(e?.response?.data?.message);
+      setOpen(true);
+      setSuccess(false);
+    }
+  };
+
+  useEffect(() => {
+    console.log("verifcation page is rendering ", id);
+    emailVerification();
+  }, [id]);
+
+  return (
+    <div>
+      {message ? (
+        <AlertDialog
+          open={open}
+          success={success}
+          message={message}
+          setOpen={setOpen}
+        />
+      ) : (
+        <div className="flex justify-center flex-col items-center gap-3 py-4 h-[30vh] w-full">
+          <CircularIndeterminate />
+          <div className="text-xl font-bold">Loading....</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Page() {
+  const params = useSearchParams();
+  const id = params.get("id");
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PageContent id={id} />
+    </Suspense>
   );
 }
 export default Page;
