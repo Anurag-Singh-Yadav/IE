@@ -7,14 +7,25 @@ import { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import TextField from "@mui/material/TextField";
 import "./Login.css";
-import {toggleSignPagePopup,setSignInBtn} from '../../GlobalRedux/Features/GlobalStateSlice';
+import {
+  toggleSignPagePopup,
+  setSignInBtn,
+} from "../../GlobalRedux/Features/GlobalStateSlice";
+import axios from "axios";
 function Login() {
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
-  const isSignup = useSelector((state)=>{return state.GlobalState.isSignup});
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  
+  const isSignup = useSelector((state) => {
+    return state.GlobalState.isSignup;
+  });
   const dispatch = useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,9 +35,21 @@ function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     console.log("Form submitted:", formData);
+    if(formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_REGISTER_USER}`,
+        formData
+      );
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <div className="fixed w-[100vw] left-0 top-0 z-50 h-[100vh] pop-up">
@@ -43,18 +66,6 @@ function Login() {
         <div className="bg-white px-1 lg:px-6 py-3  rounded-sm">
           <div className="grid grid-cols-2 items-center cursor-pointer text-green-bg md:font-bold my-3">
             <div
-              className={`border-2 text-center border-b-2  border-green-bg px-3 py-2 ${
-                isSignup
-                  ? " bg-green-bg text-white hover:bg-green-bg"
-                  : "border-green-bg"
-              }`}
-              onClick={() => {
-                dispatch(setSignInBtn(true));
-              }}
-            >
-              Sign up
-            </div>
-            <div
               className={`border-2 text-center border-green-bg px-3 py-2 ${
                 !isSignup
                   ? "bg-green-bg text-white hover:bg-green-bg"
@@ -65,6 +76,19 @@ function Login() {
               }}
             >
               Sign In
+            </div>
+
+            <div
+              className={`border-2 text-center border-b-2  border-green-bg px-3 py-2 ${
+                isSignup
+                  ? " bg-green-bg text-white hover:bg-green-bg"
+                  : "border-green-bg"
+              }`}
+              onClick={() => {
+                dispatch(setSignInBtn(true));
+              }}
+            >
+              Sign up
             </div>
           </div>
 
@@ -120,9 +144,9 @@ function Login() {
                 label="User Name"
                 variant="outlined"
                 style={{ marginBottom: 10 }}
-                name="userName" // Add the name attribute
+                name="userHandle"
                 onChange={handleChange}
-                autoComplete="username"
+                autoComplete="userHandle"
               />
             )}
 
@@ -163,13 +187,17 @@ function Login() {
               />
             )}
 
-            <div className="flex justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] cursor-pointer transition-all duration-300">
-              {isSignup ? (
-                <button type="submit">Submit</button>
-              ) : (
-                <button type="submit">Sign In</button>
-              )}
-            </div>
+            {isSignup && (
+              <div className="flex justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] cursor-pointer transition-all duration-300" onClick={handleSubmit}>
+                    Submit
+              </div>
+            )}
+
+            {!isSignup && (
+                <div className="flex justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] cursor-pointer transition-all duration-300" onClick={handleSubmit}>
+                  Sign In
+                </div>
+            )}
           </form>
         </div>
       </div>

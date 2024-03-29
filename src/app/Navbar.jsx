@@ -178,7 +178,7 @@ function Navbar() {
               <button
                 className="py-2 px-4 start-2  font-semibold rounded-md transition duration-300"
                 onClick={() => {
-                  setSignInBtn(false);
+                  dispatch(setSignInBtn(false));
                   dispatch(toggleSignPagePopup());
                 }}
               >
@@ -188,7 +188,7 @@ function Navbar() {
             <button
               className="py-2 px-4 text-white font-semibold rounded-lg btn-gradient-2 hidden sm:flex"
               onClick={() => {
-                setSignInBtn(true);
+                dispatch(setSignInBtn(true));
                 dispatch(toggleSignPagePopup());
               }}
             >
