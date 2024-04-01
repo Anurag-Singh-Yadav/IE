@@ -8,7 +8,7 @@ function Hero() {
     return state.GlobalState.isLight;
   });
   return (
-    <div className="overflow-hidden transition-all duration-300">
+    <div className="overflow-hidden">
       <div className="fixed top-0 right-0 pt-4 h-[100vh] w-[100vw] flex justify-center items-center  background-grid -z-10">
         <div
           className={`absolute w-[50%] right-0 h-full ${!isLight ? "right-gradient" : "dark-right-gradient"}`}

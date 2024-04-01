@@ -28,7 +28,9 @@ function Login() {
     password: "",
     confirmPassword: "",
   });
-
+  const isLight = useSelector((state) => {
+    return state.GlobalState.isLight;
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [linkSend, setLinkSend] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -75,7 +77,7 @@ function Login() {
   };
   return (
     <div className="fixed w-[100vw] left-0 top-0 z-50 h-[100vh] pop-up">
-      <div className="fixed overflow-y-auto max-h-[100vh] rounded-lg top-3 border-t-green-bg border-t-[3px] left-0 right-0 sm:w-[70%] lg:w-[55%] w-full bg-white  sm:mx-auto py-2 z-30 border px-4 enlarge-in">
+      <div className="fixed overflow-y-auto max-h-[100vh] rounded-lg top-3 border-t-green-bg border-t-[3px] left-0 right-0 sm:w-[70%] lg:w-[55%] w-full bg-primary  sm:mx-auto py-2 z-30 border px-4 enlarge-in">
         <div className="py-3 flex justify-center font-sans font-medium">
           <span className="text-center">Please Sign-In To Continue</span>{" "}
           <AiOutlineCloseCircle
@@ -85,7 +87,7 @@ function Login() {
             }}
           />
         </div>
-        <div className="bg-white px-1 lg:px-6 py-3  rounded-sm">
+        <div className="px-1 lg:px-6 py-3  rounded-sm">
           <div className="grid grid-cols-2 items-center cursor-pointer text-green-bg md:font-bold my-3">
             <div
               className={`border-2 text-center border-green-bg px-3 py-2 ${
@@ -133,7 +135,7 @@ function Login() {
 
           <div className="flex flex-wrap justify-around lg:flex-nowrap  items-center gap-2 lg:gap-3 font-semibold">
             <button
-              className="flex gap-1 sm:gap-2 lg:gap-3 justify-between border-[1.5px] rounded-md border-black py-2 px-2 md:px-6 items-center"
+              className="flex gap-1 sm:gap-2 lg:gap-3 justify-between border-[1.5px] rounded-md border-border py-2 px-2 md:px-6 items-center"
               onClick={() => {
                 signIn("google");
               }}
@@ -165,6 +167,7 @@ function Login() {
                 required
                 label="User Name"
                 variant="outlined"
+                color="dark"
                 style={{ marginBottom: 10 }}
                 name="userHandle"
                 onChange={handleChange}
