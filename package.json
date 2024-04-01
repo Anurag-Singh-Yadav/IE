@@ -19,6 +19,7 @@
     "@mui/material": "^5.15.6",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@reduxjs/toolkit": "^2.0.1",
+    "@tailwindcss/typography": "^0.5.12",
     "@tinymce/tinymce-react": "^4.3.2",
     "aws-sdk": "^2.1548.0",
     "axios": "^1.6.7",
