@@ -1,5 +1,4 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,jsx}",
@@ -56,13 +55,13 @@ module.exports = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -97,5 +96,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate") , require('flowbite/plugin')],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
+
+export default config;

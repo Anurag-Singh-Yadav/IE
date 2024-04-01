@@ -40,9 +40,10 @@ function NavbarPopup({ details, setShowNavPopup }) {
   return (
     <div
       id="avatar-dropdown"
-      className="dropdown-content  animate-in px-5 py-2 flex flex-col gap-3 min-w-[20vw] absolute top-16 z-[40] w-fit right-0 overflow-visible bg-white rounded-lg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] p-2 border-t-[3px] border-green-bg"
+      className="dropdown-content  animate-in px-5 py-2 flex flex-col gap-3 min-w-[20vw] absolute top-16 z-[40] w-fit right-0 overflow-visible bg-primary rounded-lg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] p-2 border-t-[3px] border-green-bg"
     >
       <div className="flex gap-6 items-center">
+
         <Avatar
           name={name}
           src={avatar}

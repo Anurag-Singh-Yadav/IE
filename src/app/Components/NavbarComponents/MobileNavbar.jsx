@@ -79,7 +79,7 @@ function MobileNavbar({ navBurger, details , challenges }) {
             setDelay(true);
           }, 500);
         }}
-        className={`hidden hamburger font-semibold z-[30] hover:bg-dark-blue bg-green-bg cursor-pointer transition duration-300  rounded-md p-2 text-white`}
+        className={`hidden hamburger font-semibold z-[30] hover:bg-dark-blue bg-green-bg cursor-pointer transition duration-300  rounded-md p-2 `}
       >
         <FaBars size={15} />
       </div>
@@ -87,7 +87,7 @@ function MobileNavbar({ navBurger, details , challenges }) {
         id="mobile-navbar"
         className={`mobile-navbar ${flag === true ? "slide-in-mobile" : ""} ${
           flag === false ? "slide-out-mobile" : ""
-        } fixed  items-center right-0 top-0 bg-white z-[100] h-[100vh]`}
+        } fixed  items-center right-0 top-0 bg-primary z-[100] h-[100vh]`}
       >
         <div
           onClick={() => {
@@ -96,7 +96,7 @@ function MobileNavbar({ navBurger, details , challenges }) {
           }}
           className={`${
             delay ? "pop-in" : "hidden"
-          } fixed top-[2vh] right-[2vw] z-[100] hover:bg-dark-blue transition duration-300 bg-green-bg cursor-pointer rounded-md p-2 text-white`}
+          } fixed top-[2vh] right-[2vw] z-[100] hover:bg-dark-blue transition duration-300 bg-green-bg cursor-pointer rounded-md p-2 dark:text-black`}
         >
           <ImCross size={15} />
         </div>
