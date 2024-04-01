@@ -21,6 +21,7 @@ import {
   setSignInBtn,
 } from "../../GlobalRedux/Features/GlobalStateSlice";
 import axios from "axios";
+import { handleSubmit } from "@/app/fetchDetails/credentialLogin";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -51,28 +52,43 @@ function Login() {
 
   const [isClick, setIsClick] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
-    setIsClick(true);
-    console.log("Form submitted:", formData);
-    if (formData.password !== formData.confirmPassword) {
-      setIsClick(false);
-      alert("Passwords do not match");
-      return;
-    }
+    const result = await signIn('credentials',{
+      redirect: false,
+      email: formData.email,
+      password: formData.password,
+    });
+    console.log(result);
 
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_REGISTER_USER}`,
-        formData
-      );
-      console.log(response);
-      setLinkSend(true);
-    } catch (e) {
-      setIsClick(false);
-      console.log(e);
+    if(result.ok){
+      dispatch(toggleSignPagePopup());
+      window.location.reload();
+    }
+    else{
     }
   };
+
+  const signUpHandler = async (e) => {
+    console.log('signUpHandler')
+    setIsClick(true);
+    try {
+      e.preventDefault();
+      if (formData.password !== formData.confirmPassword) {
+        setIsClick(false);
+        alert("Passwords do not match");
+        return;
+      }
+      await handleSubmit(formData , 1);
+      setLinkSend(true);
+    } catch (e) {
+      console.error(e);
+    }
+    finally {
+      setIsClick(false);
+    }
+  }
+
   return (
     <div className="fixed w-[100vw] left-0 top-0 z-50 h-[100vh] pop-up">
       <div className="fixed overflow-y-auto max-h-[100vh] rounded-lg top-3 border-t-green-bg border-t-[3px] left-0 right-0 sm:w-[70%] lg:w-[55%] w-full bg-white  sm:mx-auto py-2 z-30 border px-4 enlarge-in">
@@ -253,7 +269,7 @@ function Login() {
                       isClick ? " cursor-wait" : " cursor-pointer"
                     }`}
                     disabled={isClick}
-                    onClick={handleSubmit}
+                    onClick={signUpHandler}
                   >
                     Submit
                   </button>
@@ -264,6 +280,7 @@ function Login() {
                       isClick ? " cursor-wait" : " cursor-pointer"
                     }`}
                     disabled={isClick}
+                    onClick={loginHandler}
                   >
                     Sign In
                   </button>
