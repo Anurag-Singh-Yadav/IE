@@ -22,22 +22,14 @@ const authOptions = {
         password: { labtype: "password" },
       },
       async authorize(credentials) {
-        // console.log('********* ' , credentials);
         try {
-          // const res = await axios.post(`${process.env.BASE_URL}${process.env.AUTO_LOGIN}`, {
-          //   email: credentials.email,
-          //   password: credentials.password,
-          // });
-          // interviewToken = res.data.token;
           if(credentials.email && credentials.password){
             return credentials;
           }
           else {
-            console.log('Error while authorizinggggg');
             return null;
           }
         } catch (error) {
-          console.log('Error while authorizing');
           return null;
         }
       },
@@ -52,8 +44,10 @@ const authOptions = {
             user,
           });
           interviewToken = res.data.token;
+          console.log(res);
           return true;
         } catch (error) {
+          console.log('Error = ' , error);
           return false;
         }
       }

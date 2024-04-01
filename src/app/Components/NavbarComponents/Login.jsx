@@ -66,6 +66,7 @@ function Login() {
       window.location.reload();
     }
     else{
+
     }
   };
 
@@ -193,9 +194,10 @@ function Login() {
               required
               label="Email Address"
               variant="outlined"
-              style={{ marginBottom: 10 }}
+              style={{ marginBottom: 10 , outline:'none' }}
               name="email" // Add the name attribute
               onChange={handleChange}
+              onFocus={(e) => e.target.style.border = 'none'}
               autoComplete="email"
             />
 
