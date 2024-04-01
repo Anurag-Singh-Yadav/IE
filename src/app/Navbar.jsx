@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
-import {fetchUserDetails} from './fetchDetails/fetchUserDetails';
+import { fetchUserDetails } from "./fetchDetails/fetchUserDetails";
 import Dropdown from "./Components/NavbarComponents/Dropdown";
 import Login from "./Components/NavbarComponents/Login";
 import "./globals.css";
@@ -15,23 +15,30 @@ import {
   toggleSignPagePopup,
   setSignInBtn,
   setUserDetails,
+  toggleLight,
 } from "./GlobalRedux/Features/GlobalStateSlice";
 
 import { FaCircleArrowUp } from "react-icons/fa6";
 import Avatar from "react-avatar";
 import Cookies from "js-cookie";
 import Loader from "./Components/Loader";
+import { MdDarkMode } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
+import { useTheme } from "next-themes";
 import NavbarPopup from "./Components/NavbarComponents/NavbarPopup";
 import axios from "axios";
 import Link from "next/link";
+import ToggleTheme from "./Components/ToggleTheme";
 function Navbar() {
+  const { setTheme } = useTheme();
+  const [themeFlag, setThemeFlag] = useState(false);
+
   const [showLoader, setShowLoader] = useState(false);
 
   const [challenges, setChallenges] = useState(null);
 
   const dispatch = useDispatch();
   const { data: session, status } = useSession();
-
 
   const isLogin = useSelector((state) => {
     return state.GlobalState.isLogin;
@@ -43,7 +50,6 @@ function Navbar() {
   const getResponse = async (token) => {
     setShowLoader(true);
     try {
-
       const res = await fetchUserDetails(token);
       if (res?.data?.success == true) {
         const { userHandle, avatar, email, name } = res.data;
@@ -124,7 +130,7 @@ function Navbar() {
   }, []);
 
   return (
-    <div className="main-container bg-white border-b">
+    <div className="main-container bg-primary border-b">
       {/* {showLoader && <Loader />} */}
       <div
         className={`fixed bottom-4 bg-white rounded-full w-fit z-10 right-2 cursor-pointer text-dark-blue hover:text-green-bg transition-all duration-300 back-to-top ${
@@ -174,6 +180,7 @@ function Navbar() {
 
         {!isLogin ? (
           <div className="hidden nmd:flex items-center gap-6">
+            <ToggleTheme/>
             <div>
               <button
                 className="py-2 px-4 start-2  font-semibold rounded-md transition duration-300"
@@ -196,7 +203,8 @@ function Navbar() {
             </button>
           </div>
         ) : (
-          <div className="relative hidden nmd:flex items-center w-fit rounded-full">
+          <div className="relative hidden nmd:flex gap-7 items-center w-fit rounded-full">
+            <ToggleTheme/>
             <Avatar
               name={details.name}
               src={details.avatar}

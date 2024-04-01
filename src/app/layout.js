@@ -4,11 +4,12 @@ import Head from "next/head";
 import Navbar from "./Navbar";
 import { Providers } from "./GlobalRedux/Providers";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Footer from "./Footer";
 import MyApp from "../../pages/_app";
+import { ThemeProvider } from "./Components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,14 +31,24 @@ export default function RootLayout({ children }) {
       </Head>
 
       <body className={inter.className} suppressHydrationWarning={true}>
-        <MyApp>
-          <Providers>
-            <Navbar />
-            {children}
-           <div className="gradiant-container pt-[1px]"> <Footer /></div>
-            <ToastContainer />
-          </Providers>
-        </MyApp>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <MyApp>
+            <Providers>
+              <Navbar />
+              {children}
+              <div className="gradiant-container pt-[1px]">
+                {" "}
+                <Footer />
+              </div>
+              <ToastContainer />
+            </Providers>
+          </MyApp>
+        </ThemeProvider>
       </body>
     </html>
   );

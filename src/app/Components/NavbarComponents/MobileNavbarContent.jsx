@@ -43,7 +43,7 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
             Sign In
           </button>
           <button
-            className="py-2 px-4 text-white font-semibold rounded-lg btn-gradient-2"
+            className="py-2 px-4 font-semibold rounded-lg btn-gradient-2"
             onClick={() => {
               dispatch(toggleSignPagePopup());
               handleClick();
