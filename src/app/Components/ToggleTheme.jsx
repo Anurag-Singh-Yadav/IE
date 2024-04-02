@@ -3,12 +3,13 @@ import React, {useState} from "react";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { useTheme } from "next-themes";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { toggleLight } from "../GlobalRedux/Features/GlobalStateSlice";
 function ToggleTheme() {
-  const [themeFlag, setThemeFlag] = useState(false);
   const { setTheme } = useTheme();
   const dispatch = useDispatch();
+  const isLight = useSelector((state) => state.GlobalState.isLight);
+  const [themeFlag, setThemeFlag] = useState(isLight);
   return (
     <div>
       {themeFlag ? (

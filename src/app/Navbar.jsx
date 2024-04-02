@@ -31,6 +31,12 @@ import Link from "next/link";
 import ToggleTheme from "./Components/ToggleTheme";
 function Navbar() {
   const { setTheme } = useTheme();
+  const temp = useTheme();
+
+  
+
+  console.log("there checking",temp);
+
   const [themeFlag, setThemeFlag] = useState(false);
 
   const [showLoader, setShowLoader] = useState(false);
