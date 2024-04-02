@@ -2,12 +2,10 @@
 
     import { createSlice } from "@reduxjs/toolkit";
 
-    const initialTheme = localStorage.getItem('theme') || 'light';
-
     const initialState = {
         isSignPagePopup: false,
         isLogin: false,
-        isLight: (initialTheme === 'light' ? true : false),
+        isLight: true,
         isSignup:true,
         articleLoading: true,
         userDetails: {
@@ -27,9 +25,8 @@
                 state.isLogin = value.payload;
                 return state;
             },
-            toggleLight: (state) => {
-                state.isLight = !state.isLight;
-                localStorage.setItem('theme', state.isLight ? 'light' : 'dark');
+            toggleLight: (state , value) => {
+                state.isLight = value.payload;
                 return state;
             },
             toggleSignPagePopup: (state) => {

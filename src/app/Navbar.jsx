@@ -21,24 +21,11 @@ import {
 import { FaCircleArrowUp } from "react-icons/fa6";
 import Avatar from "react-avatar";
 import Cookies from "js-cookie";
-import Loader from "./Components/Loader";
-import { MdDarkMode } from "react-icons/md";
-import { CiLight } from "react-icons/ci";
-import { useTheme } from "next-themes";
 import NavbarPopup from "./Components/NavbarComponents/NavbarPopup";
 import axios from "axios";
 import Link from "next/link";
 import ToggleTheme from "./Components/ToggleTheme";
 function Navbar() {
-  const { setTheme } = useTheme();
-  const temp = useTheme();
-
-  
-
-  console.log("there checking",temp);
-
-  const [themeFlag, setThemeFlag] = useState(false);
-
   const [showLoader, setShowLoader] = useState(false);
 
   const [challenges, setChallenges] = useState(null);
@@ -52,6 +39,14 @@ function Navbar() {
   const [details, setDetails] = useState({});
 
   const [showNavPopup, setShowNavPopup] = useState(false);
+
+  useEffect(() => {
+    const mode = window.localStorage.getItem("theme");
+    if(mode === 'dark'){
+      console.log('Hehehe');
+      dispatch(toggleLight(false));
+    }
+  } , []);
 
   const getResponse = async (token) => {
     setShowLoader(true);
