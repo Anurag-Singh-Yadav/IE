@@ -16,19 +16,19 @@ export default function Home() {
     <div>
       <Hero />
       <div className="bg-primary">
-        <div className={`main-container ${!isLight ? "gradiant-container" : "bg-primary"}`}>
+        <div className="main-container gradiant-container">
           <Company />
         </div>
         <div className="main-container bg-[url('/circle.svg')] dark:bg-[url('/circle-dark.svg')]">
           <Courses />
         </div>
-        <div className={`main-container ${!isLight ? "gradiant-container" : "bg-primary"}`}>
+        <div className="main-container gradiant-container">
           <About />
         </div>
         <div className="main-container bg-[url('/dotted.svg')] dark:bg-[url('/dotted-dark.svg')]">
           <InterviewExperiance />
         </div>
-        <div className={`${!isLight ? "gradiant-container" : "bg-primary"}`}>
+        <div className="gradiant-container">
           <ReviewCard />
         </div>
       </div>
