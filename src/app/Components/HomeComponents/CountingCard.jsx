@@ -49,7 +49,7 @@ function CountingCard({ mainText, targetNumber, type }) {
   }, []);
 
   return (
-    <div className="flex justify-center py-2 bg-white shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] items-center gap-2">
+    <div className="flex justify-center py-2 bg-primary  shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] dark:border-2 dark:rounded-md dark:border-white items-center gap-2">
       {type === "happy" && <RiEmotionHappyLine size={30} />}
       {type === "bulb" && <BsFillLightbulbFill size={30} className="text-yellow-500" />}
       {type === "student" && <PiStudent size={30} />}

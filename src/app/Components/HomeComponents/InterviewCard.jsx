@@ -23,7 +23,7 @@ function InterviewCard({
 
 
   return (
-    <div className="my-3 py-4 text-black px-4 border-l-2 hover:border-green-bg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+    <div className="my-3 py-4 bg-primary px-4 border-l-2 dark:border-primary dark:hover:border-green-bg  hover:border-green-bg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
       <div className="flex flex-wrap justify-between items-center">
         <div className="flex gap-3 flex-wrap items-center">
           <div>
