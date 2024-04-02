@@ -14,6 +14,7 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import "./Login.css";
 import {
@@ -24,16 +25,13 @@ import axios from "axios";
 import { handleSubmit } from "@/app/fetchDetails/credentialLogin";
 
 function Login() {
-
   const { data: session, status } = useSession();
 
-
   useEffect(() => {
-    if(session){
+    if (session) {
       console.log(session);
     }
-
-  } , [session]);
+  }, [session]);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -43,6 +41,17 @@ function Login() {
   const isLight = useSelector((state) => {
     return state.GlobalState.isLight;
   });
+
+  const theme = createTheme({
+    palette: {
+      type: !isLight ? "dark" : "light",
+    },
+  });
+
+  useEffect(() => {
+
+  }, [isLight]);
+
   const [showPassword, setShowPassword] = useState(false);
   const [linkSend, setLinkSend] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -66,28 +75,25 @@ function Login() {
   const [isClick, setIsClick] = useState(false);
 
   const loginHandler = async (e) => {
-    try{
+    try {
       e.preventDefault();
-      const result = await signIn('credentials',{
+      const result = await signIn("credentials", {
         redirect: false,
         email: formData.email,
         password: formData.password,
-        callbackUrl: '/',
+        callbackUrl: "/",
       });
-      console.log('Result = ' , result);
-      if(result.error){
+      console.log("Result = ", result);
+      if (result.error) {
         alert(result.error);
-      }
-      else{
+      } else {
         window.location.reload();
       }
-    }catch(err){
-      
-    }
-  }
+    } catch (err) {}
+  };
 
   const signUpHandler = async (e) => {
-    console.log('signUpHandler')
+    console.log("signUpHandler");
     setIsClick(true);
     try {
       e.preventDefault();
@@ -96,15 +102,14 @@ function Login() {
         alert("Passwords do not match");
         return;
       }
-      await handleSubmit(formData , 1);
+      await handleSubmit(formData, 1);
       setLinkSend(true);
     } catch (e) {
       console.error(e);
-    }
-    finally {
+    } finally {
       setIsClick(false);
     }
-  }
+  };
 
   return (
     <div className="fixed w-[100vw] left-0 top-0 z-50 h-[100vh] pop-up">
@@ -190,129 +195,131 @@ function Login() {
             <div className="col-span-1 mx-auto">or</div>
             <div className="h-[1px] col-span-3  bg-slate-700"></div>
           </div>
-          <form>
-            {isSignup && (
+
+          <ThemeProvider theme={theme}>
+            <form className="">
+              {isSignup && (
+                <TextField
+                  id="outlined-basic"
+                  fullWidth
+                  required
+                  label="User Name"
+                  variant="outlined"
+                  style={{ marginBottom: 10 }}
+                  name="userHandle"
+                  onChange={handleChange}
+                  autoComplete="userHandle"
+                />
+              )}
+
               <TextField
-                id="outlined-basic"
                 fullWidth
                 required
-                label="User Name"
+                label="Email Address"
                 variant="outlined"
-                color="dark"
-                style={{ marginBottom: 10 }}
-                name="userHandle"
+                style={{ marginBottom: 10, outline: "none" }}
+                name="email" // Add the name attribute
                 onChange={handleChange}
-                autoComplete="userHandle"
+                onFocus={(e) => (e.target.style.border = "none")}
+                autoComplete="email"
               />
-            )}
 
-            <TextField
-              fullWidth
-              required
-              label="Email Address"
-              variant="outlined"
-              style={{ marginBottom: 10 , outline:'none' }}
-              name="email" // Add the name attribute
-              onChange={handleChange}
-              onFocus={(e) => e.target.style.border = 'none'}
-              autoComplete="email"
-            />
+              <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+                <FormControl
+                  variant="outlined"
+                  className="w-full"
+                  style={{ marginBottom: 10 }}
+                >
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={showPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password"
+                    name="password"
+                    onChange={handleChange}
+                  />
+                </FormControl>
+              </Box>
 
-            <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-              <FormControl
-                variant="outlined"
-                className="w-full"
-                style={{ marginBottom: 10 }}
-              >
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Password"
-                  name="password"
-                  onChange={handleChange}
-                />
-              </FormControl>
-            </Box>
+              {isSignup && (
+                <FormControl
+                  variant="outlined"
+                  className="w-full"
+                  style={{ marginBottom: 10 }}
+                >
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Confirm Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={showPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Confirm Password"
+                    name="confirmPassword"
+                    onChange={handleChange}
+                  />
+                </FormControl>
+              )}
 
-            {isSignup && (
-              <FormControl
-                variant="outlined"
-                className="w-full"
-                style={{ marginBottom: 10 }}
-              >
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Confirm Password
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Confirm Password"
-                  name="confirmPassword"
-                  onChange={handleChange}
-                />
-              </FormControl>
-            )}
-
-            {!linkSend ? (
-              <>
-                {isSignup && (
-                  <button
-                    className={`flex w-full justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] transition-all duration-300 ${
-                      isClick ? " cursor-wait" : " cursor-pointer"
-                    }`}
-                    disabled={isClick}
-                    onClick={signUpHandler}
-                  >
-                    Submit
-                  </button>
-                )}
-                {!isSignup && (
-                  <button
-                    className={`flex w-full justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] transition-all duration-300 ${
-                      isClick ? " cursor-wait" : " cursor-pointer"
-                    }`}
-                    disabled={isClick}
-                    onClick={loginHandler}
-                  >
-                    Sign In
-                  </button>
-                )}
-              </>
-            ) : (
-              <div
-                className={`flex justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] transition-all duration-300 `}
-              >
-                Verification link sent to your email
-              </div>
-            )}
-          </form>
+              {!linkSend ? (
+                <>
+                  {isSignup && (
+                    <button
+                      className={`flex w-full justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] transition-all duration-300 ${
+                        isClick ? " cursor-wait" : " cursor-pointer"
+                      }`}
+                      disabled={isClick}
+                      onClick={signUpHandler}
+                    >
+                      Submit
+                    </button>
+                  )}
+                  {!isSignup && (
+                    <button
+                      className={`flex w-full justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] transition-all duration-300 ${
+                        isClick ? " cursor-wait" : " cursor-pointer"
+                      }`}
+                      disabled={isClick}
+                      onClick={loginHandler}
+                    >
+                      Sign In
+                    </button>
+                  )}
+                </>
+              ) : (
+                <div
+                  className={`flex justify-center bg-green-bg py-2 px-4 text-white font font-bold items-center hover:bg-[#00b769] transition-all duration-300 `}
+                >
+                  Verification link sent to your email
+                </div>
+              )}
+            </form>
+          </ThemeProvider>
         </div>
       </div>
     </div>

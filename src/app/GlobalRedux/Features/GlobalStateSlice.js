@@ -25,8 +25,8 @@
                 state.isLogin = value.payload;
                 return state;
             },
-            toggleLight: (state) => {
-                state.isLight = !state.isLight;
+            toggleLight: (state , value) => {
+                state.isLight = value.payload;
                 return state;
             },
             toggleSignPagePopup: (state) => {
