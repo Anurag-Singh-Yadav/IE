@@ -55,7 +55,7 @@ body::-webkit-scrollbar-thumb {
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 0 0% 10%;
+    --primary: 0 0% 5%;
     --primary-foreground: 0 0% 100%;
 
 
@@ -72,8 +72,6 @@ body::-webkit-scrollbar-thumb {
     --ring: 142.4 71.8% 29.2%;
   }
 }
-
-
 
 .background-grid {
   background-image: linear-gradient(

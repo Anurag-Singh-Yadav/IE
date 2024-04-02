@@ -8,7 +8,7 @@ import { GiNetworkBars } from "react-icons/gi";
 import "./CourseCard.css";
 function CourseCard({course}) {
   return (
-    <div className="shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] bg-white flex flex-col gap-3 rounded-lg hover:rounded-none overflow-hidden rounded-b-sm cursor-pointer">
+    <div className="shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] bg-primary flex flex-col gap-3 rounded-lg hover:rounded-none overflow-hidden rounded-b-sm cursor-pointer">
       <Image
         src={course.img}
         alt={course.title}
@@ -16,7 +16,7 @@ function CourseCard({course}) {
       />
       <div className="flex flex-col gap-2 justify-center px-6 pb-6 pt-4">
         <p
-         className="btn-gradient-2 text-sm  px-2 py-2 rounded-lg inline w-fit mb-2 text-white font-medium ">
+         className="btn-gradient-2 text-sm  px-2 py-2 rounded-lg inline w-fit mb-2 text-primary font-medium ">
           {course.title}
         </p>
         <p className="font-semibold text-xs hover:text-green-bg transition-all duration-300">{course.description}</p>

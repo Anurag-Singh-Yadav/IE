@@ -20,11 +20,13 @@ const config = {
       backgroundImage: {
         'square': "url('/square.svg')",
         'dotted': "url('/dotted.svg')",
+        'dotted-dark': "url('/dotted-dark.svg')",
         'cutCircle': "url('/cutCircle.svg')",
         'circle': "url('/circle.svg')",
         'star': "url('/star.svg')",
         'star2': "url('/star2.svg')",
         'dsaPrac':"url('/dsaPrac.svg')",
+        'circle-dark': "url('/circle-dark.svg')",
       },
       fontFamily: {
         custom: ["Poppins", "sans-serif"],
