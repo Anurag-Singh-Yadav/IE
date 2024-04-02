@@ -84,7 +84,7 @@ function ArticleProgress({ title }) {
   return (
     <div className="">
       {articleLoading && show && (
-        <div className="min-w-[20vw] min-h-[100vh] bg-gray-100  p-2 rounded-lg">
+        <div className="min-w-[20vw] min-h-[100vh] bg-gray-100 dark:bg-primary  p-2 rounded-lg">
           <PreRender count={7} />
         </div>
       )}
@@ -117,7 +117,7 @@ function ArticleProgress({ title }) {
 
           <div
             id="content-table"
-            className="mr-1 rounded-md ml-10 px-4 min-w-[20vw] min-h-[100vh] content-table flex flex-col gap-4 bg-gray-100 py-6"
+            className="mr-1 rounded-md ml-10 px-4 min-w-[20vw] min-h-[100vh] content-table flex flex-col gap-4 bg-gray-100 dark:bg-primary py-6"
           >
             <p className=" text-lg font-semibold text-center">
               Table of <span className="text-green-bg underline">Contents</span>

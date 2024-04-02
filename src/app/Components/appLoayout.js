@@ -91,7 +91,7 @@ export default function AppLayout({
       <div className="relative flex min-h-[100vh]">
         <div
           id="navigator"
-          className="min-w-[25vw] hidden fixed nmd:sticky nmd:flex h-[100vh] pl-2 pr-1 py-6 top-0 left-0 bg-white z-[16] border-r"
+          className="min-w-[25vw] hidden fixed nmd:sticky nmd:flex h-[100vh] pl-2 pr-1 py-6 top-0 left-0 bg-primary z-[16] border-r"
         >
           {navigator && (
             <Navigator

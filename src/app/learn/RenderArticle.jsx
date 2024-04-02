@@ -80,7 +80,7 @@ function RenderArticle({ contentFlow, title, menu, mainHeading, mainTopic }) {
   }, [menu, mainHeading , articleLoading]);
 
   return (
-    <div className=" w-full flex flex-col justify-between mb-3 py-4">
+    <div className=" w-full dark:border-r flex flex-col justify-between mb-3 dark:mb-0 py-4">
       <div
         className="flex flex-col justify-between px-6 pb-[30vh] mb-3 py-4"
         style={{ letterSpacing: "0.8px" }}
