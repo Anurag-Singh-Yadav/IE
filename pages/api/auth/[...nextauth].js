@@ -2,7 +2,9 @@ import axios from "axios";
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-var interviewToken;
+import Credentials from 'next-auth/providers/credentials';
+
+var interviewToken , loginResponse;
 const authOptions = {
   providers: [
     GitHubProvider({
@@ -13,20 +15,40 @@ const authOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+    Credentials({
+      name: "credentials",
+      credentials: {
+        email: { type: "email" },
+        password: { labtype: "password" },
+      },
+      async authorize(credentials) {
+        try {
+          if(credentials.email && credentials.password){
+            return credentials;
+          }
+          else {
+            return null;
+          }
+        } catch (error) {
+          return null;
+        }
+      },
+    }),
   ],
 
   callbacks: {
     async signIn({ user, account }) {
-      if (account?.provider === "github" || account?.provider === "google") {
+      if (account?.provider === "github" || account?.provider === "google" || account?.provider === "credentials") {
         try {
           const res = await axios.post(`${process.env.BASE_URL}${process.env.AUTO_LOGIN}`, {
             user,
           });
           interviewToken = res.data.token;
+          loginResponse = res;
           return true;
         } catch (error) {
-          console.error("Error occurred:", error);
-          return false;
+          console.log('Error = ' , error.response);
+          throw new Error(error.response.data.message || 'Error while logging in');
         }
       }
       return false;
@@ -34,11 +56,10 @@ const authOptions = {
     session({ session }) {
       if (session) {
         session.user.interviewToken = interviewToken;
+        // session.user.loginResponse = JSON.stringify(loginResponse);
       }
       return session;
     },
   },
 };
-
-
 export default NextAuth(authOptions);

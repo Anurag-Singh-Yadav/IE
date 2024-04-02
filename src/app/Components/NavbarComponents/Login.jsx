@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Box from "@mui/material/Box";
@@ -21,8 +21,20 @@ import {
   setSignInBtn,
 } from "../../GlobalRedux/Features/GlobalStateSlice";
 import axios from "axios";
+import { handleSubmit } from "@/app/fetchDetails/credentialLogin";
 
 function Login() {
+
+  const { data: session, status } = useSession();
+
+
+  useEffect(() => {
+    if(session){
+      console.log(session);
+    }
+
+  } , [session]);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -53,28 +65,47 @@ function Login() {
 
   const [isClick, setIsClick] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsClick(true);
-    console.log("Form submitted:", formData);
-    if (formData.password !== formData.confirmPassword) {
-      setIsClick(false);
-      alert("Passwords do not match");
-      return;
+  const loginHandler = async (e) => {
+    try{
+      e.preventDefault();
+      const result = await signIn('credentials',{
+        redirect: false,
+        email: formData.email,
+        password: formData.password,
+        callbackUrl: '/',
+      });
+      console.log('Result = ' , result);
+      if(result.error){
+        alert(result.error);
+      }
+      else{
+        window.location.reload();
+      }
+    }catch(err){
+      
     }
+  }
 
+  const signUpHandler = async (e) => {
+    console.log('signUpHandler')
+    setIsClick(true);
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_REGISTER_USER}`,
-        formData
-      );
-      console.log(response);
+      e.preventDefault();
+      if (formData.password !== formData.confirmPassword) {
+        setIsClick(false);
+        alert("Passwords do not match");
+        return;
+      }
+      await handleSubmit(formData , 1);
       setLinkSend(true);
     } catch (e) {
-      setIsClick(false);
-      console.log(e);
+      console.error(e);
     }
-  };
+    finally {
+      setIsClick(false);
+    }
+  }
+
   return (
     <div className="fixed w-[100vw] left-0 top-0 z-50 h-[100vh] pop-up">
       <div className="fixed overflow-y-auto max-h-[100vh] rounded-lg top-3 border-t-green-bg border-t-[3px] left-0 right-0 sm:w-[70%] lg:w-[55%] w-full bg-primary  sm:mx-auto py-2 z-30 border px-4 enlarge-in">
@@ -180,9 +211,10 @@ function Login() {
               required
               label="Email Address"
               variant="outlined"
-              style={{ marginBottom: 10 }}
+              style={{ marginBottom: 10 , outline:'none' }}
               name="email" // Add the name attribute
               onChange={handleChange}
+              onFocus={(e) => e.target.style.border = 'none'}
               autoComplete="email"
             />
 
@@ -256,7 +288,7 @@ function Login() {
                       isClick ? " cursor-wait" : " cursor-pointer"
                     }`}
                     disabled={isClick}
-                    onClick={handleSubmit}
+                    onClick={signUpHandler}
                   >
                     Submit
                   </button>
@@ -267,6 +299,7 @@ function Login() {
                       isClick ? " cursor-wait" : " cursor-pointer"
                     }`}
                     disabled={isClick}
+                    onClick={loginHandler}
                   >
                     Sign In
                   </button>
