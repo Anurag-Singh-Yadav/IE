@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Box from "@mui/material/Box";
@@ -24,6 +24,17 @@ import axios from "axios";
 import { handleSubmit } from "@/app/fetchDetails/credentialLogin";
 
 function Login() {
+
+  const { data: session, status } = useSession();
+
+
+  useEffect(() => {
+    if(session){
+      console.log(session);
+    }
+
+  } , [session]);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -53,22 +64,25 @@ function Login() {
   const [isClick, setIsClick] = useState(false);
 
   const loginHandler = async (e) => {
-    e.preventDefault();
-    const result = await signIn('credentials',{
-      redirect: false,
-      email: formData.email,
-      password: formData.password,
-    });
-    console.log(result);
-
-    if(result.ok){
-      dispatch(toggleSignPagePopup());
-      window.location.reload();
+    try{
+      e.preventDefault();
+      const result = await signIn('credentials',{
+        redirect: false,
+        email: formData.email,
+        password: formData.password,
+        callbackUrl: '/',
+      });
+      console.log('Result = ' , result);
+      if(result.error){
+        alert(result.error);
+      }
+      else{
+        window.location.reload();
+      }
+    }catch(err){
+      
     }
-    else{
-
-    }
-  };
+  }
 
   const signUpHandler = async (e) => {
     console.log('signUpHandler')

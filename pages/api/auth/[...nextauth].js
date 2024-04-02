@@ -4,7 +4,7 @@ import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from 'next-auth/providers/credentials';
 
-var interviewToken;
+var interviewToken , loginResponse;
 const authOptions = {
   providers: [
     GitHubProvider({
@@ -44,11 +44,11 @@ const authOptions = {
             user,
           });
           interviewToken = res.data.token;
-          console.log(res);
+          loginResponse = res;
           return true;
         } catch (error) {
-          console.log('Error = ' , error);
-          return false;
+          console.log('Error = ' , error.response);
+          throw new Error(error.response.data.message || 'Error while logging in');
         }
       }
       return false;
@@ -56,11 +56,10 @@ const authOptions = {
     session({ session }) {
       if (session) {
         session.user.interviewToken = interviewToken;
+        // session.user.loginResponse = JSON.stringify(loginResponse);
       }
       return session;
     },
   },
 };
-
-
 export default NextAuth(authOptions);

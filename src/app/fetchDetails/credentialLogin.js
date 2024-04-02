@@ -9,6 +9,8 @@ export const handleSubmit = async (formData, x) => {
       : await axios.post(`${process.env.BASE_URL}${process.env.AUTO_LOGIN}`, {
           formData,
         });
+
+        console.log(response.data);
     return response;
   } catch (e) {
     throw new Error("Error occured while logging in. Please retry later");
