@@ -98,7 +98,7 @@ function MobileNavbar({ navBurger, details , challenges }) {
             delay ? "pop-in" : "hidden"
           } fixed top-[2vh] right-[2vw] z-[100] hover:bg-dark-blue transition duration-300 bg-green-bg cursor-pointer rounded-md p-2 dark:text-black`}
         >
-          <ImCross size={15} />
+          <ImCross size={15} className="text-white"/>
         </div>
         <MobileNavbarContent handleClick={handleClick} details={details} challenges={challenges}/>
       </div>

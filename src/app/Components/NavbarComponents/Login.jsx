@@ -21,7 +21,6 @@ import {
   toggleSignPagePopup,
   setSignInBtn,
 } from "../../GlobalRedux/Features/GlobalStateSlice";
-import axios from "axios";
 import { handleSubmit } from "@/app/fetchDetails/credentialLogin";
 
 function Login() {
@@ -41,16 +40,6 @@ function Login() {
   const isLight = useSelector((state) => {
     return state.GlobalState.isLight;
   });
-
-  const theme = createTheme({
-    palette: {
-      type: !isLight ? "dark" : "light",
-    },
-  });
-
-  useEffect(() => {
-
-  }, [isLight]);
 
   const [showPassword, setShowPassword] = useState(false);
   const [linkSend, setLinkSend] = useState(false);
@@ -110,6 +99,18 @@ function Login() {
       setIsClick(false);
     }
   };
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+
+  const lightTheme = createTheme({
+    palette: {
+      mode: 'light',
+    },
+  });
 
   return (
     <div className="fixed w-[100vw] left-0 top-0 z-50 h-[100vh] pop-up">
@@ -196,7 +197,7 @@ function Login() {
             <div className="h-[1px] col-span-3  bg-slate-700"></div>
           </div>
 
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={(isLight ? lightTheme : darkTheme)}>
             <form className="">
               {isSignup && (
                 <TextField
