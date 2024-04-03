@@ -10,6 +10,9 @@ import {
 import Avatar from "react-avatar";
 import Link from "next/link";
 function MobileNavbarContent({ handleClick, details , challenges }) {
+  const isLight = useSelector((state) => {
+    return state.GlobalState.isLight;
+  });
   const isLogin = useSelector((state) => {
     return state.GlobalState.isLogin;
   });
@@ -18,7 +21,7 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
   return (
     <div className="relative background-grid px-4 h-[100vh]  min-w-[100vw] sm:min-w-[70vw] md:min-w-[50vw] lg:min-w-[40vw] overflow-y-auto">
       {isLogin ? (
-        <div className="flex flex-col gap-1 mt-[2vh] items-center justify-center">
+        <div className="flex flex-col gap-1 mt-[2vh] items-center justify-center z-10">
           <Avatar
             className="cursor-pointer"
             name={details.name}
@@ -31,7 +34,7 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
           </div>
         </div>
       ) : (
-        <div className="flex mt-[2vh] items-center gap-6">
+        <div className="flex mt-[2vh] items-center gap-6 z-10">
           <button
             className="py-2 px-4 start-2  font-semibold rounded-md transition duration-300"
             onClick={() => {
@@ -43,7 +46,7 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
             Sign In
           </button>
           <button
-            className="py-2 px-4 font-semibold rounded-lg btn-gradient-2"
+            className="py-2 px-4 font-semibold rounded-lg btn-gradient-2 z-10"
             onClick={() => {
               dispatch(toggleSignPagePopup());
               handleClick();
@@ -55,9 +58,13 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
         </div>
       )}
 
-      <div className="absolute w-[50%] right-0 h-full right-gradient " />
-      <div className="absolute w-[50%] left-0 h-full left-gradient" />
-      <div className="absolute w-full left-0 h-full down-gradient" />
+      {isLight && <div className="absolute w-[50%] right-0 h-full right-gradient " />}
+      {isLight && <div className="absolute w-[50%] left-0 h-full left-gradient" />}
+      {isLight && <div className="absolute w-full left-0 h-full down-gradient" />}
+
+      {!isLight && <div className="absolute w-[50%] top-0  left-0 h-[120%] dark-left-gradient" />}
+      {!isLight && <div className="absolute w-full top-0  left-0 h-[120%] dark-down-gradient" />}
+      {!isLight && <div className="absolute w-[50%] top-0  right-0 h-[120%] dark-right-gradient " />}
 
       <div className="flex flex-col pt-16 gap-2 w-full z-[150]">
         {dropdownData.map((obj, index) => {

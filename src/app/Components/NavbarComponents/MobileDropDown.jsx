@@ -43,7 +43,7 @@ function MobileDropDown2({
         <div
           className={`flex w-full justify-between rounded-lg hover:bg-green-bg ${
             open == index ? "bg-green-bg text-white" : "bg-light-green"
-          } hover:text-white transition duration-300  px-4 py-2 text-left text-sm font-medium cursor-pointer`}
+          } hover:text-white transition duration-300 text-black  px-4 py-2 text-left text-sm font-medium cursor-pointer`}
         >
           <span>{label}</span>
           <FaChevronUp
