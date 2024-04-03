@@ -87,7 +87,7 @@ export default function QuestionArray({
                     return (
                       <Table.Row
                         key={index}
-                        className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                        className="dark:border-gray-700 bg-primary"
                       >
                         <Table.Cell className="p-4">
                           <Checkbox
@@ -99,7 +99,7 @@ export default function QuestionArray({
                           />
                         </Table.Cell>
                         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                          <Link href={question.questionUrl}>
+                          <Link href={question.questionUrl} target="_black">
                             {question.title}
                           </Link>
                         </Table.Cell>
@@ -118,6 +118,7 @@ export default function QuestionArray({
                           </div>
                         </Table.Cell>
                         <Table.Cell>Companies</Table.Cell>
+                        <Table.Cell></Table.Cell>
                       </Table.Row>
                     );
                   // else return <></>;

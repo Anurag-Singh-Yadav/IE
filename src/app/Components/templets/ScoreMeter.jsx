@@ -62,7 +62,7 @@ function ScoreMeter({ totalQuestion, solvedQuestion, easy, medium, hard }) {
             needleTransition="easeElastic"
           />
         </div>
-        <div className="w-full h-fit bg-white box-shadow absolute s2:relative nmd:absolute top-[65%] py-4 text-xl font-medium px-2 text-green-bg">
+        <div className="w-full h-fit bg-primary dark:border-2 dark:rounded-md box-shadow absolute s2:relative nmd:absolute top-[65%] py-4 text-xl font-medium px-2 text-green-bg">
           <div className="font-medium py-1">Solved Problem</div>
           <div>
             {/* Progress meter for Easy level */}

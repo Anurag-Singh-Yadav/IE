@@ -18,7 +18,7 @@ function Courses() {
             })
         }
     </div>
-    <button className='start px-4 py-2 font-semibold transition-all duration-300'>All Courses</button>
+    <button className='start px-4 py-2 font-semibold transition-all dark:text-black duration-300'>All Courses</button>
     </div>
     </div>
   )
