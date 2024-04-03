@@ -17,7 +17,7 @@ function ChallengePosterMobile({challenges , closeNav}) {
                           pathname: `/onGoingChallenges/${challengeData.challenge?._id}`,
                         }}
                         onClick={closeNav}
-                        className="flex items-center w-full gap-5 hover:bg-gray-100"
+                        className="flex items-center w-full gap-5 hover:bg-gray-100 hover:text-black"
                         key={index}
                       >
                         <img
