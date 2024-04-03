@@ -53,7 +53,7 @@ function Page() {
                     },
                   }}
                 >
-                  <div className="flex text-xs sm:text-sm md:text-normal  items-center border-2 border-white dark:border-white hover:border-l-green-bg dark:hover:border-l-green-bg hover:cursor-pointer p-4 transition-all duration-300 shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+                  <div className="flex text-xs sm:text-sm md:text-normal  items-center border-2 border-white dark:border-white hover:border-l-green-bg dark:hover:border-green-bg hover:cursor-pointer p-4 transition-all duration-300 shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
                     <img
                       src={course.url}
                       alt={course.name}
