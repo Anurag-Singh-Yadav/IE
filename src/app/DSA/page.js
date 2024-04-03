@@ -43,7 +43,7 @@ function Page() {
         ></WebsiteBanner>
       </div>
 
-      <div className="bg-[url('/dsaPrac.svg')] pt-4 pb-8 main-container">
+      <div className="bg-[url('/dsaPrac.svg')] dark:bg-[url('/dsaPrac-dark.svg')] pt-4 pb-8 main-container">
         <div className="font-semibold sm:py-4 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl">
           Explore Best{" "}
           <span className="text-green-bg underline">DSA Questions</span>

@@ -25,7 +25,9 @@ const config = {
         'circle': "url('/circle.svg')",
         'star': "url('/star.svg')",
         'star2': "url('/star2.svg')",
+        'star2-dark': "url('/star2-dark.svg')",
         'dsaPrac':"url('/dsaPrac.svg')",
+        'dsaPrac-dark': "url('/dsaPrac-dark.svg')",
         'circle-dark': "url('/circle-dark.svg')",
       },
       fontFamily: {

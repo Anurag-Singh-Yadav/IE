@@ -34,7 +34,7 @@ function Page() {
         ></WebsiteBanner>
       </div>
       {queryPara && (
-        <div className="main-container bg-[url('/star2.svg')]">
+        <div className="main-container bg-[url('/star2.svg')] dark:bg-[url('/star2-dark.svg')]">
           <div className="font-semibold sm:py-4 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl">
             Explore Top <span className="text-green-bg underline">Course</span>
           </div>
@@ -53,7 +53,7 @@ function Page() {
                     },
                   }}
                 >
-                  <div className="flex text-xs sm:text-sm md:text-normal  items-center border-2 border-white hover:border-l-green-bg hover:cursor-pointer p-4 transition-all duration-300 shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+                  <div className="flex text-xs sm:text-sm md:text-normal  items-center border-2 border-white dark:border-white hover:border-l-green-bg dark:hover:border-green-bg hover:cursor-pointer p-4 transition-all duration-300 shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
                     <img
                       src={course.url}
                       alt={course.name}
@@ -70,7 +70,7 @@ function Page() {
             href={"/post-review"}
             className="flex justify-center items-center"
           >
-            <div className="flex justify-center px-5 cursor-pointer mb-4 py-2 items-center text-lg start">
+            <div className="flex justify-center dark:text-black px-5 cursor-pointer mb-4 py-2 items-center text-lg start">
               Reviews
             </div>
           </Link>

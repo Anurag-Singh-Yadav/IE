@@ -76,7 +76,7 @@ function QuestionRender({ questionsDetails }) {
         <div className="">
           <div className="flex flex-wrap gap-2 md:gap-5 lg:gap-7 px-5 lg:px-10 items-center bg-green-bg/10  font-semibold py-2 min-h-[15vh]">
             <div
-              className="bg-white px-4 py-1 rounded-full box-shadow cursor-pointer"
+              className="bg-primary px-4 py-1 rounded-full box-shadow cursor-pointer"
               onClick={() => {
                 setFilter({});
               }}
@@ -84,7 +84,7 @@ function QuestionRender({ questionsDetails }) {
               All
             </div>
             <div
-              className="bg-white px-4 py-1 rounded-full box-shadow cursor-pointer"
+              className="bg-primary px-4 py-1 rounded-full box-shadow cursor-pointer"
               onClick={() => {
                 setFilter((prev) => {
                   let newState = { ...prev }; // create a copy of the state
@@ -103,7 +103,7 @@ function QuestionRender({ questionsDetails }) {
               Solved
             </div>
             <div
-              className="bg-white px-4 py-1 rounded-full box-shadow cursor-pointer"
+              className="bg-primary px-4 py-1 rounded-full box-shadow cursor-pointer"
               onClick={() => {
                 setFilter((prev) => {
                   let newState = { ...prev };
@@ -127,45 +127,45 @@ function QuestionRender({ questionsDetails }) {
                 onClick={() => {
                   setOpen(true);
                 }}
-                className="rounded-full box-shadow bg-white px-4 py-1"
+                className="rounded-full box-shadow bg-primary px-4 py-1"
               >
                 Difficulty
               </div>
 
               {open === true && (
-                <div className="absolute -top-[15px] bg-white z-[100] pop-in-fast flex flex-col  py-2 rounded-lg box-shadow">
+                <div className="absolute -top-[15px] bg-primary z-[100] pop-in-fast flex flex-col  py-2 rounded-lg box-shadow">
                   <button
                     onClick={() => {handleDifficulty(0)}}
-                    className="hover:bg-gray-100 px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
+                    className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
                   >
                     <p>Easy</p>
-                    <div className={`${difficulty[0] ? 'text-green-bg' : 'text-white'}`}><FaCheck size={15}/></div>
+                    <div className={`${difficulty[0] ? 'text-green-bg' : ''}`}><FaCheck size={15}/></div>
                   </button>
                   <button
                   onClick={() => {handleDifficulty(1)}}
-                  className="hover:bg-gray-100 px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
+                  className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
                 >
                   <p>Medium</p>
-                  <div className={`${difficulty[1] ? 'text-green-bg' : 'text-white'}`}><FaCheck size={15}/></div>
+                  <div className={`${difficulty[1] ? 'text-green-bg' : ''}`}><FaCheck size={15}/></div>
                 </button>
                   <button
                     onClick={() => {handleDifficulty(2)}}
-                    className="hover:bg-gray-100 px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
+                    className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
                   >
                     <p>Hard</p>
-                    <div className={`${difficulty[2] ? 'text-green-bg' : 'text-white'}`}><FaCheck size={15}/></div>
+                    <div className={`${difficulty[2] ? 'text-green-bg' : ''}`}><FaCheck size={15}/></div>
                   </button>
                 </div>
               )}
             </div>
 
             <form
-              className="search-bar flex items-center gap-1 rounded-full pl-4 bg-white box-shadow text-gray-500"
+              className="search-bar flex items-center gap-1 rounded-full pl-4 bg-primary box-shadow text-gray-500"
               onSubmit={(e) => e.preventDefault()}
             >
               <IoSearchSharp size={18} />
               <input
-                className="px-4 py-1 rounded-full  font-normal caret-slate-600 w-full"
+                className="px-4 py-1 rounded-full bg-primary font-normal caret-slate-600 w-full"
                 placeholder={"Search"}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}

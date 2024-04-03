@@ -92,10 +92,10 @@ function Page() {
                       initialRating={rating}
                       onChange={(value) => setRating(value)}
                       emptySymbol={
-                        <IoIosStarOutline size={30} className="text-black" />
+                        <IoIosStarOutline size={30} className="text-black dark:text-white" />
                       } // Empty star icon
                       fullSymbol={
-                        <IoIosStar size={30} className=" text-[#ffbd35]" />
+                        <IoIosStar size={30} className="text-[#ffbd35]" />
                       }
                     />
                   </div>
@@ -105,7 +105,7 @@ function Page() {
                   <textarea
                     type="description"
                     placeholder="Write your review here.."
-                    className={`h-full py-3 outline-white transition-all overflow-hidden ring-white resize-none ring-0 focus:ring-0 duration-300 w-full rounded-md border-none`}
+                    className={`h-full py-3 outline-none px-2 transition-all overflow-hidden ring-white resize-none ring-0 focus:ring-0 duration-300 w-full rounded-md border-none`}
                     value={description}
                     required
                     onChange={(e) => {
@@ -120,7 +120,7 @@ function Page() {
 
               <div className="flex my-4 justify-center items-center">
                 <button
-                  className={`flex justify-center px-5 cursor-pointer py-2 items-center text-lg start ${
+                  className={`flex dark:text-black dark:hover:text-white justify-center px-5 cursor-pointer py-2 items-center text-lg start ${
                     isClick === true ? "cursor-wait" : "cursor-pointer"
                   }`}
                   onClick={(e) => {

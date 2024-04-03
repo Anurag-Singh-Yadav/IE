@@ -13,7 +13,7 @@ function TopicsTemplets({ topics , isAptitude}) {
                 return (
                   <Link
                     key={index}
-                    className="bg-white text-xs sm:text-base sm:font-medium border-2 text-center border-white hover:border-l-green-bg p-2 box-shadow cursor-pointer"
+                    className="bg-primary text-xs sm:text-base sm:font-medium border-2 text-center border-white hover:border-l-green-bg dark:hover:border-green-bg p-2 box-shadow cursor-pointer"
                     href={{
                       pathname: `/DSA/${topic.link}`,
                       query: {
