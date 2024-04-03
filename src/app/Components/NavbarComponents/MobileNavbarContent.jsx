@@ -21,7 +21,7 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
   return (
     <div className="relative background-grid px-4 h-[100vh]  min-w-[100vw] sm:min-w-[70vw] md:min-w-[50vw] lg:min-w-[40vw] overflow-y-auto">
       {isLogin ? (
-        <div className="flex flex-col gap-1 mt-[2vh] items-center justify-center z-10">
+        <div className="relative top-2 right-0 left-0 flex flex-col gap-1 mt-[2vh] items-center justify-center z-[10]">
           <Avatar
             className="cursor-pointer"
             name={details.name}
