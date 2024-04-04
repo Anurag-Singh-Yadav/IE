@@ -21,6 +21,11 @@ body::-webkit-scrollbar-thumb {
   :root {
     --grid-color: #eeeded;
 
+    --gradient-start: rgba(255, 255, 255, 0.7);
+   --gradient-end: rgba(255, 255, 255, 0);
+   --down-gradient-start: rgba(255, 255, 255, 0.7);
+    --down-gradient-end: rgba(255, 255, 255, 0);
+
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -45,6 +50,14 @@ body::-webkit-scrollbar-thumb {
   }
 
   .dark {
+
+
+    --gradient-start: rgba(0, 0, 0, 0.7);
+    --gradient-end: rgba(0, 0, 0, 0);
+
+    --down-gradient-start: rgba(0, 0, 0, 0.5);
+    --down-gradient-end: rgba(0, 0, 0, 0.8);
+
 
     --grid-color: 0 0% 100%;
 
@@ -93,53 +106,6 @@ body::-webkit-scrollbar-thumb {
   /* border: 0.5px solid #23c258; */
   /* border: 0.5px solid #eeeded; */
 } 
-
-
-.left-gradient {
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0)
-  );
-} 
- .right-gradient {
-  background-image: linear-gradient(
-    to left,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0)
-  );
-}
-.down-gradient {
-  background-image: linear-gradient(
-    to top,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0)
-  );
-}
-
-.dark-left-gradient {
-  background-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0)
-  );
-} 
-.dark-right-gradient {
-  background-image: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0)
-  );
-}
-
-.dark-down-gradient {
-  background-image: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.8),
-    rgba(0, 0, 0, 0.5)
-  );
-}
-
 
 .circular-gradient-div {
   background: radial-gradient(

@@ -17,6 +17,12 @@ const config = {
       },
     },
     extend: {
+      gradientColorStops: theme => ({
+        'variable-start': `var(--gradient-start)`,
+        'variable-end': `var(--gradient-end)`,
+        'variable-down-start': `var(--down-gradient-start)`,
+        'variable-down-end': `var(--down-gradient-end)`,
+      }),
       backgroundImage: {
         'square': "url('/square.svg')",
         'dotted': "url('/dotted.svg')",
