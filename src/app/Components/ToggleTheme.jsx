@@ -31,7 +31,7 @@ function ToggleTheme() {
             window.localStorage.setItem('theme','light');
           }}
           size={25}
-          className="cursor-pointer"
+          className="cursor-pointer dark:hidden"
         />
       )}
     </div>
