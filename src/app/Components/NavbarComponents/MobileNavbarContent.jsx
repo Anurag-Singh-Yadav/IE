@@ -3,12 +3,16 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dropdownData, links } from "./NavbarData";
 import MobileDropDown from "./MobileDropDown";
+import { MdLogout } from "react-icons/md";
+
 import {
   toggleSignPagePopup,
   setSignInBtn,
 } from "../../GlobalRedux/Features/GlobalStateSlice";
 import Avatar from "react-avatar";
 import Link from "next/link";
+import ToggleTheme from "../ToggleTheme";
+import { userSignout } from "@/app/fetchDetails/userSignout";
 function MobileNavbarContent({ handleClick, details, challenges }) {
   const isLight = useSelector((state) => {
     return state.GlobalState.isLight;
@@ -68,11 +72,11 @@ function MobileNavbarContent({ handleClick, details, challenges }) {
         <div className="absolute w-full left-0 h-full down-gradient" />
       )} */}
 
-        <div className="absolute top-0 right-0 h-[100vh] w-full flex justify-center items-center  background-grid">
-          <div className="absolute w-[50%] right-0 h-full bg-gradient-to-r from-variable-end to-variable-start"></div>
-          <div className="absolute w-[50%] left-0 h-full bg-gradient-to-r from-variable-start to-variable-end"></div>
-          <div className="absolute w-full left-0 h-full z-12 bg-gradient-to-b from-variable-down-start to-variable-down-end" />
-        </div>
+      <div className="absolute top-0 right-0 h-[100vh] w-full flex justify-center items-center  background-grid">
+        <div className="absolute w-[50%] right-0 h-full bg-gradient-to-r from-variable-end to-variable-start"></div>
+        <div className="absolute w-[50%] left-0 h-full bg-gradient-to-r from-variable-start to-variable-end"></div>
+        <div className="absolute w-full left-0 h-full z-12 bg-gradient-to-b from-variable-down-start to-variable-down-end" />
+      </div>
 
       <div className="flex flex-col pt-16 gap-2 w-full z-[150]">
         {dropdownData.map((obj, index) => {
@@ -102,6 +106,16 @@ function MobileNavbarContent({ handleClick, details, challenges }) {
             );
           })}
         </ul>
+      </div>
+
+      <div className="flex gap-5 items-start px-4 mt-10">
+      <ToggleTheme />
+      <div className="relative">
+        <div className="absolute flex left-0 gap-1 items-center hover:text-green-bg">
+          <MdLogout />
+          <button onClick={userSignout}>Logout</button>
+        </div>
+      </div>
       </div>
     </div>
   );
