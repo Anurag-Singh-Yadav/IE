@@ -105,7 +105,7 @@ function Page() {
           imgSrc="contactUs.svg"
         />
       </div>
-      <div className="main-container py-4 bg-[url('/dotted.svg')]">
+      <div className="main-container py-4 bg-[url('/dotted.svg')] dark:bg-[url('/dotted-dark.svg')]">
         <div className="font-semibold sm:py-4 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl">
           Reach Out <span className="text-green-bg underline">To Us</span>
         </div>
@@ -134,7 +134,7 @@ function Page() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="h-full py-3 outline-white transition-all overflow-hidden ring-white resize-none ring-0 focus:ring-0 duration-300 w-full rounded-md border-2 border-dark-blue focus:border-green-bg"
+                  className="h-full py-3 outline-white dark:bg-primary px-2 transition-all overflow-hidden ring-white resize-none ring-0 focus:ring-0 duration-300 w-full rounded-md border-2 border-dark-blue focus:border-green-bg"
                 />
               </div>
               <div className="box-shadow py-4 px-2">
@@ -151,7 +151,7 @@ function Page() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="h-full py-3 outline-white transition-all overflow-hidden ring-white resize-none ring-0 focus:ring-0 duration-300 w-full rounded-md border-2 border-dark-blue  focus:border-green-bg"
+                  className="h-full py-3 outline-white dark:bg-primary px-2 transition-all overflow-hidden ring-white resize-none ring-0 focus:ring-0 duration-300 w-full rounded-md border-2 border-dark-blue  focus:border-green-bg"
                 />
               </div>
               <div className="min-h-[20vh] py-4 px-2 box-shadow">
@@ -172,14 +172,14 @@ function Page() {
                     const contentHeight = e.target.scrollHeight;
                     e.target.style.height = `${contentHeight - 7}px`;
                   }}
-                  className="h-full py-3 outline-white transition-all overflow-hidden ring-white resize-none ring-0 focus:ring-0 duration-300 w-full rounded-md border-2 border-dark-blue focus:border-green-bg"
+                  className="h-full py-3 outline-white dark:bg-primary px-2 transition-all overflow-hidden ring-white resize-none ring-0 focus:ring-0 duration-300 w-full rounded-md border-2 border-dark-blue focus:border-green-bg"
                 ></textarea>
               </div>
             </div>
             <div className="flex justify-end mt-4">
               <button
                 type="submit"
-                className={`bg-green-bg text-white py-2 px-4 rounded-md ${isClick == true ? "cursor-not-allowed" : "cursor-pointer"}`}
+                className={`bg-green-bg text-white btn-gradient-2 py-2 px-4 rounded-md ${isClick == true ? "cursor-not-allowed" : "cursor-pointer"}`}
                 disabled={isClick == true ? true : false}
               >
                 Submit

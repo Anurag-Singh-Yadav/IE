@@ -8,8 +8,11 @@ import "./Footer.css";
 import Cookies from "js-cookie";
 import { getSubscribe, getSubscription } from "./fetchDetails/subscribe";
 import Link from 'next/link'
+import NotLoginAlterBox from "./Components/templets/NotLoginAlterBox";
 function Footer() {
   const logo = "<IE/>";
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const updateFooterClass = () => {
     const footerElement = document.querySelector("#f-top");
@@ -75,19 +78,22 @@ function Footer() {
   const clickHandler = async (value) => {
     const token = Cookies.get("token");
     if (!token) {
-      alert("Please login to subscribe");
+      setOpen(true);
+      setMessage("Please login to subscribe");
       setSubscribed(false);
       return;
     }
     const response = await getSubscription(token, value);
     console.log(response);
     if (response === "error") {
-      alert("Some error occured. Please try again later.");
+      setOpen(true);
+      setMessage("Some error occured. Please try again later.")
       setSubscribed(false);
       return;
     }
     if (response === "invalid token") {
-      alert("Please login to subscribe");
+      setOpen(true);
+      setMessage("Invalid token. Please login again.");
       setSubscribed(false);
       return;
     }
@@ -95,12 +101,17 @@ function Footer() {
       setSubscribed(true);
       return;
     }else{
+      setOpen(true);
+      setMessage("Please login to subscribe");
       setSubscribed(false);
     }
   };
 
   return (
     <div className="relative footer-container">
+        {
+          open && <NotLoginAlterBox open={open} details={"This feature is available to registered users only. Please Log in now!"} message={message} setOpen={setOpen}></NotLoginAlterBox>
+        }
       <div
         className={`grid grid-cols-1 gap-x-3 gap-y-7 md:grid-cols-6 items-start text-sm py-2 sm:py-3 md:py-6 text-center`}
       >
