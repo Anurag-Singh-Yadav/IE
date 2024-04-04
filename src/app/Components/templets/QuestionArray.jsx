@@ -1,12 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox, Table } from "flowbite-react";
 import Link from "next/link";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { toggleSignPagePopup } from "../../GlobalRedux/Features/GlobalStateSlice";
+import NotLoginAlterBox from "./NotLoginAlterBox";
+
 export default function QuestionArray({
   showQuestions,
   setShowQuestions,
@@ -20,6 +22,8 @@ export default function QuestionArray({
   };
 
   const dispatch = useDispatch();
+  const [message, setMessage] = useState(null);
+  const [open, setOpen] = React.useState(false);
 
   const markSolved = async (index, _id) => {
     const token = Cookies.get("token");
@@ -40,20 +44,28 @@ export default function QuestionArray({
       showQuestions[index].isSolved = !showQuestions[index].isSolved;
       setShowQuestions([...showQuestions]);
     } catch (e) {
-      if (e.response.data.message === "Please login first") {
-        alert("Please login first");
-        dispatch(toggleSignPagePopup());
-      }
-
-      if (e.response.data.message === "invalid token") {
-        alert("Please login first");
-        dispatch(toggleSignPagePopup());
-      }
+      if (e?.response?.data.message === "Please login first") {
+        setMessage(e?.response?.data?.message);
+        setOpen(true);
+      } 
+      if (e?.response?.data.message === "invalid token") {
+        setMessage(e?.response?.data?.message);
+        setOpen(true);
+      } 
     }
   };
 
   return (
     <div>
+      {open && (
+        <NotLoginAlterBox
+          heading={message}
+          open={open}
+          setOpen={setOpen}
+          details={"This feature is available to registered users only. Please Log in now!"}
+        ></NotLoginAlterBox>
+      )}
+
       {showQuestions?.length === 0 && (
         <div className="text-center font-bold text-lg py-5">
           No Questions available yet !!
@@ -105,7 +117,7 @@ export default function QuestionArray({
                         </Table.Cell>
                         <Table.Cell>
                           {question.difficulty === "Easy"
-                            ? 10
+                            ? 5
                             : question.difficulty === "Hard"
                             ? 20
                             : 10}

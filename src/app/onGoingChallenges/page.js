@@ -37,7 +37,7 @@ function Page() {
           BtnName={"Accepts Challenges"}
         ></WebsiteBanner>
       </div>
-      <div className="main-container">
+      <div className="main-container bg-[url('/circle.svg')] dark:bg-[url('/circle-dark.svg')]">
         <div className="font-semibold sm:py-4 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl">
           Explore Top{" "}
           <span className="text-green-bg underline">Challenges</span>
