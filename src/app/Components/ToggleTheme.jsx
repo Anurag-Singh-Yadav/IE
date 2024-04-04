@@ -1,9 +1,9 @@
-'use client'
-import React, {useEffect, useState} from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { useTheme } from "next-themes";
-import { useDispatch , useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleLight } from "../GlobalRedux/Features/GlobalStateSlice";
 
 function ToggleTheme() {
@@ -12,28 +12,27 @@ function ToggleTheme() {
   const isLight = useSelector((state) => state.GlobalState.isLight);
 
   return (
-    <div>
-      {isLight ? (
+    <div className="relative h-fit w-fit">
+      <div className="absolute top-0 bg-white">
         <MdDarkMode
           onClick={() => {
             setTheme("dark");
             dispatch(toggleLight(false));
-            window.localStorage.setItem('theme','dark');
-          }}
-          size={25}
-          className="cursor-pointer"
-        />
-      ) : (
-        <CiLight
-          onClick={() => {
-            setTheme("light");
-            dispatch(toggleLight(true));
-            window.localStorage.setItem('theme','light');
+            window.localStorage.setItem("theme", "dark");
           }}
           size={25}
           className="cursor-pointer dark:hidden"
         />
-      )}
+      </div>
+      <CiLight
+        onClick={() => {
+          setTheme("light");
+          dispatch(toggleLight(true));
+          window.localStorage.setItem("theme", "light");
+        }}
+        size={25}
+        className="cursor-pointer "
+      />
     </div>
   );
 }

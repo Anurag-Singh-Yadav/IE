@@ -3,13 +3,17 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dropdownData, links } from "./NavbarData";
 import MobileDropDown from "./MobileDropDown";
+import { MdLogout } from "react-icons/md";
+
 import {
   toggleSignPagePopup,
   setSignInBtn,
 } from "../../GlobalRedux/Features/GlobalStateSlice";
 import Avatar from "react-avatar";
 import Link from "next/link";
-function MobileNavbarContent({ handleClick, details , challenges }) {
+import ToggleTheme from "../ToggleTheme";
+import { userSignout } from "@/app/fetchDetails/userSignout";
+function MobileNavbarContent({ handleClick, details, challenges }) {
   const isLight = useSelector((state) => {
     return state.GlobalState.isLight;
   });
@@ -21,7 +25,7 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
   return (
     <div className="relative background-grid px-4 h-[100vh]  min-w-[100vw] sm:min-w-[70vw] md:min-w-[50vw] lg:min-w-[40vw] overflow-y-auto">
       {isLogin ? (
-        <div className="flex flex-col gap-1 mt-[2vh] items-center justify-center z-10">
+        <div className="relative top-2 right-0 left-0 flex flex-col gap-1 mt-[2vh] items-center justify-center z-[10]">
           <Avatar
             className="cursor-pointer"
             name={details.name}
@@ -58,13 +62,21 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
         </div>
       )}
 
-      {isLight && <div className="absolute w-[50%] right-0 h-full right-gradient " />}
-      {isLight && <div className="absolute w-[50%] left-0 h-full left-gradient" />}
-      {isLight && <div className="absolute w-full left-0 h-full down-gradient" />}
+      {/* {isLight && (
+        <div className="absolute w-[50%] right-0 h-full right-gradient " />
+      )}
+      {isLight && (
+        <div className="absolute w-[50%] left-0 h-full left-gradient" />
+      )}
+      {isLight && (
+        <div className="absolute w-full left-0 h-full down-gradient" />
+      )} */}
 
-      {!isLight && <div className="absolute w-[50%] top-0  left-0 h-[120%] dark-left-gradient" />}
-      {!isLight && <div className="absolute w-full top-0  left-0 h-[120%] dark-down-gradient" />}
-      {!isLight && <div className="absolute w-[50%] top-0  right-0 h-[120%] dark-right-gradient " />}
+      <div className="absolute top-0 right-0 h-[100vh] w-full flex justify-center items-center  background-grid">
+        <div className="absolute w-[50%] right-0 h-full bg-gradient-to-r from-variable-end to-variable-start"></div>
+        <div className="absolute w-[50%] left-0 h-full bg-gradient-to-r from-variable-start to-variable-end"></div>
+        <div className="absolute w-full left-0 h-full z-12 bg-gradient-to-b from-variable-down-start to-variable-down-end" />
+      </div>
 
       <div className="flex flex-col pt-16 gap-2 w-full z-[150]">
         {dropdownData.map((obj, index) => {
@@ -82,12 +94,28 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
           );
         })}
         <ul className="z-[150] my-6 list-disc px-6 max-w-md mx-auto w-full">
-        {
-          links.map((link , index) => {
-            return <li key={index} onClick={handleClick} className=""><Link href={`/${link.value}`}><span className="border-b-2 border-black hover:border-green-bg hover:text-green-bg transition duration-300">{link.label}</span></Link></li>
-          })
-        }
+          {links.map((link, index) => {
+            return (
+              <li key={index} onClick={handleClick} className="">
+                <Link href={`/${link.value}`}>
+                  <span className="border-b-2 border-black hover:border-green-bg hover:text-green-bg transition duration-300">
+                    {link.label}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
+      </div>
+
+      <div className="flex gap-5 items-start px-4 mt-10">
+      <ToggleTheme />
+      <div className="relative">
+        <div className="absolute flex left-0 gap-1 items-center hover:text-green-bg">
+          <MdLogout />
+          <button onClick={userSignout}>Logout</button>
+        </div>
+      </div>
       </div>
     </div>
   );

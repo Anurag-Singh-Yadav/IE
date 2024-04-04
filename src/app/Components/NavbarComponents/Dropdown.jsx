@@ -39,7 +39,7 @@ function Dropdown({ label, options }) {
           id={`dd-${label}`}
           className="dropdown-content top-[0vh] pt-[10vh] w-[100%] flex justify-center cursor-pointer"
         >
-          <div className="flex flex-col bg-white rounded-lg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] p-2 border-t-[3px] border-green-bg w-fit">
+          <div className="flex flex-col bg-primary rounded-lg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] p-2 border-t-[3px] border-green-bg w-fit">
             {options.map((obj, index) => {
               return (
                 <Link
@@ -63,7 +63,7 @@ function Dropdown({ label, options }) {
           id={`dd-${label}`}
           className="dropdown-content top-[0vh] pt-[10vh] flex justify-center w-full cursor-pointer"
         >
-          <div className="flex flex-col bg-white rounded-lg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] p-2 border-t-[3px] border-green-bg">
+          <div className="flex flex-col bg-primary rounded-lg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] p-2 border-t-[3px] border-green-bg">
             <ChallengesPoster challenges={options} />
           </div>
         </div>

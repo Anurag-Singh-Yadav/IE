@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa6";
 function Hero() {
   
+  
   return (
     <div className="overflow-hidden">
       <div className="fixed top-0 right-0 h-[100vh] w-[100vw] flex justify-center items-center  background-grid -z-10">
