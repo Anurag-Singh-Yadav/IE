@@ -2,22 +2,25 @@
 import React from "react";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa6";
-import { useSelector } from "react-redux";
 function Hero() {
-  const isLight = useSelector((state) => {
-    return state.GlobalState.isLight;
-  });
+  
   return (
     <div className="overflow-hidden">
       <div className="fixed top-0 right-0 h-[100vh] w-[100vw] flex justify-center items-center  background-grid -z-10">
+        {/* right */}
+        <div className="absolute w-[50%] right-0 h-full bg-gradient-to-r from-variable-end to-variable-start"></div>
+        {/* left */}
+        <div className="absolute w-[50%] left-0 h-full bg-gradient-to-r from-variable-start to-variable-end"></div>
+        {/* down */}
         <div
-          className={`absolute w-[50%] right-0 h-full ${isLight ? "right-gradient" : "dark-right-gradient"}`}
-        ></div>
-        <div className={`absolute w-[50%] left-0 h-full ${isLight ? 'left-gradient' : "dark-left-gradient"}`}></div>
-        <div className={`absolute w-full left-0 h-full z-[12] ${isLight ?  "down-gradient" : "dark-down-gradient"}`} />
+          className="absolute w-full left-0 h-full z-12 bg-gradient-to-b from-variable-down-start to-variable-down-end"
+        />
       </div>
 
-      <div id="hero" className="pt-4 pb-3 relative sm:pt-0 min-h-[70vh] w-[100vw] flex justify-center items-center sm:min-h-[90vh]">
+      <div
+        id="hero"
+        className="pt-4 pb-3 relative sm:pt-0 min-h-[70vh] w-[100vw] flex justify-center items-center sm:min-h-[90vh]"
+      >
         <div className="h-full flex flex-col gap-6 justify-center items-center">
           <div className="flex px-3 mx-3 text-xl flex-col gap-4 sm:text-3xl md:text-5xl font-bold text-center">
             <Image
