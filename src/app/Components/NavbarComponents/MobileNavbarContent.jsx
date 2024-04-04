@@ -9,7 +9,7 @@ import {
 } from "../../GlobalRedux/Features/GlobalStateSlice";
 import Avatar from "react-avatar";
 import Link from "next/link";
-function MobileNavbarContent({ handleClick, details , challenges }) {
+function MobileNavbarContent({ handleClick, details, challenges }) {
   const isLight = useSelector((state) => {
     return state.GlobalState.isLight;
   });
@@ -58,13 +58,21 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
         </div>
       )}
 
-      {isLight && <div className="absolute w-[50%] right-0 h-full right-gradient " />}
-      {isLight && <div className="absolute w-[50%] left-0 h-full left-gradient" />}
-      {isLight && <div className="absolute w-full left-0 h-full down-gradient" />}
+      {/* {isLight && (
+        <div className="absolute w-[50%] right-0 h-full right-gradient " />
+      )}
+      {isLight && (
+        <div className="absolute w-[50%] left-0 h-full left-gradient" />
+      )}
+      {isLight && (
+        <div className="absolute w-full left-0 h-full down-gradient" />
+      )} */}
 
-      {!isLight && <div className="absolute w-[50%] top-0  left-0 h-[120%] dark-left-gradient" />}
-      {!isLight && <div className="absolute w-full top-0  left-0 h-[120%] dark-down-gradient" />}
-      {!isLight && <div className="absolute w-[50%] top-0  right-0 h-[120%] dark-right-gradient " />}
+        <div className="absolute top-0 right-0 h-[100vh] w-full flex justify-center items-center  background-grid">
+          <div className="absolute w-[50%] right-0 h-full bg-gradient-to-r from-variable-end to-variable-start"></div>
+          <div className="absolute w-[50%] left-0 h-full bg-gradient-to-r from-variable-start to-variable-end"></div>
+          <div className="absolute w-full left-0 h-full z-12 bg-gradient-to-b from-variable-down-start to-variable-down-end" />
+        </div>
 
       <div className="flex flex-col pt-16 gap-2 w-full z-[150]">
         {dropdownData.map((obj, index) => {
@@ -82,11 +90,17 @@ function MobileNavbarContent({ handleClick, details , challenges }) {
           );
         })}
         <ul className="z-[150] my-6 list-disc px-6 max-w-md mx-auto w-full">
-        {
-          links.map((link , index) => {
-            return <li key={index} onClick={handleClick} className=""><Link href={`/${link.value}`}><span className="border-b-2 border-black hover:border-green-bg hover:text-green-bg transition duration-300">{link.label}</span></Link></li>
-          })
-        }
+          {links.map((link, index) => {
+            return (
+              <li key={index} onClick={handleClick} className="">
+                <Link href={`/${link.value}`}>
+                  <span className="border-b-2 border-black hover:border-green-bg hover:text-green-bg transition duration-300">
+                    {link.label}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

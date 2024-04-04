@@ -13,7 +13,7 @@ function ChallengesPoster({ challenges }) {
               href={{
                 pathname: `/onGoingChallenges/${challengeData.challenge?._id}`,
               }}
-              className="flex items-center w-full gap-5 min-w-[600px] hover:bg-gray-100"
+              className="flex items-center w-full gap-5 min-w-[600px] hover:bg-gray-100 dark:hover:bg-primary"
               key={index}
             >
               <img
@@ -24,7 +24,7 @@ function ChallengesPoster({ challenges }) {
                 <div className="font-semibold text-sm">
                   {challenge.challengeType}
                 </div>
-                <div className=" text-gray-600 text-xs font-medium">
+                <div className=" text-gray-500 text-xs font-medium">
                   {challenge.description}
                 </div>
                 {challengeData.userScore && (
