@@ -1,11 +1,14 @@
 'use client'
 import React from 'react';
 import AddContent from '../AddContent';
+import withAuth from '../WithAuth';
 
-export default function App() {
+function App() {
   return (
     <div> 
       <AddContent />
     </div>
   );
 }
+
+export default withAuth(App);
