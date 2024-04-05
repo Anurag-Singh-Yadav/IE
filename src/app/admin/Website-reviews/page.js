@@ -1,6 +1,7 @@
 'use client'
 import React,{useEffect, useState} from 'react'
 import { fetchReviews } from '../../fetchDetails/fetchReviews'
+import withAuth from '../WithAuth';
 function Page() {
     const [reviews, setReviews] = useState(null);
     useEffect(() => {
@@ -18,4 +19,4 @@ function Page() {
   )
 }
 
-export default Page
+export default withAuth(Page);

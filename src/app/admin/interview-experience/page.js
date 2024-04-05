@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import WebsiteBanner from "@/app/Components/templets/WebsiteBanner";
 import InterviewCard from "@/app/Components/HomeComponents/InterviewCard";
 import axios from "axios";
+import withAuth from "../WithAuth";
 function Page() {
   const [interviewData, setInterviewData] = useState(null);
   const [isClick,setIsClicked] = useState(false);
@@ -65,4 +66,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default withAuth(Page);

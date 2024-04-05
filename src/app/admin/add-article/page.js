@@ -2,10 +2,12 @@
 import React from 'react';
 import AddContent from '../AddContent';
 
-export default function App() {
+function App() {
   return (
     <div> 
       <AddContent />
     </div>
   );
 }
+
+export default withAuth(App);
