@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import AddChallenge from '../AddChallenge'
 import withAuth from '../WithAuth'
