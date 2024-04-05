@@ -25,15 +25,14 @@ function ArticleProgress({ title }) {
     }
     let hTags = articleContainer.querySelectorAll("h1, h2, h3, h4, h5, h6, li");
 
+
     for (let i = 0; i < hTags.length; i++) {
       let currentElement = hTags[i];
       const tagName = currentElement.tagName;
-
       while (currentElement && hasChildElements(currentElement)) {
         currentElement = currentElement.firstElementChild;
       }
-
-      if (currentElement.innerText.length < 30) {
+      if (currentElement.innerText.length <= 80) {
         hTags[i].id = `content-${i}`;
         arr.push({
           label: currentElement.innerText,
@@ -52,7 +51,7 @@ function ArticleProgress({ title }) {
         });
       }
     }
-
+    console.log("arr ->",arr);
     setData(arr);
   }, [articleLoading]);
 
