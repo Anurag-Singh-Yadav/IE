@@ -7,7 +7,7 @@ function TeamCard({name, linkedIn,photo , direction ,email}) {
   return (
     <div className={`flex justify-center gap-9 ${direction ? " flex-row-reverse" : "flex-row"} flex-wrap-reverse text-class mt-24 mb-[130px]`}>
       <div className="flex flex-col justify-center items-center gap-5 text-center">
-        <p className="text-secondary-text font-semibold">Hello, I'm</p>
+        <p className="text-secondary-text font-semibold">Hello, I{"'"}m</p>
         <p className="text-primary-text font-extrabold text-5xl tracking-wider">
           {name}
         </p>
