@@ -6,8 +6,8 @@ import TextEditor from "@/app/Components/templets/TextEditor";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-function PostBlog() {
 
+function PostBlog() {
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -29,11 +29,10 @@ function PostBlog() {
   }, [htmlContent]);
 
   const submitHandler = async () => {
-
     const token = Cookies.get("token");
 
-    if(!token){
-      alert('Please login first to post blog');
+    if (!token) {
+      alert("Please login first to post blog");
       return;
     }
 
@@ -50,8 +49,7 @@ function PostBlog() {
         }
       );
       console.log(res);
-      if(res.data?.success === true){
-        
+      if (res.data?.success === true) {
       }
     } catch (err) {
       alert(err.response?.data?.message || "Unknown error while posting.");
@@ -70,48 +68,61 @@ function PostBlog() {
       />
       <div className="main-container">
         <div className="mt-8 flex flex-col gap-4 items-center">
-          <ol className="rounded-md">
-            <div className="font-semibold text-lg text-center bg-green-bg text-white w-full py-1 rounded-mg">
+          <ol className="rounded-md flex flex-col gap-2">
+            <div className="font-semibold text-lg text-center bg-green-bg text-white w-full py-1 md:py-2 rounded-mg">
               Community Guidelines & Respectful Sharing
             </div>
-            <li className="text-gray-600 py-1 rounded-md border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100">
-              <strong className="text-black">Respect Privacy:</strong> Do not
-              share identifiable details about interviewers or other individuals
-              involved in your interview process. Focus on the experience and
-              insights gained rather than personal specifics.
+            <li className="text-gray-600 py-1 md:py-2 border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white">
+              <strong className="text-black dark:text-green-bg">
+                Respect Privacy:
+              </strong>{" "}
+              Do not share identifiable details about interviewers or other
+              individuals involved in your interview process. Focus on the
+              experience and insights gained rather than personal specifics.
             </li>
 
-            <li className="text-gray-600 py-1 rounded-md border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100">
-              <strong className="text-black">Constructive Sharing:</strong>
+            <li className="text-gray-600 py-1 md:py-2 border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white">
+              <strong className="text-black dark:text-green-bg">
+                Constructive Sharing:
+              </strong>
               While we encourage honesty and transparency in sharing your
               interview experiences, it is crucial to maintain a constructive
               tone. Avoid derogatory comments, personal attacks, or any form of
               disrespectful language towards individuals or companies.
             </li>
 
-            <li className="text-gray-600 py-1 rounded-md border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100">
-              <strong className="text-black">No Targeting:</strong> This
-              platform is not a venue for settling scores or targeting specific
-              individuals or organizations negatively. Our aim is to share
-              experiences that are educational and beneficial for job seekers,
-              not to foster negativity or defamation.
+            <li className="text-gray-600 py-1 md:py-2 border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white">
+              <strong className="text-black dark:text-green-bg">
+                No Targeting:
+              </strong>{" "}
+              This platform is not a venue for settling scores or targeting
+              specific individuals or organizations negatively. Our aim is to
+              share experiences that are educational and beneficial for job
+              seekers, not to foster negativity or defamation.
             </li>
 
-            <li className="text-gray-600 py-1 rounded-md border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100">
-              <strong className="text-black"> Professionalism:</strong> Remember
-              that your contributions reflect on you as a professional. Share
-              your experiences with the intent of helping others grow and learn,
-              keeping your narrative professional and focused on the interview
-              process.
+            <li className="text-gray-600 py-1 md:py-2 border-l-2 border-white px-4 hover:border-l-2 hover:border-green-bg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white">
+              <strong className="text-black dark:text-green-bg">
+                {" "}
+                Professionalism:
+              </strong>{" "}
+              Remember that your contributions reflect on you as a professional.
+              Share your experiences with the intent of helping others grow and
+              learn, keeping your narrative professional and focused on the
+              interview process.
             </li>
           </ol>
         </div>
 
-        <div className="text-center font-semibold text-lg mt-6">Please fill all the details below:</div>
+        <div className="text-center font-semibold text-lg mt-6">
+          Please fill all the details below:
+        </div>
 
         <form
           onSubmit={(e) => e.preventDefault()}
-          className={"flex flex-wrap gap-7 py-7 w-[70%] bg-blue-100 rounded-2xl p-5 justify-center mx-auto my-7"}
+          className={
+            "flex flex-wrap gap-7 py-7 w-[70%] bg-blue-100 dark:bg-primary dark:border-white border rounded-2xl p-5 justify-center mx-auto my-7"
+          }
         >
           <div>
             <label htmlFor="name">Your Name:</label>
@@ -206,12 +217,13 @@ function PostBlog() {
               displayEmpty={false}
               inputProps={{ "aria-label": "Without label" }}
               required={true}
-              className="block ml-3"
+              className="block ml-3 bg-white"
             >
-              <MenuItem value={"yes"}>Yes</MenuItem>
-              <MenuItem value={"no"}>No</MenuItem>
-              <MenuItem value={"pending"}>Did not recieve reply yet</MenuItem>
-            </Select>
+              <MenuItem value={"yes"} className="">Yes</MenuItem>
+              <MenuItem value={"no"} className="">No</MenuItem>
+              <MenuItem value={"pending"} className="">Did not recieve reply yet</MenuItem>
+            </Select> 
+            
           </div>
         </form>
 
@@ -226,10 +238,13 @@ function PostBlog() {
           formName={`user-interview-experience-draft`}
         />
 
-        <div onClick={submitHandler} className="btn-gradient-2 px-4 py-1 rounded-md mx-auto w-fit mt-5 text-lg font-semibold cursor-pointer">Post blog</div>
+        <div
+          onClick={submitHandler}
+          className="btn-gradient-2 px-4 py-1 rounded-md mx-auto w-fit mt-5 text-lg font-semibold cursor-pointer"
+        >
+          Post blog
+        </div>
       </div>
-
-
     </div>
   );
 }

@@ -8,12 +8,12 @@ function AboutUs({ paragraph, imgSrc, title }) {
         Our{" "}
         <span className="text-green-bg underline">{title}</span>
       </div>
-      <div className="grid grid-col- py-8 sm:grid-cols-5">
-        <div className=" col-span-2">
-            <Image src={`/${imgSrc}`} width={280} height={550} className=" aspect-square" alt="image"></Image>
+      <div className="grid grid-col py-8 gap-5 md:gap-2 md:grid-cols-5">
+        <div className="col-span-3">
+            <Image src={`/${imgSrc}`} width={400} height={600} className=" aspect-video" alt="image"></Image>
         </div>
-        <div className="col-span-3 flex justify-center items-center">
-            <div className="sm:font-medium">{paragraph}</div>
+        <div className="col-span-2 bg-primary px-2 flex justify-center items-center">
+            <div className=" text-sm">{paragraph}</div>
         </div>
       </div>
     </div>

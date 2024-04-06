@@ -15,7 +15,6 @@ function Hero() {
           className="absolute w-full left-0 h-full z-12 bg-gradient-to-b from-variable-down-start to-variable-down-end"
         />
       </div>
-
       <div
         id="hero"
         className="pt-4 pb-3 relative sm:pt-0 min-h-[70vh] w-[100vw] flex justify-center items-center sm:min-h-[90vh]"
