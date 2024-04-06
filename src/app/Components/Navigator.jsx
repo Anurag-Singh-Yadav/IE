@@ -38,7 +38,7 @@ function Navigator({
       <div>
         {menu.map((item, index) => {
           return (
-            <div key={index} className="sm:py-7 md:py-10">
+            <div key={index} className="py-2">
               <div
                 className={`flex items-center justify-between text-sm hover:bg-green-bg py-2 rounded-sm transition-all duration-300 hover:text-white hover:cursor-pointer font-semibold px-4 ${
                   activeBar == item.mainHeading
@@ -46,8 +46,9 @@ function Navigator({
                     : "bg-light-green"
                 }`}
                 onClick={() => {
-                  if (clickedTab == -1) setClickedTab(index);
-                  else setClickedTab(-1);
+                  if(clickedTab == index) 
+                  setClickedTab(-1);
+                  else setClickedTab(index);
                 }}
               >
                 <span>{item.mainHeading}</span>

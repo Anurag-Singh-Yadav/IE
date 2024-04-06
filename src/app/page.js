@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import About from "./Components/HomeComponents/About";
 import Company from "./Components/HomeComponents/Company";
@@ -7,13 +7,9 @@ import Hero from "./Components/HomeComponents/Hero";
 import InterviewExperiance from "./Components/HomeComponents/InterviewExperiance";
 import ReviewCard from "./Components/HomeComponents/ReviewCard";
 import "./globals.css";
-import { useSelector } from "react-redux";
 export default function Home() {
-  const isLight = useSelector((state) => {
-    return state.GlobalState.isLight;
-  });
   return (
-    <div>
+    <div className="relative">
       <Hero />
       <div className="bg-primary">
         <div className="main-container gradiant-container">
