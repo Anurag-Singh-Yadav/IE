@@ -111,7 +111,7 @@ export default function QuestionArray({
                           />
                         </Table.Cell>
                         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                          <Link href={question.questionUrl} target="_black">
+                          <Link href={`${process.env.NEXT_PUBLIC_QUESTION_BASE_URL}${question.questionUrl}/description/`} target="_black">
                             {question.title}
                           </Link>
                         </Table.Cell>

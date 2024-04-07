@@ -56,7 +56,7 @@ function ScoreMeter({ totalQuestion, solvedQuestion, easy, medium, hard }) {
             }
             width={250}
             needleColor="red"
-            segments={10}
+            segments={5}
             value={solvedQuestion}
             needleTransitionDuration={4000}
             needleTransition="easeElastic"
