@@ -205,7 +205,10 @@ function QuestionRender({ questionsDetails, setPage ,page }) {
       </div>
 
       <div>
-        <Pagination page={page} setPage={setPage}></Pagination>
+        {
+          showQuestions &&<Pagination page={page} totalQuestion={showQuestions.length} setPage={setPage}></Pagination>
+        }
+        
       </div>
     </div>
   );
