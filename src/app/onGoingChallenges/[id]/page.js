@@ -9,13 +9,14 @@ import React, { useEffect, useState } from "react";
 
 export default function Page({ params }) {
   const query = useSearchParams();
+  const [page, setPage] = useState(0);
   const [questionsDetail, setQuestionsDetail] = useState(null);
   const [userFilter, setUserFilter] = useState([]);
   const fetchQuestions = async () => {
     try {
       const token = Cookies.get("token");
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_CHALLENGE_BY_ID}/${params.id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_CHALLENGE_BY_ID}/${params.id}/${page}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -30,7 +31,7 @@ export default function Page({ params }) {
 
   useEffect(() => {
     fetchQuestions();
-  }, []);
+  }, [page]);
 
   return (
     <div>
@@ -49,10 +50,11 @@ export default function Page({ params }) {
             Start Your{" "}
             <span className="text-green-bg underline">Challenges</span>
           </div>
-
           <div>
             {questionsDetail?.questionsDetails && (
               <QuestionRender
+                page={page}
+                setPage={setPage}
                 setUserFilter={setUserFilter}
                 questionsDetails={questionsDetail?.questionsDetails}
               ></QuestionRender>

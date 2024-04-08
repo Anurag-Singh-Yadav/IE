@@ -4,9 +4,10 @@ import { IoSearchSharp } from "react-icons/io5";
 
 import Image from "next/image";
 import QuestionArray from "./QuestionArray";
-import { WindowRounded } from "@mui/icons-material";
+import { Diversity1Rounded, WindowRounded } from "@mui/icons-material";
 import { FaCheck } from "react-icons/fa";
 import PreRender from "./PreRender";
+import Pagination from "./Pagination";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -19,7 +20,7 @@ const MenuProps = {
 };
 const names = ["Easy", "Medium", "Hard"];
 
-function QuestionRender({ questionsDetails }) {
+function QuestionRender({ questionsDetails, setPage ,page }) {
   const diff = useRef(null);
 
   const [difficulty, setDifficulty] = useState([false, false, false]);
@@ -135,25 +136,37 @@ function QuestionRender({ questionsDetails }) {
               {open === true && (
                 <div className="absolute -top-[15px] bg-primary z-[100] pop-in-fast flex flex-col  py-2 rounded-lg box-shadow">
                   <button
-                    onClick={() => {handleDifficulty(0)}}
+                    onClick={() => {
+                      handleDifficulty(0);
+                    }}
                     className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
                   >
                     <p>Easy</p>
-                    <div className={`${difficulty[0] ? 'text-green-bg' : ''}`}><FaCheck size={15}/></div>
+                    <div className={`${difficulty[0] ? "text-green-bg" : ""}`}>
+                      <FaCheck size={15} />
+                    </div>
                   </button>
                   <button
-                  onClick={() => {handleDifficulty(1)}}
-                  className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
-                >
-                  <p>Medium</p>
-                  <div className={`${difficulty[1] ? 'text-green-bg' : ''}`}><FaCheck size={15}/></div>
-                </button>
+                    onClick={() => {
+                      handleDifficulty(1);
+                    }}
+                    className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
+                  >
+                    <p>Medium</p>
+                    <div className={`${difficulty[1] ? "text-green-bg" : ""}`}>
+                      <FaCheck size={15} />
+                    </div>
+                  </button>
                   <button
-                    onClick={() => {handleDifficulty(2)}}
+                    onClick={() => {
+                      handleDifficulty(2);
+                    }}
                     className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
                   >
                     <p>Hard</p>
-                    <div className={`${difficulty[2] ? 'text-green-bg' : ''}`}><FaCheck size={15}/></div>
+                    <div className={`${difficulty[2] ? "text-green-bg" : ""}`}>
+                      <FaCheck size={15} />
+                    </div>
                   </button>
                 </div>
               )}
@@ -181,12 +194,21 @@ function QuestionRender({ questionsDetails }) {
       </div>
 
       <div>
-        {showQuestions && <QuestionArray
-          search={search}
-          showQuestions={showQuestions}
-          setShowQuestions={setShowQuestions}
-          difficulty={difficulty}
-        />}
+        {showQuestions && (
+          <QuestionArray
+            search={search}
+            showQuestions={showQuestions}
+            setShowQuestions={setShowQuestions}
+            difficulty={difficulty}
+          />
+        )}
+      </div>
+
+      <div>
+        {
+          showQuestions &&<Pagination page={page} totalQuestion={showQuestions.length} setPage={setPage}></Pagination>
+        }
+        
       </div>
     </div>
   );

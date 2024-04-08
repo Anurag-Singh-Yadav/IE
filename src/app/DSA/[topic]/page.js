@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 
 function Page({}) {
   const query = useSearchParams();
-
+  const [page,setPage] = useState(0);
   const [questions, setQuestions] = useState();
   var topic = query.get("topic");
   const fetchQuestions = async () => {
@@ -17,7 +17,7 @@ function Page({}) {
       const token = Cookies.get("token");
       console.log("topic", topic);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_QUESTION_BY_TOPIC}/${topic}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_QUESTION_BY_TOPIC}/${topic}/${page}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ function Page({}) {
 
   useEffect(() => {
     fetchQuestions();
-  }, [topic]);
+  },[topic, page]);
   return (
     <div>
       <div>
@@ -44,7 +44,7 @@ function Page({}) {
           <span className="text-green-bg underline">Data-Structure Questions</span>
         </div>
       </div>
-      {questions && <QuestionRender questionsDetails={questions} />}
+      {questions && <QuestionRender questionsDetails={questions} page={page} setPage={setPage}/>}
     </div>
   );
 }
