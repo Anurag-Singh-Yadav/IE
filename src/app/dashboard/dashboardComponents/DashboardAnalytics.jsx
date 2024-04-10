@@ -1,8 +1,12 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
+import ApexChart from "./CircularRadial";
 
 function DashboardAnalytics({ selectedMode, setSelectedMode }) {
+
+  const [data , setData] = useState([50,70,120]);
+
   return (
     <div
       className={`${
@@ -17,7 +21,9 @@ function DashboardAnalytics({ selectedMode, setSelectedMode }) {
         className="md:hidden"
       />
       {(selectedMode === "dashboard" || !selectedMode) && (
-        <p className="mt-4 px-3 py-2 font-bold text-lg">Dashboard Analytics</p>
+        <div className='border-black border-2 overflow-hidden'>
+          <ApexChart data={data}/>
+        </div>
       )}
     </div>
   );
