@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 
 function Page({}) {
   const query = useSearchParams();
+  const [difficulty, setDifficulty] = useState([false, false, false]);  
   const [page,setPage] = useState(0);
   const [questions, setQuestions] = useState();
   var topic = query.get("topic");
@@ -15,9 +16,8 @@ function Page({}) {
     try {
       topic = query.get("topic");
       const token = Cookies.get("token");
-      console.log("topic", topic);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_QUESTION_BY_TOPIC}/${topic}/${page}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_QUESTION_BY_TOPIC}/${topic}/${page}/${difficulty[0]}/${difficulty[1]}/${difficulty[2]}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -25,6 +25,7 @@ function Page({}) {
         }
       );
       setQuestions(response.data.data);
+      console.log("response ", response.data.data);
     } catch (e) {
       console.error("There was an error!", e);
     }
@@ -32,7 +33,7 @@ function Page({}) {
 
   useEffect(() => {
     fetchQuestions();
-  },[topic, page]);
+  },[topic, page,difficulty]);
   return (
     <div>
       <div>
@@ -44,9 +45,8 @@ function Page({}) {
           <span className="text-green-bg underline">Data-Structure Questions</span>
         </div>
       </div>
-      {questions && <QuestionRender questionsDetails={questions} page={page} setPage={setPage}/>}
+      {questions && <QuestionRender isLastPage={questions?.isLastPage} questionsDetails={questions} page={page} setPage={setPage} difficulty={difficulty} setDifficulty={setDifficulty} />}
     </div>
   );
 }
-
 export default Page;

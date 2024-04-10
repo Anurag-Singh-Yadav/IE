@@ -1,11 +1,12 @@
 import React from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+const pageNumber = [0];
 
-function Pagination({ page, totalQuestion, setPage }) {
-    console.log("totalQuestion", totalQuestion);
+function Pagination({ page, isLastPage, totalQuestion, setPage }) {
   return (
     <div className="flex justify-center items-center py-4 gap-4">
       <button
-        className={`${page == 0 ? "cursor-not-allowed" : "cursor-pointer"} start-2 px-4 py-2 rounded-md `}
+        className={`${page == 0 ? "cursor-not-allowed" : "cursor-pointer"} flex justify-between items-center gap-2 px-4 py-2 rounded-md `}
         onClick={(e) => {
          e.preventDefault();
           if (page > 0) {
@@ -14,47 +15,38 @@ function Pagination({ page, totalQuestion, setPage }) {
         }}
         disabled={page == 0}
       >
-        Previous
+        <FaArrowLeft />
+        <span>Previous</span>
       </button>
-      <div
-        className={`border-2 ${
-          page === 0 ? "border-green-bg" : "border-black"
-        } px-2 cursor-pointer`}
-        onClick={() => {
-          setPage(0);
-        }}
-      >
-        1
-      </div>
-      <div
-        className={`border-2 ${
-          page === 1 ? "border-green-bg" : "border-black"
-        } px-2 cursor-pointer`}
-        onClick={() => {
-          setPage(1);
-        }}
-      >
-        2
-      </div>
-      <div
-        className={`border-2 ${
-          page === 2 ? "border-green-bg" : "border-black"
-        } px-2 cursor-pointer`}
-        onClick={() => {
-          setPage(2);
-        }}
-      >
-        3
-      </div>
+      
+      {
+        pageNumber.map((item) => {
+          return (
+            <div
+              key={item}
+              className={`border-2 ${
+                 "bg-green-bg border-green-bg"
+              } px-2 rounded-md cursor-pointer`}
+              onClick={() => {
+                setPage(page);
+              }}
+            >
+              {page+1}
+            </div>
+          );
+        })
+      }
+
       <button
-        className={`px-4 py-2 rounded-md start-2 ${totalQuestion < 10 ? "cursor-not-allowed" : "cursor-pointer"}`}
+        className={`px-4 flex justify-between items-center gap-2 py-2 rounded-md ${isLastPage ? "cursor-not-allowed" : "cursor-pointer"}`}
         onClick={(e) => {
             e.preventDefault();
           setPage(page + 1);
         }}
-        disabled={totalQuestion < 10}
+        disabled={isLastPage}
       >
-        Next
+        <span>Next</span>
+        <FaArrowRight />
       </button>
     </div>
   );

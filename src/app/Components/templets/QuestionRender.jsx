@@ -4,7 +4,6 @@ import { IoSearchSharp } from "react-icons/io5";
 
 import Image from "next/image";
 import QuestionArray from "./QuestionArray";
-import { Diversity1Rounded, WindowRounded } from "@mui/icons-material";
 import { FaCheck } from "react-icons/fa";
 import PreRender from "./PreRender";
 import Pagination from "./Pagination";
@@ -20,18 +19,10 @@ const MenuProps = {
 };
 const names = ["Easy", "Medium", "Hard"];
 
-function QuestionRender({ questionsDetails, setPage ,page }) {
+function QuestionRender({ questionsDetails,isLastPage, setPage ,page , difficulty, setDifficulty}) {
   const diff = useRef(null);
-
-  const [difficulty, setDifficulty] = useState([false, false, false]);
-
+  console.log("questions details ", questionsDetails);
   const [open, setOpen] = useState(false);
-
-  const handleChange = (event) => {
-    const { value } = event.target;
-    setDifficulty(value);
-  };
-
   useEffect(() => {
     const handler = (event) => {
       if (!diff.current.contains(event.target)) {
@@ -64,6 +55,7 @@ function QuestionRender({ questionsDetails, setPage ,page }) {
   }, [filter]);
 
   const handleDifficulty = (index) => {
+    setPage(0);
     setDifficulty((prev) => {
       let updated = [...prev];
       updated[index] = !updated[index];
@@ -192,7 +184,6 @@ function QuestionRender({ questionsDetails, setPage ,page }) {
           </div>
         </div>
       </div>
-
       <div>
         {showQuestions && (
           <QuestionArray
@@ -206,7 +197,7 @@ function QuestionRender({ questionsDetails, setPage ,page }) {
 
       <div>
         {
-          showQuestions &&<Pagination page={page} totalQuestion={showQuestions.length} setPage={setPage}></Pagination>
+          showQuestions &&<Pagination isLastPage={isLastPage} page={page} totalQuestion={showQuestions.length} setPage={setPage}></Pagination>
         }
         
       </div>
