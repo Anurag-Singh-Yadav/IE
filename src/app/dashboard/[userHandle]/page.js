@@ -1,13 +1,17 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import Sidenav from "../dashboardComponents/Sidenav";
 import TopBanner from "../dashboardComponents/TopBanner";
 import DashboardAnalytics from "../dashboardComponents/DashboardAnalytics";
 import ChallengeProgress from "../dashboardComponents/ChallengeProgress";
 
-function Dashboard() {
+function Dashboard({params}) {
 
   const [selectedMode , setSelectedMode] = useState('dashboard');
+  useEffect(() => {
+    const {userHandle} = params;
+    console.log('userHandle = ' ,  userHandle);
+  } , []);
 
   return (
     <div className="min-h-[250vh] bg-primary overflow-hidden">

@@ -1,13 +1,15 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
+import UserData from "../what-to-render/UserData";
 
 function DashboardAnalytics({ selectedMode, setSelectedMode }) {
+
   return (
     <div
       className={`${
         !selectedMode && "translate-x-[110%] md:translate-x-0"
-      } transition-all duration-700 box-shadow absolute overflow-hidden mx-auto left-0 right-0  md:left-auto -top-0 md:-top-[15vh] w-[95vw] md:w-[75vw] min-h-[100vh] bg-white rounded-md`}
+      } transition-all duration-700 box-shadow absolute overflow-hidden mx-auto left-0 right-0  md:left-auto -top-0 md:-top-[15vh] w-[95vw] md:w-[75vw] min-h-[100vh] rounded-md bg-gray-100 px-4 md:px-12 lg:px-16 py-12`}
     >
       <AiOutlineBars
         onClick={() => {
@@ -17,7 +19,9 @@ function DashboardAnalytics({ selectedMode, setSelectedMode }) {
         className="md:hidden"
       />
       {(selectedMode === "dashboard" || !selectedMode) && (
-        <p className="mt-4 px-3 py-2 font-bold text-lg">Dashboard Analytics</p>
+        <div className='overflow-hidden'>
+          <UserData userHandle={'Aditya Kumar'}/>
+        </div>
       )}
     </div>
   );
