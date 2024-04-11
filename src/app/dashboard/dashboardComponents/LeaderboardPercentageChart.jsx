@@ -49,7 +49,8 @@ function LeaderboardPercentageChart() {
                   onMouseLeave={() => {
                     console.log("Mouse Left");
                     setHighLight(false);
-                  }}
+                  }}  
+                  key={index}
                 >
                   <div
                     className={`relative bg-gray-200 ${
