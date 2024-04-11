@@ -3,6 +3,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 const pageNumber = [0];
 
 function Pagination({ page, isLastPage, totalQuestion, setPage }) {
+  console.log("isLastPAge" , isLastPage);
   return (
     <div className="flex justify-center items-center py-4 gap-4">
       <button
@@ -22,7 +23,7 @@ function Pagination({ page, isLastPage, totalQuestion, setPage }) {
       {
         pageNumber.map((item) => {
           return (
-            <div
+            <button
               key={item}
               className={`border-2 ${
                  "bg-green-bg border-green-bg"
@@ -32,7 +33,7 @@ function Pagination({ page, isLastPage, totalQuestion, setPage }) {
               }}
             >
               {page+1}
-            </div>
+            </button>
           );
         })
       }

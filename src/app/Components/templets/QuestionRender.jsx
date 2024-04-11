@@ -21,7 +21,6 @@ const names = ["Easy", "Medium", "Hard"];
 
 function QuestionRender({ questionsDetails,isLastPage, setPage ,page , difficulty, setDifficulty}) {
   const diff = useRef(null);
-  console.log("questions details ", questionsDetails);
   const [open, setOpen] = useState(false);
   useEffect(() => {
     const handler = (event) => {

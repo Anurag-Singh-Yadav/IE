@@ -12,6 +12,7 @@ function Page({}) {
   const [page,setPage] = useState(0);
   const [questions, setQuestions] = useState();
   var topic = query.get("topic");
+  const [isLastPage, setLastPage] = useState(false);
   const fetchQuestions = async () => {
     try {
       topic = query.get("topic");
@@ -25,7 +26,7 @@ function Page({}) {
         }
       );
       setQuestions(response.data.data);
-      console.log("response ", response.data.data);
+      setLastPage(response.data.isLastPage);
     } catch (e) {
       console.error("There was an error!", e);
     }
@@ -45,7 +46,7 @@ function Page({}) {
           <span className="text-green-bg underline">Data-Structure Questions</span>
         </div>
       </div>
-      {questions && <QuestionRender isLastPage={questions?.isLastPage} questionsDetails={questions} page={page} setPage={setPage} difficulty={difficulty} setDifficulty={setDifficulty} />}
+      {questions && <QuestionRender isLastPage={isLastPage} questionsDetails={questions} page={page} setPage={setPage} difficulty={difficulty} setDifficulty={setDifficulty} />}
     </div>
   );
 }
