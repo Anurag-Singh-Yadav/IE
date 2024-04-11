@@ -73,7 +73,7 @@ export default class ApexChart extends React.Component {
 
     render() {
       return (
-        <div>
+        <div className='bg-primary rounded-lg p-3 box-shadow'>
           <div id="chart">
             <ReactApexChart options={this.state.options} series={this.state.series} type="donut" height={250} />
           </div>
