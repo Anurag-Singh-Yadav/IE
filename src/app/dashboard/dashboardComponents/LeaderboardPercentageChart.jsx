@@ -5,6 +5,46 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { FaHandPointUp } from "react-icons/fa";
 
+function BarDiv({scoreRange , item , index , userIndex}){
+
+  const [highLight , setHighLight] = useState(false);
+
+  return (
+    <div
+          className="h-[200px] flex items-end w-[15px]"
+          data-tooltip-id="my-tooltip"
+          data-tooltip-content={`Score: ${scoreRange[0]} - ${
+            scoreRange[1]
+          }\nTop: ${(item * 100).toPrecision(3)}%`}
+          data-tooltip-place="top"
+          onMouseEnter={() => {
+            console.log("Mouse entered");
+            setHighLight(true);
+          }}
+          onMouseLeave={() => {
+            console.log("Mouse Left");
+            setHighLight(false);
+          }}  
+          key={index}
+        >
+          <div
+            className={`relative bg-gray-200 ${
+              (highLight || index === userIndex) && `bg-green-bg`
+            } w-full`}
+            style={{ height: `${Math.max(15, item * 200)}px` }}
+          >
+            <div
+              className={`${
+                index !== userIndex && "hidden"
+              } absolute -bottom-[20px]`}
+            >
+              <FaHandPointUp size={15} className="text-green-bg" />
+            </div>
+          </div>
+        </div>
+  )
+}
+
 function LeaderboardPercentageChart() {
   const globalRank = 200;
   const total = 540;
@@ -33,40 +73,8 @@ function LeaderboardPercentageChart() {
           {leaderboardData &&
             leaderboardData.map((item, index) => {
               const scoreRange = [index * 50, (index + 1) * 50];
-              const [highLight, setHighLight] = useState(false);
               return (
-                <div
-                  className="h-[200px] flex items-end w-[15px]"
-                  data-tooltip-id="my-tooltip"
-                  data-tooltip-content={`Score: ${scoreRange[0]} - ${
-                    scoreRange[1]
-                  }\nTop: ${(item * 100).toPrecision(3)}%`}
-                  data-tooltip-place="top"
-                  onMouseEnter={() => {
-                    console.log("Mouse entered");
-                    setHighLight(true);
-                  }}
-                  onMouseLeave={() => {
-                    console.log("Mouse Left");
-                    setHighLight(false);
-                  }}  
-                  key={index}
-                >
-                  <div
-                    className={`relative bg-gray-200 ${
-                      (highLight || index === userIndex) && `bg-green-bg`
-                    } w-full`}
-                    style={{ height: `${Math.max(15, item * 200)}px` }}
-                  >
-                    <div
-                      className={`${
-                        index !== userIndex && "hidden"
-                      } absolute -bottom-[20px]`}
-                    >
-                      <FaHandPointUp size={15} className="text-gray-800" />
-                    </div>
-                  </div>
-                </div>
+                <BarDiv scoreRange={scoreRange} item={item} index={index} userIndex={userIndex}/>
               );
             })}
         </div>
