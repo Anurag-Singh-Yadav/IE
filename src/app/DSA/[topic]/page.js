@@ -46,7 +46,8 @@ function Page({}) {
           <span className="text-green-bg underline">Data-Structure Questions</span>
         </div>
       </div>
-      {questions && <QuestionRender isLastPage={isLastPage} questionsDetails={questions} page={page} setPage={setPage} difficulty={difficulty} setDifficulty={setDifficulty} />}
+      {questions && <QuestionRender isLastPage={isLastPage} questionsDetails={questions} page={page} setPage={setPage} difficulty={difficulty}
+       setDifficulty={setDifficulty} />}
     </div>
   );
 }

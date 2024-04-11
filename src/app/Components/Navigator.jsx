@@ -43,7 +43,7 @@ function Navigator({
                 className={`flex items-center justify-between text-sm hover:bg-green-bg py-2 rounded-sm transition-all duration-300 hover:text-white hover:cursor-pointer font-semibold px-4 ${
                   activeBar == item.mainHeading
                     ? "bg-green-bg text-white"
-                    : "bg-light-green"
+                    : "bg-light-green dark:text-black dark:hover:text-white"
                 }`}
                 onClick={() => {
                   if(clickedTab == index) 

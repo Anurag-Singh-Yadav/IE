@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Sidenav from "../dashboardComponents/Sidenav";
 import TopBanner from "../dashboardComponents/TopBanner";
 import DashboardAnalytics from "../dashboardComponents/DashboardAnalytics";
-import LineChartProgressReport from "../dashboardComponents/LineChartProgressReport";
+import ChallengeProgress from "../dashboardComponents/ChallengeProgress";
 
 function Dashboard() {
 
@@ -17,7 +17,7 @@ function Dashboard() {
       <div className="relative px-2">
         <Sidenav setSelectedMode={setSelectedMode}/>
         <DashboardAnalytics selectedMode={selectedMode} setSelectedMode={setSelectedMode}/>
-        <LineChartProgressReport/>
+        <ChallengeProgress></ChallengeProgress>
       </div>
     </div>
   );
