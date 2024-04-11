@@ -12,6 +12,7 @@ import NotLoginAlterBox from "./NotLoginAlterBox";
 export default function QuestionArray({
   showQuestions,
   setShowQuestions,
+  challengeId,
   search,
   difficulty,
 }) {
@@ -29,7 +30,7 @@ export default function QuestionArray({
     const token = Cookies.get("token");
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_UPDATE_QUESTIONS_STATUS}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_UPDATE_QUESTIONS_STATUS}/${challengeId}`,
         {
           questionId: _id,
           token,

@@ -61,6 +61,7 @@ export default function Page({ params }) {
                 setUserFilter={setUserFilter}
                 questionsDetails={questionsDetail?.questionsDetails}
                 isLastPage={questionsDetail?.isLastPage}
+                challengeId={params.id}
               ></QuestionRender>
             )}
           </div>

@@ -19,9 +19,8 @@ const MenuProps = {
 };
 const names = ["Easy", "Medium", "Hard"];
 
-function QuestionRender({ questionsDetails,isLastPage, setPage ,page , difficulty, setDifficulty}) {
+function QuestionRender({ questionsDetails,challengeId ,isLastPage, setPage ,page , difficulty, setDifficulty}) {
   const diff = useRef(null);
-  console.log("questions details ", questionsDetails);
   const [open, setOpen] = useState(false);
   useEffect(() => {
     const handler = (event) => {
@@ -187,6 +186,7 @@ function QuestionRender({ questionsDetails,isLastPage, setPage ,page , difficult
       <div>
         {showQuestions && (
           <QuestionArray
+            challengeId={challengeId}
             search={search}
             showQuestions={showQuestions}
             setShowQuestions={setShowQuestions}
