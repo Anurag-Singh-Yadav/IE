@@ -74,7 +74,7 @@ function LeaderboardPercentageChart() {
             leaderboardData.map((item, index) => {
               const scoreRange = [index * 50, (index + 1) * 50];
               return (
-                <BarDiv scoreRange={scoreRange} item={item} index={index} userIndex={userIndex}/>
+                <BarDiv scoreRange={scoreRange} item={item} index={index} userIndex={userIndex} key={index}/>
               );
             })}
         </div>
