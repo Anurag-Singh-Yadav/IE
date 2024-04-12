@@ -14,7 +14,7 @@ function Dashboard({params}) {
   } , []);
 
   return (
-    <div className="min-h-[250vh] bg-primary overflow-hidden">
+    <div className="min-h-[500vh] bg-primary overflow-hidden">
       <div className="relative bg-black ">
         <TopBanner />
       </div>

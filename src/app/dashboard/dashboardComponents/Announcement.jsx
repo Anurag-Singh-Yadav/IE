@@ -29,7 +29,7 @@ function Announcement() {
         {
           announcements && announcements.map((item,index)=>{
             return (
-              <div key={index} className="gap-2  flex justify-between items-start my-4 px-2">
+              <div key={index} className="gap-2 flex items-start my-4 px-2">
                 <div className="text-green-bg"><FaHandPointRight /></div>
                 <p className="border-l-2 pl-2 py-2">{item.description}</p>
               </div>
