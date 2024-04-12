@@ -5,6 +5,7 @@ import LeaderboardPercentageChart from "../dashboardComponents/LeaderboardPercen
 import DashboardCards from "../dashboardComponents/DashboardCards";
 import { GiFlame } from "react-icons/gi";
 import ChallengeProgress from "../dashboardComponents/ChallengeProgress";
+import Announcement from "../dashboardComponents/Announcement";
 
 function UserData() {
   const [progressBarData, setProgressBarData] = useState([50, 70, 120]);
@@ -33,6 +34,7 @@ function UserData() {
           </p>
           <GiFlame />
           </div>
+          <Announcement></Announcement>
         </div>
       </div>
 
@@ -43,24 +45,7 @@ function UserData() {
   );
 }
 
-const announcement = [
-  {
-    title: "New Feature",
-    description: "We have added a new feature to the platform",
-  },
-  {
-    title: "New Feature",
-    description: "We have added a new feature to the platform",
-  },
-  {
-    title: "New Feature",
-    description: "We have added a new feature to the platform",
-  },
-  {
-    title: "New Feature",
-    description: "We have added a new feature to the platform",
-  },
-];
+
 
 
 export default UserData;
