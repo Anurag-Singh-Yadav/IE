@@ -18,3 +18,15 @@ export const fetchUserDetails = async (token) => {
     return null;
   }
 };
+
+export const fetchUserByHandle = async (userHandle) => {
+  try{
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_USER_DATA}` , {
+      userHandle,
+    })
+    return res.data;
+  }catch(err){
+    console.log(err);
+    throw new Error('Error while fetching user');
+  }
+}

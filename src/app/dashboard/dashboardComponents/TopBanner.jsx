@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import Avatar from "react-avatar";
 import { FaCircleCheck } from "react-icons/fa6";
 
 import { IoShareSocialSharp } from "react-icons/io5";
+import { FaSpinner } from "react-icons/fa";
 
 const CopiedToClipBoardNotify = () => {
   return (
@@ -16,14 +16,8 @@ const CopiedToClipBoardNotify = () => {
   );
 };
 
-function TopBanner() {
-  const details = useSelector((state) => state.GlobalState.userDetails);
-
+function TopBanner({details}) {
   const [flag , setFlag] = useState(false);
-
-  useEffect(() => {
-    console.log("Details = ", details);
-  }, [details]);
 
   const copyProfileToClipBoard = () => {
     setFlag(true);
@@ -67,6 +61,9 @@ function TopBanner() {
           </div>
         </div>
       )}
+      {
+        !details && <FaSpinner />
+      }
     </div>
   );
 }

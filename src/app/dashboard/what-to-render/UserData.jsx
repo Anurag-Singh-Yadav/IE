@@ -5,7 +5,7 @@ import LeaderboardPercentageChart from "../dashboardComponents/LeaderboardPercen
 import DashboardCards from "../dashboardComponents/DashboardCards";
 import { GiFlame } from "react-icons/gi";
 
-function UserData() {
+function UserData({userInfo}) {
   const [progressBarData, setProgressBarData] = useState([50, 70, 120]);
   const [leaderboardData, setLeaderboardData] = useState(null);
   const [currentStreak, setCurrentStreak] = useState(5);

@@ -3,23 +3,38 @@ import React, { useState , useEffect } from "react";
 import Sidenav from "../dashboardComponents/Sidenav";
 import TopBanner from "../dashboardComponents/TopBanner";
 import DashboardAnalytics from "../dashboardComponents/DashboardAnalytics";
+import { fetchUserByHandle } from "@/app/fetchDetails/fetchUserDetails";
 
 function Dashboard({params}) {
 
   const [selectedMode , setSelectedMode] = useState('dashboard');
+
+  const [userInfo , setUserInfo] = useState(null);
+
+  const {userHandle} = params;
+
   useEffect(() => {
-    const {userHandle} = params;
-    console.log('userHandle = ' ,  userHandle);
+    const fetchUser = async () => {
+      try{
+        const res = await fetchUserByHandle(userHandle);
+      setUserInfo(res);
+      console.log('User = ' , res);
+      }catch(err){
+        console.log(err.message);
+      }
+    }
+    fetchUser();
   } , []);
+
 
   return (
     <div className="min-h-[250vh] bg-primary overflow-hidden">
       <div className="relative bg-black ">
-        <TopBanner />
+        <TopBanner details={userInfo}/>
       </div>
       <div className="relative px-2">
         <Sidenav setSelectedMode={setSelectedMode}/>
-        <DashboardAnalytics selectedMode={selectedMode} setSelectedMode={setSelectedMode}/>
+        <DashboardAnalytics userInfo={userInfo} selectedMode={selectedMode} setSelectedMode={setSelectedMode}/>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import UserData from "../what-to-render/UserData";
 
-function DashboardAnalytics({ selectedMode, setSelectedMode }) {
+function DashboardAnalytics({ userInfo , selectedMode, setSelectedMode }) {
 
   return (
     <div
@@ -20,7 +20,7 @@ function DashboardAnalytics({ selectedMode, setSelectedMode }) {
       />
       {(selectedMode === "dashboard" || !selectedMode) && (
         <div className='overflow-hidden'>
-          <UserData userHandle={'Aditya Kumar'}/>
+          <UserData userInfo={userInfo}/>
         </div>
       )}
     </div>
