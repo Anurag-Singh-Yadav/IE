@@ -42,6 +42,7 @@ const config = {
       screens: {
         sm: '430px',
         nmd: '1000px',
+        dmd:'1120px',
         s1:"432px",
         s2:"550px",
         s3:"927px",
