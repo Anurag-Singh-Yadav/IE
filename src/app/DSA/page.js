@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import WebsiteBanner from "../Components/templets/WebsiteBanner";
-import { topics } from "./Topics.js";
 import TopicsTemplets from "../Components/templets/TopicsTemplets";
 import ScoreMeter from "../Components/templets/ScoreMeter";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { getAllTopics } from "../fetchDetails/getAllTopics";
 function Page() {
   const [userQuestoinsDetails, setUserQuestionsDetails] = useState(null);
+  const [topics, setTopics] = useState(null);
   const getUserDetails = async () => {
     try {
       const token = Cookies.get("token");
@@ -26,7 +27,14 @@ function Page() {
     }
   };
 
+  const getTopics = async () => {
+    const res = await getAllTopics();
+    console.log(res);
+    setTopics(res);
+  }
+
   useEffect(() => {
+    getTopics();
     getUserDetails();
   }, []);
 
@@ -63,7 +71,7 @@ function Page() {
 
           {userQuestoinsDetails && (
             <div className="nmd:col-span-3 w-full">
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center nmd:sticky nmd:top-4 items-center">
                 <ScoreMeter
                   totalQuestion={userQuestoinsDetails.totalQuestions}
                   solvedQuestion={userQuestoinsDetails.solvedQuestions}

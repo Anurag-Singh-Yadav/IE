@@ -4,9 +4,9 @@ import { IoSearchSharp } from "react-icons/io5";
 
 import Image from "next/image";
 import QuestionArray from "./QuestionArray";
-import { WindowRounded } from "@mui/icons-material";
 import { FaCheck } from "react-icons/fa";
 import PreRender from "./PreRender";
+import Pagination from "./Pagination";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -19,18 +19,9 @@ const MenuProps = {
 };
 const names = ["Easy", "Medium", "Hard"];
 
-function QuestionRender({ questionsDetails }) {
+function QuestionRender({ questionsDetails,challengeId ,isLastPage, setPage ,page , difficulty, setDifficulty}) {
   const diff = useRef(null);
-
-  const [difficulty, setDifficulty] = useState([false, false, false]);
-
   const [open, setOpen] = useState(false);
-
-  const handleChange = (event) => {
-    const { value } = event.target;
-    setDifficulty(value);
-  };
-
   useEffect(() => {
     const handler = (event) => {
       if (!diff.current.contains(event.target)) {
@@ -63,6 +54,7 @@ function QuestionRender({ questionsDetails }) {
   }, [filter]);
 
   const handleDifficulty = (index) => {
+    setPage(0);
     setDifficulty((prev) => {
       let updated = [...prev];
       updated[index] = !updated[index];
@@ -135,25 +127,37 @@ function QuestionRender({ questionsDetails }) {
               {open === true && (
                 <div className="absolute -top-[15px] bg-primary z-[100] pop-in-fast flex flex-col  py-2 rounded-lg box-shadow">
                   <button
-                    onClick={() => {handleDifficulty(0)}}
+                    onClick={() => {
+                      handleDifficulty(0);
+                    }}
                     className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
                   >
                     <p>Easy</p>
-                    <div className={`${difficulty[0] ? 'text-green-bg' : ''}`}><FaCheck size={15}/></div>
+                    <div className={`${difficulty[0] ? "text-green-bg" : ""}`}>
+                      <FaCheck size={15} />
+                    </div>
                   </button>
                   <button
-                  onClick={() => {handleDifficulty(1)}}
-                  className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
-                >
-                  <p>Medium</p>
-                  <div className={`${difficulty[1] ? 'text-green-bg' : ''}`}><FaCheck size={15}/></div>
-                </button>
+                    onClick={() => {
+                      handleDifficulty(1);
+                    }}
+                    className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
+                  >
+                    <p>Medium</p>
+                    <div className={`${difficulty[1] ? "text-green-bg" : ""}`}>
+                      <FaCheck size={15} />
+                    </div>
+                  </button>
                   <button
-                    onClick={() => {handleDifficulty(2)}}
+                    onClick={() => {
+                      handleDifficulty(2);
+                    }}
                     className="hover:bg-gray-100 dark:hover:bg-green-bg dark:hover:text-white px-4 py-1 text-gray-600 flex items-center justify-between gap-2"
                   >
                     <p>Hard</p>
-                    <div className={`${difficulty[2] ? 'text-green-bg' : ''}`}><FaCheck size={15}/></div>
+                    <div className={`${difficulty[2] ? "text-green-bg" : ""}`}>
+                      <FaCheck size={15} />
+                    </div>
                   </button>
                 </div>
               )}
@@ -179,14 +183,23 @@ function QuestionRender({ questionsDetails }) {
           </div>
         </div>
       </div>
+      <div>
+        {showQuestions && (
+          <QuestionArray
+            challengeId={challengeId}
+            search={search}
+            showQuestions={showQuestions}
+            setShowQuestions={setShowQuestions}
+            difficulty={difficulty}
+          />
+        )}
+      </div>
 
       <div>
-        {showQuestions && <QuestionArray
-          search={search}
-          showQuestions={showQuestions}
-          setShowQuestions={setShowQuestions}
-          difficulty={difficulty}
-        />}
+        {
+          showQuestions &&<Pagination isLastPage={isLastPage} page={page} totalQuestion={showQuestions.length} setPage={setPage}></Pagination>
+        }
+        
       </div>
     </div>
   );

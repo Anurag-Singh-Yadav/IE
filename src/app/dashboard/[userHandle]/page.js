@@ -3,7 +3,7 @@ import React, { useState , useEffect } from "react";
 import Sidenav from "../dashboardComponents/Sidenav";
 import TopBanner from "../dashboardComponents/TopBanner";
 import DashboardAnalytics from "../dashboardComponents/DashboardAnalytics";
-import { fetchUserByHandle } from "@/app/fetchDetails/fetchUserDetails";
+import ChallengeProgress from "../dashboardComponents/ChallengeProgress";
 
 function Dashboard({params}) {
 
