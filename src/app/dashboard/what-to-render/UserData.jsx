@@ -6,6 +6,7 @@ import DashboardCards from "../dashboardComponents/DashboardCards";
 import { GiFlame } from "react-icons/gi";
 import ChallengeProgress from "../dashboardComponents/ChallengeProgress";
 import Announcement from "../dashboardComponents/Announcement";
+import LeaderboardList from "../dashboardComponents/LeaderboardList";
 
 function UserData({userInfo}) {
   const [progressBarData, setProgressBarData] = useState([50, 70, 120]);
@@ -41,6 +42,13 @@ function UserData({userInfo}) {
       <div>
         <ChallengeProgress></ChallengeProgress>
       </div>
+
+      <p className="font-bold text-2xl">{"Dashboard"}</p>
+
+    <div>
+      <LeaderboardList />
+    </div>
+
     </div>
   );
 }
