@@ -4,6 +4,7 @@ import Sidenav from "../dashboardComponents/Sidenav";
 import TopBanner from "../dashboardComponents/TopBanner";
 import DashboardAnalytics from "../dashboardComponents/DashboardAnalytics";
 import ChallengeProgress from "../dashboardComponents/ChallengeProgress";
+import { fetchUserByHandle } from "@/app/fetchDetails/fetchUserDetails";
 
 function Dashboard({params}) {
 
@@ -18,7 +19,6 @@ function Dashboard({params}) {
       try{
         const res = await fetchUserByHandle(userHandle);
       setUserInfo(res);
-      console.log('User = ' , res);
       }catch(err){
         console.log(err.message);
       }
@@ -28,7 +28,7 @@ function Dashboard({params}) {
 
 
   return (
-    <div className="min-h-[500vh] bg-primary overflow-hidden">
+    <div className="min-h-[5000vh] bg-primary overflow-hidden">
       <div className="relative bg-black ">
         <TopBanner details={userInfo}/>
       </div>

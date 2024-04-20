@@ -8,6 +8,7 @@ import { IoEyeSharp } from "react-icons/io5";
 
 
 function DashboardCards({ followers, following, profileViews }) {
+  
   const data = [
     {
       title: "Followers",

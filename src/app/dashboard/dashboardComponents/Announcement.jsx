@@ -24,7 +24,7 @@ function Announcement() {
   
   return (
     <div className="h-fit">
-      <div className="text-center my-2 border-2 border-green-bg text-green-bg font-bold py-2">Latest Announcements</div>
+      <div className="rounded-md text-center mb-2 border-2 green-gradient text-white font-bold py-2">Latest Announcements</div>
       <marquee direction="up" className="w-full" height='250'>
         {
           announcements && announcements.map((item,index)=>{
