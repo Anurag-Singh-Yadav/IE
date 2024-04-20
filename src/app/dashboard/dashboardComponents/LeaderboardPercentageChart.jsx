@@ -5,44 +5,44 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { FaHandPointUp } from "react-icons/fa";
 
-function BarDiv({scoreRange , item , index , userIndex}){
-
-  const [highLight , setHighLight] = useState(false);
+function BarDiv({ scoreRange, item, index, userIndex }) {
+  const [highLight, setHighLight] = useState(false);
 
   return (
     <div
-          className="h-[200px] flex items-end w-[15px]"
-          data-tooltip-id="my-tooltip"
-          data-tooltip-content={`Score: ${scoreRange[0]} - ${
-            scoreRange[1]
-          }\nTop: ${(item * 100).toPrecision(3)}%`}
-          data-tooltip-place="top"
-          onMouseEnter={() => {
-            console.log("Mouse entered");
-            setHighLight(true);
-          }}
-          onMouseLeave={() => {
-            console.log("Mouse Left");
-            setHighLight(false);
-          }}  
-          key={index}
+      className="h-[200px] flex items-end w-[15px]"
+      data-tooltip-id="my-tooltip"
+      data-tooltip-content={`Score: ${scoreRange[0]} - ${
+        scoreRange[1]
+      }\nTop: ${(item * 100).toPrecision(3)}%`}
+      data-tooltip-place="top"
+      onMouseEnter={() => {
+        console.log("Mouse entered");
+        setHighLight(true);
+      }}
+      onMouseLeave={() => {
+        console.log("Mouse Left");
+        setHighLight(false);
+      }}
+      key={index}
+    >
+      <div
+        className={`relative bg-gray-200 ${
+          (highLight || index === userIndex) && `bg-green-bg`
+        } w-full`}
+        style={{ height: `${Math.max(15, item * 200)}px` }}
+      >
+        <div
+          className={`${
+            index !== userIndex && "hidden"
+          } absolute -bottom-[40px]`}
+          title="You're here"
         >
-          <div
-            className={`relative bg-gray-200 ${
-              (highLight || index === userIndex) && `bg-green-bg`
-            } w-full`}
-            style={{ height: `${Math.max(15, item * 200)}px` }}
-          >
-            <div
-              className={`${
-                index !== userIndex && "hidden"
-              } absolute -bottom-[20px]`}
-            >
-              <FaHandPointUp size={15} className="text-green-bg" />
-            </div>
-          </div>
+          <FaHandPointUp size={15} className="text-green-bg" />
         </div>
-  )
+      </div>
+    </div>
+  );
 }
 
 function LeaderboardPercentageChart() {
@@ -59,24 +59,34 @@ function LeaderboardPercentageChart() {
   const totalQuestions = 3008;
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between md:mr-[70px]">
       <div className="flex flex-wrap flex-grow justify-between items-center bg-primary rounded-lg px-3 py-10">
+        
         <div className="flex flex-col justify-between">
           <p className="font-semibold">Global Ranks</p>
           <p className="text-lg font-bold">
             Top:{` ${topPercentage.toPrecision(4)}%`}
           </p>
           <p className="text-sm text-gray-400">Data since: April 2024</p>
+          <p className="purple-gradient px-3 text-white my-3 py-1 rounded-md">{'Rank: '}{globalRank}/{total}</p>
         </div>
 
-        <div className="flex items-end gap-2">
-          {leaderboardData &&
-            leaderboardData.map((item, index) => {
-              const scoreRange = [index * 50, (index + 1) * 50];
-              return (
-                <BarDiv scoreRange={scoreRange} item={item} index={index} userIndex={userIndex} key={index}/>
-              );
-            })}
+        <div className=" p-4 rounded-xl purple-gradient box-shadow relative md:-right-[50px]">
+          <div className="flex items-end gap-2">
+            {leaderboardData &&
+              leaderboardData.map((item, index) => {
+                const scoreRange = [index * 50, (index + 1) * 50];
+                return (
+                  <BarDiv
+                    scoreRange={scoreRange}
+                    item={item}
+                    index={index}
+                    userIndex={userIndex}
+                    key={index}
+                  />
+                );
+              })}
+          </div>
         </div>
         <Tooltip id="my-tooltip" />
       </div>

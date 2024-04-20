@@ -1,5 +1,39 @@
+.dashboard-card {
+  background: radial-gradient(
+    309px at 10% 24.3%,
+    rgb(17, 127, 238) 0%,
+    rgb(190, 47, 252) 90%
+  );
+}
 
+.orange-gradient {
+  background: linear-gradient(135deg, #fcdf8a 0%, #f38381 100%);
+}
 
-.dashboard-card{
-    background: radial-gradient(309px at 10% 24.3%, rgb(17, 127, 238) 0%, rgb(190, 47, 252) 90%);
+.green-gradient {
+  background: linear-gradient(135deg, #42e695 0%, #3bb2b8 100%);
+}
+
+.purple-gradient {
+  background: linear-gradient(135deg, #ce9ffc 0%, #7367f0 100%);
+}
+
+.yellow-gradient {
+  background: #e0c00b;
+  background: linear-gradient(135deg, #e0c00b, #f9f264);
+}
+
+.white-gradient {
+  background-color: #f9fcff;
+  background-image: linear-gradient(147deg, #ffffff 0%, #ffffff 74%);
+}
+
+.bronze-gradient {
+    color: white !important;
+  background-color: #d99058;
+  background-image: linear-gradient(315deg, #d99058 0%, #ddc365 74%);
+}
+
+.position-1 {
+  color: rgb(0, 254, 0);
 }
