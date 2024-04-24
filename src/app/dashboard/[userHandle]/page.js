@@ -18,11 +18,11 @@ function Dashboard({ params }) {
 
   const { userHandle } = params;
 
+  const [show , setShow] = useState(true);
+
   const [userAnalytics, setUserAnalytics] = useState(null);
 
   const [isFollowing , setIsFollowing] = useState(null);
-
-  const [show , setShow] = useState(false);
 
   const userDetails = useSelector((state) => state.GlobalState.userDetails);
 
@@ -67,7 +67,6 @@ function Dashboard({ params }) {
         console.log(err);
       }
     };
-    setShow(userDetails.userHandle === userHandle);
     viewProfile();
   }, [userDetails]);
 
@@ -80,13 +79,14 @@ function Dashboard({ params }) {
         <Sidenav
           selectedMode={selectedMode}
           setSelectedMode={setSelectedMode}
-          show={show}
+          setShow={setShow}
         />
         <DashboardAnalytics
           userInfo={userInfo}
           selectedMode={selectedMode}
-          setSelectedMode={setSelectedMode}
           userAnalytics={userAnalytics}
+          show={show}
+          setShow={setShow}
         />
       </div>
     </div>
