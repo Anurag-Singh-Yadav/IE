@@ -1,16 +1,17 @@
 "use client";
 import { Tooltip } from "react-tooltip";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { FaHandPointUp } from "react-icons/fa";
+import PreRender from "@/app/Components/templets/PreRender";
 
 function BarDiv({ scoreRange, item, index, userIndex }) {
   const [highLight, setHighLight] = useState(false);
 
   return (
     <div
-      className="h-[200px] flex items-end w-[15px]"
+      className="h-[200px] flex items-end w-[15px] hover:bg-gray-100"
       data-tooltip-id="my-tooltip"
       data-tooltip-content={`Score: ${scoreRange[0]} - ${
         scoreRange[1]
@@ -27,9 +28,9 @@ function BarDiv({ scoreRange, item, index, userIndex }) {
       key={index}
     >
       <div
-        className={`relative bg-gray-200 ${
-          (highLight || index === userIndex) && `bg-green-bg`
-        } w-full`}
+        className={`relative bg-gray-400 ${
+          (highLight || index === userIndex) && `purple-gradient`
+        } w-full rounded-md box-shadow`}
         style={{ height: `${Math.max(15, item * 200)}px` }}
       >
         <div
@@ -45,51 +46,67 @@ function BarDiv({ scoreRange, item, index, userIndex }) {
   );
 }
 
-function LeaderboardPercentageChart() {
-  const globalRank = 200;
-  const total = 540;
+function LeaderboardPercentageChart({ data }) {
+  const { globalRank, total, leaderboardData, userIndex } = data;
 
-  const leaderboardData = [
-    1, 0.95, 0.85, 0.81, 0.64, 0.55, 0.49, 0.45, 0.3, 0.01,
-  ];
-  const userIndex = 4;
-  const topPercentage = (globalRank / total) * 100;
+  const [barData , setBarData] = useState(null);
 
-  const solvedQuestions = 30;
-  const totalQuestions = 3008;
+  const [topPercentage, setTopPercentage] = useState(null);
+
+  useEffect(() => {
+    setTopPercentage(((globalRank / total) * 100).toPrecision(4));
+    if(leaderboardData.length < 10){
+      const data = [...leaderboardData];
+      for(let i = leaderboardData.length; i < 10; i++){
+        data.push(0);
+      }
+      setBarData(data);
+    }
+    else setBarData(leaderboardData);
+  }, [data]);
 
   return (
-    <div className="flex justify-between md:mr-[70px]">
-      <div className="flex flex-wrap flex-grow justify-between items-center bg-primary rounded-lg px-3 py-10">
-        
-        <div className="flex flex-col justify-between">
-          <p className="font-semibold">Global Ranks</p>
-          <p className="text-lg font-bold">
-            Top:{` ${topPercentage.toPrecision(4)}%`}
-          </p>
-          <p className="text-sm text-gray-400">Data since: April 2024</p>
-          <p className="purple-gradient px-3 text-white my-3 py-1 rounded-md">{'Rank: '}{globalRank}/{total}</p>
-        </div>
+    <div>
+      {data ? (
+        <div className="flex justify-between md:mr-[70px]">
+          <div className="flex flex-wrap flex-grow justify-between items-center bg-primary rounded-lg px-3 py-10">
+            <div className="flex flex-col justify-between">
+              <p className="font-semibold">Global Ranks</p>
+              <p className="text-lg font-bold">
+                Top:{` ${topPercentage}%`}
+              </p>
+              <p className="text-sm text-gray-400">Data since: April 2024</p>
+              <p className="text-center purple-gradient px-3 text-white my-3 py-1 rounded-md">
+                {"Rank: "}
+                {globalRank}/{total}
+              </p>
+            </div>
 
-        <div className=" p-4 rounded-xl purple-gradient box-shadow relative md:-right-[50px]">
-          <div className="flex items-end gap-2">
-            {leaderboardData &&
-              leaderboardData.map((item, index) => {
-                const scoreRange = [index * 50, (index + 1) * 50];
-                return (
-                  <BarDiv
-                    scoreRange={scoreRange}
-                    item={item}
-                    index={index}
-                    userIndex={userIndex}
-                    key={index}
-                  />
-                );
-              })}
+            <div className=" p-4 rounded-xl white-gradient box-shadow relative md:-right-[50px]">
+              <div className="flex items-end gap-2">
+                {barData &&
+                  barData.map((item, index) => {
+                    const scoreRange = [index * 50, (index + 1) * 50];
+                    return (
+                      <BarDiv
+                        scoreRange={scoreRange}
+                        item={item}
+                        index={index}
+                        userIndex={userIndex}
+                        key={index}
+                      />
+                    );
+                  })}
+              </div>
+            </div>
+            <Tooltip id="my-tooltip" />
           </div>
         </div>
-        <Tooltip id="my-tooltip" />
-      </div>
+      ) : (
+        <div>
+          <PreRender count={10} height={15} />
+        </div>
+      )}
     </div>
   );
 }

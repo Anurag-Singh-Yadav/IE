@@ -7,9 +7,11 @@ import { IoEyeSharp } from "react-icons/io5";
 
 
 
-function DashboardCards({ followers, following, profileViews }) {
+function DashboardCards({data}) {
+
+  const { followers, following, profileViews } = data;
   
-  const data = [
+  const renderData = [
     {
       title: "Followers",
       value: followers,
@@ -28,7 +30,7 @@ function DashboardCards({ followers, following, profileViews }) {
   ];
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white">
-      {data.map((obj, index) => {
+      {renderData.map((obj, index) => {
         const Component = obj.image;
         return (
           <div

@@ -67,7 +67,7 @@ function NavbarPopup({ details, setShowNavPopup }) {
           <p>Home</p>
         </Link>
         <Link
-          href={`/dashboard?userHandle=${userHandle}`}
+          href={`/dashboard/${userHandle}`}
           className="hover:text-green-bg flex gap-2 items-center transition duration-300"
         >
           <MdDashboard />

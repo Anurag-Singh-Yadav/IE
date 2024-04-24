@@ -214,6 +214,7 @@ function Navbar() {
               onClick={() => {
                 setShowNavPopup(!showNavPopup);
               }}
+              className="cursor-pointer"
             ></Avatar>
             {showNavPopup && (
               <NavbarPopup
