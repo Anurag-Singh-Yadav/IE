@@ -5,10 +5,10 @@ import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import { IoBookmarkSharp } from "react-icons/io5";
 import { useSelector } from 'react-redux'
+import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowLeft } from "react-icons/fa6";
 
-function LeaderboardList({ data, totalUsers }) {
-
-  const {userHandle} = useSelector((state) => state.GlobalState.userDetails)
+function LeaderboardList({ data, totalUsers , userHandle:handle }) {
 
   const [top3, setTop3] = useState([]);
 
@@ -64,9 +64,9 @@ function LeaderboardList({ data, totalUsers }) {
   };
 
   return (
-    <div>
+    <div className="overflow-x-auto">
       {data ? (
-        <div className="bg-white mt-12">
+        <div className="bg-white mt-12 min-w-[350px]">
           <div className=" grid grid-cols-1 md:grid-cols-3 gap-3 pb-4 px-2 rounded-lg">
             {top3.map(
               ({ name, avatar, dsaScore: score, userHandle }, index) => {
@@ -113,7 +113,7 @@ function LeaderboardList({ data, totalUsers }) {
                   <LeaderboardCard
                     key={index}
                     obj={obj}
-                    userHandle={userHandle}
+                    handle={handle}
                     index={(currentPage - 1) * 10 + index}
                   />
                 );
@@ -126,7 +126,7 @@ function LeaderboardList({ data, totalUsers }) {
               }
           </div>
 
-          <div className="flex gap-12 justify-center py-16">
+          <div className="flex gap-5 justify-center py-16">
             <button
               onClick={() => {
                 if(currentPage > 1)
@@ -134,8 +134,9 @@ function LeaderboardList({ data, totalUsers }) {
               }}
               className={`${currentPage > 1 ? 'orange-gradient' : 'bg-gray-400 cursor-not-allowed'} text-white font-semibold px-3 py-1 rounded-md`}
             >
-              Previous
+              <FaArrowLeft size={20}/>
             </button>
+
             <div className="flex gap-3">
               {Array(Math.ceil(totalUsers/10)).fill().map((_, index) => {
                 return (
@@ -157,6 +158,7 @@ function LeaderboardList({ data, totalUsers }) {
                 );
               })}
             </div>
+
             <button
               onClick={() => {
                 if(currentPage < Math.ceil(totalUsers / 10))
@@ -164,8 +166,9 @@ function LeaderboardList({ data, totalUsers }) {
               }}
               className={`${currentPage < Math.ceil(totalUsers/10) ? 'orange-gradient' : 'bg-gray-400 cursor-not-allowed'} text-white font-semibold px-3 py-1 rounded-md`}
             >
-              Next
+              <FaArrowRight size={20}/>
             </button>
+
           </div>
         </div>
       ) : (
@@ -179,7 +182,7 @@ function LeaderboardList({ data, totalUsers }) {
 
 export default LeaderboardList;
 
-function LeaderboardCard({ obj, index , userHandle:handle}) {
+function LeaderboardCard({ obj, index , handle}) {
   const [flag, setFlag] = useState(false);
   const { name, avatar, dsaScore: score, userHandle } = obj;
 

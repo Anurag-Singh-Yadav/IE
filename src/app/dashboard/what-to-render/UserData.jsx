@@ -13,7 +13,7 @@ import { FaSearch } from "react-icons/fa";
 import { fetchUsersByUserInput } from "@/app/fetchDetails/fetchUserDetails";
 import PreRender from "@/app/Components/templets/PreRender";
 
-function UserData({ data }) {
+function UserData({ data , userHandle }) {
   const [search, setSearch] = useState("");
 
   const [searching, setSearching] = useState(false);
@@ -65,27 +65,27 @@ function UserData({ data }) {
   };
 
   return (
-    <div>
+    <div className="overflow-x-auto">
       {!data ? (
         <div>
           <PreRender count={20} height={40} />
         </div>
       ) : (
-        <div className="flex flex-col gap-12 min-h-[300vh]">
+        <div className="flex flex-col gap-12 min-w-[250px] min-h-[300vh]">
 
-          <header className="flex justify-between flex-wrap gap-2 mt-5">
+          <header className="flex justify-between items-center flex-wrap gap-2 mt-5">
             <p className="font-bold text-2xl">{"Dashboard"}</p>
-            <div ref={ref} className="relative flex gap-2 items-center">
+            <div ref={ref} className="relative flex gap-2 flex-wrap items-center">
               <div className="border-[2.1px] rounded-md border-black">
               <input
                 type="text"
                 value={search}
                 onChange={changeHandler}
                 placeholder="Find your friends"
-                className="px-3 py-2 rounded-md"
+                className="px-1 sm:px-3 py-2 rounded-md"
                 ></input>
+              {search.length === 0 && <FaSearch size={25} className="absolute right-2 top-2 cursor-pointer" />}
               </div>
-              <FaSearch size={25} className="cursor-pointer" />
 
               {searchPopup && (
                 <div className="absolute flex justify-center bg-white rounded-lg z-[1] box-shadow top-[40px] left-0 min-h-[150px] w-full">
@@ -180,7 +180,7 @@ function UserData({ data }) {
           <p className="font-bold text-2xl">{"Leaderboard"}</p>
 
           <div>
-            <LeaderboardList data={data.leaderboardList} totalUsers={data.totalUsers}/>
+            <LeaderboardList data={data.leaderboardList} totalUsers={data.totalUsers} userHandle={userHandle}/>
           </div>
         </div>
       )}
