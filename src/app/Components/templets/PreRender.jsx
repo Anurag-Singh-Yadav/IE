@@ -1,24 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./PreRender.css"; // Make sure to import the CSS file
 
-const PreRender = ({ count, height , color}) => {
-    
-    if(!color){
-        color = '#f8f5f5'
-    }
+const PreRender = ({ count, height, color, width, round }) => {
+  const ref = useRef();
+
+  if (!color) {
+    color = "#f8f5f5";
+  }
+  if(!width){
+    width=`100%`
+  }
+
+  if(!height){
+    height=20;
+  }
+
 
   return (
-    <div className="flex flex-col w-full">
+    <div
+      className={`flex flex-col w-full opacity-35`}
+    >
       {Array.from({ length: count }, (_, index) => {
         return (
-          <div key={index}>
-            {!height && (
-              <div  className="loading-placeholder my-3" style={{height:'20px', backgroundColor:`${color}`}}></div>
-            )}
-            {height && (
-              <div className="loading-placeholder my-3" style={{height: `${height}px`, backgroundColor:`${color}`}}></div>
-            )}
-          </div>
+            <div key={index} style={ {height:`${height}px` , width:`${width}px` , backgroundColor:`${color}`}} className={`my-3 , ${round && "rounded-full"} loading-placeholder`}></div>
         );
       })}
     </div>
