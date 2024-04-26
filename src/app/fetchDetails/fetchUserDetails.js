@@ -64,7 +64,6 @@ export const fetchUsersByUserInput = async (search) => {
         search,
       }
     );
-    console.log("fdsfl , ", res.data);
     return res.data?.data;
   } catch (err) {
     console.log(err);

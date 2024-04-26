@@ -29,7 +29,6 @@ function Navbar() {
   const [showLoader, setShowLoader] = useState(false);
 
   const [challenges, setChallenges] = useState(null);
-
   const dispatch = useDispatch();
   const { data: session, status } = useSession();
 

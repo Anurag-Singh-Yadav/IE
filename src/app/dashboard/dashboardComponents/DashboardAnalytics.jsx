@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import UserData from "../what-to-render/UserData";
+import UserProfile from "../profile-info/userProfile";
 
-function DashboardAnalytics({  selectedMode, userAnalytics , show , setShow}) {
+function DashboardAnalytics({  userInfo,selectedMode, userAnalytics , show , setShow}) {
 
   return (
     <div
@@ -21,6 +22,11 @@ function DashboardAnalytics({  selectedMode, userAnalytics , show , setShow}) {
       {(selectedMode === "dashboard" || !selectedMode) && (
         <div className='overflow-hidden'>
           <UserData data={userAnalytics?.dashboardData} userHandle={userAnalytics?.userInfo?.userHandle}/>
+        </div>
+      )}
+      {selectedMode === "profile-info" && (
+        <div className='overflow-hidden'>
+          <UserProfile></UserProfile>
         </div>
       )}
     </div>

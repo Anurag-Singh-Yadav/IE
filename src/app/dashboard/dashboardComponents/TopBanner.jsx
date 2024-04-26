@@ -27,7 +27,7 @@ const CopiedToClipBoardNotify = () => {
 function TopBanner({ details, isFollowing , setIsFollowing }) {
   const [flag, setFlag] = useState(false);
   const [posting, setPosting] = useState(false);
-  
+
   const userDetails = useSelector((state) => state.GlobalState.userDetails);
 
 
