@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 
 function Dashboard({ params }) {
-  const [selectedMode, setSelectedMode] = useState("dashboard");
+  const [selectedMode, setSelectedMode] = useState("profile-info");
 
   const [userInfo, setUserInfo] = useState(null);
 
@@ -25,7 +25,7 @@ function Dashboard({ params }) {
   const [isFollowing , setIsFollowing] = useState(null);
 
   const userDetails = useSelector((state) => state.GlobalState.userDetails);
-
+  
   useEffect(() => {
     const fetchUser = async () => {
       try {
