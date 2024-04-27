@@ -36,6 +36,10 @@ function TopBanner({ details, isFollowing , setIsFollowing }) {
     try{
       setPosting(true);
       const token = Cookies.get('token');
+      if(!token){
+        alert('Please login to follow other users.');
+        return;
+      }
       const res = (action === 1 ? await addFollower(token , details.userHandle) : await removeFollower(token , details.userHandle));
       if(res){
         setIsFollowing(action);
