@@ -4,34 +4,30 @@ export const dropdownData = [
       options: [
         {
           label: "Languages",
-          value: "languages", 
+          value: "coming-soon", 
         },
         {
           label: "Data Structures & Algorithms",
-          value: "dsa",
+          value: "coming-soon",
         },
         {
           label: "Computer Fundamentals",
-          value: "computerFundamentals",
+          value: "coming-soon",
         },
         {
           label: "Aptitude",
-          value: "aptitude",
+          value: "coming-soon",
         },
         ,
         {
           label: "Development",
-          value: "development",
+          value: "coming-soon",
         },
       ],
     },
     {
       label: "Practice",
       options: [
-        {
-          label: "Language Basics",
-          value: "/basics", 
-        },
         {
           label: "Data Structures & Algorithms",
           value: "/DSA",
@@ -41,8 +37,12 @@ export const dropdownData = [
           value: "/aptitude",
         },
         {
+          label: "Language Basics",
+          value: "/coming-soon", 
+        },
+        {
           label: "CS fundamentals",
-          value: "/csFundamentals",
+          value: "/coming-soon",
         },
       ],
     },
@@ -53,19 +53,6 @@ export const dropdownData = [
         {
           label: "On Going Challenges",
           value: "/onGoingChallenges",
-        },
-        {
-          label: "Computer Fundamentals",
-          value: "computerFundamentals",
-        },
-        {
-          label: "DSA",
-          value: "dsa",
-        },
-        ,
-        {
-          label: "DSA",
-          value: "dsa",
         },
       ],
     },
