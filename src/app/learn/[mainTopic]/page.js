@@ -9,6 +9,7 @@ import { useDispatch , useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 
 function Page() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const params = useSearchParams();
   const [navigator, setNavigator] = useState(null);
@@ -42,7 +43,7 @@ function Page() {
       setNavigator(response.data.navigator);
       setContentFlow(response.data.article.contentFlow);
     } catch (error) {
-      // router.push('/404');
+      router.push('/coming-soon');
     }
   };
 
