@@ -1,8 +1,9 @@
+import { signOut } from "next-auth/react";
 import React from "react";
 
 function Sidenav({ setSelectedMode, selectedMode, setShow, same }) {
   return (
-    <div className=" mt-4 w-[94%] md:w-[20%] mx-auto md:mx-0 flex justify-center">
+    <div className="sticky top-4 mt-4 w-[94%] md:w-[20%] mx-auto md:mx-0 flex justify-center">
       <div className="w-full rounded-md overflow-hidden flex min-h-[100vh]">
         <div className="w-full flex flex-col">
           <div className="flex-grow my-6">
@@ -68,7 +69,10 @@ function Sidenav({ setSelectedMode, selectedMode, setShow, same }) {
             </ul>
           </div>
           <div className="p-4">
-            <button className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
+            <button onClick={() => {
+                localStorage.removeItem("token");
+                signOut();
+            }} className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
               Logout
             </button>
           </div>
