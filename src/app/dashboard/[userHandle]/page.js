@@ -74,7 +74,7 @@ function Dashboard({ params }) {
   return (
     <div className="min-h-[5000vh] bg-white text-black overflow-hidden">
       <div className="relative bg-black ">
-        <TopBanner details={userInfo} isFollowing={isFollowing} setIsFollowing={setIsFollowing} />
+        <TopBanner details={userInfo} isFollowing={isFollowing} setIsFollowing={setIsFollowing} loggedIn={userDetails.userHandle.length && userDetails.userHandle.length > 0}/>
       </div>
       <div className="relative px-2">
         <Sidenav
