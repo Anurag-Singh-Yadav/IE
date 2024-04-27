@@ -1,7 +1,7 @@
 'use client';
 import React from 'react'
-import courses from './CourseData'
 import CourseCard from './CourseCard'
+import { courses } from '@/app/learn/courses';
 
 function Courses() {
   return (
@@ -14,7 +14,7 @@ function Courses() {
     <div className='grid grid-cols-1 s2:grid-cols-2 s3:grid-cols-3 gap-x-7 gap-y-7'>
         {
             courses.map((course , index) => {
-                return <CourseCard course = {course} key = {index} />
+                return <CourseCard course = {course} key = {index} index={index} />
             })
         }
     </div>
