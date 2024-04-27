@@ -1,6 +1,6 @@
 import assets from "@/assets/allImages"
 
-const courses = [
+export const courseDetails = [
     {
         title: "Full Stack Web Development",
         description: "In-depth guide to full stack development with real-world projects",
@@ -56,5 +56,3 @@ const courses = [
         duration: "17 hours",
       },
 ]
-
-export default courses

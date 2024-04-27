@@ -73,13 +73,13 @@ function Hero() {
           </p>
 
           <div className="flex sm:flex-row flex-col justify-evenly text-xl  gap-4 sm:gap-8 md:gap-36 items-center font-semibold">
-            <div className="px-4 py-2 btn-gradient rounded-md btn-gradient-2 cursor-pointer text-white hover:rounded-lg transition-all duration-500">
+            <a href="/learn" className="px-4 py-2 btn-gradient rounded-md btn-gradient-2 cursor-pointer text-white hover:rounded-lg transition-all duration-500">
               Explore Course
-            </div>
+            </a>
 
             <button className="flex start justify-center items-center gap-2 px-4 py-2 text-black">
-              <a href="#" className="flex justify-center items-center gap-2">
-                <span>Start Learning</span>
+              <a href="/DSA" className="flex justify-center items-center gap-2">
+                <span>Start Practicing</span>
                 <FaArrowRight />
               </a>
             </button>

@@ -5,6 +5,7 @@ import { Select, MenuItem } from "@mui/material";
 import TextEditor from "@/app/Components/templets/TextEditor";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 
 function PostBlog() {
@@ -48,11 +49,19 @@ function PostBlog() {
           },
         }
       );
-      console.log(res);
       if (res.data?.success === true) {
+        setFormData({
+          name: "",
+          company: "",
+          round: "",
+          position: "",
+          selected: "",
+          blog: "",
+        });
+        toast.success('Blog posted successfully');
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Unknown error while posting.");
+      toast.error(err.response?.data?.message || "Unknown error while posting.");
     }
   };
 
