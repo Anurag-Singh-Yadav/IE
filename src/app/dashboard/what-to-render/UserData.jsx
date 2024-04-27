@@ -82,7 +82,7 @@ function UserData({ data , userHandle }) {
                 value={search}
                 onChange={changeHandler}
                 placeholder="Find your friends"
-                className="px-1 sm:px-3 py-2 rounded-md"
+                className="px-1 sm:px-3 py-2 rounded-md bg-white"
                 ></input>
               {search.length === 0 && <FaSearch size={25} className="absolute right-2 top-2 cursor-pointer" />}
               </div>
@@ -139,7 +139,7 @@ function UserData({ data , userHandle }) {
 
           <div className="grid grid-cols-1 dmd:grid-cols-6">
             <div className="col-span-4 flex flex-col gap-2 px-2 justify-between h-full">
-              <div className="bg-primary md:mr-[70px] rounded-lg grid grid-cols-1 s2:grid-cols-2">
+              <div className="md:mr-[70px] rounded-lg grid grid-cols-1 s2:grid-cols-2">
                 <ApexChart data={[(data.progressData.solved.Easy || 0),(data.progressData.solved.Medium || 0),(data.progressData.solved.Hard || 0)]} />
                 <div className="p-4 rounded-xl white-gradient box-shadow relative md:-right-[50px] flex orange-gradient h-fit my-auto flex-wrap lg:w-full flex-col gap-3  justify-center items-start">
                   <LineProgressTracker

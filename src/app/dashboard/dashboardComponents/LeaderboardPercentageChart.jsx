@@ -69,7 +69,7 @@ function LeaderboardPercentageChart({ data }) {
     <div>
       {data ? (
         <div className="flex justify-between md:mr-[70px]">
-          <div className="flex flex-wrap flex-grow justify-between items-center bg-primary rounded-lg px-3 py-10">
+          <div className="flex flex-wrap flex-grow justify-between items-center rounded-lg px-3 py-10">
             <div className="flex flex-col justify-between">
               <p className="font-semibold">Global Ranks</p>
               <p className="text-lg font-bold">

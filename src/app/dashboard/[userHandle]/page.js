@@ -45,7 +45,7 @@ function Dashboard({ params }) {
           setIsFollowing(res.data?.data?.userInfo?.isFollowing);
         }
       } catch (err) {
-        alert("Server error, please refresh a few times or try again later");
+        console.log(err);
       }
     };
     fetchUserAnalytics();
@@ -70,8 +70,9 @@ function Dashboard({ params }) {
     viewProfile();
   }, [userDetails]);
 
+
   return (
-    <div className="min-h-[5000vh] bg-primary overflow-hidden">
+    <div className="min-h-[5000vh] bg-white text-black overflow-hidden">
       <div className="relative bg-black ">
         <TopBanner details={userInfo} isFollowing={isFollowing} setIsFollowing={setIsFollowing} />
       </div>
@@ -80,6 +81,7 @@ function Dashboard({ params }) {
           selectedMode={selectedMode}
           setSelectedMode={setSelectedMode}
           setShow={setShow}
+          same={userHandle === userDetails.userHandle}
         />
         <DashboardAnalytics
           userInfo={userInfo}
