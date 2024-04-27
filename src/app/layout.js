@@ -3,7 +3,7 @@ import "./globals.css";
 import Head from "next/head";
 import Navbar from "./Navbar";
 import { Providers } from "./GlobalRedux/Providers";
-
+import { Analytics } from "@vercel/analytics/react"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -41,6 +41,7 @@ export default function RootLayout({ children }) {
             <Providers>
               <Navbar />
               {children}
+              <Analytics />
               <div className="gradiant-container pt-[1px]">
                 {" "}
                 <Footer />
