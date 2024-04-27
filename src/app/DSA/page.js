@@ -6,6 +6,7 @@ import ScoreMeter from "../Components/templets/ScoreMeter";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { getAllTopics } from "../fetchDetails/getAllTopics";
+import PreRender from "../Components/templets/PreRender";
 function Page() {
   const [userQuestoinsDetails, setUserQuestionsDetails] = useState(null);
   const [topics, setTopics] = useState(null);
@@ -31,7 +32,7 @@ function Page() {
     const res = await getAllTopics();
     console.log(res);
     setTopics(res);
-  }
+  };
 
   useEffect(() => {
     getTopics();
@@ -58,7 +59,6 @@ function Page() {
         </div>
 
         <div className="grid grid-col-1 w-full nmd:grid-cols-7">
-
           <div className="nmd:col-span-4">
             <div className="bg-green-bg py-2 mt-4 mb-6 text-center rounded-md text-white text-sm s2:text-base md:text-lg font-medium">
               Data Structures and Algorithms
@@ -83,6 +83,13 @@ function Page() {
             </div>
           )}
 
+          {!userQuestoinsDetails && (
+            <div className="nmd:col-span-3 w-full mx-5 rounded-lg overflow-hidden">
+              <div className="flex justify-center nmd:sticky nmd:top-4 items-center">
+                <PreRender count={1} height={300} color={'#c2bfb8'} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

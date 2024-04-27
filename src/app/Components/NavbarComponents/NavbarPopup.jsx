@@ -52,7 +52,7 @@ function NavbarPopup({ details, setShowNavPopup }) {
           className=" aspect-square"
         ></Avatar>
         <Link
-          href={`/dashboard?userHandle=${userHandle}`}
+          href={`/dashboard/${userHandle}`}
           className="font-semibold text-lg border-b-2  py-0 border-white hover:border-black transition duration-300"
         >
           {name}

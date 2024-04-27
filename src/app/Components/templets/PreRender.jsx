@@ -5,7 +5,7 @@ const PreRender = ({ count, height, color, width, round }) => {
   const ref = useRef();
 
   if (!color) {
-    color = "#f8f5f5";
+    color = "#808080";
   }
   if(!width){
     width=`100%`

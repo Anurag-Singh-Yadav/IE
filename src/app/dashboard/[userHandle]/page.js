@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 
 function Dashboard({ params }) {
-  const [selectedMode, setSelectedMode] = useState("profile-info");
+  const [selectedMode, setSelectedMode] = useState("dashboard");
 
   const [userInfo, setUserInfo] = useState(null);
 

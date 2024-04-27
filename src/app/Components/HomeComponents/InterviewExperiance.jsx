@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import InterviewCard from "./InterviewCard";
 import Link from "next/link";
 import { fetchInterviewExperience } from "@/app/fetchDetails/fetchInterviewExperience";
+import PreRender from "../templets/PreRender";
 function InterviewExperiance() {
   const [interviewData, setInterviewData] = useState(null);
 
@@ -39,27 +40,42 @@ function InterviewExperiance() {
         </div>
       </div>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {interviewData && interviewData.length > 0 &&
+        {interviewData &&
+          interviewData.length > 0 &&
           interviewData.map((obj, i) => {
             // if (i < 4) {
-              return (
-                <InterviewCard
-                  key={i}
-                  name={obj.name}
-                  userPhoto={obj.avatar}
-                  company={obj.company}
-                  linkedin_id={obj.linkedin_id}
-                  created_on={obj.created_on}
-                  selected={obj.selected}
-                  position={obj.position}
-                  round={obj.round}
-                  company_logo={obj.company_logo}
-                  id={obj._id}
-                  isAdmin={false}
-                />
-              );
+            return (
+              <InterviewCard
+                key={i}
+                name={obj.name}
+                userPhoto={obj.avatar}
+                company={obj.company}
+                linkedin_id={obj.linkedin_id}
+                created_on={obj.created_on}
+                selected={obj.selected}
+                position={obj.position}
+                round={obj.round}
+                company_logo={obj.company_logo}
+                id={obj._id}
+                isAdmin={false}
+              />
+            );
             // }
           })}
+
+        {!interviewData && (
+          <div className="col-span-2 grid grid-cols-3 justify-between px-4">
+            {Array(3)
+              .fill(0)
+              .map((_, index) => {
+                return (
+                  <div key={index} className="mx-2">
+                    <PreRender count={1} height={100} color={"#dbcccc"} />
+                  </div>
+                );
+              })}
+          </div>
+        )}
       </div>
     </div>
   );
