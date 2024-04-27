@@ -178,7 +178,7 @@ function Login() {
               }}
             >
               <FcGoogle />
-              <span>Sign up with Google</span>
+              <span>Continue with Google</span>
             </button>
             <button
               className="flex gap-1 sm:gap-2 lg:gap-4 justify-between border bg-slate-700 rounded-md text-white py-2 px-2 md:px-10 items-center"
@@ -187,7 +187,7 @@ function Login() {
               }}
             >
               <FaGithub />
-              <span>Sign up with Github</span>
+              <span>Continue with Github</span>
             </button>
           </div>
 

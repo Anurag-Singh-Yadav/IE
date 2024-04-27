@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import WebsiteBanner from "../Components/templets/WebsiteBanner.jsx";
+import PreRender from "../Components/templets/PreRender.jsx";
 function Page() {
   const [queryPara, setQueryPara] = useState(null);
   const findMyFirstTopic = async () => {
@@ -74,6 +75,20 @@ function Page() {
               Reviews
             </div>
           </Link>
+        </div>
+      )}
+      {!queryPara && (
+        <div className=" main-container">
+          <PreRender count={1} height={50} width={250} />
+          <div className="grid grid-cols-2">
+            <div className="mr-5 my-5">
+              <PreRender count={3} height={30} color="#808080" />
+            </div>
+
+            <div className="ml-5 my-5">
+              <PreRender count={3} height={30} color="#808080" />
+            </div>
+          </div>
         </div>
       )}
     </div>

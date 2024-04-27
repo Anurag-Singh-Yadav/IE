@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
+import PreRender from '../templets/PreRender';
 
 function ChallengePosterMobile({challenges , closeNav}) {
   return (
@@ -40,6 +41,9 @@ function ChallengePosterMobile({challenges , closeNav}) {
                     )
                 }
             })
+        }
+        {
+          !challenges && <PreRender count={2} height={40} />
         }
         <Link href='/onGoingChallenges' className='btn-gradient-2 px-4 py-2 rounded-md w-fit mx-auto mt-3'>
             All Challenges

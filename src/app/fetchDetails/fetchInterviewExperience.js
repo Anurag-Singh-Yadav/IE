@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const fetchInterviewExperience = async (isAdmin, startingIndex) => {
-  console.log(isAdmin, startingIndex);
   try {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_GET_INTERVIEW_EXPERIENCE}/${isAdmin}/${startingIndex}`
@@ -13,5 +12,6 @@ export const fetchInterviewExperience = async (isAdmin, startingIndex) => {
       };
   } catch (e) {
     console.log(e);
+    throw new Error();
   }
 };

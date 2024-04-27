@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import PreRender from "./PreRender";
 
 function TopicsTemplets({ topics , isAptitude}) {
   return (
@@ -44,6 +45,17 @@ function TopicsTemplets({ topics , isAptitude}) {
           </div>
         </div>
       )}
+      {
+        !topics && (
+          <div>
+            {
+              Array(10).fill().map((_ , index) => {
+                return <PreRender key={index} count={1} height={30}  color={'#c2bfb8'}/>
+              })
+            }
+          </div>
+        )
+      }
     </div>
   );
 }

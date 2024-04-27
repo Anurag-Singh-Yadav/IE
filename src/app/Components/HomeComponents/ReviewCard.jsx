@@ -8,6 +8,7 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
 import Avatar from "react-avatar";
+import PreRender from "../templets/PreRender";
 const CustomButtonGroup = ({ next, previous }) => (
   <div className="absolute top-0 right-2 flex justify-between gap-2 items-center z-40">
     <button className="" onClick={previous}>
@@ -73,8 +74,6 @@ const ReviewCard = () => {
         What Says <span className="text-green-bg underline">Our Students</span>
       </div>
 
-     
-
       {reviews && (
         <div className="relative  overflow-x-clip mx-auto w-[100vw] sm:w-[80vw] overflow-y-clip mb-5 h-fit">
           <Carousel
@@ -114,6 +113,20 @@ const ReviewCard = () => {
               </div>
             ))}
           </Carousel>
+        </div>
+      )}
+
+      {!reviews && (
+        <div className="grid grid-cols-3 justify-between px-4">
+          {Array(3)
+            .fill(0)
+            .map((_, index) => {
+              return (
+                <div key={index} className="mx-2">
+                  <PreRender count={1} height={200} color={"#dbcccc"} />
+                </div>
+              );
+            })}
         </div>
       )}
     </div>

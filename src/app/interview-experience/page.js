@@ -24,14 +24,22 @@ function Page() {
   };
 
   const fetchMore = async (startingIndex) => {
-    setLoading(true);
-    const { data, len } = await fetchInterviewExperience(false, startingIndex);
-    if (data)
-      setInterviewData((prev) => {
-        return [...prev, ...data];
-      });
-    if (len) setTotalLength(len);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const { data, len } = await fetchInterviewExperience(
+        false,
+        startingIndex
+      );
+      if (data)
+        setInterviewData((prev) => {
+          return [...prev, ...data];
+        });
+      if (len) setTotalLength(len);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   let arr = new Array(6).fill({});

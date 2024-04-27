@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import PreRender from "../templets/PreRender";
 
 function ChallengesPoster({ challenges }) {
   return (
@@ -39,7 +40,7 @@ function ChallengesPoster({ challenges }) {
           );
         })}
         {
-          !challenges && <div className=" whitespace-nowrap">Loading Challenges...</div>
+          !challenges && <PreRender count={2} height={80} color={"#dbcccc"} />
         }
       <Link
         href={"/onGoingChallenges"}

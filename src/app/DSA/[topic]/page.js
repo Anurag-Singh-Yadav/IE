@@ -1,4 +1,5 @@
 "use client";
+import PreRender from "@/app/Components/templets/PreRender";
 import QuestionRender from "@/app/Components/templets/QuestionRender";
 import WebsiteBanner from "@/app/Components/templets/WebsiteBanner";
 import axios from "axios";
@@ -8,8 +9,8 @@ import React, { useEffect, useState } from "react";
 
 function Page({}) {
   const query = useSearchParams();
-  const [difficulty, setDifficulty] = useState([false, false, false]);  
-  const [page,setPage] = useState(0);
+  const [difficulty, setDifficulty] = useState([false, false, false]);
+  const [page, setPage] = useState(0);
   const [questions, setQuestions] = useState();
   var topic = query.get("topic");
   const [isLastPage, setLastPage] = useState(false);
@@ -34,7 +35,7 @@ function Page({}) {
 
   useEffect(() => {
     fetchQuestions();
-  },[topic, page,difficulty]);
+  }, [topic, page, difficulty]);
   return (
     <div>
       <div>
@@ -43,11 +44,35 @@ function Page({}) {
       <div className="main-container">
         <div className="font-semibold sm:py-4 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl">
           Explore all{" "}
-          <span className="text-green-bg underline">Data-Structure Questions</span>
+          <span className="text-green-bg underline">
+            Data-Structure Questions
+          </span>
         </div>
       </div>
-      {questions && <QuestionRender isLastPage={isLastPage} questionsDetails={questions} page={page} setPage={setPage} difficulty={difficulty}
-       setDifficulty={setDifficulty} />}
+      {questions && (
+        <QuestionRender
+          isLastPage={isLastPage}
+          questionsDetails={questions}
+          page={page}
+          setPage={setPage}
+          difficulty={difficulty}
+          setDifficulty={setDifficulty}
+        />
+      )}
+      {!questions && (
+        <div className="main-container">
+          <div className="flex gap-5">
+            {Array(4)
+              .fill()
+              .map((_, index) => {
+                return <PreRender key={index} count={1} height={20} color={`#808080`} />;
+              })}
+          </div>
+          <div>
+            <PreRender count={10} height={30} color={`#808080`} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
