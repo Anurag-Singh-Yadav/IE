@@ -23,6 +23,8 @@
     "@reduxjs/toolkit": "^2.0.1",
     "@tailwindcss/typography": "^0.5.12",
     "@tinymce/tinymce-react": "^4.3.2",
+    "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "aws-sdk": "^2.1548.0",
     "axios": "^1.6.7",
     "babel-polyfill": "^6.26.0",
