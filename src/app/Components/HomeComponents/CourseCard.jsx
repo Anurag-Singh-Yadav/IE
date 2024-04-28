@@ -12,11 +12,18 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 
 import { courseDetails } from "./CourseData";
 import Link from "next/link";
-function CourseCard({course , index}) {
+function CourseCard({queryPara, course , index}) {
   const {lessons , duration , rating , level} = courseDetails[index];
   return (
     <Link className="shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] bg-primary flex flex-col gap-3 rounded-lg  overflow-hidden rounded-b-sm cursor-pointer group" 
-    href={`/learn`}
+    href={{
+      pathname: `/learn/${course.name}`,
+      query: {
+        mainTopic: course.name,
+        mainHeading: queryPara[course.name]?.mainHeading,
+        title: queryPara[course.name]?.title,
+      },
+    }}
     >
       <div className="aspect-video w-full overflow-hidden">
       <img

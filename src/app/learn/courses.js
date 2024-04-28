@@ -19,7 +19,6 @@ export const courses = [
     url: "./dsa.webp",
     link: "coming-soon",
   },
-
   {
     name: "Aptitute",
     url: "./aptitute.webp",

@@ -1,5 +1,4 @@
 import assets from "@/assets/allImages"
-
 export const courseDetails = [
     {
         title: "Full Stack Web Development",
