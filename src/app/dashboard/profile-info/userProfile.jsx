@@ -73,7 +73,7 @@ function UserProfile() {
 
       router.push(`/dashboard/${obj.userHandle}`);
 
-      router.reload();
+      window.location.reload();
 
     } catch (e) {
       console.log(e);
@@ -147,7 +147,7 @@ function UserProfile() {
         </div>
       )}
       <div
-        className="bg-green-bg py-2 text-center"
+        className="cursor-pointer btn-gradient-2 text-white py-2 px-3 rounded-md text-center"
         onClick={() => {
           saveUserDetails();
         }}
@@ -174,12 +174,12 @@ function UploadAvatar({
   };
 
   return (
-    <div className="fixed w-[100vw] left-0 top-0 z-50 h-[100vh] pop-up">
+    <div className="fixed w-[100vw] dark:text-white left-0 top-0 z-50 h-[100vh] pop-up">
       <div className="fixed overflow-y-auto max-h-[100vh] mx-auto rounded-lg top-[20vh] border-t-green-bg border-t-[3px] left-0 right-0 w-[90%] sm:w-[70%] lg:w-[45%] bg-primary sm:mx-auto py-2 z-30 border px-4 enlarge-in">
         <div className="flex justify-end items-center">
           <RxCross2
             size={20}
-            className=" cursor-pointer"
+            className=" cursor-pointer text-green-bg"
             onClick={() => setOpenUploadBox(false)}
           />
         </div>

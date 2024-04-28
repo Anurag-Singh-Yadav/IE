@@ -167,7 +167,7 @@ function Navbar() {
               <Link
                 key={index}
                 href={`/${link.value}`}
-                className="border-b-2 border-white hover:border-green-bg hover:text-green-bg transition duration-300"
+                className="border-b-2 border-gray-400 hover:border-green-bg hover:text-green-bg transition duration-300 mx-"
               >
                 {link.label}
               </Link>

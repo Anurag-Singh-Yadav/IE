@@ -63,4 +63,16 @@ export const dropdownData = [
         label: 'Learn',
         value: 'learn',
     },
+    {
+      label:'Dashboard',
+      value:'dashboard'
+    },
+    {
+      label:'Home',
+      value:''
+    },
+    {
+      label:'About us',
+      value:'about-us'
+    }
   ]
