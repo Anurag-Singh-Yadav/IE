@@ -12,7 +12,7 @@ export default function Home() {
     <div className="relative">
       <Hero />
       <div className="bg-primary">
-        <div className="main-container gradiant-container">
+        <div className=" gradiant-container">
           <Company />
         </div>
         <div className="main-container bg-[url('/circle.svg')] dark:bg-[url('/circle-dark.svg')]">

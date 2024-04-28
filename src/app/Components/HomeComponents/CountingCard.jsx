@@ -1,9 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { BsFillLightbulbFill } from "react-icons/bs";
+import { LuLightbulb } from "react-icons/lu";
+
 import { RiEmotionHappyLine } from "react-icons/ri";
 import { BsFiles } from "react-icons/bs";
 import { PiStudent } from "react-icons/pi";
+import { HiOutlineAcademicCap } from "react-icons/hi";
+
 function CountingCard({ mainText, targetNumber, type }) {
   const [enrolledStudents, setEnrolledStudents] = useState(0);
   const [flag, setFlag] = useState(0);
@@ -49,14 +53,14 @@ function CountingCard({ mainText, targetNumber, type }) {
   }, []);
 
   return (
-    <div className="flex justify-center py-2 bg-primary  shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] dark:border-2 dark:rounded-md dark:border-white items-center gap-2">
-      {type === "happy" && <RiEmotionHappyLine size={30} />}
-      {type === "bulb" && <BsFillLightbulbFill size={30} className="text-yellow-500" />}
-      {type === "student" && <PiStudent size={30} />}
-      {type === "files" && <BsFiles size={30} />}
-      <div>
-        <div className="font-bold text-lg">{enrolledStudents}</div>
-        <div className="text-sm">{mainText}</div>
+    <div className="flex gap-4 py-2  dark:border-2 dark:rounded-md dark:border-white items-center">
+      {type === "happy" && <RiEmotionHappyLine size={32} className="text-green-bg" />}
+      {type === "bulb" && <LuLightbulb size={32} className="text-green-bg"/>}
+      {type === "student" && <PiStudent size={32} className="text-green-bg" />}
+      {type === "files" && <HiOutlineAcademicCap size={32} className="text-green-bg" />}
+    <div>
+        <div className="font-bold text-2xl mt-2">{enrolledStudents}</div>
+        <div className="text-gray-500 dark:text-white text-sm">{mainText}</div>
       </div>
     </div>
   );

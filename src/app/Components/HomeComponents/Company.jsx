@@ -31,6 +31,30 @@ function Company() {
     assets.facebook,
     assets.netflix,
     assets.samsung,
+    assets.microsoft,
+    assets.google,
+    assets.amazon,
+    assets.facebook,
+    assets.netflix,
+    assets.samsung,
+    assets.microsoft,
+    assets.google,
+    assets.amazon,
+    assets.facebook,
+    assets.netflix,
+    assets.samsung,
+    assets.microsoft,
+    assets.google,
+    assets.amazon,
+    assets.facebook,
+    assets.netflix,
+    assets.samsung,
+    assets.microsoft,
+    assets.google,
+    assets.amazon,
+    assets.facebook,
+    assets.netflix,
+    assets.samsung,
   ];
 
   const responsive = {
@@ -57,11 +81,12 @@ function Company() {
   };
 
   return (
-    <div className="w-[80vw] py-16 mx-auto">
-      <div className="w-fit mx-auto rounded-2xl text-sm sm:text-base sm:font-bold  text-green-bg text-center bg-light-green2 py-2 mb-3 sm:px-4 px-2">Trusted Company Arround The World!</div>
+    <div className="w-[95vw] py-6 mx-auto">
+      <div className="w-fit mx-auto rounded-2xl text-sm sm:text-base sm:font-bold  text-green-bg text-center bg-light-green2 py-2 mb-3 sm:px-4 px-2"></div>
+      <h1 className="text-xl text-center font-bold mb-6">Trusted <span className="text-green-bg">Company</span> Around The World!</h1>
 
       <Carousel
-       className="bg-white shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]"
+       className=""
         responsive={responsive}
         showDots={false}
         infinite = {true}
