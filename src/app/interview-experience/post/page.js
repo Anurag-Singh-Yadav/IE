@@ -230,7 +230,6 @@ function PostBlog() {
             >
               <MenuItem value={"yes"} className="">Yes</MenuItem>
               <MenuItem value={"no"} className="">No</MenuItem>
-              <MenuItem value={"pending"} className="">Did not recieve reply yet</MenuItem>
             </Select> 
             
           </div>
