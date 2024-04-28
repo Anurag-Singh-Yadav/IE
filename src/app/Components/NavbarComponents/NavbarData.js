@@ -64,10 +64,6 @@ export const dropdownData = [
         value: 'learn',
     },
     {
-      label:'Dashboard',
-      value:'dashboard'
-    },
-    {
       label:'Home',
       value:''
     },

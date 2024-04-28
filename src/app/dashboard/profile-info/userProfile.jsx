@@ -6,9 +6,13 @@ import { FaCamera } from "react-icons/fa";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { RxCross2 } from "react-icons/rx";
-import {useDispatch , useSelector} from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { setUserDetails } from "@/app/GlobalRedux/Features/GlobalStateSlice";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import Image from "next/image";
+import { FaCheckCircle } from "react-icons/fa";
+import { validateUserHandle } from "@/app/fetchDetails/fetchUserDetails";
 
 function UserProfile() {
   const dispatch = useDispatch();
@@ -17,6 +21,8 @@ function UserProfile() {
   const [file, setFile] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState(null);
   const [openUploadBox, setOpenUploadBox] = useState(false);
+
+  const [valid, setValid] = useState(1);
 
   const userInfo = useSelector((state) => state.GlobalState.userDetails);
 
@@ -31,13 +37,13 @@ function UserProfile() {
 
   useEffect(() => {
     setUpdatedUserInfo(userInfo);
-  }, [userInfo])
+  }, [userInfo]);
 
   const saveUserDetails = async () => {
     let obj = updatedUserInfo;
     try {
       const token = Cookies.get("token");
-      if(file){
+      if (file) {
         const formData = new FormData();
         formData.append("file", file);
         const res = await axios.post(
@@ -53,14 +59,14 @@ function UserProfile() {
         obj = {
           ...updatedUserInfo,
           avatar: res.data.location,
-        }
+        };
         setUpdatedUserInfo(obj);
       }
-    
+
       const res1 = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_UPDATE_USER_DETAILS}`,
         {
-          updatedUserInfo:obj,
+          updatedUserInfo: obj,
           token,
         },
         {
@@ -74,9 +80,50 @@ function UserProfile() {
       router.push(`/dashboard/${obj.userHandle}`);
 
       window.location.reload();
-
     } catch (e) {
       console.log(e);
+    }
+  };
+
+  const validate = async (handle) => {
+    try {
+      const res = await validateUserHandle(handle);
+      return res;
+    } catch (err) {
+      toast.error("Error while validating user");
+      throw new Error(
+        err.response?.data?.message || "Unknown error while validating user"
+      );
+    }
+  };
+
+  const handleUserHandleChange = async (e) => {
+    const { value } = e.target;
+
+    setUpdatedUserInfo({
+      ...updatedUserInfo,
+      userHandle: value,
+    });
+    if (e.target.value.length === 0) {
+      setValid(2);
+      return;
+    }
+    setValid(0);
+    try {
+
+      setTimeout(() => {
+        if (value === e.target.value && value.length > 0)
+          validate(value).then((res) => {
+            if (res === true) {
+              setValid(1);
+            } else {
+              setValid(-1);
+            }
+          });
+      }, 800);
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message || "Error");
     }
   };
 
@@ -128,28 +175,69 @@ function UserProfile() {
         </div>
       </div>
       {updatedUserInfo && (
-        <div>
-          {data.map((item) => (
-            <div key={item} className="flex capitalize justify-between my-2">
-              <TextField
-                id={item}
-                fullWidth
-                label={item}
-                value={updatedUserInfo[item]}
-                variant="outlined"
-                style={{ marginBottom: 10 }}
-                name={item}
-                autoComplete={item}
-                onChange={handleInputChange}
-              />
-            </div>
+        <div className="flex flex-col gap-5 capitalize my-2">
+          <div className="relative">
+            <TextField
+              id={"userHandle"}
+              fullWidth
+              label={"userHandle"}
+              value={updatedUserInfo.userHandle}
+              variant="outlined"
+              style={{ marginBottom: 10 }}
+              name={"userHandle"}
+              autoComplete={"userHandle"}
+              onChange={handleUserHandleChange}
+            />
+            {valid === 0 && (
+              <div
+                src={"/circle-dark.svg"}
+                height={20}
+                width={20}
+                className=""
+              >
+                <div className="mt-[40px]">
+                  <div className="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {valid === 1 && (
+              <FaCheckCircle size={20} className="text-green-bg" />
+            )}
+            {valid === -1 && (
+              <>
+              <RxCross2 size={20} className="text-red-500" />
+              <p className="text-gray-400 text-xs">User handle already taken</p></>
+            )}
+          </div>
+          {data.map((item, index) => (
+            <TextField
+              id={item}
+              fullWidth
+              label={item}
+              value={updatedUserInfo[item]}
+              variant="outlined"
+              style={{ marginBottom: 10 }}
+              name={item}
+              autoComplete={item}
+              onChange={handleInputChange}
+              key={index}
+            />
           ))}
         </div>
       )}
       <div
         className="cursor-pointer btn-gradient-2 text-white py-2 px-3 rounded-md text-center"
         onClick={() => {
-          saveUserDetails();
+          if (valid === 1) saveUserDetails();
+          else
+            toast.error(
+              "Userhandle check failed",
+            );
         }}
       >
         Save Details
@@ -158,20 +246,22 @@ function UserProfile() {
   );
 }
 
-const data = ["userHandle", "name", "email", "github", "linkedIn"];
+const data = ["name", "email", "github", "linkedIn"];
 
 function UploadAvatar({
   setOpenUploadBox,
   avatarUrl,
   setAvatarUrl,
   avatar,
-  setFile
+  setFile,
 }) {
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     setFile(file);
     setAvatarUrl(URL.createObjectURL(file));
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className="fixed w-[100vw] dark:text-white left-0 top-0 z-50 h-[100vh] pop-up">
