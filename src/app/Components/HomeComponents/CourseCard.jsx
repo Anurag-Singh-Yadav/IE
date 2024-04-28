@@ -16,7 +16,7 @@ function CourseCard({course , index}) {
   const {lessons , duration , rating , level} = courseDetails[index];
   return (
     <Link className="shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] bg-primary flex flex-col gap-3 rounded-lg  overflow-hidden rounded-b-sm cursor-pointer group" 
-    href={`/learn/${course.link}`}
+    href={`/learn`}
     >
       <div className="aspect-video w-full overflow-hidden">
       <img
