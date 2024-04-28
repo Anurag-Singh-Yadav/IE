@@ -22,26 +22,19 @@ function InterviewExperiance() {
 
   return (
     <div className="py-16">
-      <div className="grid grid-cols-1 md:grid-cols-4 md:gap-0 gap-4 justify-between items-center py-2">
-        <div className="col-span-3">
-          <div className="font-semibold md:font-bold text-normal sm:text-xl md:text-3xl">
+        
+          <h1 className="font-semibold md:font-bold text-normal md:text-4xl text-2xl text-center">
             Most Recent Interview{" "}
-            <span className="text-green-bg underline">Experience ...</span>
-            🚀
-          </div>
-          <div className="col-span-1 font-normal sm:font-medium md:text-xl sm:text-base text-xs">
+            <span className="text-green-bg">Experience</span>
+          </h1>
+          <h3 className="text-center mt-2 text-gray-600 mb-8">
             Keep Your Edge Sharp: Read and Learn from Diverse Interview
             Journeys.
-          </div>
-        </div>
-        <div className="flex justify-center md:justify-end items-center">
-          <Link
-            className="px-4 py-2 rounded-lg font-bold text-white btn-gradient-2"
-            href={"/interview-experience"}
-          >
-            Read more...
-          </Link>
-        </div>
+          </h3>
+     
+        
+      <div className="grid grid-cols-1 md:grid-cols-4 md:gap-0 gap-4 justify-between items-center py-2">
+     
       </div>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         {interviewData &&
@@ -81,6 +74,14 @@ function InterviewExperiance() {
           </div>
         )}
       </div>
+      <div className="flex justify-center md:justify-end items-center mt-6">
+          <Link
+            className="px-4 py-2 rounded-lg font-bold text-white btn-gradient-2"
+            href={"/interview-experience"}
+          >
+            Read more...
+          </Link>
+        </div>
     </div>
   );
 }

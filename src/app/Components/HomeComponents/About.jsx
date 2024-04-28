@@ -4,10 +4,8 @@ import CountingCard from "./CountingCard";
 function About() {
 
   return (
-    <div className="py-16">
-      <div className="font-semibold md:font-bold text-normal sm:text-xl md:text-3xl">
-        Our Great <span className="text-green-bg underline">Achievement</span>
-      </div>
+    <div className="py-8">
+      <h1 className="md:text-4xl text-2xl text-center font-bold mb-10">Our Great <span className="text-green-bg"> Achievement </span></h1>
       <div id="about" className="my-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 justify-center sm:gap-6 md:gap-10 lg:gap-14 items-center">
         <CountingCard mainText={"Enrolled Students"} targetNumber={352} type={"happy"} ></CountingCard>
         <CountingCard mainText={"Academic Programs"} targetNumber={502} type={"files"} ></CountingCard>

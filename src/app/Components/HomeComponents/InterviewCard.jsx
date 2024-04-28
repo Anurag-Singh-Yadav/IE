@@ -51,7 +51,7 @@ function InterviewCard({
         <div></div>
       </div>
 
-      <div className="h-[2px] my-4 bg-slate-800"></div>
+      <div className="h-[0.5px] my-4 bg-gray-300"></div>
 
       <div className="flex flex-wrap text-sm sm:text-normal justify-between items-center">
         <div>
@@ -68,11 +68,10 @@ function InterviewCard({
               <div>Not Selected</div>
             </div>
           )}
-        </div>
-        <div className="">Published on : <strong>{created_on.split(',')[0]}</strong></div>
-      </div>
 
-      <div className="flex justify-between my-2 flex-wrap items-center">
+          
+        </div>
+        <div className="flex justify-between my-2 flex-wrap items-center">
         <Link
           href={`/interview-experience/[id]`}
           as={`/interview-experience/${id}`}
@@ -91,6 +90,9 @@ function InterviewCard({
           </div>
         )}
       </div>
+      </div>
+      <div className="">Published on : <strong>{created_on.split(',')[0]}</strong></div>
+      
     </div>
   );
 }

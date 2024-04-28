@@ -9,6 +9,7 @@ import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
 import Avatar from "react-avatar";
 import PreRender from "../templets/PreRender";
+import Link from "next/link";
 const CustomButtonGroup = ({ next, previous }) => (
   <div className="absolute top-0 right-2 flex justify-between gap-2 items-center z-40">
     <button className="" onClick={previous}>
@@ -27,12 +28,12 @@ const CustomButtonGroup = ({ next, previous }) => (
 function makeStar({ number }) {
   let stars = [];
   for (let i = 0; i < number; i++) {
-    stars.push(<IoIosStar key={i} size={20} className=" text-[#ffbd35]" />);
+    stars.push(<IoIosStar key={i} size={16} className=" text-[#ffbd35]" />);
   }
   let empty = [];
   for (let i = 0; i < 5 - number; i++) {
     empty.push(
-      <IoIosStarOutline key={i + 5} size={20} className="text-black" />
+      <IoIosStarOutline key={i + 5} size={16} className=" text-[#ffbd35]" />
     );
   }
   return [...stars, ...empty];
@@ -69,13 +70,13 @@ const ReviewCard = () => {
   };
 
   return (
-    <div className="w-full border border-primary sm:pt-8 pb-4 relative">
-      <div className="relative font-normal sm:font-medium md:font-lg lg:font-bold text-xl sm:text-2xl md:text-3xl pt-6 pb-8 main-container">
-        What Says <span className="text-green-bg underline">Our Students</span>
+    <div className="w-full border border-primary sm:pt-8 pb-4 relative py-2 rounded-lg">
+      <div className="relative font-bold text-2xl md:text-4xl pt-6 pb-8 text-center">
+        What Says <span className="text-green-bg ">Our Students</span>
       </div>
 
       {reviews && (
-        <div className="relative  overflow-x-clip mx-auto w-[100vw] sm:w-[80vw] overflow-y-clip mb-5 h-fit">
+        <div className="relative  overflow-x-clip mx-auto w-[100vw] sm:w-[95vw] overflow-y-clip mb-5 h-fit">
           <Carousel
             className="pt-10"
             responsive={responsive}
@@ -90,24 +91,28 @@ const ReviewCard = () => {
             {reviews.map((review, index) => (
               <div
                 key={index}
-                className="transition-transform duration-2000 px-2 h-[300px]"
+                className="transition-transform duration-2000 px-2 h-[240px]"
               >
                 <div className="sm:mx-4 h-full text-dimWhite bg-primary flex flex-col rounded-md shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
                   <div className="flex bg-light-green text-black px-4 py-2 justify-start gap-2 items-center mb-3">
                     <Avatar
                       src={review.avatar}
-                      size={50}
+                      size={42}
                       alt={review.name}
                       round={true}
                     />
-                    <div className="font-semibold">{review.name}</div>
-                  </div>
+                    <div className="flex flex-col justify-start">
+                    <Link href={`/dashboard/${review.userHandle}`} target="_blank" className="font-semibold">{review.name}</Link>
 
-                  <div className="flex px-4 flex-col justify-between items-start min-h-[190px]">
-                    <div className="text-sm">{review.description}</div>
                     <div className="flex w-full justify-evenly">
                       {makeStar({ number: review.rating })}
                     </div>
+                  </div>
+                  </div>
+
+                  <div className="flex px-4 flex-col justify-between items-start min-h-[190px] py-2 ">
+                    <div className="text-sm text-gray-600 dark:text-white rounded-t-md">{review.description}</div>
+
                   </div>
                 </div>
               </div>

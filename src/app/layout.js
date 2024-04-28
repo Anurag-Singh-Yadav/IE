@@ -3,8 +3,10 @@ import "./globals.css";
 import Head from "next/head";
 import Navbar from "./Navbar";
 import { Providers } from "./GlobalRedux/Providers";
+import { Analytics } from "@vercel/analytics/next"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from "./Footer";
 import MyApp from "../../pages/_app";
 import { ThemeProvider } from "./Components/ThemeProvider";
@@ -39,6 +41,8 @@ export default function RootLayout({ children }) {
             <Providers>
               <Navbar />
               {children}
+              <Analytics />
+              <SpeedInsights />
               <div className="gradiant-container pt-[1px]">
                 {" "}
                 <Footer />
