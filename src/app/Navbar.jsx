@@ -144,7 +144,7 @@ function Navbar() {
       <div className="flex justify-between h-[10vh] items-center">
         <Link
           href={"/"}
-          className="px-4 py-2 text-yellow-400   font-bold text-3xl"
+          className="px-4 py-2 text-green-bg   font-bold text-3xl"
         >
           {a}
         </Link>
