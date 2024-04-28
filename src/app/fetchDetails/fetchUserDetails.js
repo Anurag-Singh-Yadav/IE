@@ -84,7 +84,7 @@ export const fetchLeaderboardPage = async (pageNumber) => {
 };
 
 export const profileViewed = async (token, userHandle) => {
-  console.log(userHandle , '<**>');
+  console.log(userHandle, "<**>");
   try {
     await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_PROFILE_VIEWED}`,
@@ -94,38 +94,53 @@ export const profileViewed = async (token, userHandle) => {
       }
     );
   } catch (err) {
-    console.log('/fetchUserdetails ---> ' , err);
+    console.log("/fetchUserdetails ---> ", err);
     throw new Error("Profile view increment failed");
   }
 };
 
-export const addFollower = async (token , userHandle) => {
+export const addFollower = async (token, userHandle) => {
   try {
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_ADD_FOLLOWER}`,
       {
         token,
-        followed:userHandle,
+        followed: userHandle,
       }
     );
     return res.data?.success;
   } catch (err) {
     throw new Error("Error while following user");
   }
-}
+};
 
-export const removeFollower = async (token , userHandle) => {
+export const removeFollower = async (token, userHandle) => {
   try {
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_REMOVE_FOLLOWER}`,
       {
         token,
-        followed:userHandle,
+        followed: userHandle,
       }
     );
     return res.data?.success;
   } catch (err) {
     throw new Error("Error while unfollowing user");
   }
-}
+};
 
+export const validateUserHandle = async (userHandle) => {
+  try {
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_VALIDATE_USER_HANDLE}`,
+      {
+        userHandle,
+      }
+    );
+    console.log(res.data?.success, "<--");
+    return res.data?.success;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Error while validating user handle");
+  }
+};

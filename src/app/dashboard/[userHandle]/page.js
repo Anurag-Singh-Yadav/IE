@@ -72,7 +72,7 @@ function Dashboard({ params }) {
 
 
   return (
-    <div className="min-h-[5000vh] bg-white text-black overflow-hidden">
+    <div className={`${selectedMode === 'dashboard' ? 'min-h-[590vh]' : 'min-h-[100vh]'} bg-white text-black overflow-hidden`}>
       <div className="relative bg-black ">
         <TopBanner details={userInfo} isFollowing={isFollowing} setIsFollowing={setIsFollowing} loggedIn={userDetails.userHandle.length && userDetails.userHandle.length > 0}/>
       </div>
