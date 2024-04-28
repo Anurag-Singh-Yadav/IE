@@ -7,9 +7,9 @@ import { FaStar } from "react-icons/fa";
 import { GiNetworkBars } from "react-icons/gi";
 import "./CourseCard.css";
 import { courseDetails } from "./CourseData";
+import Link from "next/link";
 function CourseCard({course , index}) {
   const {lessons , duration , rating , level} = courseDetails[index];
-  console.log(' -> ' , course);
   return (
     <div className="shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] bg-primary flex flex-col gap-3 rounded-lg hover:rounded-none overflow-hidden rounded-b-sm cursor-pointer">
       <img
@@ -18,10 +18,10 @@ function CourseCard({course , index}) {
         className="w-[100%] max-h-[220px] aspect-video overflow-hidden"
       />
       <div className="flex flex-col gap-2 justify-center px-6 pb-6 pt-4">
-        <p
+        <Link href={`/learn/${course.link}`}
          className="btn-gradient-2 w-full text-sm  px-2 py-2 rounded-lg mb-2 text-primary font-medium ">
           {course.name}
-        </p>
+        </Link>
         <p>
           <FaBookOpen size={10} className="text-green-bg inline mr-3" />
           <span className="text-xs">{lessons} Lessons</span>

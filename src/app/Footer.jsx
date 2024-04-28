@@ -136,9 +136,9 @@ function Footer() {
           </button>
         </div>
 
-        <p className="text-yellow-500 text-xl font-bold mx-auto max-w-[10vw] col-span-1">
+        <Link href={'/'} className="text-green-bg text-xl font-bold mx-auto max-w-[10vw] col-span-1">
           {logo}
-        </p>
+        </Link>
 
         <div className="flex flex-wrap-reverse gap-x-14 gap-y-4 col-span-5">
           <div className="flex flex-col gap-4 justify-start items-center mx-auto p-3">

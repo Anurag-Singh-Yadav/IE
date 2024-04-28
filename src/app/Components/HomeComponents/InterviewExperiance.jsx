@@ -10,8 +10,12 @@ function InterviewExperiance() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetchInterviewExperience(false, 0);
-      setInterviewData(res?.data);
+      try {
+        const res = await fetchInterviewExperience(false, 0);
+        setInterviewData(res?.data);
+      } catch (e) {
+        // console.log(e);
+      }
     };
     fetchData();
   }, []);
