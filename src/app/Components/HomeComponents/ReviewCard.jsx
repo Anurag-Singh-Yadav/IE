@@ -9,6 +9,7 @@ import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
 import Avatar from "react-avatar";
 import PreRender from "../templets/PreRender";
+import Link from "next/link";
 const CustomButtonGroup = ({ next, previous }) => (
   <div className="absolute top-0 right-2 flex justify-between gap-2 items-center z-40">
     <button className="" onClick={previous}>
@@ -100,7 +101,7 @@ const ReviewCard = () => {
                       alt={review.name}
                       round={true}
                     />
-                    <div className="font-semibold">{review.name}</div>
+                    <Link href={`/dashboard/${review.userHandle}`} target="_blank" className="font-semibold">{review.name}</Link>
                   </div>
 
                   <div className="flex px-4 flex-col justify-between items-start min-h-[190px]">
