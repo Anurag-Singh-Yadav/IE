@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import React from 'react'
 function CommingSoon() {
   return (
@@ -11,7 +12,7 @@ function CommingSoon() {
             <div className='text-xs sm:text-sm md:text-base'>We{"'"}re busy crafting something amazing! Keep an eye out for updates. For inquiries, shoot us an email. Thanks for your interest and patience!</div>
           </div>
           <div className='flex justify-center items-center my-4' >
-            <div className="py-3 px-1 sm:px-2 md:px-4 rounded-md btn-gradient-2 w-fit" href="mailto:interviewexpressteam.gmail.com">Send us an email</div>
+            <Link className="py-3 px-1 sm:px-2 md:px-4 rounded-md btn-gradient-2 w-fit" href="mailto:interviewexpressteam.gmail.com">Send us an email</Link>
           </div>
         </div>
         

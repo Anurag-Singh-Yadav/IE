@@ -7,6 +7,8 @@ import Hero from "./Components/HomeComponents/Hero";
 import InterviewExperiance from "./Components/HomeComponents/InterviewExperiance";
 import ReviewCard from "./Components/HomeComponents/ReviewCard";
 import "./globals.css";
+
+
 export default function Home() {
   return (
     <div className="relative">

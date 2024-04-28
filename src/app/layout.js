@@ -3,10 +3,8 @@ import "./globals.css";
 import Head from "next/head";
 import Navbar from "./Navbar";
 import { Providers } from "./GlobalRedux/Providers";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import Footer from "./Footer";
 import MyApp from "../../pages/_app";
 import { ThemeProvider } from "./Components/ThemeProvider";
