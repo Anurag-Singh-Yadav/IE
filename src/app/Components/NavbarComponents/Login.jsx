@@ -16,6 +16,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+
 import "./Login.css";
 import {
   toggleSignPagePopup,
@@ -25,6 +26,7 @@ import { handleSubmit } from "@/app/fetchDetails/credentialLogin";
 import { validateUserHandle } from "@/app/fetchDetails/fetchUserDetails";
 import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-toastify";
+import "@/app/dashboard/dashboardComponents/Dashboard.css";
 
 function Login() {
   const { data: session, status } = useSession();
