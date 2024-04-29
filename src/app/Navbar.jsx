@@ -9,7 +9,7 @@ import "./globals.css";
 import "./Navbar.css";
 import MobileNavbar from "./Components/NavbarComponents/MobileNavbar";
 import { FaBars } from "react-icons/fa";
-import { dropdownData, links } from "./Components/NavbarComponents/NavbarData";
+import { dropdownData } from "./Components/NavbarComponents/NavbarData";
 import {
   setLogin,
   toggleSignPagePopup,
@@ -162,17 +162,7 @@ function Navbar() {
               </div>
             );
           })}
-          {links.map((link, index) => {
-            return (
-              <Link
-                key={index}
-                href={`/${link.value}`}
-                className="border-b-2 border-gray-400 hover:border-green-bg hover:text-green-bg transition duration-300 mx-"
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+          
         </div>
         <div onClick={() => setNavBurger(!navBurger)} className="nmd:hidden">
           <FaBars size={25} />

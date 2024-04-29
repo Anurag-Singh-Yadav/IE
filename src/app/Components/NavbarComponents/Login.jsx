@@ -100,7 +100,7 @@ function Login() {
       await handleSubmit(formData, 1);
       setLinkSend(true);
     } catch (e) {
-      console.error(e);
+      console.error("error",e);
     } finally {
       setIsClick(false);
     }
