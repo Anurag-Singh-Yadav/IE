@@ -110,7 +110,6 @@ function UserProfile() {
     }
     setValid(0);
     try {
-
       setTimeout(() => {
         if (value === e.target.value && value.length > 0)
           validate(value).then((res) => {
@@ -189,13 +188,8 @@ function UserProfile() {
               onChange={handleUserHandleChange}
             />
             {valid === 0 && (
-              <div
-                src={"/circle-dark.svg"}
-                height={20}
-                width={20}
-                className=""
-              >
-                <div className="mt-[40px]">
+              <div className="absolute right-2 top-2">
+                <div className="">
                   <div className="lds-ring">
                     <div></div>
                     <div></div>
@@ -206,12 +200,21 @@ function UserProfile() {
               </div>
             )}
             {valid === 1 && (
-              <FaCheckCircle size={20} className="text-green-bg" />
+              <FaCheckCircle
+                size={20}
+                className="text-green-bg absolute top-4 right-2"
+              />
             )}
             {valid === -1 && (
               <>
-              <RxCross2 size={20} className="text-red-500" />
-              <p className="text-gray-400 text-xs">User handle already taken</p></>
+                <RxCross2
+                  size={20}
+                  className="text-red-500 absolute top-4 right-2"
+                />
+                <p className="text-gray-400 text-xs">
+                  User handle already taken
+                </p>
+              </>
             )}
           </div>
           {data.map((item, index) => (
@@ -234,10 +237,7 @@ function UserProfile() {
         className="cursor-pointer btn-gradient-2 text-white py-2 px-3 rounded-md text-center"
         onClick={() => {
           if (valid === 1) saveUserDetails();
-          else
-            toast.error(
-              "Userhandle check failed",
-            );
+          else toast.error("Userhandle check failed");
         }}
       >
         Save Details

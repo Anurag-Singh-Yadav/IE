@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
+import { FaCheckCircle, FaGithub } from "react-icons/fa";
 import Box from "@mui/material/Box";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import TextField from "@mui/material/TextField";
@@ -14,7 +14,7 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import "./Login.css";
 import {
@@ -22,6 +22,9 @@ import {
   setSignInBtn,
 } from "../../GlobalRedux/Features/GlobalStateSlice";
 import { handleSubmit } from "@/app/fetchDetails/credentialLogin";
+import { validateUserHandle } from "@/app/fetchDetails/fetchUserDetails";
+import { RxCross2 } from "react-icons/rx";
+import { toast } from "react-toastify";
 
 function Login() {
   const { data: session, status } = useSession();
@@ -82,8 +85,10 @@ function Login() {
   };
 
   const signUpHandler = async (e) => {
-
-    console.log("signUpHandler");
+    if(valid != 1){
+      toast.error('Error validating user handle.');
+      return;
+    }
     setIsClick(true);
     try {
       e.preventDefault();
@@ -101,15 +106,58 @@ function Login() {
     }
   };
 
+  const [valid, setValid] = useState(2);
+
+  const validate = async (handle) => {
+    try {
+      const res = await validateUserHandle(handle);
+      return res;
+    } catch (err) {
+      toast.error("Error while validating user");
+      throw new Error(
+        err.response?.data?.message || "Unknown error while validating user"
+      );
+    }
+  };
+
+  const handleUserHandleChange = async (e) => {
+    const { value } = e.target;
+
+    setFormData({
+      ...formData,
+      userHandle: value,
+    });
+    if (e.target.value.length === 0) {
+      setValid(2);
+      return;
+    }
+    setValid(0);
+    try {
+      setTimeout(() => {
+        if (value === e.target.value && value.length > 0)
+          validate(value).then((res) => {
+            if (res === true) {
+              setValid(1);
+            } else {
+              setValid(-1);
+            }
+          });
+      }, 800);
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message || "Error");
+    }
+  };
+
   const darkTheme = createTheme({
     palette: {
-      mode: 'dark',
+      mode: "dark",
     },
   });
 
   const lightTheme = createTheme({
     palette: {
-      mode: 'light',
+      mode: "light",
     },
   });
 
@@ -198,20 +246,47 @@ function Login() {
             <div className="h-[1px] col-span-3  bg-slate-700"></div>
           </div>
 
-          <ThemeProvider theme={(isLight ? lightTheme : darkTheme)}>
+          <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
             <form className="">
               {isSignup && (
-                <TextField
-                  id="outlined-basic"
-                  fullWidth
-                  required
-                  label="User Name"
-                  variant="outlined"
-                  style={{ marginBottom: 10 }}
-                  name="userHandle"
-                  onChange={handleChange}
-                  autoComplete="userHandle"
-                />
+                <div className='relative'>
+                  <TextField
+                    id="outlined-basic"
+                    fullWidth
+                    required
+                    label="User Name"
+                    variant="outlined"
+                    style={{ marginBottom: 10 }}
+                    name="userHandle"
+                    onChange={handleUserHandleChange}
+                    autoComplete="userHandle"
+                  />
+                  {valid === 0 && (
+                    <div
+                      className="absolute right-2 top-2"
+                    >
+                      <div className="">
+                        <div className="lds-ring">
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {valid === 1 && (
+                    <FaCheckCircle size={20} className="text-green-bg absolute top-4 right-2" />
+                  )}
+                  {valid === -1 && (
+                    <>
+                      <RxCross2 size={20} className="text-red-500 absolute top-4 right-2" />
+                      <p className="text-gray-400 text-xs">
+                        User handle already taken
+                      </p>
+                    </>
+                  )}
+                </div>
               )}
 
               <TextField
