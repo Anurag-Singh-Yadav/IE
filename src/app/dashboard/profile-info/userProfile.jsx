@@ -219,17 +219,20 @@ function UserProfile() {
           </div>
           {data.map((item, index) => (
             <TextField
-              id={item}
-              fullWidth
-              label={item}
-              value={updatedUserInfo[item]}
-              variant="outlined"
-              style={{ marginBottom: 10 }}
-              name={item}
-              autoComplete={item}
-              onChange={handleInputChange}
-              key={index}
-            />
+            id={item}
+            fullWidth
+            label={item}
+            InputProps={{
+              readOnly: item === 'email', // Set readOnly to true only if item is 'email'
+            }}
+            value={updatedUserInfo[item]}
+            variant="outlined"
+            style={{ marginBottom: 10 }}
+            name={item}
+            autoComplete={item}
+            onChange={handleInputChange}
+            key={index}
+          />
           ))}
         </div>
       )}
