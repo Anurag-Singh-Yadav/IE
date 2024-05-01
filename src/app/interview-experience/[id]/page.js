@@ -242,7 +242,7 @@ function InterviewBlog({ params }) {
                 Post
               </button>
             </div>
-            <div className="flex flex-col text-white gap-7 h-[80vh] py-5">
+            <div className="flex flex-col bg-white text-black gap-7 h-[80vh] py-5">
               {userComments &&
                 userComments.map((comment, index) => {
                   return (
