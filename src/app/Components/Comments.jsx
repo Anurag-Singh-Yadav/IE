@@ -199,7 +199,7 @@ function Comments({
   }, [currState]);
 
   return (
-    <div className=" bg-white rounded-t-lg px-3 py-2">
+    <div className=" bg-white text-black rounded-t-lg px-3 py-2">
       <div className="flex gap-3 items-center flex-wrap justify-start border-b pb-1">
         <Avatar src={avatar} round={true} name={email} size="50" />
         <p>{email.split("@")[0]}</p>
