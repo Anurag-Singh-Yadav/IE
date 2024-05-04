@@ -162,7 +162,7 @@ function Navbar() {
               </div>
             );
           })}
-          
+          <Link href={'/learn'}>Learn</Link>
         </div>
         <div onClick={() => setNavBurger(!navBurger)} className="nmd:hidden">
           <FaBars size={25} />
